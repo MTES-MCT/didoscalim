@@ -1,0 +1,24 @@
+"Nom de l'opérateur";"Millésime des données";"Filière";"CODE_REGION";"Catégorie de la consommation";"Code NAF à 2 positions du secteur (NAF rev2 2008)";"Code du grand secteur";"Consommation (en MWh)";"Nombre de points de livraison";"Indice de qualité des données (en pourcent)";"Thermosensibilité dans le résidentiel (en kWh/degré-jour)";"Part de la consommation thermosensible dans le résidentiel (en pourcent)";"Nombre d'IRIS masqués"
+"texte";"annee";"texte";"entier";"texte";"naf_division";"texte";"texte";"entier";"texte";"nombre";"nombre";"entier"
+"n/a";"n/a";"n/a";"s/u";"n/a";"n/a";"n/a";"MWh";"s/u";"n/a";"s/u";"s/u";"s/u"
+"OPERATEUR";"ANNEE";"FILIERE";"CODE_REGION";"CODE_CATEGORIE_CONSOMMATION";"CODE_SECTEUR_NAF2";"CODE_GRAND_SECTEUR";"CONSO";"PDL";"INDQUAL";"THERMOR";"PART";"NB_IRIS_MASQUES"
+"GRDF";"2018";"G";"11";"PRO";;"I";"366155,00514";"7001";;;;
+"GRDF";"2018";"G";"11";"ENT";;"I";"895212,15944";"236";;;;
+"GRDF";"2018";"G";"11";"PRO";;"T";"3275391,79607";"66728";;;;
+"GRDF";"2018";"G";"11";"ENT";;"X";"30546,79975";"619";;;;
+"GRDF";"2018";"G";"11";"RES";;"R";"38165686,18311";"2486083";;;;
+"GRT Gaz";"2018";"G";"11";"ENT";"08";"I";"27679,380613";"2";;;;" 0"
+"GRT Gaz";"2018";"G";"11";"ENT";"10";"I";"522731,84163";"8";;;;" 0"
+"GRT Gaz";"2018";"G";"11";"ENT";"17";"I";"33325,528143";"1";;;;" 0"
+"GRT Gaz";"2018";"G";"11";"ENT";"18";"I";"42488,3425";"1";;;;" 0"
+"Gedia";"2018";"G";"24";"ENT_PRO";;"I";"44309,45";"40";"0,95";;;" 0"
+"Gedia";"2018";"G";"24";"RES";;"R";"206129,088";"13340";"0,95";;;" 0"
+"Gedia";"2018";"G";"24";"ENT_PRO";;"T";"81584,196";"54";"0,95";;;" 0"
+"Gedia";"2018";"G";"24";"ENT_PRO";;"X";"31398,99";"33";"0,95";;;" 6"
+"GRDF";"2018";"G";"24";"RES";;"R";"6172179,68071";"423661";;;;
+"GRDF";"2018";"G";"24";"PRO";;"A";"7791,48644";"139";;;;
+"GRDF";"2018";"G";"24";"ENT";;"I";"877329,21699";"134";;;;
+"GRDF";"2018";"G";"24";"PRO";;"I";"106170,5104";"1777";;;;
+"GRDF";"2018";"G";"24";"PRO";;"T";"826613,44578";"16067";;;;
+"GRDF";"2018";"G";"24";"ENT";;"T";"375620,04937";"353";;;;
+"GRDF";"2018";"G";"24";"ENT";;"A";"200055,21188";"16";;;;

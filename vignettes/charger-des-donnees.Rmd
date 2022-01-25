@@ -1,0 +1,195 @@
+---
+title: "Charger des données"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Charger des données}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(didoscalim)
+library(magrittr)
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+```
+
+```{r, echo=FALSE, results = FALSE, message = FALSE}
+# bugfix pour check()
+library(stringr)
+library(purrr, warn.conflicts = FALSE)
+ds <- list_datasets() 
+if (nrow(ds) > 0) ds %>% 
+  filter(str_detect(title, "Données.*fictive")) %>% 
+  select(id) %>% 
+  pmap(~ delete_dataset(..1))
+```
+
+
+## Comment utiliser didoscalim
+
+Afin d'éviter les erreurs de manipulation, il est conseillé de préparer ses
+scripts de chargement sur l'environnement `ECOLE` et de les passer après sur
+`PROD`. Vous trouverez plus d'info dans [la vignette sur les
+environnements](les-environnements.html).
+
+## Créer un dataset
+
+Créer un dataset avec les caractéristiques suivantes :
+
+```{r}
+dataset <- add_dataset(
+  title = "Données de consommation fictive",
+  description = "test",
+  topic = "Transports",
+  temporal_coverage_start = "2020-01-01",
+  temporal_coverage_end = "2020-12-31",
+  frequency = "annual",
+  frequency_date = "2021-10-10"
+)
+```
+
+### créer un datafile dans ce dataset
+
+```{r}
+add_datafile(
+  dataset = dataset,
+  file_name = "augmente.csv",
+  title = "Données de consommation fictive – chaleur et froid – année 2020",
+  description = "Consommations annuelles et nombre de points de livraison",
+  temporal_coverage_start = "2020-01-01",
+  temporal_coverage_end = "2020-12-31",
+  millesime = "2021-10"
+)
+```
+### ajouter un fichier annexe
+
+```{r}
+add_attachment(
+    dataset = dataset,
+    file_name = 'annexe.txt',
+    title = "Liste des variables - chaleur et froid",
+    description = "Détail des variables - fichiers chaleur et froid"
+)
+```
+
+## ajouter un millésime à un datafile existant
+
+La procédure est simple :
+
+1. chercher le datafile à modifier
+2. ajouter le millésime
+3. si nécessaire, changer les couvertures temporelles du datafile et du dataset
+
+### chercher le datafile à modifier
+
+Pour ajouter un millésime vous devez d'abord récupérer le fichier de données.
+Vous pouvez le chercher par son titre avec la fonction `get_datafile()`. Cette
+fonction retourne beaucoup d'information non pertinentes dans le cadre d'une
+mise à jour, vous pouvez utiliser `clean_metadata()` :
+
+```{r}
+datafile <- get_datafile(title = "Données de consommation fictive – chaleur et froid – année 2020") %>%
+  clean_metadata()
+datafile
+```
+
+### ajouter le millésime à ce datafile
+
+```{r}
+millesime <- add_millesime(
+  datafile = datafile,
+  file_name = "augmente.csv",
+  millesime = "2022-10"
+)
+```
+### Mettre à jour les métadonnées du dataset et du datafile
+
+Trois métadonnées peuvent devoir être mises à jour :
+
+* la couverture temporelle du datafile
+* la couverture temporelle du dataset
+* la date de prochaine mise à jour du dataset
+
+#### mettre à jour les métadonnées du datafile
+
+Tout d'abord récupérer les métadonnées :
+
+```{r}
+datafile <- get_datafile(millesime)  %>% clean_metadata()
+datafile
+```
+
+Modifier la ou les métadonnées concernées et faire la mise à jour :
+
+```{r}
+datafile$temporal_coverage$end <- "2021-12-31"
+update_datafile(datafile)
+```
+
+#### mettre à jour les métadonnées du dataset
+
+Encore une fois, commencer par récupérer les métadonnées du dataset :
+
+```{r}
+dataset <- get_dataset(datafile) %>% clean_metadata()
+dataset
+```
+Puis modifier les métadonnées concernées et faire la mise à jour. Dans ce cas là
+on met à jour la date de fin de couverture temporelle et la date de prochaine
+mise à jour :
+
+```{r}
+dataset$temporal_coverage$end <- "2021-12-31"
+dataset$frequency_date <- "2022-10-10T00:00:00"
+update_dataset(dataset)
+```
+
+L'ajout du millésime est terminé.
+
+## remplacer un millésime d'un datafile existant
+
+Parfois vous voulez remplacer un millésime existant.
+
+1. trouver le datafile
+1. récupérer le millésime à mettre à jour
+1. mettre à jour le millésime
+
+Pour mettre à jour le dernier millésime d'un fichier de données, la procédure est :
+
+### trouver le datafile
+
+```{r}
+datafile <- get_datafile(title = "Données de consommation fictive – chaleur et froid – année 2020") %>%
+  clean_metadata()
+datafile
+```
+### récupérer le millésime à modifier
+
+On récupére le dernier millesime du datafile
+
+```{r}
+millesime_row <- list_millesimes(datafile) %>% slice_max(order_by = millesime)
+millesime <- millesime_row[['millesime']]
+millesime
+```
+
+### remplacer l'ancien millésime par le nouveau fichier
+
+Et on le remplace :
+
+```{r}
+millesime <- replace_millesime(
+  datafile = datafile,
+  file_name = "augmente.csv",
+  millesime = millesime
+)
+```
+
+

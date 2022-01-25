@@ -1,0 +1,125 @@
+---
+title: "Générer un fichier csv augmenté"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Générer un fichier csv augmenté}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+resource_files:
+  - exemple.csv
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(didoscalim)
+```
+
+## Le CSV augmenté
+
+DiDo utilise un csv augmenté avec 4 lignes d'entêtes :
+
+1. une description des variables
+2. le type de la variable
+3. l'unité de la variable
+4. le nom de la variable
+
+```
+"Commune";"Nombre de logements neufs"
+"cog_commune_2020";"entier"
+"n/a";"s/u"
+"COMMUNE";"LOGEMENTS_NEUFS"
+```
+
+Le [site de documentation de
+l'API](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/)
+propose une documentation plus complète sur [le csv
+augmenté](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/)
+ainsi que sur [la liste des
+types](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/)
+
+## Générer un CSV augmenté.
+
+`didoscalim` propose une fonction pour vous aider.
+
+La génération se passe en trois étapes :
+
+1. le chargement du fichier d'origine : `dido_read_delim()`
+1. l'ajout des lignes d'entêtes spécifiques : `dido_csv()`
+1. l'écriture du fichier au bon format : `dido_write_csv()`
+
+
+
+## le chargement du fichier d'origine
+
+Le fichier d'origine doit être au format CSV classique, ie, la première ligne du
+fichier contient le nom des variables. Vous pouvez télécharger le [fichier
+exemple utilisé](exemple.csv).
+
+En premier lieu, charger le fichier dans un dataframe avec la commande `dido_read_delim()`.
+
+```{r}
+tbl <- dido_read_delim("exemple.csv")
+```
+
+Si votre fichier est dans un format autre que `UTF-8`, vous devez l'indiquer :
+
+```{r, eval = FALSE}
+tbl <- dido_read_delim(
+  "exemple.csv",
+  locale = locale(encoding = "iso-8859-1",
+  decimal_mark = ',')
+)
+```
+
+## L'ajout des lignes d'entêtes spécifiques
+
+didoscalim peut analyser le fichier et proposer un premier niveau de description.
+
+```{r}
+result <- dido_csv(tbl)
+knitr::kable(head(result, n=5))
+```
+
+Pour aller plus loin, vous pouvez soit écrire le fichier tel quel avec
+`dido_write_csv()` et l'éditer à la main. Soit utiliser le paramètre `params` de
+la commande `dido_csv()`.
+
+Voici un exemple complet pour le fichier exemple :
+
+```{r}
+params = list(
+  OPERATEUR = list(description = "Nom de l'opérateur"),
+  FILIERE = list(description = "Filière"),
+  CODE_CATEGORIE_CONSOMMATION = list(description = "Catégorie de la consommation"),
+  CODE_SECTEUR_NAF2 = list(description = "Code NAF à 2 positions du secteur (NAF rev2 2008)", type = "naf_division"),
+  CONSO = list(description = "Consommation (en MWh)", unit = "MWh")
+)
+result <- dido_csv(tbl, params = params)
+knitr::kable(head(result, n = 5))
+```
+
+## L'écriture du fichier au bon format.
+
+```{r, eval = FALSE}
+dido_write_csv(result, "resultat.csv")
+```
+
+Vous pouvez télécharger [le fichier généré](resultat.csv)
+
+## résumé.
+
+Une fois que la configuration de `params` est correcte, vous pouvez chainer avec
+l'opérateur `magrittr::%>%` :
+
+```{r}
+library(magrittr, quietly = TRUE)
+dido_read_delim("exemple.csv") %>%
+  dido_csv(params = params) %>%
+  dido_write_csv("resultat.csv")
+```

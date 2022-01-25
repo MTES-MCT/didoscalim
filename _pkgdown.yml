@@ -1,0 +1,42 @@
+url: https://mtes-mct.github.io/didoscalim
+template:
+  bootstrap: 5
+lang: fr
+
+reference:
+- title: "Créer des fichiers CSV augmenté"
+  contents:
+  - dido_read_delim
+  - dido_csv
+  - dido_write_csv
+
+- title: "Les fonctions liées aux datasets"
+  contents:
+  - ends_with("datasets?")
+
+- title: "Les fonctions liées aux datafiles"
+  contents:
+  - ends_with("datafiles?")
+
+- title: "Les fonctions liées aux millésimes"
+  contents:
+  - ends_with("millesimes?")
+
+- title: "Les fonctions liées aux fichiers annexes"
+  contents:
+  - ends_with("attachments?")
+
+- title: "Les fonctions utilitaires"
+  contents:
+  - clean_metadata
+  - my_organization
+  - get_alerts
+
+- title: "Gérer votre environnement"
+  contents:
+  - ends_with("envs?")
+
+- title: "Les fonctions liées aux jobs"
+  contents:
+  - ends_with("jobs?")
+
