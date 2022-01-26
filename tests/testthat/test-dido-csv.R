@@ -1,18 +1,76 @@
-test_that("dido_csv works", {
-  data <- tribble(
-    ~name1, ~name2,
-    "a",   1
+test_that("dido_csv works for default types", {
+  data <- tibble::tibble(
+    CHAR = c("a"),
+    INTEGER = c(1),
+    NUMBER = c(1.2)
   )
-  expected <- tribble(
-    ~name1, ~name2,
-    "name1", "name2",
-    "texte", "entier",
-    "n/a", "s/u",
-    "NAME1", "NAME2",
-    "a",   "1"
+  expected <- tibble::tibble(
+    CHAR = c("CHAR", "texte", "n/a", "CHAR", "a"),
+    INTEGER = c("INTEGER", "entier", "s/u", "INTEGER", "1"),
+    NUMBER = c("NUMBER", "nombre", "s/u", "NUMBER", "1.2"),
   )
 
   result <- dido_csv(data)
+
+  expect_equal(result, expected)
+})
+
+test_that("dido_csv works for columns with default values", {
+  data <- tibble::tibble(
+    REGION = c("22"),
+    DEPARTEMENT = c("22"),
+    COMMUNE = c("22"),
+    EPCI = c("22"),
+    IRIS = c("22"),
+
+    ANNEE = c("2022"),
+    MOIS = c("2022-01")
+  )
+  expected <- tibble::tibble(
+    REGION = c("Code de la région", glue::glue("cog_region_{format(Sys.time(), '%Y')}"), "n/a", "REGION", "22"),
+    DEPARTEMENT = c("Code du département", glue::glue("cog_departement_{format(Sys.time(), '%Y')}"), "n/a", "DEPARTEMENT", "22"),
+    COMMUNE = c("Code de la commune", glue::glue("cog_commune_{format(Sys.time(), '%Y')}"), "n/a", "COMMUNE", "22"),
+    EPCI = c("Code de l'EPCI", glue::glue("cog_epci_{format(Sys.time(), '%Y')}"), "n/a", "EPCI", "22"),
+    IRIS = c("Code de l'iris", glue::glue("cog_iris_{format(Sys.time(), '%Y')}"), "n/a", "IRIS", "22"),
+
+    ANNEE = c("Millésime des données", "annee", "n/a", "ANNEE", "2022"),
+    MOIS = c("Mois des données", "mois", "n/a", "MOIS", "2022-01"),
+  )
+
+  result <- dido_csv(data)
+
+  expect_equal(result, expected)
+})
+
+test_that("dido_csv works for default types", {
+  data <- tibble::tibble(
+    CHAR = c("a"),
+    INTEGER = c(1),
+    NUMBER = c(1.2)
+  )
+  expected <- tibble::tibble(
+    CHAR = c("CHAR", "texte", "n/a", "CHAR", "a"),
+    INTEGER = c("INTEGER", "entier", "s/u", "INTEGER", "1"),
+    NUMBER = c("NUMBER", "nombre", "s/u", "NUMBER", "1.2"),
+  )
+
+  result <- dido_csv(data)
+
+  expect_equal(result, expected)
+})
+
+test_that("dido_csv works with params", {
+  params = list(
+    COL = list(unit = "unit", description = "description", type = "nombre")
+  )
+  data <- tibble::tibble(
+    COL = c("secret")
+  )
+  expected <- tibble::tibble(
+    COL = c("description", "nombre", "unit", "COL", "secret")
+  )
+
+  result <- dido_csv(data, params)
 
   expect_equal(result, expected)
 })
