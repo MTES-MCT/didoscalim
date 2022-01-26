@@ -55,6 +55,7 @@ default_columns <- list(
 dido_csv <- function(data, params = list(),
                      locale = readr::default_locale(),
                      cog_year = format(Sys.time(), "%Y")) {
+  data <- dplyr::mutate(data, dplyr::across(!where(is.character), as.character))
   desc <- description_row(data, params)
   type <- type_row(data, params, locale, cog_year)
   unit <- unit_row(type, params)

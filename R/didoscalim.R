@@ -10,7 +10,7 @@
 #' @importFrom tidyr unnest unite
 #' @importFrom tibble tibble as_tibble
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr bind_rows select slice filter
+#' @importFrom dplyr bind_rows select slice filter mutate across
 #' @importFrom stringr str_replace str_detect fixed str_replace_all
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data abort warn inform %||% format_error_bullets
