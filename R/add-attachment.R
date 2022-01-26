@@ -39,7 +39,7 @@ add_attachment <- function(dataset,
 
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{file_name}`"))
 
-  file_id <- upload_file(file_name)
+  file_id <- dido_upload_file(file_name)
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
 
   payload <- list(

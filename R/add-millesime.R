@@ -31,7 +31,7 @@ add_millesime <- function(datafile,
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 
 
-  token_file <- upload_file(file_name)
+  token_file <- dido_upload_file(file_name)
   check_csv(token_file)
 
   payload <- list(

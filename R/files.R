@@ -7,10 +7,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' token <- upload_file("mon_fichier.csv")
+#' token <- dido_upload_file("mon_fichier.csv")
 #' }
 #' @keywords internal
-upload_file <- function(file_name) {
+dido_upload_file <- function(file_name) {
   if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
   if (file.exists(file_name) == FALSE) {
     rlang::abort("no_such_file", message = glue::glue("Le fichier `{file_name} n'existe pas"))
@@ -21,7 +21,8 @@ upload_file <- function(file_name) {
     "content-type" = "application/octet-stream",
     "x-uploadedfile-name" = basename(file_name)
   )
-  file <- httr::upload_file(file_name,
+  file <- httr::upload_file(
+    file_name,
     type = "application/octet-stream"
   )
   result <- dido_api(

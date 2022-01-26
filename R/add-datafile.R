@@ -63,7 +63,7 @@ add_datafile <- function(dataset,
   if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
 
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier `{file_name}`"))
-  datafile$tokenFile <- upload_file(file_name)
+  datafile$tokenFile <- dido_upload_file(file_name)
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
   check_csv(datafile$tokenFile)
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier validé"))
