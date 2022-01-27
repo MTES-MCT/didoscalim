@@ -8,15 +8,16 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' write_dido_csv(data, "/tmp/fichier.csv")
-#' }
+#' `%>%` <- magrittr::`%>%`
+#' dido_read_delim(dido_example("exemple.csv")) %>%
+#'   dido_csv() %>%
+#'   dido_write_csv("/tmp/fichier.csv")
 dido_write_csv <- function(data, file) {
   readr::write_delim(data,
-                     file,
-                     delim = ";",
-                     na = "",
-                     col_names = FALSE,
-                     quote = "all"
+    file,
+    delim = ";",
+    na = "",
+    col_names = FALSE,
+    quote = "all"
   )
 }

@@ -34,9 +34,10 @@ default_columns <- list(
 #'   )
 #'   ```
 #'   Les caractéristiques disponibles sont :
-#'   * description: la description de la colonne
-#'   * type : nombre, entier, texte, ...
-#'   * unit : l'unité de la colonne
+#'
+#'   * `description`: la description de la colonne
+#'   * `type`: nombre, entier, texte, ...
+#'   * `unit`: l'unité de la colonne
 #'
 #'   Le nom de la colonne peut être une expression rationnelle :
 #'   ```{r, results = FALSE}
@@ -48,7 +49,26 @@ default_columns <- list(
 #'   La première colonne correspondante est utilisée, **mettez toujours vos
 #'   expressions rationnelles à la fin**.
 #'
-#' @param locale la locale à utiliser
+#'   La valeur du champ `description` est évaluée par glue::glue avec un
+#'   paramètre `name` qui correspond au nom de la variable du dataframe
+#'   d'origine.
+#'
+#'   ```{r, results = FALSE}
+#'   list(
+#'     COL     = list(description = "une description"),
+#'     `COL.*` = list(
+#'       unit = "MWh",
+#'       description = "une description {string::str_extract(name, '\\d{4}')}"
+#'     )
+#'   )
+#'   ````
+#'
+#' @param locale la locale à utiliser. Le seul élément à configurer à ce niveau
+#'   est le séparateur décimal. Par défaut c'est le point (`.`). Pour
+#'   sélectionner la virgule vous pouvez utiliser :
+#'   ```{r}
+#'   locale = locale(decimal_mark = ",")
+#'   ```
 #' @param cog_year le millésime du COG utilisé si besoin. Par défaut prend
 #'   l'année en cours
 #'
@@ -79,7 +99,7 @@ default_columns <- list(
 #'
 #'
 #' @examples
-#' data = data.frame(
+#' data <- data.frame(
 #'   OPERATEUR = c("nom1", "nom2"),
 #'   COMMUNE = c("29000", "35000"),
 #'   CONSO = c(1, 2)
@@ -89,6 +109,15 @@ default_columns <- list(
 #'   CONSO = list(description = "La consommation", unit = "Mwh")
 #' )
 #' dido_csv(data, params = params)
+#'
+#' data <- data.frame(
+#'   DONNEES_2021 = c("1,4", "1,5"),
+#'   DONNEES_2022 = c("1,3", "1,8")
+#' )
+#' params <- list(
+#'   `DONNEES_.*` = list(description = 'description pour {stringr::str_extract(name, "\\\\d{4}")}')
+#' )
+#' dido_csv(data, params = params, locale = locale(decimal_mark = ","))
 dido_csv <- function(data, params = list(),
                      locale = readr::default_locale(),
                      cog_year = format(Sys.time(), "%Y")) {
@@ -102,9 +131,15 @@ dido_csv <- function(data, params = list(),
 }
 
 #' @noRd
+description_row_glue <- function(description, name) {
+  if (is.null(description)) return(NULL)
+  stringr::str_glue(description)
+}
+
+#' @noRd
 description_row <- function(data, params = list()) {
   name_cols <- vapply(names(data), function(name) {
-    matching_param(params, name)[["description"]] %||%
+    description_row_glue(matching_param(params, name)[["description"]], name) %||%
       default_columns[[name]][["description"]] %||%
       name
   }, character(1))
@@ -145,10 +180,14 @@ guess_col <- function(column, locale) {
 
 #' @noRd
 matching_param <- function(params, name) {
-  regex_names <- vapply(names(params), function(v){ glue::glue("^{v}$") }, character(1))
+  regex_names <- vapply(names(params), function(v) {
+    glue::glue("^{v}$")
+  }, character(1))
   matching_param <- params[str_detect(name, regex_names)]
 
-  if(length(matching_param) == 0) return(list())
+  if (length(matching_param) == 0) {
+    return(list())
+  }
   matching_param[[1]]
 }
 
@@ -162,7 +201,7 @@ type_row <- function(data, params = list(), locale, cog_year) {
       guess_col(data[[name]], locale) %||%
       "texte"
 
-  str_replace(col_type, "\\{COG_YEAR\\}", cog_year)
+    str_replace(col_type, "\\{COG_YEAR\\}", cog_year)
   }, character(1))
 }
 

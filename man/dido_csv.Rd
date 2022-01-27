@@ -14,11 +14,46 @@ dido_csv(
 \arguments{
 \item{data}{le dataframe à augmenter}
 
-\item{params}{une liste nommée décrivant les caractéristiques des colonnes}
+\item{params}{une liste nommée décrivant les caractéristiques des colonnes :\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
+  COL1 = list(description = "une description"),
+  COL2 = list(unit = "MWh")
+)
+}\if{html}{\out{</div>}}
 
-\item{locale}{la locale à utiliser}
+Les caractéristiques disponibles sont :
+\itemize{
+\item \code{description}: la description de la colonne
+\item \code{type}: nombre, entier, texte, ...
+\item \code{unit}: l'unité de la colonne
+}
 
-\item{cog_year}{le millésime du COG utilisé si besoin. Par défaut prend l'année en cours}
+Le nom de la colonne peut être une expression rationnelle :\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
+  COL     = list(description = "une description"),
+  `COL.*` = list(unit = "MWh")
+)
+}\if{html}{\out{</div>}}
+
+La première colonne correspondante est utilisée, \strong{mettez toujours vos
+expressions rationnelles à la fin}.
+
+La valeur du champ \code{description} est évaluée par glue::glue avec un
+paramètre \code{name} qui correspond au nom de la variable du dataframe
+d'origine.\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
+  COL     = list(description = "une description"),
+  `COL.*` = list(
+    unit = "MWh",
+    description = "une description \{string::str_extract(name, '\\\\d\{4\}')\}"
+  )
+)
+}\if{html}{\out{</div>}}}
+
+\item{locale}{la locale à utiliser. Le seul élément à configurer à ce niveau
+est le séparateur décimal. Par défaut c'est le point (\code{.}). Pour
+sélectionner la virgule vous pouvez utiliser :\if{html}{\out{<div class="sourceCode r">}}\preformatted{locale = locale(decimal_mark = ",")
+}\if{html}{\out{</div>}}}
+
+\item{cog_year}{le millésime du COG utilisé si besoin. Par défaut prend
+l'année en cours}
 }
 \value{
 un dataframe avec les 4 lignes de description du csv augmenté
@@ -28,6 +63,17 @@ Génère un dataframe avec les lignes d'entêtes du CSV augmenté comme premièr
 lignes.
 }
 \details{
+Cette fonction essaye de deviner le type des colonnes pour leur donner un
+type DiDo de base :\tabular{ll}{
+   type R \tab type en sortie \cr
+   double \tab nombre \cr
+   integer \tab entier \cr
+   date \tab jour \cr
+   logical \tab booleen \cr
+   tous les autres \tab texte \cr
+}
+
+
 Certains noms de variable sont connus par didoscalim qui génère
 automatiquement le type et la description. La liste complète de ces
 variables et des types/descriptions associés est :\tabular{lll}{
@@ -46,13 +92,25 @@ L'année \code{AAAA} est par défaut l'année courante, vous pouvez la modifier 
 passant le paramètre \code{cog_year}
 }
 \examples{
-\dontrun{
+data <- data.frame(
+  OPERATEUR = c("nom1", "nom2"),
+  COMMUNE = c("29000", "35000"),
+  CONSO = c(1, 2)
+)
 params <- list(
-  OPERATEUR = list(description = "L'opérateur", type = "texte"),
+  OPERATEUR = list(description = "L'opérateur"),
   CONSO = list(description = "La consommation", unit = "Mwh")
 )
-augmente <- dido_csv(data, params = params)
-}
+dido_csv(data, params = params)
+
+data <- data.frame(
+  DONNEES_2021 = c("1,4", "1,5"),
+  DONNEES_2022 = c("1,3", "1,8")
+)
+params <- list(
+  `DONNEES_.*` = list(description = 'description pour {stringr::str_extract(name, "\\\\\\\\d{4}")}')
+)
+dido_csv(data, params = params, locale = readr::locale(decimal_mark = ","))
 }
 \seealso{
 En complément, vous pouvez lire : \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/}{la description d'un fichier csv augmenté},

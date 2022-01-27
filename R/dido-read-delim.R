@@ -3,21 +3,28 @@
 #' Cette fonction utilise directement `readr::read_delim` en enlevant la
 #' détection du type des colonnes.
 #'
+#'
+#' @param delim le séparateur de champ. Par défaut ";".
+#' @param locale la locale à utiliser pour lire les fichiers. A ce niveau, le
+#'   paramètre le plus important est l'encodage du fichier. Le défaut est
+#'   "UTF-8". Les autres encodages fréquemment rencontrés sont "WINDOWS-1252" et
+#'   "ISO-8859-15"
 #' @inheritParams readr::read_delim
 #'
 #' @return un tibble dont toutes les colonnes sont de type `chr`
 #'
 #' @details Certaines variables peuvent avoir des valeurs secrétisées
-#'   représentées par la valeur `secret`, la détection automatique de readr
-#'   n'est donc pas fiable et est désactivé à ce niveau. La détection
+#'   représentées par la valeur `secret`, la détection automatique du package
+#'   `readr` n'est donc pas fiable et est désactivé à ce niveau. La détection
 #'   automatique est faite dans la fonction `dido_csv()`.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' data <- dido_read_delim("vignettes/exemple.csv")
-#' }
+#' dido_read_delim(dido_example("exemple.csv"))
+#' dido_read_delim(dido_example("csv-win-char.csv"),
+#'                 delim = ",",
+#'                 locale = locale(encoding = "WINDOWS-1252"))
 dido_read_delim <- function(file, delim = NULL, quote = '"',
                             escape_backslash = FALSE, escape_double = TRUE,
                             locale = readr::default_locale(),

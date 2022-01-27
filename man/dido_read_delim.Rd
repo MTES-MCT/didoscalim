@@ -35,7 +35,7 @@ string with a new line.
 
 Using a value of \code{\link[readr:clipboard]{clipboard()}} will read from the system clipboard.}
 
-\item{delim}{Single character used to separate fields within a record.}
+\item{delim}{le séparateur de champ. Par défaut ";".}
 
 \item{quote}{Single character used to quote strings.}
 
@@ -48,11 +48,10 @@ to add special characters like \verb{\\\\n}.}
 i.e. If this option is \code{TRUE}, the value \verb{""""} represents
 a single quote, \verb{\\"}.}
 
-\item{locale}{The locale controls defaults that vary from place to place.
-The default locale is US-centric (like R), but you can use
-\code{\link[readr:locale]{locale()}} to create your own locale that controls things like
-the default time zone, encoding, decimal mark, big mark, and day/month
-names.}
+\item{locale}{la locale à utiliser pour lire les fichiers. A ce niveau, le
+paramètre le plus important est l'encodage du fichier. Le défaut est
+"UTF-8". Les autres encodages fréquemment rencontrés sont "WINDOWS-1252" et
+"ISO-8859-15"}
 
 \item{comment}{A string used to identify comments. Any text after the
 comment characters will be silently ignored.}
@@ -78,12 +77,13 @@ détection du type des colonnes.
 }
 \details{
 Certaines variables peuvent avoir des valeurs secrétisées
-représentées par la valeur \code{secret}, la détection automatique de readr
-n'est donc pas fiable et est désactivé à ce niveau. La détection
+représentées par la valeur \code{secret}, la détection automatique du package
+\code{readr} n'est donc pas fiable et est désactivé à ce niveau. La détection
 automatique est faite dans la fonction \code{dido_csv()}.
 }
 \examples{
-\dontrun{
-data <- dido_read_delim("vignettes/exemple.csv")
-}
+dido_read_delim(dido_example("exemple.csv"))
+dido_read_delim(dido_example("csv-win-char.csv"),
+                delim = ",",
+                locale = locale(encoding = "WINDOWS-1252"))
 }

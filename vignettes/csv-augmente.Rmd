@@ -41,7 +41,7 @@ l'API](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dat
 propose une documentation plus complète sur [le csv
 augmenté](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/)
 ainsi que sur [la liste des
-types](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/)
+types](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/).
 
 ## Générer un CSV augmenté.
 
@@ -53,8 +53,6 @@ La génération se passe en trois étapes :
 1. l'ajout des lignes d'entêtes spécifiques : `dido_csv()`
 1. l'écriture du fichier au bon format : `dido_write_csv()`
 
-
-
 ## le chargement du fichier d'origine
 
 Le fichier d'origine doit être au format CSV classique, ie, la première ligne du
@@ -64,16 +62,16 @@ exemple utilisé](exemple.csv).
 En premier lieu, charger le fichier dans un dataframe avec la commande `dido_read_delim()`.
 
 ```{r}
-tbl <- dido_read_delim("exemple.csv")
+data <- dido_read_delim(dido_example("exemple.csv"))
 ```
 
-Si votre fichier est dans un format autre que `UTF-8`, vous devez l'indiquer :
+Si votre fichier est dans un format autre que `UTF-8` ou que le séparateur
+décimal est la `,`vous devez préciser la locale :
 
-```{r, eval = FALSE}
+```
 tbl <- dido_read_delim(
   "exemple.csv",
-  locale = locale(encoding = "iso-8859-1",
-  decimal_mark = ',')
+  locale = locale(encoding = "iso-8859-1", decimal_mark = ',')
 )
 ```
 
@@ -82,8 +80,7 @@ tbl <- dido_read_delim(
 didoscalim peut analyser le fichier et proposer un premier niveau de description.
 
 ```{r}
-result <- dido_csv(tbl)
-knitr::kable(head(result, n=5))
+result <- dido_csv(data)
 ```
 
 Pour aller plus loin, vous pouvez soit écrire le fichier tel quel avec
@@ -100,13 +97,13 @@ params = list(
   CODE_SECTEUR_NAF2 = list(description = "Code NAF à 2 positions du secteur (NAF rev2 2008)", type = "naf_division"),
   CONSO = list(description = "Consommation (en MWh)", unit = "MWh")
 )
-result <- dido_csv(tbl, params = params)
+result <- dido_csv(data, params = params)
 knitr::kable(head(result, n = 5))
 ```
 
 ## L'écriture du fichier au bon format.
 
-```{r, eval = FALSE}
+```{r}
 dido_write_csv(result, "resultat.csv")
 ```
 
@@ -118,7 +115,7 @@ Une fois que la configuration de `params` est correcte, vous pouvez chainer avec
 l'opérateur `magrittr::%>%` :
 
 ```{r}
-library(magrittr, quietly = TRUE)
+require(magrittr)
 dido_read_delim("exemple.csv") %>%
   dido_csv(params = params) %>%
   dido_write_csv("resultat.csv")

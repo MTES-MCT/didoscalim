@@ -40,3 +40,8 @@ reference:
   contents:
   - ends_with("jobs?")
 
+- title: "Les fonctions de bas niveau et/ou internes"
+  contents:
+  - dido_example
+
+
