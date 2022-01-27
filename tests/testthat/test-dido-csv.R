@@ -74,3 +74,24 @@ test_that("dido_csv works with params", {
 
   expect_equal(result, expected)
 })
+
+test_that("dido_csv works with regexp params", {
+  params = list(
+    'COL' = list(unit = "test", description = "col", type = "unit"),
+    `COL.*` = list(unit = "unit", description = "description", type = "nombre")
+  )
+  data <- tibble::tibble(
+    COL_2021 = c("secret"),
+    COL_2022 = c("secret"),
+    COL = c("secret")
+  )
+  expected <- tibble::tibble(
+    COL_2021 = c("description", "nombre", "unit", "COL_2021", "secret"),
+    COL_2022 = c("description", "nombre", "unit", "COL_2022", "secret"),
+    COL = c('col', 'unit', 'test', 'COL', 'secret')
+  )
+
+  result <- dido_csv(data, params)
+
+  expect_equal(result, expected)
+})

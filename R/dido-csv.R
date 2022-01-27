@@ -67,18 +67,25 @@ dido_csv <- function(data, params = list(),
 #' @noRd
 description_row <- function(data, params = list()) {
   name_cols <- vapply(names(data), function(name) {
-    params[[name]][["description"]] %||%
+    matching_param(params, name)[["description"]] %||%
       default_columns[[name]][["description"]] %||%
       name
   }, character(1))
   return(name_cols)
 }
 
+#' default unit per type
+list_units <- list(
+  nombre = "s/u",
+  entier = "s/u"
+)
+
 #' @noRd
 unit_row <- function(data_type, params = list()) {
   data_unit <- vapply(names(data_type), function(name) {
-    params[[name]][["unit"]] %||%
-      if (grepl("(nombre|entier)", data_type[[name]])) "s/u" else "n/a"
+    matching_param(params, name)[["unit"]] %||%
+      list_units[[data_type[[name]]]] %||%
+      "n/a"
   }, character(1))
 }
 
@@ -99,16 +106,25 @@ guess_col <- function(column, locale) {
 }
 
 #' @noRd
+matching_param <- function(params, name) {
+  regex_names <- vapply(names(params), function(v){ glue::glue("^{v}$") }, character(1))
+  matching_param <- params[str_detect(name, regex_names)]
+
+  if(length(matching_param) == 0) return(list())
+  matching_param[[1]]
+}
+
+#' @noRd
 type_row <- function(data, params = list(), locale, cog_year) {
   cog_year <- toString(cog_year)
 
   guess_cols <- vapply(names(data), function(name) {
-    type <- params[[name]][["type"]] %||%
+    col_type <- matching_param(params, name)[["type"]] %||%
       default_columns[[name]][["type"]] %||%
       guess_col(data[[name]], locale) %||%
       "texte"
 
-    str_replace(type, "\\{COG_YEAR\\}", cog_year)
+  str_replace(col_type, "\\{COG_YEAR\\}", cog_year)
   }, character(1))
 }
 
