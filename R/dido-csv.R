@@ -13,10 +13,44 @@ default_columns <- list(
 #' Génère un dataframe avec les lignes d'entêtes du CSV augmenté comme premières
 #' lignes.
 #'
+#' Cette fonction essaye de deviner le type des colonnes pour leur donner un
+#' type DiDo de base :
+#'
+#' | type R          | type en sortie |
+#' |-----------------|----------------|
+#' | double          | nombre         |
+#' | integer         | entier         |
+#' | date            | jour           |
+#' | logical         | booleen        |
+#' | tous les autres | texte          |
+#'
+#'
 #' @param data le dataframe à augmenter
-#' @param params une liste nommée décrivant les caractéristiques des colonnes
+#' @param params une liste nommée décrivant les caractéristiques des colonnes :
+#'   ```{r, results = FALSE}
+#'   list(
+#'     COL1 = list(description = "une description"),
+#'     COL2 = list(unit = "MWh")
+#'   )
+#'   ```
+#'   Les caractéristiques disponibles sont :
+#'   * description: la description de la colonne
+#'   * type : nombre, entier, texte, ...
+#'   * unit : l'unité de la colonne
+#'
+#'   Le nom de la colonne peut être une expression rationnelle :
+#'   ```{r, results = FALSE}
+#'   list(
+#'     COL     = list(description = "une description"),
+#'     `COL.*` = list(unit = "MWh")
+#'   )
+#'   ```
+#'   La première colonne correspondante est utilisée, **mettez toujours vos
+#'   expressions rationnelles à la fin**.
+#'
 #' @param locale la locale à utiliser
-#' @param cog_year le millésime du COG utilisé si besoin. Par défaut prend l'année en cours
+#' @param cog_year le millésime du COG utilisé si besoin. Par défaut prend
+#'   l'année en cours
 #'
 #' @return un dataframe avec les 4 lignes de description du csv augmenté
 #' @export
@@ -45,13 +79,16 @@ default_columns <- list(
 #'
 #'
 #' @examples
-#' \dontrun{
+#' data = data.frame(
+#'   OPERATEUR = c("nom1", "nom2"),
+#'   COMMUNE = c("29000", "35000"),
+#'   CONSO = c(1, 2)
+#' )
 #' params <- list(
-#'   OPERATEUR = list(description = "L'opérateur", type = "texte"),
+#'   OPERATEUR = list(description = "L'opérateur"),
 #'   CONSO = list(description = "La consommation", unit = "Mwh")
 #' )
-#' augmente <- dido_csv(data, params = params)
-#' }
+#' dido_csv(data, params = params)
 dido_csv <- function(data, params = list(),
                      locale = readr::default_locale(),
                      cog_year = format(Sys.time(), "%Y")) {
@@ -75,6 +112,7 @@ description_row <- function(data, params = list()) {
 }
 
 #' default unit per type
+#' @noRd
 list_units <- list(
   nombre = "s/u",
   entier = "s/u"

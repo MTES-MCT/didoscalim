@@ -30,7 +30,7 @@ reference:
   contents:
   - clean_metadata
   - my_organization
-  - get_alerts
+  - list_alerts
 
 - title: "Gérer votre environnement"
   contents:
