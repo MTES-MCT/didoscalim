@@ -14,6 +14,32 @@ test_that("add_dataset works", {
   expect_equal(dataset$license, "fr-lo")
 })
 
+test_that("add_dataset complete works", {
+  skip_unless_dev_env()
+
+  dataset <- add_dataset(
+    title = "didoscalim check add_dataset complete works",
+    description = "test",
+    topic = "Transports",
+    tags = list("agenda-21", "agriculture"),
+    frequency = "annual",
+    frequency_date =  "2022-12-31",
+    temporal_coverage_start = "2021-01-01",
+    temporal_coverage_end = "2021-12-31",
+    granularity = "fr:region",
+    zones = "country:fr",
+    caution = "caution",
+    license = "ODbL-1.0"
+  )
+
+  expect_s3_class(dataset, "dido_dataset")
+  expect_equal(dataset$title, "didoscalim check add_dataset complete works")
+  expect_equal(dataset$license, "ODbL-1.0")
+  expect_equal(dataset$spatial, list(granularity = "fr:region", zones = list("country:fr")))
+  expect_equal(dataset$temporal_coverage, list(end = "2021-12-31", start = "2021-01-01"))
+})
+
+
 test_that("add_dataset fails correctly", {
   skip_unless_dev_env()
 

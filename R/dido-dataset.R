@@ -68,11 +68,12 @@ dido_dataset <- function(title,
     "license" = license
   )
   if (!is.null(frequency_date)) payload$frequency_date <- frequency_date
-  if (!is.null(zones)) payload$spatial$zones <- zones
   if (!is.null(granularity)) payload$spatial$granularity <- granularity
   if (!is.null(tags)) payload$tags <- tags
   if (!is.null(caution)) payload$caution <- caution
-
+  if (!is.null(zones)) {
+    payload$spatial$zones <- if (class(zones)[[1]] == "list") zones else list(zones)
+  }
   #  if (is.null(temporal_coverage_start) || is.null(temporal_coverage_end)) {
   #    stop("Les champs temporal_coverage_start temporal_coverage_end doivent être soit définis tous les deux, soit non définis tous les deux")
   #  }
