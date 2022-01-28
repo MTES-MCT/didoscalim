@@ -29,14 +29,31 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' datafile <- add_datafile(
-#'   dataset = dataset$id,
+#' dataset <- add_dataset(
+#'   title = "didoscalim check add_dataset works",
+#'   description = "test",
+#'   topic = "Transports",
+#'   frequency = "unknown",
+#'   tags = list("agenda-21", "agriculture")
+#' )
+#'
+#' add_datafile(
+#'   dataset = dataset,
 #'   title = "titre",
 #'   description = "description",
-#'   token_file = file_id
+#'   file_name = dido_example("augmente.csv")
 #' )
-#' }
+#'
+#' add_datafile(
+#'   dataset = dataset,
+#'   title = "didoscalim df create datafiles work",
+#'   description = "description",
+#'   file_name = dido_example("augmente.csv"),
+#'   temporal_coverage_start = "2021-01-01",
+#'   temporal_coverage_end = "2021-12-31",
+#'   legal_notice = "something",
+#'   millesime = "2020-10",
+#' )
 add_datafile <- function(dataset,
                          title,
                          description,
