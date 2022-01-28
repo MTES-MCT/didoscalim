@@ -68,12 +68,12 @@ knitr::kable(head(data, n = 5))
 ```
 
 Si votre fichier est dans un format autre que `UTF-8` ou que le séparateur
-décimal est la `,`vous devez préciser la locale :
+de champ est la virgule (`,`à vous devez préciser `delim` et/ou `locale` :
 
 ```{r}
-dido_read_delim(
-  dido_example("exemple.csv"),
-  locale = locale(encoding = "iso-8859-1", decimal_mark = ',')
+dido_read_delim(dido_example("csv-win-char.csv"),
+                delim = ",",
+                locale = locale(encoding = "WINDOWS-1252")
 )
 ```
 
@@ -91,6 +91,16 @@ descriptions/types/unités raisonnables. Il est recommandé de les garder. Le
 millésime des champs `cog_*` comme celui du champ `EPCI` est par défaut l'année
 en cours, vous pouvez préciser le millésime à utiliser avec le paramètre
 `cog_year` (cf exemple complet ci-dessous).
+
+Si le fichier source utilise la virgule (`,`) comme séparateur décimal, vous
+devez préciser l'argument `locale` :
+
+```{r}
+temp <- dido_csv(
+  data,
+  locale = locale(decimal_mark = ',')
+)
+```
 
 Pour aller plus loin, vous pouvez soit écrire le fichier tel quel avec
 `dido_write_csv()` et l'éditer à la main. Soit utiliser le paramètre `params` de
