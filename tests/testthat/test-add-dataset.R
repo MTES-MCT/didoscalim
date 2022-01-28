@@ -11,7 +11,11 @@ test_that("add_dataset works", {
 
   expect_s3_class(dataset, "dido_dataset")
   expect_equal(dataset$title, "didoscalim check add_dataset works")
+  expect_equal(dataset$description, "test")
+  expect_equal(dataset$topic, "Transports")
+  expect_equal(dataset$frequency, "unknown")
   expect_equal(dataset$license, "fr-lo")
+  expect_equal(dataset$tags, list("agenda-21", "agriculture"))
 })
 
 test_that("add_dataset complete works", {
@@ -34,9 +38,17 @@ test_that("add_dataset complete works", {
 
   expect_s3_class(dataset, "dido_dataset")
   expect_equal(dataset$title, "didoscalim check add_dataset complete works")
+  expect_equal(dataset$description, "test")
+  expect_equal(dataset$topic, "Transports")
+  expect_equal(dataset$tags, list("agenda-21", "agriculture"))
+  expect_equal(dataset$frequency, "annual")
+  expect_equal(dataset$frequency_date, "2022-12-31T00:00:00+00:00")
+  expect_equal(dataset$temporal_coverage$start, "2021-01-01")
+  expect_equal(dataset$temporal_coverage$end, "2021-12-31")
+  expect_equal(dataset$spatial$granularity, "fr:region")
+  expect_equal(dataset$spatial$zones, list("country:fr"))
+  expect_equal(dataset$caution, "caution")
   expect_equal(dataset$license, "ODbL-1.0")
-  expect_equal(dataset$spatial, list(granularity = "fr:region", zones = list("country:fr")))
-  expect_equal(dataset$temporal_coverage, list(end = "2021-12-31", start = "2021-01-01"))
 })
 
 

@@ -8,7 +8,7 @@ test_that("create datafiles works", {
     frequency = "unknown"
   )
 
-  date_published <- format(Sys.time(), "%Y-%m-%dT00:00:00") # .000Z")
+  date_published <- format(Sys.time(), "%Y-%m-%dT00:00:00")
 
   created_df <- add_datafile(
     dataset = dataset,
@@ -22,6 +22,32 @@ test_that("create datafiles works", {
   expect_equal(datafile$title, "didoscalim df create datafiles work")
   expect_equal(datafile$description, "description")
   expect_equal(datafile$published, date_published)
+
+  millesime <- datafile$millesimes_info[[1]]
+  expect_equal(millesime$millesime, format(Sys.time(), "%Y-%m"))
+
+  created_df2 <- add_datafile(
+    dataset = dataset,
+    title = "didoscalim df create datafiles work",
+    description = "description",
+    file_name = "dido-csv-simple.csv",
+    temporal_coverage_start = "2021-01-01",
+    temporal_coverage_end = "2021-12-31",
+    legal_notice = "something",
+    millesime = "2020-10",
+  )
+
+  datafile <- get_datafile(created_df2$result$rid)
+
+  expect_equal(datafile$title, "didoscalim df create datafiles work")
+  expect_equal(datafile$description, "description")
+  expect_equal(datafile$published, date_published)
+  expect_equal(datafile$legal_notice, "something")
+  expect_equal(datafile$temporal_coverage$start, "2021-01-01T00:00:00.000Z")
+  expect_equal(datafile$temporal_coverage$end, "2021-12-31T00:00:00.000Z")
+
+  millesime <- datafile$millesimes_info[[1]]
+  expect_equal(millesime$millesime, "2020-10")
 })
 
 test_that("create datafiles warns when missing param", {
