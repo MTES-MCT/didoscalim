@@ -7,6 +7,8 @@
 #' @examples
 #' dido_example()
 #' dido_example("exemple.csv")
+#
+# code from readr: https://github.com/tidyverse/readr/blob/main/R/example.R
 dido_example <- function(file = NULL) {
   if (is.null(file)) {
     dir(system.file("extdata", package = "didoscalim"))
