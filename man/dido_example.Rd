@@ -15,4 +15,5 @@ Les fichiers exemples sont stockés dans \code{inst/extdata}
 \examples{
 dido_example()
 dido_example("exemple.csv")
+#
 }

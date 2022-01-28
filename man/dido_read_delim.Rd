@@ -84,6 +84,7 @@ automatique est faite dans la fonction \code{dido_csv()}.
 \examples{
 dido_read_delim(dido_example("exemple.csv"))
 dido_read_delim(dido_example("csv-win-char.csv"),
-                delim = ",",
-                locale = locale(encoding = "WINDOWS-1252"))
+  delim = ",",
+  locale = locale(encoding = "WINDOWS-1252")
+)
 }

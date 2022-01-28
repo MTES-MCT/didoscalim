@@ -110,7 +110,7 @@ data <- data.frame(
 params <- list(
   `DONNEES_.*` = list(description = 'description pour {stringr::str_extract(name, "\\\\\\\\d{4}")}')
 )
-dido_csv(data, params = params, locale = readr::locale(decimal_mark = ","))
+dido_csv(data, params = params, locale = locale(decimal_mark = ","))
 }
 \seealso{
 En complément, vous pouvez lire : \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/}{la description d'un fichier csv augmenté},
