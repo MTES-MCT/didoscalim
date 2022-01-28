@@ -6,7 +6,8 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 resource_files:
-  - exemple.csv
+  - ../inst/extdata/exemple.csv
+  - resultat.csv
 ---
 
 ```{r, include = FALSE}
@@ -63,14 +64,15 @@ En premier lieu, charger le fichier dans un dataframe avec la commande `dido_rea
 
 ```{r}
 data <- dido_read_delim(dido_example("exemple.csv"))
+knitr::kable(head(data, n = 5))
 ```
 
 Si votre fichier est dans un format autre que `UTF-8` ou que le séparateur
 décimal est la `,`vous devez préciser la locale :
 
-```
-tbl <- dido_read_delim(
-  "exemple.csv",
+```{r}
+dido_read_delim(
+  dido_example("exemple.csv"),
   locale = locale(encoding = "iso-8859-1", decimal_mark = ',')
 )
 ```
@@ -81,7 +83,14 @@ didoscalim peut analyser le fichier et proposer un premier niveau de description
 
 ```{r}
 result <- dido_csv(data)
+knitr::kable(head(result, n = 5))
 ```
+
+`didoscalim` reconnait les champs `EPCI` et `ANNEE` et propose des
+descriptions/types/unités raisonnables. Il est recommandé de les garder. Le
+millésime des champs `cog_*` comme celui du champ `EPCI` est par défaut l'année
+en cours, vous pouvez préciser le millésime à utiliser avec le paramètre
+`cog_year` (cf exemple complet ci-dessous).
 
 Pour aller plus loin, vous pouvez soit écrire le fichier tel quel avec
 `dido_write_csv()` et l'éditer à la main. Soit utiliser le paramètre `params` de
@@ -91,13 +100,13 @@ Voici un exemple complet pour le fichier exemple :
 
 ```{r}
 params = list(
-  OPERATEUR = list(description = "Nom de l'opérateur"),
+  OPE = list(description = "Nom de l'opérateur"),
   FILIERE = list(description = "Filière"),
-  CODE_CATEGORIE_CONSOMMATION = list(description = "Catégorie de la consommation"),
-  CODE_SECTEUR_NAF2 = list(description = "Code NAF à 2 positions du secteur (NAF rev2 2008)", type = "naf_division"),
+  CAT = list(description = "Catégorie de la consommation"),
+  NAF2 = list(description = "Code NAF à 2 positions du secteur (NAF rev2 2008)", type = "naf_division"),
   CONSO = list(description = "Consommation (en MWh)", unit = "MWh")
 )
-result <- dido_csv(data, params = params)
+result <- dido_csv(data, params = params, cog_year = 2020)
 knitr::kable(head(result, n = 5))
 ```
 
@@ -116,7 +125,7 @@ l'opérateur `magrittr::%>%` :
 
 ```{r}
 require(magrittr)
-dido_read_delim("exemple.csv") %>%
+dido_read_delim(dido_example("exemple.csv")) %>%
   dido_csv(params = params) %>%
-  dido_write_csv("resultat.csv")
+  dido_write_csv("/tmp/resultat.csv")
 ```
