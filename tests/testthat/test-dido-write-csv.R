@@ -9,7 +9,7 @@ test_that("dido_read_delim works for default locale", {
   result <- dido_csv(tbl, params = params)
 
   expected <- read_delim(paste0(test_path(), "/example-default-result.csv"),
-                         col_types = readr::cols(.default = "c")
+    col_types = readr::cols(.default = "c")
   )
 
   expect_equal(result, expected)

@@ -132,7 +132,9 @@ dido_csv <- function(data, params = list(),
 
 #' @noRd
 description_row_glue <- function(description, name) {
-  if (is.null(description)) return(NULL)
+  if (is.null(description)) {
+    return(NULL)
+  }
   stringr::str_glue(description)
 }
 

@@ -49,19 +49,19 @@
 #'   frequency = "unknown"
 #' )
 add_dataset <- function(title,
-                           description,
-                           topic,
-                           frequency,
-                           tags = NULL,
-                           frequency_date = NULL,
-                           granularity = NULL,
-                           zones = NULL,
-                           organization = my_organization(),
-                           license = "fr-lo",
-                           temporal_coverage_start = NULL,
-                           temporal_coverage_end = NULL,
-                           caution = NULL,
-                           quiet = NULL) {
+                        description,
+                        topic,
+                        frequency,
+                        tags = NULL,
+                        frequency_date = NULL,
+                        granularity = NULL,
+                        zones = NULL,
+                        organization = my_organization(),
+                        license = "fr-lo",
+                        temporal_coverage_start = NULL,
+                        temporal_coverage_end = NULL,
+                        caution = NULL,
+                        quiet = NULL) {
   dataset <- dido_dataset(
     title = title,
     description = description,
