@@ -77,6 +77,22 @@ dataset <- add_dataset(
   topic = "Transports",
   frequency = "unknown"
 )
+
+dataset <- add_dataset(
+  title = "le titre du dataset",
+  description = "test",
+  topic = "Transports",
+  tags = list("agenda-21", "agriculture"),
+  frequency = "annual",
+  frequency_date =  "2022-12-31",
+  temporal_coverage_start = "2021-01-01",
+  temporal_coverage_end = "2021-12-31",
+  granularity = "fr:region",
+  zones = "country:fr",
+  caution = "caution",
+  license = "ODbL-1.0"
+)
+
 }
 \seealso{
 La liste des \href{https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/referentiels/tags/csv?withColumnName=true&withColumnDescription=false}{mots clefs recensés}

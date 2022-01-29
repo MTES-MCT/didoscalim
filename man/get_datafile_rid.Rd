@@ -2,7 +2,7 @@
 % Please edit documentation in R/dido-s3.R
 \name{get_datafile_rid}
 \alias{get_datafile_rid}
-\title{Retourne le dafile id de l'objet}
+\title{Retourne le datafile rid de l'objet}
 \usage{
 get_datafile_rid(data)
 }
@@ -13,11 +13,9 @@ get_datafile_rid(data)
 le datafile id
 }
 \description{
-Retourne le dafile id de l'objet
+Retourne le datafile rid de l'objet
 }
 \examples{
-\dontrun{
-get_datafile_rid(job)
-}
+list_datafiles() \%>\% slice(1) \%>\% get_datafile_rid()
 }
 \keyword{internal}

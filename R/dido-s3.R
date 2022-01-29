@@ -27,9 +27,7 @@ internal_clean_metadata <- function(data) UseMethod("internal_clean_metadata")
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' get_dataset_id(dataset)
-#' }
+#' list_datasets() %>% slice(1) %>% get_dataset_id()
 #' @keywords internal
 get_dataset_id <- function(data) UseMethod("get_dataset_id")
 
@@ -39,7 +37,17 @@ get_dataset_id.default <- function(data) NULL
 #' @export
 get_dataset_id.character <- function(data) data
 
-#' Retourne le dafile id de l'objet
+#' @export
+get_dataset_id.data.frame <- function(data) {
+  if (!"id" %in% names(data)) abort_not_dataset()
+
+  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
+    x = "Le dataframe ne contient pas exactement une ligne"
+  ))
+  return(data[['id']])
+}
+
+#' Retourne le datafile rid de l'objet
 #'
 #' @param data un objet dido_datafile ou dido_job
 #'
@@ -47,9 +55,7 @@ get_dataset_id.character <- function(data) data
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' get_datafile_rid(job)
-#' }
+#' list_datafiles() %>% slice(1) %>% get_datafile_rid()
 #' @keywords internal
 get_datafile_rid <- function(data) UseMethod("get_datafile_rid")
 
@@ -59,6 +65,16 @@ get_datafile_rid.default <- function(data) NULL
 #' @export
 get_datafile_rid.character <- function(data) data
 
+#' @export
+get_datafile_rid.data.frame <- function(data) {
+  if (!"rid" %in% names(data)) abort_not_datafile()
+
+  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
+    x = "Le dataframe ne contient pas exactement une ligne"
+  ))
+  return(data[['rid']])
+}
+
 #' Retourne l'attachment id de l'objet
 #'
 #' @param data un objet dido_attachment ou une chaine
@@ -67,14 +83,22 @@ get_datafile_rid.character <- function(data) data
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' get_attachment_rid(att)
-#' }
+#' list_attachments() %>% slice(1) %>% get_attachments_rid()
 #' @keywords internal
 get_attachment_rid <- function(data) UseMethod("get_attachment_rid")
 
 #' @export
-get_attachment_rid.default <- function(data) NULL
+get_attachment_rid.default <- function(data)NULL
 
 #' @export
 get_attachment_rid.character <- function(data) data
+
+#' @export
+get_attachment_rid.data.frame <- function(data) {
+  if (!"rid" %in% names(data)) abort_not_attachment()
+
+  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
+    x = "Le dataframe ne contient pas exactement une ligne"
+  ))
+  return(data[['rid']])
+}

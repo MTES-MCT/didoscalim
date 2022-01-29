@@ -16,8 +16,6 @@ le dataset id
 Retourne le dataset id de l'objet
 }
 \examples{
-\dontrun{
-get_dataset_id(dataset)
-}
+list_datasets() \%>\% slice(1) \%>\% get_dataset_id()
 }
 \keyword{internal}
