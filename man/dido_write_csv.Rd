@@ -2,7 +2,7 @@
 % Please edit documentation in R/dido-write-csv.R
 \name{dido_write_csv}
 \alias{dido_write_csv}
-\title{Enregistre le fichier CSV augmenté utilisé par DiDo.}
+\title{Enregistre le fichier CSV augmenté généré}
 \usage{
 dido_write_csv(data, file)
 }
@@ -15,7 +15,7 @@ dido_write_csv(data, file)
 le tibble passé en entrée
 }
 \description{
-Enregistre le fichier CSV augmenté utilisé par DiDo.
+Enregistre le fichier CSV augmenté généré
 }
 \examples{
 `\%>\%` <- magrittr::`\%>\%`

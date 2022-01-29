@@ -11,11 +11,10 @@
 #' @family dataset
 #'
 #' @examples
-#' \dontrun{
-#' dataset <- get_dataset("id") %>% clean_metadata()
-#' dataset$temporal_coverage$end <- "2022-12-31"
+#' dataset <- get_dataset(list_datasets()[1,]) %>% clean_metadata()
+#' dataset$description <- "another description"
+#' dataset$tags <- list("autocar", "biogaz")
 #' update_dataset(dataset)
-#' }
 update_dataset <- function(dataset) {
   if (missing(dataset) || is.null(dataset)) abort_bad_argument("dataset")
   if (!is.dido_dataset(dataset)) abort_not_dataset()

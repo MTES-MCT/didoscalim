@@ -24,10 +24,11 @@ son titre.
 Lève une exception si la recherche ne retourne pas exactement 1 attachment
 }
 \examples{
-\dontrun{
-get_attachment("rid", dataset = dataset)
-get_attachment(title = "title", dataset = dataset)
-}
+attachment <- list_attachments()[1,]
+title <- attachment$title
+dataset <- get_dataset(attachment)
+get_attachment(attachment, dataset = dataset)
+get_attachment(title = title, dataset = dataset)
 }
 \seealso{
 Other attachment: 

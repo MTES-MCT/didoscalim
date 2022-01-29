@@ -16,7 +16,6 @@ un objet `dido_job()``
 Récupére un job en particulier
 }
 \examples{
-\dontrun{
-job <- get_job("1")
-}
+job <- list_jobs()[1,]
+get_job(job)
 }

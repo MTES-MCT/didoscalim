@@ -29,13 +29,7 @@
 #' @export
 #'
 #' @examples
-#' dataset <- add_dataset(
-#'   title = "didoscalim check add_dataset works",
-#'   description = "test",
-#'   topic = "Transports",
-#'   frequency = "unknown",
-#'   tags = list("agenda-21", "agriculture")
-#' )
+#' dataset <- list_datasets()[1,]
 #'
 #' add_datafile(
 #'   dataset = dataset,
@@ -92,8 +86,8 @@ add_datafile <- function(dataset,
   id <- get_dataset_id(dataset)
 
   url <- glue::glue("/datasets/{id}/datafiles")
-  job <- dido_api(method = "POST", path = url, body = body)
-  job_result <- dido_job(wait_for_job(job$id))
+  job <- dido_job(dido_api(method = "POST", path = url, body = body))
+  job_result <- dido_job(wait_for_job(job))
 
   if (!is_quiet(quiet)) {
     rlang::inform(glue::glue(

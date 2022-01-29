@@ -1,4 +1,5 @@
-#' Retourne le chemin des fichiers exemple
+#' Retourne le chemin du fichier exemple données ou le chemin des fichiers
+#' exemple
 #'
 #' Les fichiers exemples sont stockés dans `inst/extdata`
 #'

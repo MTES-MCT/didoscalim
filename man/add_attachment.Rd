@@ -36,14 +36,13 @@ un objet \code{dido_attachment()}
 Ajoute un fichier annexe à un dataset
 }
 \examples{
-\dontrun{
+dataset <- list_datasets()[1,]
 add_attachment(
-  dataset = "id",
+  dataset = dataset,
   title = "title",
   description = "description",
-  file_name = "filename"
+  file_name = dido_example("attachment.txt")
 )
-}
 }
 \seealso{
 Other attachment: 

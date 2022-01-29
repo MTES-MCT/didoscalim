@@ -17,11 +17,9 @@ un objet \code{dido_job()}
 Mettre à jour un datafile.
 }
 \examples{
-\dontrun{
-df <- get_datafile("rid")
+df <- get_datafile(list_datafiles()[1,])
 df$temporal_coverage$end <- "2023-12-31"
 update_datafile(df)
-}
 }
 \seealso{
 Other datafile: 

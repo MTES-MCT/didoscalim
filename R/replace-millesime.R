@@ -10,14 +10,12 @@
 #' @family millesime
 #'
 #' @examples
-#' \dontrun{
-#' datafile <- get_datafile("rid")
+#' datafile <- list_datafiles()[1,]
 #' millesime <- replace_millesime(
 #'   datafile = datafile,
-#'   file_name = "csv_upload.csv",
+#'   file_name = dido_example("augmente.csv"),
 #'   millesime = "2022-10"
 #' )
-#' }
 replace_millesime <- function(datafile,
                               file_name,
                               millesime,

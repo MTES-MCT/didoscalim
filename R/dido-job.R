@@ -36,3 +36,6 @@ get_dataset_id.dido_job <- function(data, ...) data$data$dataset_id
 
 #' @export
 get_datafile_rid.dido_job <- function(data, ...) data$result$rid
+
+#' @export
+get_job_id.dido_job <- function(data) data$id

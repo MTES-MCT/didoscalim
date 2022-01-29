@@ -16,14 +16,13 @@
 #' @family attachment
 #'
 #' @examples
-#' \dontrun{
+#' dataset <- list_datasets()[1,]
 #' add_attachment(
-#'   dataset = "id",
+#'   dataset = dataset,
 #'   title = "title",
 #'   description = "description",
-#'   file_name = "filename"
+#'   file_name = dido_example("attachment.txt")
 #' )
-#' }
 add_attachment <- function(dataset,
                            title,
                            description,
@@ -37,7 +36,7 @@ add_attachment <- function(dataset,
   if (missing(description) || is.null(description)) abort_bad_argument("description")
   if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{file_name}`"))
+  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{basename(file_name)}`"))
 
   file_id <- dido_upload_file(file_name)
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))

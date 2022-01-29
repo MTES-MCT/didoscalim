@@ -15,10 +15,12 @@
 #' @family dataset
 #'
 #' @examples
-#' \dontrun{
-#' get_dataset(id)
-#' get_dataset(title = "un titre de dataset")
-#' }
+#' dataset <- list_datasets()[1,]
+#' title <- dataset$title
+#'
+#' ds <- get_dataset(dataset)
+#'
+#' ds <- get_dataset(title = title)
 get_dataset <- function(data = NULL, title = NULL) {
   if (is.null(data) && is.null(title)) {
     msg <- glue::glue("Vous devez préciser un des deux arguments `data` ou `title`")

@@ -24,12 +24,11 @@ un objet \code{dido_attachment()}
 Remplace un fichier annexe
 }
 \examples{
-\dontrun{
+attachment <- list_attachments()[1,]
 replace_attachment(
-  attachment = "id",
-  file_name = "filename"
+  attachment = attachment,
+  file_name = dido_example("attachment.txt")
 )
-}
 }
 \seealso{
 Other attachment: 

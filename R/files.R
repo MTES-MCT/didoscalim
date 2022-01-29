@@ -6,9 +6,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' token <- dido_upload_file("mon_fichier.csv")
-#' }
+#' token <- dido_upload_file(dido_example("attachment.txt"))
 #' @keywords internal
 dido_upload_file <- function(file_name) {
   if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")

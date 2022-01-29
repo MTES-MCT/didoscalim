@@ -10,11 +10,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' df <- get_datafile("rid")
+#' df <- get_datafile(list_datafiles()[1,])
 #' df$temporal_coverage$end <- "2023-12-31"
 #' update_datafile(df)
-#' }
 update_datafile <- function(datafile) {
   if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
   if (!is.dido_datafile(datafile)) abort_not_datafile()

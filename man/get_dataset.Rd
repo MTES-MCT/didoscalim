@@ -23,10 +23,12 @@ soit un objet \code{dido_datafile()}, \code{dido_dataset()}, \code{dido_job()}
 Lève une exception si le titre ne retourne pas un unique dataset.
 }
 \examples{
-\dontrun{
-get_dataset(id)
-get_dataset(title = "un titre de dataset")
-}
+dataset <- list_datasets()[1,]
+title <- dataset$title
+
+ds <- get_dataset(dataset)
+
+ds <- get_dataset(title = title)
 }
 \seealso{
 Other dataset: 

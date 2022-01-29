@@ -32,14 +32,12 @@ un objet \code{dido_job()}
 Remplacer un millésime
 }
 \examples{
-\dontrun{
-datafile <- get_datafile("rid")
+datafile <- list_datafiles()[1,]
 millesime <- replace_millesime(
   datafile = datafile,
-  file_name = "csv_upload.csv",
+  file_name = dido_example("augmente.csv"),
   millesime = "2022-10"
 )
-}
 }
 \seealso{
 Other millesime: 

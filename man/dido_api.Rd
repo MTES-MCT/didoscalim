@@ -34,9 +34,6 @@ un objet json ou un dataframe
 Envoie la requête au serveur et retourne le résultat sous forme d'un objet ou un dataframe si as_dataframe est à TRUE
 }
 \examples{
-\dontrun{
-job <- dido_api(method = "POST", path = url, body = body)
 alerts <- dido_api(method = "GET", path = "/datasets/alerts", as_tibble = TRUE)
-}
 }
 \keyword{internal}

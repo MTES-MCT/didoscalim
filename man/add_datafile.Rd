@@ -58,13 +58,7 @@ un objet \code{dido_job()}
 Ajoute un datafile à un dataset
 }
 \examples{
-dataset <- add_dataset(
-  title = "didoscalim check add_dataset works",
-  description = "test",
-  topic = "Transports",
-  frequency = "unknown",
-  tags = list("agenda-21", "agriculture")
-)
+dataset <- list_datasets()[1,]
 
 add_datafile(
   dataset = dataset,

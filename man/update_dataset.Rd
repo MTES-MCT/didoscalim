@@ -17,11 +17,10 @@ Cette fonction permet de mettre à jour les métadonnées d'un dataset comme,
 par exemple, la date de fin de couverture temporelle.
 }
 \examples{
-\dontrun{
-dataset <- get_dataset("id") \%>\% clean_metadata()
-dataset$temporal_coverage$end <- "2022-12-31"
+dataset <- get_dataset(list_datasets()[1,]) \%>\% clean_metadata()
+dataset$description <- "another description"
+dataset$tags <- list("autocar", "biogaz")
 update_dataset(dataset)
-}
 }
 \seealso{
 Other dataset: 

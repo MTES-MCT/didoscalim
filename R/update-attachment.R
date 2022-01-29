@@ -10,11 +10,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' att <- get_attachment("rid")
-#' att$title <- "un nouveau titre"
-#' update_attachment(att)
-#' }
+#' att <- list_attachments()[1,]
+#' dataset <- att$id
+#' attachment <- get_attachment(list_attachments()[1,], dataset = dataset)
+#' attachment$title <- "un nouveau titre"
+#' update_attachment(attachment)
 update_attachment <- function(attachment) {
   if (missing(attachment) || is.null(attachment)) abort_bad_argument("attachment")
   if (!is.dido_attachment(attachment)) abort_not_attachment()

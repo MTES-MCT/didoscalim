@@ -16,8 +16,6 @@ un token
 Verse un fichier de données à intégrer
 }
 \examples{
-\dontrun{
-token <- dido_upload_file("mon_fichier.csv")
-}
+token <- dido_upload_file(dido_example("attachment.txt"))
 }
 \keyword{internal}

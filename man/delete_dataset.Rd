@@ -16,11 +16,12 @@ TRUE
 Supprime un dataset
 }
 \examples{
-\dontrun{
-list_datasets() \%>\%
-  filter(str_detect(title, "didoscalim")) \%>\%
-  select(id) \%>\%
-  pmap(~ delete_dataset(..1))
-}
+dataset <- add_dataset(
+  title = "le titre du dataset",
+  description = "la description du dataset",
+  topic = "Transports",
+  frequency = "unknown"
+)
+delete_dataset(dataset)
 }
 \keyword{internal}

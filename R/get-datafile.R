@@ -18,10 +18,13 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' get_datafile("rid")
-#' get_datafile(title = "title")
-#' }
+#' datafile <- list_datafiles()[1,]
+#' dataset <- get_dataset(datafile)
+#' title <- datafile$title
+#'
+#' get_datafile(datafile) %>% clean_metadata()
+#'
+#' get_datafile(title = title) %>% clean_metadata()
 get_datafile <- function(data = NULL, title = NULL, dataset = NULL) {
   if (is.null(data) && is.null(title)) {
     msg <- glue::glue("Vous devez préciser un des deux arguments `rid` ou `title`")

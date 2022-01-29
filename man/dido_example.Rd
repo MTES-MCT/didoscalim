@@ -2,7 +2,8 @@
 % Please edit documentation in R/example.R
 \name{dido_example}
 \alias{dido_example}
-\title{Retourne le chemin des fichiers exemple}
+\title{Retourne le chemin du fichier exemple données ou le chemin des fichiers
+exemple}
 \usage{
 dido_example(file = NULL)
 }

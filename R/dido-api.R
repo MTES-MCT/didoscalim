@@ -16,10 +16,7 @@ user_agent <- "didoscalim"
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' job <- dido_api(method = "POST", path = url, body = body)
 #' alerts <- dido_api(method = "GET", path = "/datasets/alerts", as_tibble = TRUE)
-#' }
 #' @keywords internal
 dido_api <- function(method, path, body, query_params = list(), headers = c(), as_tibble = FALSE) {
   url <- paste0(base_path(), path)

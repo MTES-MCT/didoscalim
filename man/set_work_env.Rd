@@ -19,7 +19,7 @@ messages d'information, \code{FALSE} par défaut}
 Fixe l'environnement DiDo à utiliser
 }
 \examples{
-\dontrun{
+set_work_env("DEV")
 set_work_env("PROD")
-}
+set_work_env()
 }

@@ -9,12 +9,11 @@
 #' @family attachment
 #'
 #' @examples
-#' \dontrun{
+#' attachment <- list_attachments()[1,]
 #' replace_attachment(
-#'   attachment = "id",
-#'   file_name = "filename"
+#'   attachment = attachment,
+#'   file_name = dido_example("attachment.txt")
 #' )
-#' }
 replace_attachment <- function(attachment,
                                file_name,
                                published = NULL,

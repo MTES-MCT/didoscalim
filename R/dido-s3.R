@@ -11,9 +11,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' dataset <- get_dataset(list_datasets()[1,])
 #' clean_metadata(dataset)
-#' }
+#'
+#' datafile <- get_datafile(list_datafiles()[1,])
+#' clean_metadata(datafile)
 clean_metadata <- function(data) UseMethod("clean_metadata")
 
 #' @noRd
@@ -101,4 +103,35 @@ get_attachment_rid.data.frame <- function(data) {
     x = "Le dataframe ne contient pas exactement une ligne"
   ))
   return(data[['rid']])
+}
+
+#' Retourne l'attachment id de l'objet
+#'
+#' @param data un objet dido_attachment ou une chaine
+#'
+#' @return le rid de l'attachment
+#' @export
+#'
+#' @examples
+#' list_jobs() %>% slice(1) %>% get_job_id()
+#' @keywords internal
+get_job_id <- function(data) UseMethod("get_job_id")
+
+#' @export
+get_job_id.default <- function(data) NULL
+
+#' @export
+get_job_id.character <- function(data) data
+
+#' @export
+get_job_id.integer <- function(data) data
+
+#' @export
+get_job_id.data.frame <- function(data) {
+  if (!"id" %in% names(data)) abort_not_job()
+
+  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
+    x = "Le dataframe ne contient pas exactement une ligne"
+  ))
+  return(data[['id']])
 }

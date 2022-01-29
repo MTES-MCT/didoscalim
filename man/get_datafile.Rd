@@ -26,10 +26,13 @@ son titre.
 Lève une exception si la recherche ne retourne plus ou moins que 1 datafile
 }
 \examples{
-\dontrun{
-get_datafile("rid")
-get_datafile(title = "title")
-}
+datafile <- list_datafiles()[1,]
+dataset <- get_dataset(datafile)
+title <- datafile$title
+
+get_datafile(datafile) \%>\% clean_metadata()
+
+get_datafile(title = title) \%>\% clean_metadata()
 }
 \seealso{
 Other datafile: 

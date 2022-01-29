@@ -17,11 +17,11 @@ un objet \code{dido_attachment()}
 Mettre à jour une pièce jointe.
 }
 \examples{
-\dontrun{
-att <- get_attachment("rid")
-att$title <- "un nouveau titre"
-update_attachment(att)
-}
+att <- list_attachments()[1,]
+dataset <- att$id
+attachment <- get_attachment(list_attachments()[1,], dataset = dataset)
+attachment$title <- "un nouveau titre"
+update_attachment(attachment)
 }
 \seealso{
 Other attachment: 

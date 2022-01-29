@@ -35,6 +35,17 @@ abort_not_attachment <- function() {
   rlang::abort("error_bad_argument_type", message = message)
 }
 
+#' @noRd
+abort_not_job <- function() {
+  message <- c(
+    glue::glue("`job` n'est pas du type attendu"),
+    i = glue::glue("`job` doit être un id de job ou la valeur retournée par la fonction `get_job`")
+  )
+
+  rlang::abort("error_bad_argument_type", message = message)
+}
+
+
 #' cherche dans un tibble
 #'
 #' @param data le dataframe/tibble dans lequel rechercher

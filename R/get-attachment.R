@@ -16,10 +16,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' get_attachment("rid", dataset = dataset)
-#' get_attachment(title = "title", dataset = dataset)
-#' }
+#' attachment <- list_attachments()[1,]
+#' title <- attachment$title
+#' dataset <- get_dataset(attachment)
+#' get_attachment(attachment, dataset = dataset)
+#' get_attachment(title = title, dataset = dataset)
 get_attachment <- function(attachment = NULL, title = NULL, dataset) {
   if (is.null(attachment) && is.null(title)) {
     msg <- glue::glue("Vous devez préciser un des deux arguments `rid` ou `title`")

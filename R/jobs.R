@@ -18,11 +18,11 @@ list_jobs <- function() {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' job <- get_job("1")
-#' }
+#' job <- list_jobs()[1,]
+#' get_job(job)
 get_job <- function(data) {
-  url <- glue::glue("/jobs/{data}")
+  id <- get_job_id(data)
+  url <- glue::glue("/jobs/{id}")
   job <- dido_api(method = "GET", path = url)
   dido_job(job)
 }

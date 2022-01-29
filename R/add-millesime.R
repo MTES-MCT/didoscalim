@@ -14,13 +14,12 @@
 #' @family millesime
 #'
 #' @examples
-#' \dontrun{
+#' datafile <- list_datafiles()[1,]
 #' millesime <- add_millesime(
 #'   datafile = datafile,
-#'   file_name = "csv_upload.csv",
+#'   file_name = dido_example("augmente.csv"),
 #'   millesime = "2022-10"
 #' )
-#' }
 add_millesime <- function(datafile,
                           file_name,
                           date_diffusion = NULL,

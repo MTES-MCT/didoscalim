@@ -1,4 +1,4 @@
-#' Enregistre le fichier CSV augmenté utilisé par DiDo.
+#' Enregistre le fichier CSV augmenté généré
 #'
 #' @param data un tibble retourné par `dido_csv()`
 #' @param file le nom du fichier
