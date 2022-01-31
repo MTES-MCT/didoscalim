@@ -16,6 +16,7 @@ le datafile id
 Retourne le datafile rid de l'objet
 }
 \examples{
-list_datafiles() \%>\% slice(1) \%>\% get_datafile_rid()
+df <- list_datafiles()[1, ]
+get_datafile_rid(df)
 }
 \keyword{internal}

@@ -4,13 +4,11 @@
 \alias{get_datafile}
 \title{Récupère un datafile}
 \usage{
-get_datafile(data = NULL, title = NULL, dataset = NULL)
+get_datafile(data = NULL, dataset = NULL)
 }
 \arguments{
-\item{data}{un rid de datafile, un objet \code{dido_job()} (ou un
-\code{dido_datafile()} même si l'intérêt est limité).}
-
-\item{title}{le titre d'un datafile}
+\item{data}{le résultat d'une recherche par \code{list_datafiles()}, un rid de
+datafile, un objet \code{dido_job()} ou \code{dido_datafile()}}
 
 \item{dataset}{optionnel l'identifiant du dataset ou un objet
 \code{dido_dataset()}}
@@ -26,13 +24,11 @@ son titre.
 Lève une exception si la recherche ne retourne plus ou moins que 1 datafile
 }
 \examples{
-datafile <- list_datafiles()[1,]
-dataset <- get_dataset(datafile)
-title <- datafile$title
+library(dplyr, warn.conflicts=FALSE)
 
-get_datafile(datafile) \%>\% clean_metadata()
-
-get_datafile(title = title) \%>\% clean_metadata()
+datafile <- list_datafiles() \%>\%
+  filter(title == "Un fichier de données de test") \%>\%
+  get_datafile(datafile)
 }
 \seealso{
 Other datafile: 

@@ -23,3 +23,9 @@ dido_read_delim(dido_example("exemple.csv")) \%>\%
   dido_csv() \%>\%
   dido_write_csv("/tmp/fichier.csv")
 }
+\seealso{
+Other csv: 
+\code{\link{dido_csv}()},
+\code{\link{dido_read_delim}()}
+}
+\concept{csv}

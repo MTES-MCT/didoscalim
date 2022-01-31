@@ -16,6 +16,7 @@ le rid de l'attachment
 Retourne l'attachment id de l'objet
 }
 \examples{
-list_attachments() \%>\% slice(1) \%>\% get_attachments_rid()
+at <- list_attachments()[1, ]
+get_attachment_rid(at)
 }
 \keyword{internal}

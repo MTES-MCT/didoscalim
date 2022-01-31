@@ -58,7 +58,10 @@ un objet \code{dido_job()}
 Ajoute un datafile à un dataset
 }
 \examples{
-dataset <- list_datasets()[1,]
+library(dplyr, warn.conflicts=FALSE)
+
+dataset <- list_datasets() \%>\%
+  filter(title == "Données de consommation fictive")
 
 add_datafile(
   dataset = dataset,
@@ -69,8 +72,8 @@ add_datafile(
 
 add_datafile(
   dataset = dataset,
-  title = "didoscalim df create datafiles work",
-  description = "description",
+  title = "titre 2",
+  description = "description 2",
   file_name = dido_example("augmente.csv"),
   temporal_coverage_start = "2021-01-01",
   temporal_coverage_end = "2021-12-31",

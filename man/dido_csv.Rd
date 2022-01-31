@@ -108,11 +108,18 @@ data <- data.frame(
   DONNEES_2022 = c("1,3", "1,8")
 )
 params <- list(
-  `DONNEES_.*` = list(description = 'description pour {stringr::str_extract(name, "\\\\\\\\d{4}")}')
+  `DONNEES_.*` = list(
+    description = 'description pour {stringr::str_extract(name, "\\\\\\\\d{4}")}'
+  )
 )
 dido_csv(data, params = params, locale = locale(decimal_mark = ","))
 }
 \seealso{
 En complément, vous pouvez lire : \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/}{la description d'un fichier csv augmenté},
 \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/}{la liste des entêtes utilisables}
+
+Other csv: 
+\code{\link{dido_read_delim}()},
+\code{\link{dido_write_csv}()}
 }
+\concept{csv}

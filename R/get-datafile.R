@@ -5,9 +5,8 @@
 #'
 #' Lève une exception si la recherche ne retourne plus ou moins que 1 datafile
 #'
-#' @param data un rid de datafile, un objet `dido_job()` (ou un
-#'   `dido_datafile()` même si l'intérêt est limité).
-#' @param title le titre d'un datafile
+#' @param data le résultat d'une recherche par `list_datafiles()`, un rid de
+#'   datafile, un objet `dido_job()` ou `dido_datafile()`
 #' @param dataset optionnel l'identifiant du dataset ou un objet
 #'   `dido_dataset()`
 #'
@@ -18,35 +17,18 @@
 #' @export
 #'
 #' @examples
-#' datafile <- list_datafiles()[1,]
-#' dataset <- get_dataset(datafile)
-#' title <- datafile$title
+#' library(dplyr, warn.conflicts=FALSE)
 #'
-#' get_datafile(datafile) %>% clean_metadata()
-#'
-#' get_datafile(title = title) %>% clean_metadata()
-get_datafile <- function(data = NULL, title = NULL, dataset = NULL) {
-  if (is.null(data) && is.null(title)) {
-    msg <- glue::glue("Vous devez préciser un des deux arguments `rid` ou `title`")
-    rlang::abort("error_bad_argument", message = msg)
-  }
+#' datafile <- list_datafiles() %>%
+#'   filter(title == "Un fichier de données de test") %>%
+#'   get_datafile(datafile)
+get_datafile <- function(data = NULL, dataset = NULL) {
+  if (is.null(get_datafile_rid(data))) abort_not_datafile()
 
-  if (!is.null(data) && !is.null(title)) {
-    msg <- glue::glue("`datafile` et `title` sont données, la recherchera est faite par `datafile`")
-    rlang::warn(message = msg)
-  }
-
-  dataset_id <- if (!is.null(dataset)) get_dataset_id(dataset) else NULL
-
-  if (!is.null(title)) {
-    df <- list_datafiles()
-    result <- find_by_column(df, title, "title", c("id", "rid"))
-    dataset_id <- result$id
-    rid <- result$rid
-  } else {
-    rid <- get_datafile_rid(data)
-    if (is.null(dataset_id)) dataset_id <- get_datafile_id_by_rid(rid)
-  }
+  rid <- get_datafile_rid(data)
+  dataset_id <- get_dataset_id(data) %||%
+    get_dataset_id(dataset) %||%
+    get_datafile_id_by_rid(rid)
 
   url <- glue::glue("/datasets/{dataset_id}/datafiles/{rid}")
   result <- dido_api(method = "GET", path = url)

@@ -88,3 +88,9 @@ dido_read_delim(dido_example("csv-win-char.csv"),
   locale = locale(encoding = "WINDOWS-1252")
 )
 }
+\seealso{
+Other csv: 
+\code{\link{dido_csv}()},
+\code{\link{dido_write_csv}()}
+}
+\concept{csv}

@@ -32,11 +32,15 @@ un objet \code{dido_job()}
 Remplacer un millésime
 }
 \examples{
-datafile <- list_datafiles()[1,]
+library(dplyr, warn.conflicts=FALSE)
+
+datafile <- list_datafiles() \%>\%
+  filter(title == "Un fichier de données de test")
+
 millesime <- replace_millesime(
   datafile = datafile,
   file_name = dido_example("augmente.csv"),
-  millesime = "2022-10"
+  millesime = "2021-12"
 )
 }
 \seealso{

@@ -16,12 +16,12 @@ test_that("get_attachment works", {
     file_name = "dido-csv-simple.csv"
   )
 
-  get_attachment(title = att_title, dataset = dataset) %>%
-    expect_s3_class("dido_attachment")
-
-  get_attachment(title = att_title, dataset = get_dataset_id(dataset)) %>%
+  get_attachment(att) %>%
     expect_s3_class("dido_attachment")
 
   get_attachment(att$rid, dataset = get_dataset_id(dataset)) %>%
+    expect_s3_class("dido_attachment")
+
+  get_attachment(att$rid) %>%
     expect_s3_class("dido_attachment")
 })

@@ -11,10 +11,10 @@
 #' @export
 #'
 #' @examples
-#' dataset <- get_dataset(list_datasets()[1,])
+#' dataset <- get_dataset(list_datasets()[1, ])
 #' clean_metadata(dataset)
 #'
-#' datafile <- get_datafile(list_datafiles()[1,])
+#' datafile <- get_datafile(list_datafiles()[1, ])
 #' clean_metadata(datafile)
 clean_metadata <- function(data) UseMethod("clean_metadata")
 
@@ -29,7 +29,8 @@ internal_clean_metadata <- function(data) UseMethod("internal_clean_metadata")
 #' @export
 #'
 #' @examples
-#' list_datasets() %>% slice(1) %>% get_dataset_id()
+#' ds <- list_datasets()[1, ]
+#' get_dataset_id(ds)
 #' @keywords internal
 get_dataset_id <- function(data) UseMethod("get_dataset_id")
 
@@ -37,16 +38,21 @@ get_dataset_id <- function(data) UseMethod("get_dataset_id")
 get_dataset_id.default <- function(data) NULL
 
 #' @export
-get_dataset_id.character <- function(data) data
+get_dataset_id.character <- function(data) {
+  if (is_mongo_oid(data)) return(data)
+  NULL
+}
 
 #' @export
 get_dataset_id.data.frame <- function(data) {
   if (!"id" %in% names(data)) abort_not_dataset()
 
-  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
-    x = "Le dataframe ne contient pas exactement une ligne"
-  ))
-  return(data[['id']])
+  if (nrow(data) != 1) {
+    rlang::abort("not_one_row", message = c(
+      x = "Le dataframe ne contient pas exactement une ligne"
+    ))
+  }
+  return(data[["id"]])
 }
 
 #' Retourne le datafile rid de l'objet
@@ -57,7 +63,8 @@ get_dataset_id.data.frame <- function(data) {
 #' @export
 #'
 #' @examples
-#' list_datafiles() %>% slice(1) %>% get_datafile_rid()
+#' df <- list_datafiles()[1, ]
+#' get_datafile_rid(df)
 #' @keywords internal
 get_datafile_rid <- function(data) UseMethod("get_datafile_rid")
 
@@ -65,16 +72,21 @@ get_datafile_rid <- function(data) UseMethod("get_datafile_rid")
 get_datafile_rid.default <- function(data) NULL
 
 #' @export
-get_datafile_rid.character <- function(data) data
+get_datafile_rid.character <- function(data) {
+  if (is_uuid(data)) return(data)
+  NULL
+}
 
 #' @export
 get_datafile_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_datafile()
 
-  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
-    x = "Le dataframe ne contient pas exactement une ligne"
-  ))
-  return(data[['rid']])
+  if (nrow(data) != 1) {
+    rlang::abort("not_one_row", message = c(
+      x = "Le dataframe ne contient pas exactement une ligne"
+    ))
+  }
+  return(data[["rid"]])
 }
 
 #' Retourne l'attachment id de l'objet
@@ -85,24 +97,30 @@ get_datafile_rid.data.frame <- function(data) {
 #' @export
 #'
 #' @examples
-#' list_attachments() %>% slice(1) %>% get_attachments_rid()
+#' at <- list_attachments()[1, ]
+#' get_attachment_rid(at)
 #' @keywords internal
 get_attachment_rid <- function(data) UseMethod("get_attachment_rid")
 
 #' @export
-get_attachment_rid.default <- function(data)NULL
+get_attachment_rid.default <- function(data) NULL
 
 #' @export
-get_attachment_rid.character <- function(data) data
+get_attachment_rid.character <- function(data) {
+  if (is_uuid(data)) return(data)
+  NULL
+}
 
 #' @export
 get_attachment_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_attachment()
 
-  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
-    x = "Le dataframe ne contient pas exactement une ligne"
-  ))
-  return(data[['rid']])
+  if (nrow(data) != 1) {
+    rlang::abort("not_one_row", message = c(
+      x = "Le dataframe ne contient pas exactement une ligne"
+    ))
+  }
+  return(data[["rid"]])
 }
 
 #' Retourne l'attachment id de l'objet
@@ -113,7 +131,8 @@ get_attachment_rid.data.frame <- function(data) {
 #' @export
 #'
 #' @examples
-#' list_jobs() %>% slice(1) %>% get_job_id()
+#' j <- list_jobs()[1, ]
+#' get_job_id(j)
 #' @keywords internal
 get_job_id <- function(data) UseMethod("get_job_id")
 
@@ -130,8 +149,10 @@ get_job_id.integer <- function(data) data
 get_job_id.data.frame <- function(data) {
   if (!"id" %in% names(data)) abort_not_job()
 
-  if (nrow(data) != 1) rlang::abort("not_one_row", message = c(
-    x = "Le dataframe ne contient pas exactement une ligne"
-  ))
-  return(data[['id']])
+  if (nrow(data) != 1) {
+    rlang::abort("not_one_row", message = c(
+      x = "Le dataframe ne contient pas exactement une ligne"
+    ))
+  }
+  return(data[["id"]])
 }

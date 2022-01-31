@@ -17,7 +17,16 @@ Retourne la liste des datafiles ou si un objet dataset est passé en argument,
 la liste des datafiles de ce dataset.
 }
 \examples{
+# tous les datafiles
 list_datafiles()
+
+# les datafiles d'un jeu en particulier
+
+library(dplyr, warn.conflicts=FALSE)
+
+list_datasets() \%>\%
+  filter(title == "Un jeu de données de test") \%>\%
+  list_datafiles()
 }
 \seealso{
 Other datafile: 

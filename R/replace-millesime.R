@@ -10,18 +10,22 @@
 #' @family millesime
 #'
 #' @examples
-#' datafile <- list_datafiles()[1,]
+#' library(dplyr, warn.conflicts=FALSE)
+#'
+#' datafile <- list_datafiles() %>%
+#'   filter(title == "Un fichier de données de test")
+#'
 #' millesime <- replace_millesime(
 #'   datafile = datafile,
 #'   file_name = dido_example("augmente.csv"),
-#'   millesime = "2022-10"
+#'   millesime = "2021-12"
 #' )
 replace_millesime <- function(datafile,
                               file_name,
                               millesime,
                               date_diffusion = NULL,
                               quiet = NULL) {
-  if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
+  if (missing(datafile)) abort_bad_argument("datafile")
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 
   if (missing(millesime) || is.null(millesime)) abort_bad_argument("millesime")

@@ -17,7 +17,15 @@ Retourne la liste des attachments ou si un objet dataset est passé en argument,
 la liste des attachments de ce dataset.
 }
 \examples{
+# toutes les pièces jointes
 list_attachments()
+
+library(dplyr, warn.conflicts=FALSE)
+
+# les pièces jointes d'un dataset en particulier
+list_datasets() \%>\%
+  filter(title == "Un jeu de données de test") \%>\%
+  list_attachments()
 }
 \seealso{
 Other attachment: 

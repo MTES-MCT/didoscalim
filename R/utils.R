@@ -8,8 +8,10 @@ abort_bad_argument <- function(arg, class = NULL) {
 #' @noRd
 abort_not_dataset <- function() {
   message <- c(
-    glue::glue("`dataset` n'est pas du type attendu"),
-    i = glue::glue("`dataset` doit être soit un id de dataset soit la valeur retournée par par une des fonctions : `add_dataset`, `get_dataset`, `get_datafile`, `add_datafile`")
+    glue::glue("`data` n'est pas du type attendu"),
+    i = glue::glue("`data` doit être soit un id de dataset soit la valeur",
+    "retournée par une des fonctions : `add_dataset`, `get_dataset`, ",
+    "`get_datafile`, `add_datafile`, `list_datasets()`")
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -18,8 +20,10 @@ abort_not_dataset <- function() {
 #' @noRd
 abort_not_datafile <- function() {
   message <- c(
-    glue::glue("`datafile` n'est pas du type attendu"),
-    i = glue::glue("`datafile` doit être un rid de datafile ou la valeur retournée par une des fonctions `get_datafile`, `add_datafile`")
+    glue::glue("`data` n'est pas du type attendu"),
+    i = glue::glue("`data` doit être un rid de datafile ou la valeur ",
+    "retournée par une des fonctions `get_datafile`, `add_datafile`, ",
+    "`list_datafiles()`")
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -28,8 +32,10 @@ abort_not_datafile <- function() {
 #' @noRd
 abort_not_attachment <- function() {
   message <- c(
-    glue::glue("`attachment` n'est pas du type attendu"),
-    i = glue::glue("`attachment` doit être un rid de datafile ou la valeur retournée par une des fonctions `add_attachment`, `get_attachment`")
+    glue::glue("`data` n'est pas du type attendu"),
+    i = glue::glue("`data` doit être un rid de datafile ou la valeur ",
+    ", retournée par une des fonctions `add_attachment`, `get_attachment`, ",
+    "`list_attachments()")
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -39,7 +45,8 @@ abort_not_attachment <- function() {
 abort_not_job <- function() {
   message <- c(
     glue::glue("`job` n'est pas du type attendu"),
-    i = glue::glue("`job` doit être un id de job ou la valeur retournée par la fonction `get_job`")
+    i = glue::glue("`job` doit être un id de job ou la valeur retournée par ",
+    "la fonction `get_job`")
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -101,4 +108,22 @@ find_by_column <- function(data, string, col, return = c("id")) {
 #' @noRd
 is_quiet <- function(quiet = NULL) {
   quiet %||% getOption("dido_quiet") %||% FALSE
+}
+
+#' return TRUE if str if
+#' @noRd
+is_mongo_oid <- function(str) {
+  stringr::str_detect(str, "^[0-9a-fA-F]{24,}$")
+}
+
+#' return TRUE if str match mongo oid regexp
+#' @noRd
+is_mongo_oid <- function(str) {
+  stringr::str_detect(str, "^[0-9a-fA-F]{24,}$")
+}
+
+#' return TRUE if str match uuid regexp
+#' @noRd
+is_uuid <- function(str) {
+  stringr::str_detect(str, "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 }

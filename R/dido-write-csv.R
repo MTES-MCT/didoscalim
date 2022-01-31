@@ -5,6 +5,8 @@
 #'
 #' @return le tibble passé en entrée
 #'
+#' @family csv
+#'
 #' @export
 #'
 #' @examples

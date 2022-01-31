@@ -12,7 +12,15 @@
 #' @export
 #'
 #' @examples
+#' # toutes les pièces jointes
 #' list_attachments()
+#'
+#' library(dplyr, warn.conflicts=FALSE)
+#'
+#' # les pièces jointes d'un dataset en particulier
+#' list_datasets() %>%
+#'   filter(title == "Un jeu de données de test") %>%
+#'   list_attachments()
 list_attachments <- function(dataset = NULL) {
   if (!is.null(dataset) && is.null(get_dataset_id(dataset))) {
     abort_not_dataset()

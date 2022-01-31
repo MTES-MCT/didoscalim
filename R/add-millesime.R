@@ -14,24 +14,30 @@
 #' @family millesime
 #'
 #' @examples
-#' datafile <- list_datafiles()[1,]
+#' library(dplyr, warn.conflicts=FALSE)
+#'
+#' datafile <- list_datafiles() %>%
+#'   filter(title == "Un fichier de données de test")
+#'
 #' millesime <- add_millesime(
 #'   datafile = datafile,
 #'   file_name = dido_example("augmente.csv"),
-#'   millesime = "2022-10"
+#'   millesime = "2011-10"
 #' )
 add_millesime <- function(datafile,
                           file_name,
                           date_diffusion = NULL,
                           millesime = NULL,
-                          quiet = TRUE) {
+                          quiet = NULL) {
   if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
   if (missing(file_name)) abort_bad_argument("file_name")
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 
-
+  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier `{file_name}`"))
   token_file <- dido_upload_file(file_name)
+  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
   check_csv(token_file)
+  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier validé"))
 
   payload <- list(
     "tokenFile" = token_file
@@ -49,13 +55,13 @@ add_millesime <- function(datafile,
   job_result <- dido_job(wait_for_job(job$id))
 
   if (!is_quiet(quiet)) {
-    rlang::inform(message = glue::glue(
-      "        * fichier intégré\n",
-      "(rid: {job_result$result$rid}, ",
-      "millesime: {job_result$result$millesime}, ",
-      "lignes: {job_result$result$rows}"
+    rlang::inform(glue::glue(
+      "\t* fichier intégré",
+      "\t    rid: {get_datafile_rid(job_result)}",
+      "\t    millesime: {job_result$result$millesime}",
+      "\t    lignes: {job_result$result$rows}",
     ))
   }
 
-  job_result
+  invisible(job_result)
 }

@@ -17,9 +17,11 @@ Cette fonction permet de mettre à jour les métadonnées d'un dataset comme,
 par exemple, la date de fin de couverture temporelle.
 }
 \examples{
-dataset <- get_dataset(list_datasets()[1,]) \%>\% clean_metadata()
+dataset <- get_dataset(list_datasets()[1, ]) \%>\% clean_metadata()
+
 dataset$description <- "another description"
 dataset$tags <- list("autocar", "biogaz")
+
 update_dataset(dataset)
 }
 \seealso{

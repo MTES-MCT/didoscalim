@@ -16,12 +16,11 @@ TRUE
 Supprime un dataset
 }
 \examples{
-dataset <- add_dataset(
-  title = "le titre du dataset",
-  description = "la description du dataset",
-  topic = "Transports",
-  frequency = "unknown"
-)
+library(dplyr, warn.conflicts=FALSE)
+
+dataset <- list_datasets() \%>\%
+  filter(title == "Un dataset à supprimer")
+
 delete_dataset(dataset)
 }
 \keyword{internal}

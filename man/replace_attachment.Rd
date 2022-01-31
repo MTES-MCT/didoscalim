@@ -24,7 +24,7 @@ un objet \code{dido_attachment()}
 Remplace un fichier annexe
 }
 \examples{
-attachment <- list_attachments()[1,]
+attachment <- list_attachments()[1, ]
 replace_attachment(
   attachment = attachment,
   file_name = dido_example("attachment.txt")

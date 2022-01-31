@@ -4,13 +4,11 @@
 \alias{get_dataset}
 \title{Récupère les métadonnées d'un dataset}
 \usage{
-get_dataset(data = NULL, title = NULL)
+get_dataset(data)
 }
 \arguments{
 \item{data}{l'identifiant d'un dataset ou un objet \code{dido_dataset()},
 \code{dido_job()} ou \code{dido_datafile()}}
-
-\item{title}{le titre du du dataset}
 }
 \value{
 un objet \code{dido_dataset()}
@@ -23,12 +21,11 @@ soit un objet \code{dido_datafile()}, \code{dido_dataset()}, \code{dido_job()}
 Lève une exception si le titre ne retourne pas un unique dataset.
 }
 \examples{
-dataset <- list_datasets()[1,]
-title <- dataset$title
+library(dplyr, warn.conflicts=FALSE)
 
-ds <- get_dataset(dataset)
-
-ds <- get_dataset(title = title)
+ds <- list_datasets() \%>\%
+  filter(title == "Données de consommation fictive") \%>\%
+  get_dataset()
 }
 \seealso{
 Other dataset: 

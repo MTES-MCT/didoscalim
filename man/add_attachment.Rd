@@ -36,7 +36,8 @@ un objet \code{dido_attachment()}
 Ajoute un fichier annexe à un dataset
 }
 \examples{
-dataset <- list_datasets()[1,]
+dataset <- list_datasets()[1, ]
+
 add_attachment(
   dataset = dataset,
   title = "title",

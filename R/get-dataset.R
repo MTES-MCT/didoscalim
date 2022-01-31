@@ -7,7 +7,6 @@
 #'
 #' @param data l'identifiant d'un dataset ou un objet `dido_dataset()`,
 #'   `dido_job()` ou `dido_datafile()`
-#' @param title le titre du du dataset
 #'
 #' @return un objet `dido_dataset()`
 #' @export
@@ -15,27 +14,19 @@
 #' @family dataset
 #'
 #' @examples
-#' dataset <- list_datasets()[1,]
-#' title <- dataset$title
+#' library(dplyr, warn.conflicts=FALSE)
 #'
-#' ds <- get_dataset(dataset)
-#'
-#' ds <- get_dataset(title = title)
-get_dataset <- function(data = NULL, title = NULL) {
-  if (is.null(data) && is.null(title)) {
-    msg <- glue::glue("Vous devez préciser un des deux arguments `data` ou `title`")
+#' ds <- list_datasets() %>%
+#'   filter(title == "Données de consommation fictive") %>%
+#'   get_dataset()
+get_dataset <- function(data) {
+  if (missing(data)) {
+    msg <- glue::glue("Vous devez préciser l'argument `data`")
     rlang::abort("error_bad_argument", message = msg)
   }
-  if (!is.null(data) && !is.null(title)) {
-    msg <- glue::glue("`data` ou `title` sont données, la recherchera est faite par `data`")
-    rlang::warn(message = msg)
-  }
+  if (is.null(get_dataset_id(data))) abort_not_dataset()
 
-  id <- if (!is.null(title)) {
-    find_by_column(list_datasets(), title, "title")
-  } else {
-    get_dataset_id(data)
-  }
+  id <- get_dataset_id(data)
 
   url <- glue::glue("/datasets/{id}")
   result <- dido_api(method = "GET", path = url)

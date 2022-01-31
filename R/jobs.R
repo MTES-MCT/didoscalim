@@ -14,11 +14,11 @@ list_jobs <- function() {
 #'
 #' @param data l'id du job
 #'
-#' @return un objet `dido_job()``
+#' @return un objet `dido_job()`
 #' @export
 #'
 #' @examples
-#' job <- list_jobs()[1,]
+#' job <- list_jobs()[1, ]
 #' get_job(job)
 get_job <- function(data) {
   id <- get_job_id(data)

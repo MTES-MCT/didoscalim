@@ -4,3 +4,6 @@ readr::locale
 
 #' @export
 readr::default_locale
+
+#' @export
+magrittr::`%>%`

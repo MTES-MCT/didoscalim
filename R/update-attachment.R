@@ -10,9 +10,9 @@
 #' @export
 #'
 #' @examples
-#' att <- list_attachments()[1,]
+#' att <- list_attachments()[1, ]
 #' dataset <- att$id
-#' attachment <- get_attachment(list_attachments()[1,], dataset = dataset)
+#' attachment <- get_attachment(list_attachments()[1, ], dataset = dataset)
 #' attachment$title <- "un nouveau titre"
 #' update_attachment(attachment)
 update_attachment <- function(attachment) {

@@ -10,12 +10,12 @@ get_job(data)
 \item{data}{l'id du job}
 }
 \value{
-un objet `dido_job()``
+un objet \code{dido_job()}
 }
 \description{
 Récupére un job en particulier
 }
 \examples{
-job <- list_jobs()[1,]
+job <- list_jobs()[1, ]
 get_job(job)
 }

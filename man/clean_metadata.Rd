@@ -19,9 +19,9 @@ objets enfants (fichiers annexes, datafiles, millésimes...). Cette fonction
 permet de les supprimer pour ne garder que les métadonnées propres à l'objet.
 }
 \examples{
-dataset <- get_dataset(list_datasets()[1,])
+dataset <- get_dataset(list_datasets()[1, ])
 clean_metadata(dataset)
 
-datafile <- get_datafile(list_datafiles()[1,])
+datafile <- get_datafile(list_datafiles()[1, ])
 clean_metadata(datafile)
 }

@@ -30,12 +30,13 @@ add_dataset(
 "Transports", "Logement", "Changement climatique"}
 
 \item{frequency}{la fréquence de publication des données. Les fréquences les
-plus utilisées sont \code{annual}, \code{monthly}, \code{ponctual}. \href{https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/metadata/frequencies}{la liste complète des fréquences}}
+plus utilisées sont \code{annual}, \code{monthly}, \code{ponctual}, \code{unknown}. \href{https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/metadata/frequencies}{la liste complète des fréquences}}
 
 \item{tags}{la liste des mots clefs. Si le fichier est déjà publié sur le
 site SDES, on reprend les mêmes. La liste des \href{https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/referentiels/tags/csv?withColumnName=true&withColumnDescription=false}{mots clefs recensés}.}
 
-\item{frequency_date}{la date de prochaine publication.}
+\item{frequency_date}{la date de prochaine publication. optionnel seulement
+la \code{frequency} est \code{unknown}.}
 
 \item{granularity}{la granularité du jeu de données. Les plus utilisés sont
 "fr:region", "fr:departement", "fr:epci", "fr:commune", "fr:iris" et pour
@@ -47,7 +48,9 @@ country-subset:fr:drom pour les DROM}
 
 \item{organization}{l'id de l'organisation sous laquelle vous souhaitez
 publier le dataset, si vous n'appartenez qu'à une seule organisation, vous
-n'avez pas à remplir ce champ, didoscalim la prendra par défaut.}
+n'avez pas à remplir ce champ, didoscalim la prendra par défaut.
+
+Si ça n'est pas le cas, vous devez préciser la fonction \code{my_organization()}}
 
 \item{license}{la licence des données. "fr-lo" par défaut}
 
@@ -72,19 +75,20 @@ Ajoute un dataset
 }
 \examples{
 dataset <- add_dataset(
-  title = "le titre du dataset",
-  description = "la description du dataset",
+  title = "Données logements",
+  description = "Données logement en date réelle",
   topic = "Transports",
   frequency = "unknown"
 )
 
 dataset <- add_dataset(
-  title = "le titre du dataset",
-  description = "test",
+  title = "Données parc de véhicule",
+  description = "Données parc de véhicule",
   topic = "Transports",
-  tags = list("agenda-21", "agriculture"),
+  tags = list("transport", "vehicule", "circulation"),
   frequency = "annual",
-  frequency_date =  "2022-12-31",
+  organization = my_organization(),
+  frequency_date = "2022-12-31",
   temporal_coverage_start = "2021-01-01",
   temporal_coverage_end = "2021-12-31",
   granularity = "fr:region",
@@ -92,7 +96,6 @@ dataset <- add_dataset(
   caution = "caution",
   license = "ODbL-1.0"
 )
-
 }
 \seealso{
 La liste des \href{https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/referentiels/tags/csv?withColumnName=true&withColumnDescription=false}{mots clefs recensés}

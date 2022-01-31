@@ -11,9 +11,11 @@
 #' @family dataset
 #'
 #' @examples
-#' dataset <- get_dataset(list_datasets()[1,]) %>% clean_metadata()
+#' dataset <- get_dataset(list_datasets()[1, ]) %>% clean_metadata()
+#'
 #' dataset$description <- "another description"
 #' dataset$tags <- list("autocar", "biogaz")
+#'
 #' update_dataset(dataset)
 update_dataset <- function(dataset) {
   if (missing(dataset) || is.null(dataset)) abort_bad_argument("dataset")

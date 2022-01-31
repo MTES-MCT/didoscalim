@@ -1,13 +1,10 @@
-#' Récupère un attachment
+#' Récupère les métadonnées d'un attachment
 #'
-#' Permet de récupérer les données d'un attachment en utilisant soit son rid soit
-#' son titre.
+#' Permet de récupérer les données d'un attachment
 #'
-#' Lève une exception si la recherche ne retourne pas exactement 1 attachment
-#'
-#' @param attachment un rid de attachment, un objet `dido_attachment()` ou `dido_job()`
-#' @param title le titre d'un attachment
-#' @param dataset l'identifiant ou l'objet `dido_dataset()` du dataset parent de l'attachment
+#' @param data le résultat d'une recherche par `list_attachments()`, un rid de
+#'   attachment, un objet `dido_attachment()` ou `dido_job()`
+#' @param dataset optionnel, le dataset parent de l'attachement.
 #'
 #' @return un objet `dido_attachment()`
 #'
@@ -16,38 +13,18 @@
 #' @export
 #'
 #' @examples
-#' attachment <- list_attachments()[1,]
-#' title <- attachment$title
-#' dataset <- get_dataset(attachment)
-#' get_attachment(attachment, dataset = dataset)
-#' get_attachment(title = title, dataset = dataset)
-get_attachment <- function(attachment = NULL, title = NULL, dataset) {
-  if (is.null(attachment) && is.null(title)) {
-    msg <- glue::glue("Vous devez préciser un des deux arguments `rid` ou `title`")
-    rlang::abort("error_bad_argument", message = msg)
-  }
-  if (missing(dataset)) {
-    msg <- glue::glue("Vous devez préciser l'argument `dataset`")
-    rlang::abort("error_bad_argument", message = msg)
-  }
+#' library(dplyr, warn.conflicts=FALSE)
+#'
+#' attachment <- list_attachments() %>%
+#'   filter(title == "Un fichier annexe") %>%
+#'   get_attachment()
+get_attachment <- function(data = NULL, dataset = NULL) {
+  if (is.null(get_attachment_rid(data))) abort_not_attachment()
 
-  if (!is.null(attachment) && !is.null(title)) {
-    msg <- glue::glue("`attachment` et `title` sont données, la recherchera est faite par `attachment`")
-    rlang::warn(message = msg)
-  }
-
-  dataset_id <- if (!is.null(dataset)) get_dataset_id(dataset) else NULL
-
-  if (!is.null(title)) {
-    df <- list_attachments()
-    result <- find_by_column(df, title, "title", c("id", "rid"))
-    dataset_id <- result$id
-    rid <- result$rid
-  } else {
-    rid <- get_attachment_rid(attachment)
-    dataset_id <- get_attachment_id_by_rid(rid)
-    rid <- get_attachment_rid(attachment)
-  }
+  rid <- get_attachment_rid(data)
+  dataset_id <- get_dataset_id(data) %||%
+    get_dataset_id(dataset) %||%
+    get_attachment_id_by_rid(rid)
 
   url <- glue::glue("/datasets/{dataset_id}/attachments/{rid}")
   result <- dido_api(method = "GET", path = url)

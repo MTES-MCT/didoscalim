@@ -27,8 +27,7 @@ library(purrr, warn.conflicts = FALSE)
 ds <- list_datasets() 
 if (nrow(ds) > 0) ds %>% 
   filter(str_detect(title, "Données.*fictive")) %>% 
-  select(id) %>% 
-  pmap(~ delete_dataset(..1))
+  pmap(~ delete_dataset(.))
 ```
 
 
@@ -90,12 +89,14 @@ La procédure est simple :
 ### chercher le datafile à modifier
 
 Pour ajouter un millésime vous devez d'abord récupérer le fichier de données.
-Vous pouvez le chercher par son titre avec la fonction `get_datafile()`. Cette
+Vous pouvez le chercher par son titre avec la fonction `dplyr::filter()`. Cette
 fonction retourne beaucoup d'information non pertinentes dans le cadre d'une
 mise à jour, vous pouvez utiliser `clean_metadata()` :
 
 ```{r}
-datafile <- get_datafile(title = "Données de consommation fictive – chaleur et froid – année 2020") %>%
+datafile <- list_datafiles() %>%
+  filter(title == "Données de consommation fictive – chaleur et froid – année 2020") %>%
+  get_datafile() %>%
   clean_metadata()
 datafile
 ```
@@ -166,13 +167,15 @@ Pour mettre à jour le dernier millésime d'un fichier de données, la procédur
 ### trouver le datafile
 
 ```{r}
-datafile <- get_datafile(title = "Données de consommation fictive – chaleur et froid – année 2020") %>%
+datafile <- list_datafiles() %>%
+  filter(title == "Données de consommation fictive – chaleur et froid – année 2020") %>%
+  get_datafile() %>%
   clean_metadata()
 datafile
 ```
 ### récupérer le millésime à modifier
 
-On récupére le dernier millesime du datafile
+On récupére le dernier millesime du datafile :
 
 ```{r}
 millesime_row <- list_millesimes(datafile) %>% slice_max(order_by = millesime)
@@ -191,5 +194,3 @@ millesime <- replace_millesime(
   millesime = millesime
 )
 ```
-
-

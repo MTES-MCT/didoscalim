@@ -16,6 +16,7 @@ le dataset id
 Retourne le dataset id de l'objet
 }
 \examples{
-list_datasets() \%>\% slice(1) \%>\% get_dataset_id()
+ds <- list_datasets()[1, ]
+get_dataset_id(ds)
 }
 \keyword{internal}

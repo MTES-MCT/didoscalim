@@ -20,6 +20,8 @@ Fixe l'environnement DiDo à utiliser
 }
 \examples{
 set_work_env("DEV")
+
 set_work_env("PROD")
+
 set_work_env()
 }

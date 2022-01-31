@@ -73,6 +73,9 @@ default_columns <- list(
 #'   l'année en cours
 #'
 #' @return un dataframe avec les 4 lignes de description du csv augmenté
+#'
+#' @family csv
+#'
 #' @export
 #'
 #' @details Certains noms de variable sont connus par didoscalim qui génère
@@ -115,7 +118,9 @@ default_columns <- list(
 #'   DONNEES_2022 = c("1,3", "1,8")
 #' )
 #' params <- list(
-#'   `DONNEES_.*` = list(description = 'description pour {stringr::str_extract(name, "\\\\d{4}")}')
+#'   `DONNEES_.*` = list(
+#'     description = 'description pour {stringr::str_extract(name, "\\\\d{4}")}'
+#'   )
 #' )
 #' dido_csv(data, params = params, locale = locale(decimal_mark = ","))
 dido_csv <- function(data, params = list(),

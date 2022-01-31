@@ -3,16 +3,24 @@
 #' @param datafile un objet datafile retourné par `get_datafile()` modifié par
 #'   l'utilisateur
 #'
-#' @return un objet ``dido_job()``
+#' @return un objet dido_job()` invisible
 #'
 #' @family datafile
 #'
 #' @export
 #'
 #' @examples
-#' df <- get_datafile(list_datafiles()[1,])
-#' df$temporal_coverage$end <- "2023-12-31"
-#' update_datafile(df)
+#' library(dplyr, warn.conflicts=FALSE)
+#'
+#' datafile <- list_datafiles() %>%
+#'   filter(title == "Un fichier de données de test") %>%
+#'   get_datafile() %>%
+#'   clean_metadata()
+#'
+#' datafile$temporal_coverage$start <- "2022-01-01"
+#' datafile$temporal_coverage$end <- "2023-12-31"
+#'
+#' update_datafile(datafile)
 update_datafile <- function(datafile) {
   if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
   if (!is.dido_datafile(datafile)) abort_not_datafile()

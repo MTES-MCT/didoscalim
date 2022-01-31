@@ -22,7 +22,4 @@ test_that("get datafile works", {
 
   df <- get_datafile(datafile$result$rid)
   expect_equal(df$rid, datafile$result$rid)
-
-  df <- get_datafile(title = title)
-  expect_equal(df$rid, datafile$result$rid)
 })

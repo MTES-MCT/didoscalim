@@ -16,6 +16,7 @@ le rid de l'attachment
 Retourne l'attachment id de l'objet
 }
 \examples{
-list_jobs() \%>\% slice(1) \%>\% get_job_id()
+j <- list_jobs()[1, ]
+get_job_id(j)
 }
 \keyword{internal}

@@ -80,7 +80,9 @@ list_env_names <- function() {
 #'
 #' @examples
 #' set_work_env("DEV")
+#'
 #' set_work_env("PROD")
+#'
 #' set_work_env()
 set_work_env <- function(env_name = NULL, quiet = NULL) {
   environments <- get("environments", envir = .didoscalim_env)

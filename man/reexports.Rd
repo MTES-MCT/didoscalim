@@ -5,6 +5,7 @@
 \alias{reexports}
 \alias{locale}
 \alias{default_locale}
+\alias{\%>\%}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -12,6 +13,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{magrittr}{\code{\link[magrittr:pipe]{\%>\%}}}
+
   \item{readr}{\code{\link[readr:locale]{default_locale}}, \code{\link[readr]{locale}}}
 }}
 

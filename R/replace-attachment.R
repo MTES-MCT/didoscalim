@@ -9,7 +9,7 @@
 #' @family attachment
 #'
 #' @examples
-#' attachment <- list_attachments()[1,]
+#' attachment <- list_attachments()[1, ]
 #' replace_attachment(
 #'   attachment = attachment,
 #'   file_name = dido_example("attachment.txt")

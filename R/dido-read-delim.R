@@ -13,6 +13,8 @@
 #'
 #' @return un tibble dont toutes les colonnes sont de type `chr`
 #'
+#' @family csv
+#'
 #' @details Certaines variables peuvent avoir des valeurs secrétisées
 #'   représentées par la valeur `secret`, la détection automatique du package
 #'   `readr` n'est donc pas fiable et est désactivé à ce niveau. La détection

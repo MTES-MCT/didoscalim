@@ -11,15 +11,23 @@ update_datafile(datafile)
 l'utilisateur}
 }
 \value{
-un objet \code{dido_job()}
+un objet dido_job()` invisible
 }
 \description{
 Mettre à jour un datafile.
 }
 \examples{
-df <- get_datafile(list_datafiles()[1,])
-df$temporal_coverage$end <- "2023-12-31"
-update_datafile(df)
+library(dplyr, warn.conflicts=FALSE)
+
+datafile <- list_datafiles() \%>\%
+  filter(title == "Un fichier de données de test") \%>\%
+  get_datafile() \%>\%
+  clean_metadata()
+
+datafile$temporal_coverage$start <- "2022-01-01"
+datafile$temporal_coverage$end <- "2023-12-31"
+
+update_datafile(datafile)
 }
 \seealso{
 Other datafile: 

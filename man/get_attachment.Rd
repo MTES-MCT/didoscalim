@@ -2,33 +2,28 @@
 % Please edit documentation in R/get-attachment.R
 \name{get_attachment}
 \alias{get_attachment}
-\title{Récupère un attachment}
+\title{Récupère les métadonnées d'un attachment}
 \usage{
-get_attachment(attachment = NULL, title = NULL, dataset)
+get_attachment(data = NULL, dataset = NULL)
 }
 \arguments{
-\item{attachment}{un rid de attachment, un objet \code{dido_attachment()} ou \code{dido_job()}}
+\item{data}{le résultat d'une recherche par \code{list_attachments()}, un rid de
+attachment, un objet \code{dido_attachment()} ou \code{dido_job()}}
 
-\item{title}{le titre d'un attachment}
-
-\item{dataset}{l'identifiant ou l'objet \code{dido_dataset()} du dataset parent de l'attachment}
+\item{dataset}{optionnel, le dataset parent de l'attachement.}
 }
 \value{
 un objet \code{dido_attachment()}
 }
 \description{
-Permet de récupérer les données d'un attachment en utilisant soit son rid soit
-son titre.
-}
-\details{
-Lève une exception si la recherche ne retourne pas exactement 1 attachment
+Permet de récupérer les données d'un attachment
 }
 \examples{
-attachment <- list_attachments()[1,]
-title <- attachment$title
-dataset <- get_dataset(attachment)
-get_attachment(attachment, dataset = dataset)
-get_attachment(title = title, dataset = dataset)
+library(dplyr, warn.conflicts=FALSE)
+
+attachment <- list_attachments() \%>\%
+  filter(title == "Un fichier annexe") \%>\%
+  get_attachment()
 }
 \seealso{
 Other attachment: 

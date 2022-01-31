@@ -9,7 +9,7 @@ add_millesime(
   file_name,
   date_diffusion = NULL,
   millesime = NULL,
-  quiet = TRUE
+  quiet = NULL
 )
 }
 \arguments{
@@ -32,11 +32,15 @@ un objet \code{dido_job()}
 Ajoute un millésime à un datafile
 }
 \examples{
-datafile <- list_datafiles()[1,]
+library(dplyr, warn.conflicts=FALSE)
+
+datafile <- list_datafiles() \%>\%
+  filter(title == "Un fichier de données de test")
+
 millesime <- add_millesime(
   datafile = datafile,
   file_name = dido_example("augmente.csv"),
-  millesime = "2022-10"
+  millesime = "2011-10"
 )
 }
 \seealso{

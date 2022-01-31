@@ -7,13 +7,18 @@
 #' @param tags la liste des mots clefs. Si le fichier est déjà publié sur le
 #'   site SDES, on reprend les mêmes. La liste des [mots clefs recensés](https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/referentiels/tags/csv?withColumnName=true&withColumnDescription=false).
 #' @param frequency la fréquence de publication des données. Les fréquences les
-#'   plus utilisées sont `annual`, `monthly`, `ponctual`. [la liste complète des
+#'   plus utilisées sont `annual`, `monthly`, `ponctual`, `unknown`. [la liste
+#'   complète des
 #'   fréquences](https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/metadata/frequencies)
 #'
-#' @param frequency_date la date de prochaine publication.
+#'
+#' @param frequency_date la date de prochaine publication. optionnel seulement
+#'   la `frequency` est `unknown`.
 #' @param organization l'id de l'organisation sous laquelle vous souhaitez
 #'   publier le dataset, si vous n'appartenez qu'à une seule organisation, vous
 #'   n'avez pas à remplir ce champ, didoscalim la prendra par défaut.
+#'
+#'   Si ça n'est pas le cas, vous devez préciser la fonction `my_organization()`
 #' @param temporal_coverage_start optionnel, la date de début de couverture du
 #'   jeux de données au format AAAA-MM-JJ
 #' @param temporal_coverage_end  optionnel, la date de fin de couverture du jeux
@@ -43,19 +48,20 @@
 #'
 #' @examples
 #' dataset <- add_dataset(
-#'   title = "le titre du dataset",
-#'   description = "la description du dataset",
+#'   title = "Données logements",
+#'   description = "Données logement en date réelle",
 #'   topic = "Transports",
 #'   frequency = "unknown"
 #' )
 #'
 #' dataset <- add_dataset(
-#'   title = "le titre du dataset",
-#'   description = "test",
+#'   title = "Données parc de véhicule",
+#'   description = "Données parc de véhicule",
 #'   topic = "Transports",
-#'   tags = list("agenda-21", "agriculture"),
+#'   tags = list("transport", "vehicule", "circulation"),
 #'   frequency = "annual",
-#'   frequency_date =  "2022-12-31",
+#'   organization = my_organization(),
+#'   frequency_date = "2022-12-31",
 #'   temporal_coverage_start = "2021-01-01",
 #'   temporal_coverage_end = "2021-12-31",
 #'   granularity = "fr:region",
@@ -63,7 +69,6 @@
 #'   caution = "caution",
 #'   license = "ODbL-1.0"
 #' )
-#'
 add_dataset <- function(title,
                         description,
                         topic,
