@@ -1,6 +1,6 @@
 Package: didoscalim
 Title: Charger des données dans DiDo
-Version: 0.0.1.9000
+Version: 0.0.2.9000
 Authors@R: 
     c(person("Nicolas", "Chuche", , "nicolas.chuche@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("MTE CGDD", role=c("cph")))
