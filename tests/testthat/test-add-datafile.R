@@ -25,7 +25,12 @@ test_that("create datafiles works", {
 
   millesime <- datafile$millesimes_info[[1]]
   expect_equal(millesime$millesime, format(Sys.time(), "%Y-%m"))
+  # publication date/time is correct
+  expect_true((ymd_hms(list_millesimes(datafile)[["date_diffusion"]]) - lubridate::now()) < 10)
 
+
+
+  date_diffusion <- "2020-01-01 00:00:00"
   created_df2 <- add_datafile(
     dataset = dataset,
     title = "didoscalim df create datafiles work",
@@ -35,6 +40,7 @@ test_that("create datafiles works", {
     temporal_coverage_end = "2021-12-31",
     legal_notice = "something",
     millesime = "2020-10",
+    date_diffusion = date_diffusion,
   )
 
   datafile <- get_datafile(created_df2$result$rid)
@@ -48,6 +54,9 @@ test_that("create datafiles works", {
 
   millesime <- datafile$millesimes_info[[1]]
   expect_equal(millesime$millesime, "2020-10")
+
+  # publication date/time is correct
+  expect_true((ymd_hms(list_millesimes(datafile)[["date_diffusion"]]) - ymd_hms(date_diffusion, tz = Sys.timezone())) < 10)
 })
 
 test_that("create datafiles warns when missing param", {

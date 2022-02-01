@@ -15,12 +15,21 @@ replace_millesime(
 \arguments{
 \item{datafile}{un objet dido_datafile obtenu par \code{get_datafile()}}
 
-\item{file_name}{le fichier à charger}
+\item{file_name}{le nom du fichier à charger}
 
-\item{millesime}{l'identifiant du millésime à publier, si non précisé AAAA-MM avec l'année et le mois courant}
+\item{millesime}{le millesime (AAAA-MM). Par défaut AAAA-MM avec l'année
+courante et le mois courant}
 
-\item{date_diffusion}{la date/heure de diffusion au format ISO 8601, si non
-précisée, le défaut est minuit du jour courant}
+\item{date_diffusion}{(optionnel) la date/heure à laquelle le fichier
+devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
+Si la time zone n'est pas précisée, l'heure locale est utilisée.
+
+Si cette date est dans le passé, les données sont immédiatement
+accessibles, si elle est dans le futur, les données ne seront accessibles
+qu'à cette date/heure.
+
+Si non précisée prend la date/heure courante (heure locale), les données
+sont donc immédiatement accessibles.}
 
 \item{quiet}{quand TRUE ou que l'option dido_quiet est à TRUE supprime les
 messages d'information, \code{NULL} par défaut}

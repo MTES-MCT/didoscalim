@@ -16,7 +16,10 @@
 #' @family attachment
 #'
 #' @examples
-#' dataset <- list_datasets()[1, ]
+#' library(dplyr, warn.conflicts = FALSE)
+#'
+#' dataset <- list_datasets() %>%
+#'   filter(title == "Un jeu de données de test")
 #'
 #' add_attachment(
 #'   dataset = dataset,
@@ -24,11 +27,21 @@
 #'   description = "description",
 #'   file_name = dido_example("attachment.txt")
 #' )
+#'
+#' # ou sans passer par une variable intermédiaire
+#' list_datasets() %>%
+#'   filter(title == "Un jeu de données de test") %>%
+#'   add_attachment(
+#'     title = "title",
+#'     description = "description",
+#'     file_name = dido_example("attachment.txt")
+#'   )
+
 add_attachment <- function(dataset,
                            title,
                            description,
                            file_name,
-                           published = NULL,
+                           published = format(Sys.time(), "%Y-%m-%d"),
                            quiet = NULL) {
   if (missing(dataset) || is.null(dataset)) abort_bad_argument("dataset")
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
@@ -43,11 +56,11 @@ add_attachment <- function(dataset,
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
 
   payload <- list(
-    "title" = title,
-    "description" = description,
-    "tokenFile" = file_id
+    title = title,
+    description = description,
+    tokenFile = file_id,
+    published = published
   )
-  payload$published <- if (!is.null(published)) published else format(Sys.time(), "%Y-%m-%d")
 
   id <- get_dataset_id(dataset)
 

@@ -9,7 +9,7 @@ add_attachment(
   title,
   description,
   file_name,
-  published = NULL,
+  published = format(Sys.time(), "\%Y-\%m-\%d"),
   quiet = NULL
 )
 }
@@ -36,7 +36,10 @@ un objet \code{dido_attachment()}
 Ajoute un fichier annexe à un dataset
 }
 \examples{
-dataset <- list_datasets()[1, ]
+library(dplyr, warn.conflicts = FALSE)
+
+dataset <- list_datasets() \%>\%
+  filter(title == "Un jeu de données de test")
 
 add_attachment(
   dataset = dataset,
@@ -44,6 +47,15 @@ add_attachment(
   description = "description",
   file_name = dido_example("attachment.txt")
 )
+
+# ou sans passer par une variable intermédiaire
+list_datasets() \%>\%
+  filter(title == "Un jeu de données de test") \%>\%
+  add_attachment(
+    title = "title",
+    description = "description",
+    file_name = dido_example("attachment.txt")
+  )
 }
 \seealso{
 Other attachment: 

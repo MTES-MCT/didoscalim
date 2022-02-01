@@ -7,17 +7,22 @@
 #' @param millesime le millesime (AAAA-MM). Par défaut AAAA-MM avec l'année
 #'   courante et le mois courant
 #' @param published la date de publication du fichier, si non précisée, prend la
-#'   date du jour à minuit.
+#'   date du jour.
 #' @param temporal_coverage_start optionnel, la date de début de couverture du
 #'   fichier de données au format AAAA-MM-JJ
 #' @param temporal_coverage_end optionnel, la date de fin de couverture du
 #'   fichier de données au format AAAA-MM-JJ
 #' @param legal_notice les mentions légales, par défaut "SDES"
-#' @param date_diffusion la date/heure à laquelle le fichier sera accessible. Si
-#'   cette date est dans le passé, les données sont immédiatement accessibles,
-#'   si elle est dans le futur, les données ne seront accessibles qu'à cette
-#'   date/heure. au format ISO 8601 (2021-10-01T08:00:00Z) Si non précisée prend
-#'   la date du au jour à minuit, le fichier est donc immédiatement accessible.
+#' @param date_diffusion (optionnel) la date/heure à laquelle le fichier
+#'   devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
+#'   Si la time zone n'est pas précisée, l'heure locale est utilisée.
+#'
+#'   Si cette date est dans le passé, les données sont immédiatement
+#'   accessibles, si elle est dans le futur, les données ne seront accessibles
+#'   qu'à cette date/heure.
+#'
+#'   Si non précisée prend la date/heure courante (heure locale), les données
+#'   sont donc immédiatement accessibles.
 #' @param file_name le nom du fichier à charger
 #' @param quiet quand `TRUE` ou que l'option dido_quiet est à `TRUE` supprime
 #'   les messages d'information, `NULL` par défaut
@@ -41,6 +46,7 @@
 #'   file_name = dido_example("augmente.csv")
 #' )
 #'
+#' # publier un fichier de données avec toutes les métadonnées et un embargo
 #' add_datafile(
 #'   dataset = dataset,
 #'   title = "titre 2",
@@ -50,17 +56,18 @@
 #'   temporal_coverage_end = "2021-12-31",
 #'   legal_notice = "something",
 #'   millesime = "2020-10",
+#'   date_diffusion = "2020-11-01 08:00:00"
 #' )
 add_datafile <- function(dataset,
                          title,
                          description,
                          file_name,
-                         millesime = NULL,
-                         published = NULL,
+                         millesime = format(Sys.time(), "%Y-%m"),
+                         published = format(Sys.time(), "%Y-%m-%d"),
                          temporal_coverage_start = NULL,
                          temporal_coverage_end = NULL,
                          legal_notice = "SDES",
-                         date_diffusion = NULL,
+                         date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                          quiet = NULL) {
   datafile <- dido_datafile(
     dataset = dataset,

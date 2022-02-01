@@ -47,25 +47,24 @@ NULL
 dido_datafile <- function(dataset,
                           title,
                           description,
-                          millesime = NULL,
-                          published = NULL,
+                          millesime = format(Sys.time(), "%Y-%m"),
+                          published = format(Sys.time(), "%Y-%m-%d"),
                           temporal_coverage_start = NULL,
                           temporal_coverage_end = NULL,
                           legal_notice = "SDES",
-                          date_diffusion = NULL) {
+                          date_diffusion = format(Sys.time(), "%Y-%m-%dT00:00:00.000")) {
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
   payload <- list(
-    "title" = title,
-    "description" = description,
-    "millesime" = millesime
+    title = title,
+    description = description,
+    millesime = millesime,
+    published = published,
+    date_diffusion = date_heure_iso8601(date_diffusion)
   )
   if (!is.null(temporal_coverage_start)) payload$temporal_coverage_start <- temporal_coverage_start
   if (!is.null(temporal_coverage_end)) payload$temporal_coverage_end <- temporal_coverage_end
   if (!is.null(legal_notice)) payload$legal_notice <- legal_notice
 
-  payload$published <- published %||% format(Sys.time(), "%Y-%m-%d")
-  payload$date_diffusion <- date_diffusion %||% format(Sys.time(), "%Y-%m-%dT00:00:00.000Z")
-  payload$millesime <- millesime %||% format(Sys.time(), "%Y-%m")
 
   attr(payload, "id") <- get_dataset_id(dataset)
 

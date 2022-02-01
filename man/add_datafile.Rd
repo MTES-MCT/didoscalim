@@ -9,12 +9,12 @@ add_datafile(
   title,
   description,
   file_name,
-  millesime = NULL,
-  published = NULL,
+  millesime = format(Sys.time(), "\%Y-\%m"),
+  published = format(Sys.time(), "\%Y-\%m-\%d"),
   temporal_coverage_start = NULL,
   temporal_coverage_end = NULL,
   legal_notice = "SDES",
-  date_diffusion = NULL,
+  date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
   quiet = NULL
 )
 }
@@ -32,7 +32,7 @@ add_datafile(
 courante et le mois courant}
 
 \item{published}{la date de publication du fichier, si non précisée, prend la
-date du jour à minuit.}
+date du jour.}
 
 \item{temporal_coverage_start}{optionnel, la date de début de couverture du
 fichier de données au format AAAA-MM-JJ}
@@ -42,11 +42,16 @@ fichier de données au format AAAA-MM-JJ}
 
 \item{legal_notice}{les mentions légales, par défaut "SDES"}
 
-\item{date_diffusion}{la date/heure à laquelle le fichier sera accessible. Si
-cette date est dans le passé, les données sont immédiatement accessibles,
-si elle est dans le futur, les données ne seront accessibles qu'à cette
-date/heure. au format ISO 8601 (2021-10-01T08:00:00Z) Si non précisée prend
-la date du au jour à minuit, le fichier est donc immédiatement accessible.}
+\item{date_diffusion}{(optionnel) la date/heure à laquelle le fichier
+devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
+Si la time zone n'est pas précisée, l'heure locale est utilisée.
+
+Si cette date est dans le passé, les données sont immédiatement
+accessibles, si elle est dans le futur, les données ne seront accessibles
+qu'à cette date/heure.
+
+Si non précisée prend la date/heure courante (heure locale), les données
+sont donc immédiatement accessibles.}
 
 \item{quiet}{quand \code{TRUE} ou que l'option dido_quiet est à \code{TRUE} supprime
 les messages d'information, \code{NULL} par défaut}
@@ -70,6 +75,7 @@ add_datafile(
   file_name = dido_example("augmente.csv")
 )
 
+# publier un fichier de données avec toutes les métadonnées et un embargo
 add_datafile(
   dataset = dataset,
   title = "titre 2",
@@ -79,6 +85,7 @@ add_datafile(
   temporal_coverage_end = "2021-12-31",
   legal_notice = "something",
   millesime = "2020-10",
+  date_diffusion = "2020-11-01 08:00:00"
 )
 }
 \seealso{

@@ -1,3 +1,18 @@
+#' Retourne une date au format ISO 8601 avec la TZ
+#'
+#' @param date_heure date/heure
+#'
+#' @return une date/heure au format ISO  8601 avec la TZ
+#'
+#' @export
+#'
+#' @examples
+#' date_heure_iso8601("2022-02-02 07:00:02")
+#' @keywords internal
+date_heure_iso8601 <- function(date_heure) {
+  lubridate::format_ISO8601(lubridate::ymd_hms(date_heure, tz = Sys.timezone()), usetz="TRUE")
+}
+
 #' @noRd
 abort_bad_argument <- function(arg, class = NULL) {
   msg <- glue::glue("`{arg}` est obligatoire et ne peut être null")

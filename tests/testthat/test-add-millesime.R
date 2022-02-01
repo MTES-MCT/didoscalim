@@ -15,14 +15,22 @@ test_that("add millesime works", {
     file_name = "dido-csv-simple.csv"
   )
 
-  millesime <- add_millesime(
+  date_diffusion <- "2020-01-01 00:00:00"
+  job_millesime <- add_millesime(
     datafile = get_datafile(get_datafile_rid(job_datafile)),
-    millesime = "2022-10",
-    file_name = "dido-csv-simple.csv"
+    millesime = "2012-10",
+    file_name = "dido-csv-simple.csv",
+    date_diffusion = date_diffusion
   )
 
-  expect_s3_class(millesime, "dido_job")
-  expect_equal(millesime$data$datafile_millesime, "2022-10")
+  expect_s3_class(job_millesime, "dido_job")
+  expect_equal(job_millesime$data$datafile_millesime, "2012-10")
+
+  # date diffusion
+  date_diffusion_millesime <- (list_millesimes(job_millesime) %>% filter(millesime == "2012-10"))[["date_diffusion"]]
+  expect_true((ymd_hms(date_diffusion_millesime) - ymd_hms(date_diffusion, tz = Sys.timezone())) < 10)
+
+  list_millesimes(job_millesime)
 
   df <- get_datafile(get_datafile_rid(job_datafile))
   expect_equal(df$millesimes, 2)
