@@ -21,8 +21,8 @@
 #'   accessibles, si elle est dans le futur, les données ne seront accessibles
 #'   qu'à cette date/heure.
 #'
-#'   Si non précisée prend la date du au jour à minuit, le fichier est donc
-#'   immédiatement accessible.
+#'   Si non précisée prend la date du au jour à minuit heure locale, le fichier
+#'   est donc immédiatement accessible.
 #' @param file_name le nom du fichier à charger
 #' @param quiet quand `TRUE` ou que l'option dido_quiet est à `TRUE` supprime
 #'   les messages d'information, `NULL` par défaut
