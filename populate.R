@@ -18,6 +18,18 @@ datafile <- add_datafile(
   millesime = "2021-12"
 )
 
+datafile <- add_datafile(
+  dataset = dataset,
+  title = "Un fichier de données de test",
+  description = "Un fichier de données de test",
+  file_name = dido_example("augmente.csv"),
+  millesime = "2021-12",
+  date_diffusion = "2030-02-02T07:00:02+0100",
+  temporal_coverage_start = "2020-01-01",
+  temporal_coverage_end = "2020-02-01"
+)
+
+
 attachment <- add_attachment(
   dataset = dataset,
   title = "Un fichier annexe",
