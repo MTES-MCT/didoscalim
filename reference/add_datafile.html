@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -64,12 +64,12 @@
   <span class="va">title</span>,
   <span class="va">description</span>,
   <span class="va">file_name</span>,
-  millesime <span class="op">=</span> <span class="cn">NULL</span>,
-  published <span class="op">=</span> <span class="cn">NULL</span>,
+  millesime <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m"</span><span class="op">)</span>,
+  published <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d"</span><span class="op">)</span>,
   temporal_coverage_start <span class="op">=</span> <span class="cn">NULL</span>,
   temporal_coverage_end <span class="op">=</span> <span class="cn">NULL</span>,
   legal_notice <span class="op">=</span> <span class="st">"SDES"</span>,
-  date_diffusion <span class="op">=</span> <span class="cn">NULL</span>,
+  date_diffusion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d %H:%M:%S"</span><span class="op">)</span>,
   quiet <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -90,7 +90,7 @@
 courante et le mois courant</p></dd>
 <dt>published</dt>
 <dd><p>la date de publication du fichier, si non précisée, prend la
-date du jour à minuit.</p></dd>
+date du jour.</p></dd>
 <dt>temporal_coverage_start</dt>
 <dd><p>optionnel, la date de début de couverture du
 fichier de données au format AAAA-MM-JJ</p></dd>
@@ -100,11 +100,14 @@ fichier de données au format AAAA-MM-JJ</p></dd>
 <dt>legal_notice</dt>
 <dd><p>les mentions légales, par défaut "SDES"</p></dd>
 <dt>date_diffusion</dt>
-<dd><p>la date/heure à laquelle le fichier sera accessible. Si
-cette date est dans le passé, les données sont immédiatement accessibles,
-si elle est dans le futur, les données ne seront accessibles qu'à cette
-date/heure. au format ISO 8601 (2021-10-01T08:00:00Z) Si non précisée prend
-la date du au jour à minuit, le fichier est donc immédiatement accessible.</p></dd>
+<dd><p>(optionnel) la date/heure à laquelle le fichier
+devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
+Si la time zone n'est pas précisée, l'heure locale est utilisée.</p>
+<p>Si cette date est dans le passé, les données sont immédiatement
+accessibles, si elle est dans le futur, les données ne seront accessibles
+qu'à cette date/heure.</p>
+<p>Si non précisée prend la date/heure courante (heure locale), les données
+sont donc immédiatement accessibles.</p></dd>
 <dt>quiet</dt>
 <dd><p>quand <code>TRUE</code> ou que l'option dido_quiet est à <code>TRUE</code> supprime
 les messages d'information, <code>NULL</code> par défaut</p></dd>
@@ -124,7 +127,7 @@ les messages d'information, <code>NULL</code> par défaut</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Exemples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_datasets.html">list_datasets</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span> <span class="op">==</span> <span class="st">"Données de consommation fictive"</span><span class="op">)</span></span>
@@ -138,8 +141,9 @@ les messages d'information, <code>NULL</code> par défaut</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier `/home/nc/travail/R/didoscalim/inst/extdata/augmente.csv`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier validé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré	    rid: 0d0fc934-84ae-4dd2-9b2f-289dcf0bc0ba	    millesime: 2022-01	    lignes: 5</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré	    rid: 9a92cb30-d50e-47ab-8118-bc3de740a878	    millesime: 2022-02	    lignes: 5</span>
 <span class="r-in"></span>
+<span class="r-in"><span class="co"># publier un fichier de données avec toutes les métadonnées et un embargo</span></span>
 <span class="r-in"><span class="fu">add_datafile</span><span class="op">(</span></span>
 <span class="r-in">  dataset <span class="op">=</span> <span class="va">dataset</span>,</span>
 <span class="r-in">  title <span class="op">=</span> <span class="st">"titre 2"</span>,</span>
@@ -149,11 +153,12 @@ les messages d'information, <code>NULL</code> par défaut</p></dd>
 <span class="r-in">  temporal_coverage_end <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span>
 <span class="r-in">  legal_notice <span class="op">=</span> <span class="st">"something"</span>,</span>
 <span class="r-in">  millesime <span class="op">=</span> <span class="st">"2020-10"</span>,</span>
+<span class="r-in">  date_diffusion <span class="op">=</span> <span class="st">"2020-11-01 08:00:00"</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier `/home/nc/travail/R/didoscalim/inst/extdata/augmente.csv`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier validé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré	    rid: c2d1f04b-f30a-4bde-89cb-427f6004676e	    millesime: 2020-10	    lignes: 5</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré	    rid: 251087b7-0e24-47ed-a8e0-26ca57e8d97f	    millesime: 2020-10	    lignes: 5</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>Sur cette page</h2>

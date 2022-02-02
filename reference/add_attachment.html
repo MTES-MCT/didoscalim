@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -64,7 +64,7 @@
   <span class="va">title</span>,
   <span class="va">description</span>,
   <span class="va">file_name</span>,
-  published <span class="op">=</span> <span class="cn">NULL</span>,
+  published <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d"</span><span class="op">)</span>,
   quiet <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -103,7 +103,10 @@ messages d'information, <code>NULL</code> par défaut</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Exemples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_datasets.html">list_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_datasets.html">list_datasets</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span> <span class="op">==</span> <span class="st">"Un jeu de données de test"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">add_attachment</span><span class="op">(</span></span>
 <span class="r-in">  dataset <span class="op">=</span> <span class="va">dataset</span>,</span>
@@ -113,7 +116,19 @@ messages d'information, <code>NULL</code> par défaut</p></dd>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier annexe `attachment.txt`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier annexe intégré (rid: 1bcf42ca-42b3-4c32-a660-e6c532aaaa09)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier annexe intégré (rid: 2db5d4bb-25be-4b76-b62d-c5845166c35c)</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># ou sans passer par une variable intermédiaire</span></span>
+<span class="r-in"><span class="fu"><a href="list_datasets.html">list_datasets</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span> <span class="op">==</span> <span class="st">"Un jeu de données de test"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">add_attachment</span><span class="op">(</span></span>
+<span class="r-in">    title <span class="op">=</span> <span class="st">"title"</span>,</span>
+<span class="r-in">    description <span class="op">=</span> <span class="st">"description"</span>,</span>
+<span class="r-in">    file_name <span class="op">=</span> <span class="fu"><a href="dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"attachment.txt"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier annexe `attachment.txt`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier annexe intégré (rid: 7bf1c016-91ad-4310-8242-62576382b29f)</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>Sur cette page</h2>

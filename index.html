@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -99,7 +99,6 @@
 <p>Générer un fichier CSV augmenté à partir d’un fichier <a href="articles/exemple.csv">CSV normal</a> et le charger dans un dataset.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span>, warn.conflict <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   OPERATEUR <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>description <span class="op">=</span> <span class="st">"Nom de l'opérateur"</span><span class="op">)</span>,
@@ -110,7 +109,7 @@
 <span class="op">)</span>
 
 <span class="va">temp_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span>
-<span class="fu"><a href="reference/dido_read_delim.html">dido_read_delim</a></span><span class="op">(</span><span class="st">"vignettes/exemple.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+<span class="fu"><a href="reference/dido_read_delim.html">dido_read_delim</a></span><span class="op">(</span><span class="fu"><a href="reference/dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"exemple.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/dido_csv.html">dido_csv</a></span><span class="op">(</span>params <span class="op">=</span> <span class="va">params</span>, cog_year <span class="op">=</span> <span class="st">"2019"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/dido_write_csv.html">dido_write_csv</a></span><span class="op">(</span><span class="va">temp_file</span><span class="op">)</span></code></pre></div>
 <p>L’intégrer dans DiDo :</p>
@@ -161,13 +160,16 @@
 <div class="section level3">
 <h3 id="documentation-en-ligne">Documentation en ligne<a class="anchor" aria-label="anchor" href="#documentation-en-ligne"></a>
 </h3>
-<p>La documentation ne peut pas (encore ?) être généré par les github actions, il faut donc pour le moment générer le site statiquement à partir d’une poste qui a accès à un environnement DiDo de développement.</p>
-<p>Si vous avez modifié la documentation, avant de pousser une nouvelle vous devez lancer les commandes suivantes :</p>
+<p>La documentation ne peut pas (encore ?) être généré par les github actions, il faut donc pour le moment générer le site statiquement à partir d’un poste qui a accès à un environnement DiDo de développement.</p>
+<p>Si vous avez modifié la documentation, avant de pousser une nouvelle vous devez la valider en local :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">build_readme</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">document</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/build_vignettes.html" class="external-link">build_vignettes</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/build_site.html" class="external-link">build_site</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Et quand vous êtes satisfait, chargez les données de base en lançant <code>populate.R</code> puis la commande qui publiera le site sur les github pages :</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">deploy_to_branch</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>

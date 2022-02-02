@@ -16,7 +16,7 @@ permet de les supprimer pour ne garder que les métadonnées propres à l'objet.
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -86,7 +86,7 @@ permet de les supprimer pour ne garder que les métadonnées propres à l'objet.
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_dataset.html">get_dataset</a></span><span class="op">(</span><span class="fu"><a href="list_datasets.html">list_datasets</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">clean_metadata</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id           : chr "61f82f192e4ffb0020ce46a4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id           : chr "61fac821212cef8283dd84cf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ title        : chr "Un jeu de données de test"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ description  : chr "Un jeu de données de test"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ organization :List of 2</span>
@@ -95,9 +95,9 @@ permet de les supprimer pour ne garder que les métadonnées propres à l'objet.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ topic        : chr "Transports"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ license      : chr "fr-lo"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ frequency    : chr "unknown"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_at   : chr "2022-01-31T18:48:57.230000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_modified: chr "2022-01-31T18:50:49.277000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_update  : chr "2022-01-31T00:00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_at   : chr "2022-02-02T18:06:25.651000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_modified: chr "2022-02-02T18:09:26.377000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_update  : chr "2022-02-02T00:00:00"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ tags         : list()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ spatial      :List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ granularity: chr "other"</span>
@@ -107,16 +107,16 @@ permet de les supprimer pour ne garder que les métadonnées propres à l'objet.
 <span class="r-in"><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_datafile.html">get_datafile</a></span><span class="op">(</span><span class="fu"><a href="list_datafiles.html">list_datafiles</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">clean_metadata</span><span class="op">(</span><span class="va">datafile</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ rid          : chr "442b26db-6516-42fa-b7c7-70729dc1f167"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ rid          : chr "1958b63c-0d16-46f5-9c98-476308136cfc"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ title        : chr "Un fichier de données de test"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ description  : chr "Un fichier de données de test"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ millesimes   : int 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_at   : chr "2022-01-31T18:49:12.704000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_modified: chr "2022-01-31T18:50:49.277000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ published    : chr "2022-01-31T00:00:00"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ url          : chr "http://catalogue.diffusion.dido.fr/dataset/61f82f192e4ffb0020ce46a4/datafile/442b26db-6516-42fa-b7c7-70729dc1f167"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ millesimes   : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_at   : chr "2022-02-02T18:06:41.274000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_modified: chr "2022-02-02T18:09:26.377000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ published    : chr "2022-02-02T00:00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ url          : chr "http://catalogue.diffusion.dido.fr/dataset/61fac821212cef8283dd84cf/datafile/1958b63c-0d16-46f5-9c98-476308136cfc"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ legal_notice : chr "SDES"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "id")= chr "61f82f192e4ffb0020ce46a4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "id")= chr "61fac821212cef8283dd84cf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr [1:2] "dido_datafile" "list"</span>
 </code></pre></div>
     </div>
