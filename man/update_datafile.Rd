@@ -2,7 +2,7 @@
 % Please edit documentation in R/update-datafile.R
 \name{update_datafile}
 \alias{update_datafile}
-\title{Mettre à jour un datafile.}
+\title{Mettre à jour un les métadonnées d'un datafile.}
 \usage{
 update_datafile(datafile)
 }
@@ -11,10 +11,10 @@ update_datafile(datafile)
 l'utilisateur}
 }
 \value{
-un objet dido_job()` invisible
+un objet \code{dido_job()} invisible
 }
 \description{
-Mettre à jour un datafile.
+Mettre à jour un les métadonnées d'un datafile.
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)

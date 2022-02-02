@@ -18,7 +18,6 @@ le tibble passé en entrée
 Enregistre le fichier CSV augmenté généré
 }
 \examples{
-`\%>\%` <- magrittr::`\%>\%`
 dido_read_delim(dido_example("exemple.csv")) \%>\%
   dido_csv() \%>\%
   dido_write_csv("/tmp/fichier.csv")

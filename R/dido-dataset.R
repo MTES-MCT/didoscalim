@@ -1,9 +1,9 @@
 #' L'objet dido_dataset
 #'
 #' @description
-#' L'objet dido_dataset est retourné par `get_dataset()` et `add_dataset()`
-#' et utilisé en paramètre par `update_dataset()` `add_datafile()` et
-#' `create_attachment()`
+#' L'objet dido_dataset est retourné par `get_dataset()` et `add_dataset()` et
+#' utilisé en paramètre par `update_dataset()`, `add_datafile()` et
+#' `create_attachment()`.
 #'
 #' Il a les champs suivants :
 #' * `id` l'identifiant du dataset

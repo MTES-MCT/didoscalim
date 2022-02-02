@@ -7,21 +7,21 @@
 get_datafile(data = NULL, dataset = NULL)
 }
 \arguments{
-\item{data}{le résultat d'une recherche par \code{list_datafiles()}, un rid de
-datafile, un objet \code{dido_job()} ou \code{dido_datafile()}}
+\item{data}{le résultat d'une recherche par \code{list_datafiles()}, un des objets
+\code{dido_job()} \code{dido_datafile()} oule rid d'un datafile}
 
-\item{dataset}{optionnel l'identifiant du dataset ou un objet
+\item{dataset}{optionnel l'identifiant d'un dataset ou un objet
 \code{dido_dataset()}}
 }
 \value{
-un objet \code{\link[=dido_datafile]{dido_datafile()}}
+un objet \link{dido_datafile}
 }
 \description{
-Permet de récupérer les données d'un datafile en utilisant soit son rid soit
-son titre.
+Récupère les métadonnées d'un datafile
 }
 \details{
-Lève une exception si la recherche ne retourne plus ou moins que 1 datafile
+Lève une exception si \code{list_datasets()} fourni en entrée retourne plus d'un
+dataset.
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)

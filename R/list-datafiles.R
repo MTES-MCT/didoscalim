@@ -12,11 +12,11 @@
 #' @export
 #'
 #' @examples
+#' library(dplyr, warn.conflicts = FALSE)
 #' # tous les datafiles
 #' list_datafiles()
 #'
 #' # les datafiles d'un jeu en particulier
-#'
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' list_datasets() %>%

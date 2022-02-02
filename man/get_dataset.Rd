@@ -7,18 +7,21 @@
 get_dataset(data)
 }
 \arguments{
-\item{data}{l'identifiant d'un dataset ou un objet \code{dido_dataset()},
-\code{dido_job()} ou \code{dido_datafile()}}
+\item{data}{la sortie d'une commande \code{list_datasets()}, un objet
+\code{dido_dataset()}, \code{dido_job()} ou \code{dido_datafile()} ou l'identifiant d'un
+dataset}
 }
 \value{
 un objet \code{dido_dataset()}
 }
 \description{
-Permet de récupérer les métadonnées d'un dataset en utilisant soit son titre
-soit un objet \code{dido_datafile()}, \code{dido_dataset()}, \code{dido_job()}
+Permet de récupérer les métadonnées d'un dataset en utilisant la sortie de la
+fonction \code{list_datasets()} ou un des objets \code{dido_datafile()},
+\code{dido_dataset()}, \code{dido_job()}
 }
 \details{
-Lève une exception si le titre ne retourne pas un unique dataset.
+Lève une exception si \code{list_datasets()} fourni en entrée retourne plus d'un
+dataset.
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)

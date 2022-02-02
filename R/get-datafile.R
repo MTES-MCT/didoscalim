@@ -1,16 +1,16 @@
 #' Récupère un datafile
 #'
-#' Permet de récupérer les données d'un datafile en utilisant soit son rid soit
-#' son titre.
+#' Récupère les métadonnées d'un datafile
 #'
-#' Lève une exception si la recherche ne retourne plus ou moins que 1 datafile
+#' Lève une exception si `list_datasets()` fourni en entrée retourne plus d'un
+#' dataset.
 #'
-#' @param data le résultat d'une recherche par `list_datafiles()`, un rid de
-#'   datafile, un objet `dido_job()` ou `dido_datafile()`
-#' @param dataset optionnel l'identifiant du dataset ou un objet
+#' @param data le résultat d'une recherche par `list_datafiles()`, un des objets
+#'   `dido_job()` `dido_datafile()` oule rid d'un datafile
+#' @param dataset optionnel l'identifiant d'un dataset ou un objet
 #'   `dido_dataset()`
 #'
-#' @return un objet [dido_datafile()]
+#' @return un objet [dido_datafile]
 #'
 #' @family datafile
 #'

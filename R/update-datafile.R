@@ -1,9 +1,9 @@
-#' Mettre à jour un datafile.
+#' Mettre à jour un les métadonnées d'un datafile.
 #'
 #' @param datafile un objet datafile retourné par `get_datafile()` modifié par
 #'   l'utilisateur
 #'
-#' @return un objet dido_job()` invisible
+#' @return un objet `dido_job()` invisible
 #'
 #' @family datafile
 #'

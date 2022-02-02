@@ -25,6 +25,13 @@ attachment <- add_attachment(
   file_name = dido_example("attachment.txt")
 )
 
+attachment <- add_attachment(
+  dataset = dataset,
+  title = "Un autre fichier annexe",
+  description = "Un fichier annexe",
+  file_name = dido_example("attachment.txt")
+)
+
 dataset <- add_dataset(
   title = "Un dataset à supprimer",
   description = "Un dataset à supprimer",

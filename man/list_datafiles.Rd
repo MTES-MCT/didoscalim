@@ -17,11 +17,11 @@ Retourne la liste des datafiles ou si un objet dataset est passé en argument,
 la liste des datafiles de ce dataset.
 }
 \examples{
+library(dplyr, warn.conflicts = FALSE)
 # tous les datafiles
 list_datafiles()
 
 # les datafiles d'un jeu en particulier
-
 library(dplyr, warn.conflicts = FALSE)
 
 list_datasets() \%>\%

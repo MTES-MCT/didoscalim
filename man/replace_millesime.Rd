@@ -2,7 +2,7 @@
 % Please edit documentation in R/replace-millesime.R
 \name{replace_millesime}
 \alias{replace_millesime}
-\title{Remplacer un millésime}
+\title{Remplacer les données d'un millésime}
 \usage{
 replace_millesime(
   datafile,
@@ -38,7 +38,7 @@ messages d'information, \code{NULL} par défaut}
 un objet \code{dido_job()}
 }
 \description{
-Remplacer un millésime
+Remplacer les données d'un millésime
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)

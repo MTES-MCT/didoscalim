@@ -1,12 +1,15 @@
 #' Récupère les métadonnées d'un dataset
 #'
-#' Permet de récupérer les métadonnées d'un dataset en utilisant soit son titre
-#' soit un objet `dido_datafile()`, `dido_dataset()`, `dido_job()`
+#' Permet de récupérer les métadonnées d'un dataset en utilisant la sortie de la
+#' fonction `list_datasets()` ou un des objets `dido_datafile()`,
+#' `dido_dataset()`, `dido_job()`
 #'
-#' Lève une exception si le titre ne retourne pas un unique dataset.
+#' Lève une exception si `list_datasets()` fourni en entrée retourne plus d'un
+#' dataset.
 #'
-#' @param data l'identifiant d'un dataset ou un objet `dido_dataset()`,
-#'   `dido_job()` ou `dido_datafile()`
+#' @param data la sortie d'une commande `list_datasets()`, un objet
+#'   `dido_dataset()`, `dido_job()` ou `dido_datafile()` ou l'identifiant d'un
+#'   dataset
 #'
 #' @return un objet `dido_dataset()`
 #' @export

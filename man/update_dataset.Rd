@@ -17,10 +17,16 @@ Cette fonction permet de mettre à jour les métadonnées d'un dataset comme,
 par exemple, la date de fin de couverture temporelle.
 }
 \examples{
-dataset <- get_dataset(list_datasets()[1, ]) \%>\% clean_metadata()
+library(dplyr, warn.conflicts = FALSE)
 
-dataset$description <- "another description"
-dataset$tags <- list("autocar", "biogaz")
+dataset <- list_datasets() \%>\%
+  filter(title == "Un jeu de données de test") \%>\%
+  get_dataset() \%>\%
+  clean_metadata()
+
+dataset$temporal_coverage$start <- "2020-01-01"
+dataset$temporal_coverage$end <- "2020-12-31"
+update_dataset(dataset)
 
 update_dataset(dataset)
 }

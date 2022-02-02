@@ -7,21 +7,22 @@
 list_millesimes(data = NULL)
 }
 \arguments{
-\item{data}{le résultat d'une recherche par \code{list_datafiles()}, un rid de
-datafile, un objet \code{dido_job()} ou \code{dido_datafile()}}
+\item{data}{le résultat d'une recherche par \code{list_datafiles()}, un des objets
+\code{dido_job()} \code{dido_datafile()} oule rid d'un datafile}
 }
 \value{
 un tibble avec les millesimes du datafile
 }
 \description{
-Retourne un tibble des millésimes.
+Retourne un tibble de tous les millésimes ou d'un datafile en particulier
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)
 
-ds <- list_datafiles() \%>\%
-  filter(title == "Un fichier de données de test") \%>\%
-  list_millesimes()
+datafile <- list_datafiles() \%>\%
+  filter(title == "Un fichier de données de test")
+
+list_millesimes(datafile)
 }
 \seealso{
 Other millesime: 

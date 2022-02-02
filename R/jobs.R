@@ -35,9 +35,8 @@ get_job <- function(data) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' wait_for_job("id")
-#' }
+#' job <- list_jobs()[1, ] %>%
+#'   wait_for_job()
 #' @keywords internal
 wait_for_job <- function(data, quiet = NULL) {
   pb <- progress::progress_bar$new(

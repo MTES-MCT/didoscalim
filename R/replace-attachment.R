@@ -9,7 +9,14 @@
 #' @family attachment
 #'
 #' @examples
-#' attachment <- list_attachments()[1, ]
+#' library(dplyr, warn.conflicts = FALSE)
+#'
+#' dataset <- list_datasets() %>%
+#'   filter(title == "Un jeu de données de test")
+#'
+#' attachment <- list_attachments(dataset) %>%
+#'   filter(title == "Un autre fichier annexe")
+#'
 #' replace_attachment(
 #'   attachment = attachment,
 #'   file_name = dido_example("attachment.txt")

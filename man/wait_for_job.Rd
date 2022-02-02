@@ -16,8 +16,7 @@ les données du job
 Attend la fin d'un job d'intégration
 }
 \examples{
-\dontrun{
-wait_for_job("id")
-}
+job <- list_jobs()[1, ] \%>\%
+  wait_for_job()
 }
 \keyword{internal}

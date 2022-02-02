@@ -1,6 +1,6 @@
 #' Liste les millesimes
 #'
-#' Retourne un tibble des millésimes.
+#' Retourne un tibble de tous les millésimes ou d'un datafile en particulier
 #'
 #' @inheritParams get_datafile
 #'
@@ -12,9 +12,10 @@
 #' @examples
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' ds <- list_datafiles() %>%
-#'   filter(title == "Un fichier de données de test") %>%
-#'   list_millesimes()
+#' datafile <- list_datafiles() %>%
+#'   filter(title == "Un fichier de données de test")
+#'
+#' list_millesimes(datafile)
 list_millesimes <- function(data = NULL) {
   if (!is.null(data) && is.null(get_datafile_rid(data))) abort_not_datafile()
 
