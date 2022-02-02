@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' library(dplyr, warn.conflicts=FALSE)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' datafile <- list_datafiles() %>%
 #'   filter(title == "Un fichier de données de test") %>%

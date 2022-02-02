@@ -14,7 +14,7 @@
 #' @family dataset
 #'
 #' @examples
-#' library(dplyr, warn.conflicts=FALSE)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' ds <- list_datasets() %>%
 #'   filter(title == "Données de consommation fictive") %>%

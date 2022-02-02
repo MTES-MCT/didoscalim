@@ -21,7 +21,7 @@ soit un objet \code{dido_datafile()}, \code{dido_dataset()}, \code{dido_job()}
 Lève une exception si le titre ne retourne pas un unique dataset.
 }
 \examples{
-library(dplyr, warn.conflicts=FALSE)
+library(dplyr, warn.conflicts = FALSE)
 
 ds <- list_datasets() \%>\%
   filter(title == "Données de consommation fictive") \%>\%

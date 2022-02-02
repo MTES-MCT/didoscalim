@@ -39,7 +39,9 @@ get_dataset_id.default <- function(data) NULL
 
 #' @export
 get_dataset_id.character <- function(data) {
-  if (is_mongo_oid(data)) return(data)
+  if (is_mongo_oid(data)) {
+    return(data)
+  }
   NULL
 }
 
@@ -73,7 +75,9 @@ get_datafile_rid.default <- function(data) NULL
 
 #' @export
 get_datafile_rid.character <- function(data) {
-  if (is_uuid(data)) return(data)
+  if (is_uuid(data)) {
+    return(data)
+  }
   NULL
 }
 
@@ -107,7 +111,9 @@ get_attachment_rid.default <- function(data) NULL
 
 #' @export
 get_attachment_rid.character <- function(data) {
-  if (is_uuid(data)) return(data)
+  if (is_uuid(data)) {
+    return(data)
+  }
   NULL
 }
 

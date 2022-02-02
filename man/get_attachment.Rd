@@ -19,7 +19,7 @@ un objet \code{dido_attachment()}
 Permet de récupérer les données d'un attachment
 }
 \examples{
-library(dplyr, warn.conflicts=FALSE)
+library(dplyr, warn.conflicts = FALSE)
 
 attachment <- list_attachments() \%>\%
   filter(title == "Un fichier annexe") \%>\%

@@ -16,7 +16,7 @@ TRUE
 Supprime un dataset
 }
 \examples{
-library(dplyr, warn.conflicts=FALSE)
+library(dplyr, warn.conflicts = FALSE)
 
 dataset <- list_datasets() \%>\%
   filter(title == "Un dataset à supprimer")

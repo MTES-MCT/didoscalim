@@ -15,7 +15,7 @@
 #' # toutes les pièces jointes
 #' list_attachments()
 #'
-#' library(dplyr, warn.conflicts=FALSE)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # les pièces jointes d'un dataset en particulier
 #' list_datasets() %>%

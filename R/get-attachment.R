@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' library(dplyr, warn.conflicts=FALSE)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' attachment <- list_attachments() %>%
 #'   filter(title == "Un fichier annexe") %>%

@@ -10,7 +10,7 @@
 #' date_heure_iso8601("2022-02-02 07:00:02")
 #' @keywords internal
 date_heure_iso8601 <- function(date_heure) {
-  lubridate::format_ISO8601(lubridate::ymd_hms(date_heure, tz = Sys.timezone()), usetz="TRUE")
+  lubridate::format_ISO8601(lubridate::ymd_hms(date_heure, tz = Sys.timezone()), usetz = "TRUE")
 }
 
 #' @noRd
@@ -24,9 +24,11 @@ abort_bad_argument <- function(arg, class = NULL) {
 abort_not_dataset <- function() {
   message <- c(
     glue::glue("`data` n'est pas du type attendu"),
-    i = glue::glue("`data` doit être soit un id de dataset soit la valeur",
-    "retournée par une des fonctions : `add_dataset`, `get_dataset`, ",
-    "`get_datafile`, `add_datafile`, `list_datasets()`")
+    i = glue::glue(
+      "`data` doit être soit un id de dataset soit la valeur",
+      "retournée par une des fonctions : `add_dataset`, `get_dataset`, ",
+      "`get_datafile`, `add_datafile`, `list_datasets()`"
+    )
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -36,9 +38,11 @@ abort_not_dataset <- function() {
 abort_not_datafile <- function() {
   message <- c(
     glue::glue("`data` n'est pas du type attendu"),
-    i = glue::glue("`data` doit être un rid de datafile ou la valeur ",
-    "retournée par une des fonctions `get_datafile`, `add_datafile`, ",
-    "`list_datafiles()`")
+    i = glue::glue(
+      "`data` doit être un rid de datafile ou la valeur ",
+      "retournée par une des fonctions `get_datafile`, `add_datafile`, ",
+      "`list_datafiles()`"
+    )
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -48,9 +52,11 @@ abort_not_datafile <- function() {
 abort_not_attachment <- function() {
   message <- c(
     glue::glue("`data` n'est pas du type attendu"),
-    i = glue::glue("`data` doit être un rid de datafile ou la valeur ",
-    ", retournée par une des fonctions `add_attachment`, `get_attachment`, ",
-    "`list_attachments()")
+    i = glue::glue(
+      "`data` doit être un rid de datafile ou la valeur ",
+      ", retournée par une des fonctions `add_attachment`, `get_attachment`, ",
+      "`list_attachments()"
+    )
   )
 
   rlang::abort("error_bad_argument_type", message = message)
@@ -60,8 +66,10 @@ abort_not_attachment <- function() {
 abort_not_job <- function() {
   message <- c(
     glue::glue("`job` n'est pas du type attendu"),
-    i = glue::glue("`job` doit être un id de job ou la valeur retournée par ",
-    "la fonction `get_job`")
+    i = glue::glue(
+      "`job` doit être un id de job ou la valeur retournée par ",
+      "la fonction `get_job`"
+    )
   )
 
   rlang::abort("error_bad_argument_type", message = message)

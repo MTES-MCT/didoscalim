@@ -34,7 +34,7 @@
 #' @export
 #'
 #' @examples
-#' library(dplyr, warn.conflicts=FALSE)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' dataset <- list_datasets() %>%
 #'   filter(title == "Données de consommation fictive")

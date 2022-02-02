@@ -17,7 +17,7 @@
 #'
 #' # les datafiles d'un jeu en particulier
 #'
-#' library(dplyr, warn.conflicts=FALSE)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' list_datasets() %>%
 #'   filter(title == "Un jeu de données de test") %>%
