@@ -48,12 +48,7 @@ get_dataset_id.character <- function(data) {
 #' @export
 get_dataset_id.data.frame <- function(data) {
   if (!"id" %in% names(data)) abort_not_dataset()
-
-  if (nrow(data) != 1) {
-    rlang::abort("not_one_row", message = c(
-      x = "Le dataframe ne contient pas exactement une ligne"
-    ))
-  }
+  if (nrow(data) != 1) abort_not_one_ligne(data)
   return(data[["id"]])
 }
 
@@ -84,12 +79,7 @@ get_datafile_rid.character <- function(data) {
 #' @export
 get_datafile_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_datafile()
-
-  if (nrow(data) != 1) {
-    rlang::abort("not_one_row", message = c(
-      x = "Le dataframe ne contient pas exactement une ligne"
-    ))
-  }
+  if (nrow(data) != 1) abort_not_one_ligne(data)
   return(data[["rid"]])
 }
 
@@ -120,12 +110,7 @@ get_attachment_rid.character <- function(data) {
 #' @export
 get_attachment_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_attachment()
-
-  if (nrow(data) != 1) {
-    rlang::abort("not_one_row", message = c(
-      x = "Le dataframe ne contient pas exactement une ligne"
-    ))
-  }
+  if (nrow(data) != 1) abort_not_one_ligne(data)
   return(data[["rid"]])
 }
 
@@ -154,11 +139,6 @@ get_job_id.integer <- function(data) data
 #' @export
 get_job_id.data.frame <- function(data) {
   if (!"id" %in% names(data)) abort_not_job()
-
-  if (nrow(data) != 1) {
-    rlang::abort("not_one_row", message = c(
-      x = "Le dataframe ne contient pas exactement une ligne"
-    ))
-  }
+  if (nrow(data) != 1) abort_not_one_ligne(data)
   return(data[["id"]])
 }
