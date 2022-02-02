@@ -57,7 +57,7 @@ params = list(
 )
 
 temp_file <- tempfile(fileext = ".csv")
-dido_read_delim("vignettes/exemple.csv") %>%
+dido_read_delim(dido_example("exemple.csv")) %>%
   dido_csv(params = params, cog_year = "2019") %>%
   dido_write_csv(temp_file)
 ```

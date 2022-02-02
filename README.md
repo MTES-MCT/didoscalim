@@ -34,7 +34,6 @@ normal](articles/exemple.csv) et le charger dans un dataset.
 
 ``` r
 library(didoscalim)
-library(magrittr, quietly = TRUE, warn.conflict = FALSE)
 
 params = list(
   OPERATEUR = list(description = "Nom de l'opérateur"),
@@ -45,7 +44,7 @@ params = list(
 )
 
 temp_file <- tempfile(fileext = ".csv")
-dido_read_delim("vignettes/exemple.csv") %>%
+dido_read_delim(dido_example("exemple.csv")) %>%
   dido_csv(params = params, cog_year = "2019") %>%
   dido_write_csv(temp_file)
 ```
@@ -101,14 +100,22 @@ développement DiDo configuré pour tester les interactions avec l’API.
 
 La documentation ne peut pas (encore ?) être généré par les github
 actions, il faut donc pour le moment générer le site statiquement à
-partir d’une poste qui a accès à un environnement DiDo de développement.
+partir d’un poste qui a accès à un environnement DiDo de développement.
 
 Si vous avez modifié la documentation, avant de pousser une nouvelle
-vous devez lancer les commandes suivantes :
+vous devez la valider en local :
 
 ``` r
 devtools::build_readme()
 devtools::document()
 devtools::build_vignettes()
 devtools::build_site()
+```
+
+Et quand vous êtes satisfait, chargez les données de base en lançant
+`populate.R` puis la commande qui publiera le site sur les github pages
+:
+
+``` r
+deploy_to_branch()
 ```

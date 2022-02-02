@@ -1,3 +1,9 @@
+# didoscalim 0.0.3.9000
+
+* bugfix dans la gestion de la timezone de la date de diffusion
+* refactor la gestion de dates + styler
+* documentation
+
 # didoscalim 0.0.2.9000
 
 * ajout des paramètres expressions rationnelles dans `dido_csv()`
