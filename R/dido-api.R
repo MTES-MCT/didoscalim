@@ -26,11 +26,11 @@ dido_api <- function(method, path, body, query_params = list(), headers = c(), a
   if (!"content-type" %in% headers) headers["content-type"] <- "application/json"
 
   if (method == "GET") {
-    response <- httr::GET(url, httr::add_headers(headers), ua)
+    response <- httr::RETRY("GET", url, httr::add_headers(headers), ua, terminate_on = c(400:499))
   } else if (method == "POST") {
-    response <- httr::POST(url, query = query_params, body = body, httr::add_headers(headers), ua)
+    response <- httr::RETRY("POST", url, query = query_params, body = body, httr::add_headers(headers), ua, terminate_on = c(400:499))
   } else if (method == "PUT") {
-    response <- httr::PUT(url, query = query_params, body = body, httr::add_headers(headers), ua)
+    response <- httr::RETRY("PUT", url, query = query_params, body = body, httr::add_headers(headers), ua, terminate_on = c(400:499))
   } else if (method == "DELETE") {
     response <- httr::DELETE(url, query = query_params, httr::add_headers(headers), ua)
   } else {
