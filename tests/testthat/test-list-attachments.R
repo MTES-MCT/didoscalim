@@ -28,4 +28,3 @@ test_that("list_attachments works", {
   df <- list_attachments(dataset = dataset)
   expect_equal(nrow(df), 1)
 })
-

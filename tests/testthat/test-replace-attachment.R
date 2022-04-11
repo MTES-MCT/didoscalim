@@ -21,4 +21,3 @@ test_that("add_attachment works", {
   ) %>%
     expect_s3_class("dido_attachment")
 })
-

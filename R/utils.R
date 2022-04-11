@@ -79,9 +79,11 @@ abort_not_one_ligne <- function(data) {
   message <- c(
     x = "L'argument `data` doit contenir une ligne.",
     i = glue::glue("`data` contient {nrow(data)} ligne(s)."),
-    i = glue::glue("Avez-vous oublié de filtrer (avec dplyr::filter ",
-                   "par exemple`) le dataframe avant de le passer en", "
-                   argument ?")
+    i = glue::glue(
+      "Avez-vous oublié de filtrer (avec dplyr::filter ",
+      "par exemple`) le dataframe avant de le passer en", "
+                   argument ?"
+    )
   )
   rlang::abort("not_one_row", message = message)
 }
