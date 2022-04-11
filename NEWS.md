@@ -1,3 +1,11 @@
+# developpement
+
+* dido_csv permet de changer le nom de la variable
+* les requêtes en erreur 500 sont rejouées
+* correction d'un bug sur les noms de variables avec une espace
+* ajout de la version de didoscalim dans le user agent
+* correction d'un bug dans les tests des temporal_coverage retournés par l'API
+
 # didoscalim 0.0.3.9000
 
 * bugfix dans la gestion de la timezone de la date de diffusion
