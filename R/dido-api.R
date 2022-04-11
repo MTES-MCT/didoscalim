@@ -1,4 +1,16 @@
-user_agent <- "didoscalim"
+cache <- new.env(parent = emptyenv())
+cache$default_ua <- NULL
+
+default_ua <- function() {
+  if (is.null(cache$default_ua)) {
+    versions <- c(
+      httr = as.character(utils::packageVersion("httr")),
+      didoscalim = as.character(utils::packageVersion("didoscalim"))
+    )
+    cache$default_ua <- paste0(names(versions), "/", versions, collapse = " ")
+  }
+  cache$default_ua
+}
 
 #' Envoie une requête au serveur DiDo
 #'
@@ -20,7 +32,7 @@ user_agent <- "didoscalim"
 #' @keywords internal
 dido_api <- function(method, path, body, query_params = list(), headers = c(), as_tibble = FALSE) {
   url <- paste0(base_path(), path)
-  ua <- httr::user_agent(user_agent)
+  ua <- httr::user_agent(default_ua())
 
   headers["x-api-key"] <- api_key()
   if (!"content-type" %in% headers) headers["content-type"] <- "application/json"
