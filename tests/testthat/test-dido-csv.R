@@ -77,19 +77,36 @@ test_that("dido_csv works for default types", {
 
 test_that("dido_csv works with params", {
   params <- list(
-    COL = list(unit = "unit", description = "description", type = "nombre")
+    COL = list(name = "COLUMN", unit = "unit", description = "description", type = "nombre")
   )
   data <- tibble::tibble(
     COL = c("secret")
   )
   expected <- tibble::tibble(
-    COL = c("description", "nombre", "unit", "COL", "secret")
+    COL = c("description", "nombre", "unit", "COLUMN", "secret")
   )
 
   result <- dido_csv(data, params)
 
   expect_equal(result, expected)
 })
+
+test_that("dido_csv works with column name with space", {
+  params <- list(
+    COL = list(name = "COLUMN WITH SPACE IN NAME", unit = "unit", description = "description", type = "nombre")
+  )
+  data <- tibble::tibble(
+    COL = c("secret")
+  )
+  expected <- tibble::tibble(
+    COL = c("description", "nombre", "unit", "COLUMN_WITH_SPACE_IN_NAME", "secret")
+  )
+
+  result <- dido_csv(data, params)
+
+  expect_equal(result, expected)
+})
+
 
 test_that("dido_csv works with regexp params", {
   params <- list(

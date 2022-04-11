@@ -35,6 +35,7 @@ default_columns <- list(
 #'   ```
 #'   Les caractéristiques disponibles sont :
 #'
+#'   * `name`: le nom de la colonne
 #'   * `description`: la description de la colonne
 #'   * `type`: nombre, entier, texte, ...
 #'   * `unit`: l'unité de la colonne
@@ -109,7 +110,7 @@ default_columns <- list(
 #' )
 #' params <- list(
 #'   OPERATEUR = list(description = "L'opérateur"),
-#'   CONSO = list(description = "La consommation", unit = "Mwh")
+#'   CONSO = list(name = "CONSOMMATION", description = "La consommation", unit = "Mwh")
 #' )
 #' dido_csv(data, params = params)
 #'
@@ -130,7 +131,7 @@ dido_csv <- function(data, params = list(),
   desc <- description_row(data, params)
   type <- type_row(data, params, locale, cog_year)
   unit <- unit_row(type, params)
-  name <- name_row(data)
+  name <- name_row(data, params)
 
   dplyr::bind_rows(desc, type, unit, name, data)
 }
@@ -213,9 +214,11 @@ type_row <- function(data, params = list(), locale, cog_year) {
 }
 
 #' @noRd
-name_row <- function(data) {
+name_row <- function(data, params = list()) {
   name_cols <- vapply(names(data), function(name) {
-    toupper(stringr::str_replace_all(name, " .*", "_"))
+    tmp_name <- description_row_glue(matching_param(params, name)[["name"]], name) %||%
+      name
+    toupper(stringr::str_replace_all(tmp_name, " +", "_"))
   }, character(1))
   return(name_cols)
 }
