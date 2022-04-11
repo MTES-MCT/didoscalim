@@ -49,8 +49,8 @@ test_that("create datafiles works", {
   expect_equal(datafile$description, "description")
   expect_equal(datafile$published, date_published)
   expect_equal(datafile$legal_notice, "something")
-  expect_equal(datafile$temporal_coverage$start, "2021-01-01T00:00:00.000Z")
-  expect_equal(datafile$temporal_coverage$end, "2021-12-31T00:00:00.000Z")
+  expect_equal(datafile$temporal_coverage$start, "2021-01-01")
+  expect_equal(datafile$temporal_coverage$end, "2021-12-31")
 
   millesime <- datafile$millesimes_info[[1]]
   expect_equal(millesime$millesime, "2020-10")
