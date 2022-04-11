@@ -29,7 +29,7 @@ attachment <- add_attachment(
   dataset = dataset,
   title = "Un autre fichier annexe",
   description = "Un fichier annexe",
-  file_name = dido_example("attachment.txt")
+  file_name = dido_example("augmente.csv")
 )
 
 dataset <- add_dataset(
