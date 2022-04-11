@@ -110,7 +110,7 @@ Voici un exemple complet pour le fichier exemple :
 
 ```{r}
 params = list(
-  OPE = list(description = "Nom de l'opérateur"),
+  OPE = list(name = "OPERATEUR", description = "Nom de l'opérateur"),
   FILIERE = list(description = "Filière"),
   CAT = list(description = "Catégorie de la consommation"),
   NAF2 = list(description = "Code NAF à 2 positions du secteur (NAF rev2 2008)", type = "naf_division"),
