@@ -114,12 +114,15 @@ clean_metadata.dido_dataset <- function(data) {
 #' @noRd
 #' @export
 internal_clean_metadata.dido_dataset <- function(data) {
-  data$created_at <- NULL
-  data$last_modified <- NULL
-  data$last_update <- NULL
-  data$attachments <- NULL
-  data$datafiles <- NULL
-  data$id <- NULL
+  allowed_keys <- c(
+    "title", "description", "organization", "topic", "tags", "license",
+    "frequency", "frequency_date", "spatial", "temporal_coverage",
+    "caution"
+  )
+
+  for (key in names(data)) {
+    if (!key %in% allowed_keys) data[key] <- NULL
+  }
 
   if ("id" %in% names(data$organization)) data$organization <- data$organization$id
 

@@ -49,11 +49,11 @@ clean_metadata.dido_attachment <- function(data) {
 #' @noRd
 #' @export
 internal_clean_metadata.dido_attachment <- function(data) {
-  data$created_at <- NULL
-  data$last_modified <- NULL
-  data$last_update <- NULL
-  data$rid <- NULL
-  data$url <- NULL
+  allowed_keys <- c("title", "description", "published")
+
+  for (key in names(data)) {
+    if (!key %in% allowed_keys) data[key] <- NULL
+  }
 
   new_dido_dataset(data)
 }

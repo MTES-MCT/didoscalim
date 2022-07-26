@@ -101,13 +101,14 @@ internal_clean_metadata.dido_datafile <- function(data) {
   if (!is.null(data$temporal_coverage$start)) data$temporal_coverage_start <- data$temporal_coverage$start
   if (!is.null(data$temporal_coverage$end)) data$temporal_coverage_end <- data$temporal_coverage$end
 
-  data$rid <- NULL
-  data$temporal_coverage <- NULL
-  data$millesimes_info <- NULL
-  data$created_at <- NULL
-  data$last_modified <- NULL
-  data$millesimes <- NULL
-  data$url <- NULL
+  allowed_keys <- c(
+    "title", "description", "published", "temporal_coverage_end",
+    "temporal_coverage_start", "legal_notice"
+  )
+
+  for (key in names(data)) {
+    if (!key %in% allowed_keys) data[key] <- NULL
+  }
 
   new_dido_datafile(data)
 }
