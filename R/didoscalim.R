@@ -10,7 +10,7 @@
 #' @importFrom tidyr unnest unite
 #' @importFrom tibble tibble as_tibble
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr bind_rows select slice filter mutate across
+#' @importFrom dplyr bind_rows select slice filter mutate across arrange
 #' @importFrom stringr str_replace str_detect fixed str_replace_all str_extract
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data abort warn inform %||% format_error_bullets
@@ -18,8 +18,9 @@
 #' @importFrom utils str
 #' @importFrom stats runif
 #' @importFrom lubridate format_ISO8601 ymd_hms now
+#' @importFrom utils head
 ## usethis namespace: end
 NULL
 
 # See issue https://github.com/r-lib/tidyselect/issues/201
-utils::globalVariables(c("where"))
+utils::globalVariables(c("where", ".env"))
