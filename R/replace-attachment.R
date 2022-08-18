@@ -23,7 +23,6 @@
 #' )
 replace_attachment <- function(attachment,
                                file_name,
-                               published = NULL,
                                quiet = NULL) {
   if (missing(attachment) || is.null(attachment)) abort_bad_argument("attachment")
   if (is.null(get_attachment_rid(attachment))) abort_not_attachment()
