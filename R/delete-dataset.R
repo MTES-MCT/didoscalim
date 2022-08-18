@@ -13,7 +13,6 @@
 #'
 #' delete_dataset(dataset)
 #' @export
-#' @keywords internal
 delete_dataset <- function(dataset) {
   if (missing(dataset)) abort_bad_argument("dataset")
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
