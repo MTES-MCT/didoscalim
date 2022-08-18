@@ -23,7 +23,7 @@
 replace_millesime <- function(datafile,
                               file_name,
                               millesime,
-                              date_diffusion = NULL,
+                              date_diffusion = format(Sys.time(), "%Y-%m-%dT%H:00:00.000Z"),
                               quiet = NULL) {
   if (missing(datafile)) abort_bad_argument("datafile")
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
@@ -40,7 +40,7 @@ replace_millesime <- function(datafile,
   payload <- list(
     "tokenFile" = token_file
   )
-  payload$date_diffusion <- date_diffusion %||% format(Sys.time(), "%Y-%m-%dT%H:00:00.000Z")
+  payload$date_diffusion <- date_diffusion
 
   rid <- get_datafile_rid(datafile)
   id <- get_dataset_id(datafile)
