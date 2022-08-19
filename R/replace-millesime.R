@@ -38,9 +38,9 @@ replace_millesime <- function(datafile,
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier validé"))
 
   payload <- list(
-    "tokenFile" = token_file
+      "tokenFile" = token_file,
+      date_diffusion = date_heure_iso8601(date_diffusion)
   )
-  payload$date_diffusion <- date_diffusion
 
   rid <- get_datafile_rid(datafile)
   id <- get_dataset_id(datafile)
