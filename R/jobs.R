@@ -62,9 +62,10 @@ wait_for_job <- function(data, quiet = NULL) {
 
       rlang::abort("datafile_error", message = message)
     }
+
     if (job$state$status != "failed" && !is.null(job$state$progress$percentage)) {
       ratio <- strtoi(job$state$progress$percentage) / 100
-      pb$update(ratio)
+      if (!pb$finished) pb$update(ratio)
     }
     Sys.sleep(5)
   }
