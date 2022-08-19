@@ -8,7 +8,7 @@ test_that("create datafiles works", {
     frequency = "unknown"
   )
 
-  date_published <- format(Sys.time(), "%Y-%m-%dT00:00:00")
+  date_published <- format(Sys.time(), "%Y-%m-%dT00:00:00+00:00")
 
   created_df <- add_datafile(
     dataset = dataset,
