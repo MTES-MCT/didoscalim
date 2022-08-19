@@ -124,9 +124,13 @@ devtools::build_vignettes()
 devtools::build_site()
 ```
 
-Et quand vous êtes satisfait, chargez les données de base en lançant
-`populate.R` puis la commande qui publiera le site sur les github pages :
+Évidemment lancer un `R CMD check()
+
+Et quand vous êtes satisfait, videz la base de test, chargez les données de base
+en lançant `populate.R` puis la commande qui publiera le site sur les github
+pages :
 
 ```{r, eval = FALSE}
+library(pkgdown)
 deploy_to_branch()
 ```
