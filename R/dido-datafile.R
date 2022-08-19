@@ -75,7 +75,7 @@ new_dido_datafile <- function(x) {
   structure(x, class = c("dido_datafile", "list"))
 }
 
-is.dido_datafile <- function(x) inherits(x, "dido_datafile")
+is.dido_datafile <- function(x) inherits(x, "dido_datafile") || inherits(x, "dido_job")
 
 #' @export
 print.dido_datafile <- function(x, ...) {
