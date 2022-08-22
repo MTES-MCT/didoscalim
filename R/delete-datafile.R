@@ -7,15 +7,6 @@
 #' @family datafile
 #'
 #' @export
-#'
-#' @examples
-#' library(dplyr, warn.conflicts = FALSE)
-#'
-#' datafile <- list_datafiles() %>%
-#'   filter(title == "Un fichier de données de test") %>%
-#'   get_datafile()
-#'
-#' delete_datafile(datafile)
 delete_datafile <- function(datafile) {
   if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
   if (!is.dido_datafile(datafile)) abort_not_datafile()

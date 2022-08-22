@@ -12,14 +12,13 @@
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' datafile <- list_datafiles() %>%
-#'   filter(title == "Un fichier de données de test")
+#'   slice(1) %>% get_datafile()
 #'
 #' millesime <- add_millesime(
 #'   datafile = datafile,
 #'   file_name = dido_example("augmente.csv"),
 #'   millesime = "2011-10"
 #' )
-#'
 #'
 #' # publier un millésime avec embargo
 #' millesime <- add_millesime(

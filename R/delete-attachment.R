@@ -11,8 +11,12 @@
 #' @examples
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' dataset <- list_datasets() %>%
-#'   filter(title == "Un jeu de données de test")
+#' dataset <- add_or_update_dataset(
+#'   title = "Un dataset pour les attachements",
+#'   description = "Description des données statistiques",
+#'   topic = "Transports",
+#'   frequency = "unknown",
+#' )
 #'
 #' attachment <- add_attachment(
 #'   dataset = dataset,

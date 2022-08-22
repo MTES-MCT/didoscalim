@@ -8,17 +8,7 @@
 #' @export
 #'
 #' @family millesime
-#'
-#' @examples
-#' library(dplyr, warn.conflicts = FALSE)
-#'
-#' datafile <- list_datafiles() %>%
-#'   filter(title == "Un fichier de données de test")
-#'
-#' millesime <- delete_millesime(
-#'   datafile = datafile,
-#'   millesime = "2021-12"
-#' )
+#' @export
 delete_millesime <- function(datafile,
                               millesime,
                               quiet = NULL) {

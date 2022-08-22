@@ -5,13 +5,6 @@
 #' @return TRUE
 #' @export
 #'
-#' @examples
-#' library(dplyr, warn.conflicts = FALSE)
-#'
-#' dataset <- list_datasets() %>%
-#'   filter(title == "Un dataset à supprimer")
-#'
-#' delete_dataset(dataset)
 #' @export
 delete_dataset <- function(dataset) {
   if (missing(dataset)) abort_bad_argument("dataset")

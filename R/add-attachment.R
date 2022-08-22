@@ -18,24 +18,19 @@
 #' @examples
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' dataset <- list_datasets() %>%
-#'   filter(title == "Un jeu de données de test")
+#' dataset <- add_or_update_dataset(
+#'   title = "Des données statistiques",
+#'   description = "Description des données statistiques",
+#'   topic = "Transports",
+#'   frequency = "unknown",
+#' )
 #'
-#' add_attachment(
-#'   dataset = dataset,
+#' dataset %>% add_attachment(
 #'   title = "title",
 #'   description = "description",
 #'   file_name = dido_example("attachment.txt")
 #' )
 #'
-#' # ou sans passer par une variable intermédiaire
-#' list_datasets() %>%
-#'   filter(title == "Un jeu de données de test") %>%
-#'   add_attachment(
-#'     title = "title",
-#'     description = "description",
-#'     file_name = dido_example("attachment.txt")
-#'   )
 add_attachment <- function(dataset,
                            title,
                            description,

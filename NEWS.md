@@ -1,5 +1,12 @@
 # developpement
 
+Ajout des méthodes `add_or_update_dataset`, `add_or_update_datafile` et 
+`add_or_update_attachment` qui permettent de mettre à jour un item existant
+s'il existe et de l'ajouter s'il n'existe pas.
+
+
+
+divers :
 * dido_csv permet de changer le nom de la variable
 * les requêtes en erreur 500 sont rejouées
 * correction d'un bug sur les noms de variables avec une espace

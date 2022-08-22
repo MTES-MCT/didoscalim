@@ -103,6 +103,28 @@ projet](https://mtes-mct.github.io/didoscalim/) et en particuler :
 
 ## Pour les développeurs
 
+Aant de publier une version assurez-vous que `check()` fonctionne
+
+```
+check()
+```
+
+Pour gagner du temps vous pouvez séparément lancer les tests unitaires et de 
+couverture :
+
+```
+library(devtools)
+test()
+library(covr)
+report()
+```
+
+Ainsi que les exemples :
+
+```
+run_examples()
+```
+
 ### Les tests
 
 Les tests de ce package nécessitent pour le moment un environnement de

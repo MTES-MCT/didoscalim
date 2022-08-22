@@ -20,7 +20,7 @@
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' ds <- list_datasets() %>%
-#'   filter(title == "Données de consommation fictive") %>%
+#'   slice(1) %>%
 #'   get_dataset()
 get_dataset <- function(data) {
   if (missing(data)) {

@@ -36,8 +36,12 @@
 #' @examples
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' dataset <- list_datasets() %>%
-#'   filter(title == "Données de consommation fictive")
+#' dataset <- add_or_update_dataset(
+#'   title = "Un dataset pour les datafiles",
+#'   description = "Description des données statistiques",
+#'   topic = "Transports",
+#'   frequency = "unknown",
+#' )
 #'
 #' add_datafile(
 #'   dataset = dataset,

@@ -20,7 +20,7 @@
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' datafile <- list_datafiles() %>%
-#'   filter(title == "Un fichier de données de test") %>%
+#'   slice(1) %>%
 #'   get_datafile(datafile)
 get_datafile <- function(data = NULL, dataset = NULL) {
   if (is.null(get_datafile_rid(data))) abort_not_datafile()

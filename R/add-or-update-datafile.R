@@ -1,8 +1,9 @@
-#' Ajoute un datafile à un dataset
+#' Ajoute ou modifie un datafile
+#'
+#' met à jour le datafile avec le même titre s'il existe sinon ajoute un datafile
 #'
 #' @inheritParams add_datafile
-#' @param keep_old_millesimes
-
+#' @param keep_old_millesimes nombre d'ancien millésimes à conserver, les autres sont supprimés.
 #'
 #' @return un objet `dido_job()`
 #'
@@ -13,27 +14,29 @@
 #' @examples
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' dataset <- list_datasets() %>%
-#'   filter(title == "Données de consommation fictive")
+#' dataset <- add_or_update_dataset(
+#'   title = "Un dataset pour les add_or_update_datafiles",
+#'   description = "Description des données statistiques",
+#'   topic = "Transports",
+#'   frequency = "unknown",
+#' )
 #'
-#' add_datafile(
+#' add_or_update_datafile(
 #'   dataset = dataset,
 #'   title = "titre",
 #'   description = "description",
-#'   file_name = dido_example("augmente.csv")
+#'   file_name = dido_example("augmente.csv"),
+#'   millesime = "2021-10",
 #' )
 #'
-#' # publier un fichier de données avec toutes les métadonnées et un embargo
-#' add_datafile(
+#' add_or_update_datafile(
 #'   dataset = dataset,
-#'   title = "titre 2",
-#'   description = "description 2",
+#'   title = "titre",
+#'   description = "description",
 #'   file_name = dido_example("augmente.csv"),
 #'   temporal_coverage_start = "2021-01-01",
 #'   temporal_coverage_end = "2021-12-31",
-#'   legal_notice = "something",
-#'   millesime = "2020-10",
-#'   date_diffusion = "2020-11-01 08:00:00"
+#'   millesime = "2022-10",
 #' )
 add_or_update_datafile <- function(dataset,
                                    title,
