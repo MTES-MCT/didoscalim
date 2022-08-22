@@ -20,3 +20,8 @@ test_that("update_attachment works", {
   att <- update_attachment(att)
   expect_equal(att$description, "une autre description")
 })
+
+test_that("update_attachment errors on missing params", {
+  expect_error(update_attachment(), "obligatoire")
+  expect_error(update_attachment(tibble()), "pas du type attendu")
+})
