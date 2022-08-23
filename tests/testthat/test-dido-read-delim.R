@@ -1,4 +1,4 @@
-test_that("dido_csv functions work with comma", {
+test_that("dido_read_delim functions work with comma", {
   locale <- readr::locale(decimal_mark = ",")
   tbl <- dido_read_delim(
     paste0(test_path(), "/example-comma.csv"),
@@ -24,7 +24,7 @@ test_that("dido_csv functions work with comma", {
   expect_equal(result, expected)
 })
 
-test_that("dido_csv functions work with ISO-8859-15 and comma", {
+test_that("dido_read_delim functions work with ISO-8859-15 and comma", {
   locale <- readr::locale(
     encoding = "ISO-8859-15",
     decimal_mark = ","
