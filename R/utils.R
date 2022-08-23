@@ -117,13 +117,14 @@ find_by_column <- function(data, string, col, return = c("id")) {
       i = glue::glue("Votre chaine de recherche est-celle trop ou pas assez précise ?")
     )
     rlang::abort("too_many_data", message = message)
-    if (nrow(founded) == 0) {
-      message <- c(
-        glue::glue("la recherche `{string}` retourne {nrow(founded)} lignes(s)")
-      )
-      rlang::abort("no_data", message = message)
-    }
   }
+  if (nrow(founded) == 0) {
+    message <- c(
+      glue::glue("la recherche `{string}` retourne {nrow(founded)} lignes(s)")
+    )
+    rlang::abort("no_data", message = message)
+  }
+
 
   return(founded[return])
 }
