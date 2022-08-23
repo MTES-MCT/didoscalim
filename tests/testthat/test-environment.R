@@ -47,7 +47,7 @@ test_that("set_work_env errors if env doesn't exists", {
   )
   load_envs()
   err <- expect_error(set_work_env("PROD"), class = "env_error")
-  expect_match(err$message, "L'environnement PROD n'existe pas")
+  expect_match(err$message, " n'est pas un environnement reconnu")
 })
 
 
@@ -72,13 +72,20 @@ test_that("load_envs works", {
       DIDOSCALIM_BASE_PATH_DEV = "dev2",
       DIDOSCALIM_API_KEY_DEV = "dev2",
       DIDOSCALIM_BASE_PATH_ECOLE = "ecole2",
-      DIDOSCALIM_API_KEY_ECOLE = "ecole2"
+      DIDOSCALIM_API_KEY_ECOLE = "ecole2",
+      DIDOSCALIM_BASE_PATH_WITH_UNDERSCORE = "other2",
+      DIDOSCALIM_API_KEY_WITH_UNDERSCORE = "other2"
+
     )
   )
   load_envs()
 
   expect_equal(set_work_env("ECOLE"), "ECOLE")
   expect_equal(get_work_env(), "ECOLE")
+
+  expect_equal(set_work_env("WITH_UNDERSCORE"), "WITH_UNDERSCORE")
+  expect_equal(get_work_env(), "WITH_UNDERSCORE")
+
 })
 
 test_that("load_envs fails on incomplete configuration", {

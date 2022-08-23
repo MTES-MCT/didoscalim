@@ -27,12 +27,13 @@ load_envs <- function() {
   dido_env <- e[grep("DIDOSCALIM_(API_KEY|BASE_PATH)_.*", names(e))]
   config <- list()
   for (n in names(dido_env)) {
-    v <- stringr::str_split(n, "_")
+    v <- stringr::str_split(n, "_", 4)
     env <- v[[1]][4]
     name <- paste0(v[[1]][2:3], collapse = "_")
 
     config[[env]][[name]] <- dido_env[[n]]
   }
+  print(config)
   for (env_name in names(config)) {
     if (is.null(config[[env_name]][["API_KEY"]])) {
       rlang::abort("config_error", message = missing_key_message(env_name, "DIDOSCALIM_API_KEY"))
@@ -100,7 +101,9 @@ set_work_env <- function(env_name = NULL, quiet = NULL) {
       )
       rlang::abort("env_error", message = message)
     }
-  } else if (!env_name %in% c(ordered_env_names, "PROD")) {
+  }
+
+  if (is.null(environments[[env_name]])) {
     message <- c(
       glue::glue("`{env_name}` n'est pas un environnement reconnu"),
       i = glue::glue("les environnements configurés dans Renviron sont {paste0(list_env_names(), collapse=", ")}")
