@@ -24,3 +24,7 @@ test_that("delete millesime works", {
 test_that("delete_millesime errors on missing params", {
   expect_error(delete_datafile(), "obligatoire")
 })
+
+test_that("delete_millesime errors on missing params", {
+  expect_error(delete_datafile("aaaa"), "pas du type attendu")
+})

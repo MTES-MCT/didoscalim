@@ -1,12 +1,12 @@
+dataset <- add_or_update_dataset(
+  title = "didoscalim ds create datafiles works",
+  description = "test",
+  topic = "Transports",
+  frequency = "unknown"
+)
+
 test_that("create datafiles works", {
   skip_unless_dev_env()
-
-  dataset <- add_dataset(
-    title = "didoscalim ds create datafiles works",
-    description = "test",
-    topic = "Transports",
-    frequency = "unknown"
-  )
 
   date_published <- format(Sys.time(), "%Y-%m-%dT00:00:00+00:00")
 

@@ -1,0 +1,5 @@
+"Nom de l'opérateur";"Millésime des données";"Filière";"Code de la région";"Catégorie de la consommation";"Code NAF à 2 positions du secteur (NAF rev2 2008)";"Code du grand secteur";"Consommation (en MWh)";"Nombre de points de livraison";"Indice de qualité des données (en pourcent)";"Thermosensibilité dans le résidentiel (en kWh/degré-jour)";"Part de la consommation thermosensible dans le résidentiel (en pourcent)";"Nombre d'IRIS masqués"
+"texte";"annee";"texte";"cog_region_2019";"texte";"texte";"texte";"nombre";"entier";"nombre";"nombre";"nombre";"entier"
+"n/a";"n/a";"n/a";"n/a";"n/a";"n/a";"n/a";"MWh";"n/a";"pourcent";"kWh/degré-jour";"pourcent";"n/a"
+"OPERATEUR";"ANNEE";"FILIERE";"REGION";"CODE_CATEGORIE_CONSOMMATION";"CODE_SECTEUR_NAF2";"CODE_GRAND_SECTEUR";"CONSO";"PDL";"INDQUAL";"THERMOR";"PART";"NB_IRIS_MASQUES"
+"GRDF";"aaa";"G";"11";"ENT";"";"A";"11530.36832";"16";"";"";"";""

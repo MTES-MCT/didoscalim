@@ -24,3 +24,7 @@ test_that("delete attachment works", {
 test_that("delete_millesime errors on missing params", {
   expect_error(delete_attachment(), "obligatoire")
 })
+
+test_that("delete_millesime errors on missing params", {
+  expect_error(delete_attachment("aaaaa"), "pas du type attendu")
+})
