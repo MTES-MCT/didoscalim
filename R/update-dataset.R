@@ -24,7 +24,8 @@
 #'
 #' update_dataset(dataset)
 update_dataset <- function(dataset) {
-  if (missing(dataset) || is.null(dataset)) abort_bad_argument("dataset")
+  abort_on_mandatory_argument(dataset, "dataset")
+
   if (!is.dido_dataset(dataset)) abort_not_dataset()
 
   id <- dataset$id

@@ -12,10 +12,10 @@
 delete_millesime <- function(datafile,
                               millesime,
                               quiet = NULL) {
-  if (missing(datafile)) abort_bad_argument("datafile")
-  if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
+  abort_on_mandatory_argument(datafile, "datafile")
+  abort_on_mandatory_argument(millesime, "millesime")
 
-  if (missing(millesime) || is.null(millesime)) abort_bad_argument("millesime")
+  if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 
   rid <- get_datafile_rid(datafile)
   id <- get_dataset_id(datafile)

@@ -37,12 +37,12 @@ add_attachment <- function(dataset,
                            file_name,
                            published = format(Sys.time(), "%Y-%m-%d"),
                            quiet = NULL) {
-  if (missing(dataset) || is.null(dataset)) abort_bad_argument("dataset")
-  if (is.null(get_dataset_id(dataset))) abort_not_dataset()
+  abort_on_mandatory_argument(dataset, "dataset")
+  abort_on_mandatory_argument(title, "title")
+  abort_on_mandatory_argument(description, "description")
+  abort_on_mandatory_argument(file_name, "file_name")
 
-  if (missing(title) || is.null(title)) abort_bad_argument("title")
-  if (missing(description) || is.null(description)) abort_bad_argument("description")
-  if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
+  if (is.null(get_dataset_id(dataset))) abort_not_dataset()
 
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{basename(file_name)}`"))
 

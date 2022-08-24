@@ -8,7 +8,8 @@
 #'
 #' @export
 delete_datafile <- function(datafile) {
-  if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
+  abort_on_mandatory_argument(datafile, "datafile")
+
   if (!is.dido_datafile(datafile)) abort_not_datafile()
 
   rid <- get_datafile_rid(datafile)

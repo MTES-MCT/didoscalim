@@ -9,7 +9,8 @@
 #' token <- dido_upload_file(dido_example("attachment.txt"))
 #' @keywords internal
 dido_upload_file <- function(file_name) {
-  if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
+  abort_on_mandatory_argument(file_name, "file_name")
+
   if (file.exists(file_name) == FALSE) {
     rlang::abort("no_such_file", message = glue::glue("Le fichier `{file_name} n'existe pas"))
   }

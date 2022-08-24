@@ -24,10 +24,10 @@
 replace_attachment <- function(attachment,
                                file_name,
                                quiet = NULL) {
-  if (missing(attachment) || is.null(attachment)) abort_bad_argument("attachment")
-  if (is.null(get_attachment_rid(attachment))) abort_not_attachment()
+  abort_on_mandatory_argument(attachment, "attachment")
+  abort_on_mandatory_argument(file_name, "file_name")
 
-  if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
+  if (is.null(get_attachment_rid(attachment))) abort_not_attachment()
 
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{file_name}`"))
 

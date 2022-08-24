@@ -26,7 +26,8 @@
 #' )
 #' delete_attachment(attachment)
 delete_attachment <- function(attachment) {
-  if (missing(attachment) || is.null(attachment)) abort_bad_argument("attachment")
+  abort_on_mandatory_argument(attachment, "attachment")
+
   if (!is.dido_attachment(attachment)) abort_not_attachment()
 
   rid <- get_attachment_rid(attachment)

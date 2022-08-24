@@ -7,7 +7,8 @@
 #'
 #' @export
 delete_dataset <- function(dataset) {
-  if (missing(dataset)) abort_bad_argument("dataset")
+  abort_on_mandatory_argument(dataset, "dataset")
+
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
 
   url <- glue::glue("/datasets/{get_dataset_id(dataset)}")

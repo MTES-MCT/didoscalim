@@ -1,8 +1,10 @@
-test_that("abort_bad_argument works", {
-  expect_error(abort_bad_argument("arg"),
-    "`arg` est obligatoire et ne peut être null",
-    class = "error_bad_argument"
-  )
+test_that("check_argument is ok", {
+  fn <- function(arg) {
+    abort_on_mandatory_argument(arg, "arg")
+  }
+  expect_error(fn(), "obligatoire")
+  expect_error(fn(NULL), "obligatoire")
+  expect_equal(fn("string"), TRUE)
 })
 
 test_that("find_by_column fails if data empty", {

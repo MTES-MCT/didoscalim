@@ -32,8 +32,9 @@ add_millesime <- function(datafile,
                           date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                           millesime = format(Sys.time(), "%Y-%m"),
                           quiet = NULL) {
-  if (missing(datafile) || is.null(datafile)) abort_bad_argument("datafile")
-  if (missing(file_name)) abort_bad_argument("file_name")
+  abort_on_mandatory_argument(datafile, "datafile")
+  abort_on_mandatory_argument(file_name, "file_name")
+
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier `{file_name}`"))

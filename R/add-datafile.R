@@ -85,7 +85,7 @@ add_datafile <- function(dataset,
     date_diffusion = date_diffusion
   )
 
-  if (missing(file_name) || is.null(file_name)) abort_bad_argument("file_name")
+  abort_on_mandatory_argument(file_name, "file_name")
 
   if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier `{file_name}`"))
   datafile$tokenFile <- dido_upload_file(file_name)
