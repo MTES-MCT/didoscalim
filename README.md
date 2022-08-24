@@ -4,7 +4,9 @@ DiDoscalim
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-[<img src="https://www.repostatus.org/badges/latest/wip.svg" target="_blank" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public." />](https://www.repostatus.org/#wip)
+[<img src="https://www.repostatus.org/badges/latest/wip.svg"
+target="_blank"
+alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public." />](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
 Un package R pour :
@@ -90,6 +92,22 @@ projet](https://mtes-mct.github.io/didoscalim/) et en particuler :
 -   [utiliser les environnements](articles/les-environnements.html)
 
 ## Pour les développeurs
+
+Aant de publier une version assurez-vous que `check()` fonctionne
+
+    check()
+
+Pour gagner du temps vous pouvez lancer séparément les tests unitaires
+et de couverture :
+
+    library(devtools)
+    test()
+    library(covr)
+    report()
+
+Ainsi que les exemples :
+
+    run_examples()
 
 ### Les tests
 

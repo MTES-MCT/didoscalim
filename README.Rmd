@@ -109,7 +109,7 @@ Aant de publier une version assurez-vous que `check()` fonctionne
 check()
 ```
 
-Pour gagner du temps vous pouvez séparément lancer les tests unitaires et de 
+Pour gagner du temps vous pouvez lancer séparément les tests unitaires et de
 couverture :
 
 ```
