@@ -49,7 +49,8 @@ get_dataset_id.character <- function(data) {
 get_dataset_id.data.frame <- function(data) {
   if (!"id" %in% names(data)) abort_not_dataset()
   if (nrow(data) != 1) abort_not_one_ligne(data)
-  return(data[["id"]])
+  if (is_mongo_oid(data[["id"]])) return(data[["id"]])
+  NULL
 }
 
 #' Retourne le datafile rid de l'objet
@@ -80,7 +81,8 @@ get_datafile_rid.character <- function(data) {
 get_datafile_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_datafile()
   if (nrow(data) != 1) abort_not_one_ligne(data)
-  return(data[["rid"]])
+  if (is_uuid(data[["rid"]])) return(data[["rid"]])
+  NULL
 }
 
 #' Retourne l'attachment id de l'objet
@@ -111,7 +113,8 @@ get_attachment_rid.character <- function(data) {
 get_attachment_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_attachment()
   if (nrow(data) != 1) abort_not_one_ligne(data)
-  return(data[["rid"]])
+  if (is_uuid(data[["rid"]])) return(data[["rid"]])
+  NULL
 }
 
 #' Retourne l'attachment id de l'objet

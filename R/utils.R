@@ -53,7 +53,7 @@ abort_not_attachment <- function() {
   message <- c(
     glue::glue("`data` n'est pas du type attendu"),
     i = glue::glue(
-      "`data` doit être un rid de datafile ou la valeur ",
+      "`data` doit être un rid d'attachment ou la valeur ",
       ", retournée par une des fonctions `add_attachment`, `get_attachment`, ",
       "`list_attachments()"
     )
@@ -145,12 +145,6 @@ find_by_column <- function(data, string, col, return = c("id")) {
 #' @noRd
 is_quiet <- function(quiet = NULL) {
   quiet %||% getOption("dido_quiet") %||% FALSE
-}
-
-#' return TRUE if str if
-#' @noRd
-is_mongo_oid <- function(str) {
-  stringr::str_detect(str, "^[0-9a-fA-F]{24,}$")
 }
 
 #' return TRUE if str match mongo oid regexp
