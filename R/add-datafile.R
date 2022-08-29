@@ -85,7 +85,7 @@ add_datafile <- function(dataset,
     date_diffusion = date_diffusion
   )
 
-  abort_on_mandatory_argument(file_name, "file_name")
+  check_mandatory_arguments("file_name")
 
   didoscalim_info(glue::glue("    intégration du fichier `{file_name}`"))
   datafile$tokenFile <- dido_upload_file(file_name)

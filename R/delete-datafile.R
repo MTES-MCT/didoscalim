@@ -8,7 +8,7 @@
 #'
 #' @export
 delete_datafile <- function(datafile) {
-  abort_on_mandatory_argument(datafile, "datafile")
+  check_mandatory_arguments("datafile")
 
   if (!is.dido_datafile(datafile)) abort_not_datafile()
 

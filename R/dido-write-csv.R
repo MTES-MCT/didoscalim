@@ -14,8 +14,7 @@
 #'   dido_csv() %>%
 #'   dido_write_csv("/tmp/fichier.csv")
 dido_write_csv <- function(data, file) {
-  abort_on_mandatory_argument(data, "data")
-  abort_on_mandatory_argument(file, "file")
+  check_mandatory_arguments("data", "file")
 
   readr::write_delim(data,
     file,

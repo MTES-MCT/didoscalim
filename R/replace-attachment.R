@@ -24,8 +24,7 @@
 replace_attachment <- function(attachment,
                                file_name,
                                quiet = NULL) {
-  abort_on_mandatory_argument(attachment, "attachment")
-  abort_on_mandatory_argument(file_name, "file_name")
+  check_mandatory_arguments("attachment", "file_name")
 
   if (is.null(get_attachment_rid(attachment))) abort_not_attachment()
 

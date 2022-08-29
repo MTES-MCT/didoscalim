@@ -1,10 +1,16 @@
 test_that("check_argument is ok", {
   fn <- function(arg) {
-    abort_on_mandatory_argument(arg, "arg")
+    check_mandatory_arguments(c("arg"))
   }
   expect_error(fn(), "obligatoire")
   expect_error(fn(NULL), "obligatoire")
   expect_equal(fn("string"), TRUE)
+
+  fn <- function(arg1, arg2) {
+    check_mandatory_arguments("arg1", "arg2")
+  }
+  expect_error(fn(), "obligatoire")
+  expect_equal(fn("arg1", "arg2"), TRUE)
 })
 
 test_that("find_by_column fails if data empty", {

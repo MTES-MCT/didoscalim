@@ -32,8 +32,7 @@ add_millesime <- function(datafile,
                           date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                           millesime = format(Sys.time(), "%Y-%m"),
                           quiet = NULL) {
-  abort_on_mandatory_argument(datafile, "datafile")
-  abort_on_mandatory_argument(file_name, "file_name")
+  check_mandatory_arguments("datafile", "file_name")
 
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 

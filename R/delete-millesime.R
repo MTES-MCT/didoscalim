@@ -12,8 +12,7 @@
 delete_millesime <- function(datafile,
                               millesime,
                               quiet = NULL) {
-  abort_on_mandatory_argument(datafile, "datafile")
-  abort_on_mandatory_argument(millesime, "millesime")
+  check_mandatory_arguments("datafile", "millesime")
 
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 

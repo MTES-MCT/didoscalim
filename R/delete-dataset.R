@@ -7,7 +7,7 @@
 #'
 #' @export
 delete_dataset <- function(dataset) {
-  abort_on_mandatory_argument(dataset, "dataset")
+  check_mandatory_arguments("dataset")
 
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
 

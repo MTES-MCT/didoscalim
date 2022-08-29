@@ -14,10 +14,13 @@ date_heure_iso8601 <- function(date_heure) {
 }
 
 #' @noRd
-abort_on_mandatory_argument <- function(arg, name, call = rlang::caller_env()) {
-  if (missing(arg) || is.null(arg)) {
-    msg = glue::glue("`{name}` est obligatoire et ne peut être null")
-    rlang::abort("error_bad_argument", message = msg, call = call)
+check_mandatory_arguments <- function(..., call = caller_env()) {
+  for (name in list(...)) {
+    arg = env_get(call, name)
+    if (missing(arg) || is.null(arg)) {
+      msg = glue::glue("`{name}` est obligatoire et ne peut être null")
+      rlang::abort("error_bad_argument", message = msg, call = call)
+    }
   }
   TRUE
 }

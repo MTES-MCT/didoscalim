@@ -37,10 +37,7 @@ add_attachment <- function(dataset,
                            file_name,
                            published = format(Sys.time(), "%Y-%m-%d"),
                            quiet = NULL) {
-  abort_on_mandatory_argument(dataset, "dataset")
-  abort_on_mandatory_argument(title, "title")
-  abort_on_mandatory_argument(description, "description")
-  abort_on_mandatory_argument(file_name, "file_name")
+  check_mandatory_arguments("dataset", "title", "description", "file_name")
 
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
 

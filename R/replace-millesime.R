@@ -27,9 +27,7 @@ replace_millesime <- function(datafile,
                               millesime,
                               date_diffusion = format(Sys.time(), "%Y-%m-%dT%H:00:00.000Z"),
                               quiet = NULL) {
-  abort_on_mandatory_argument(datafile, "datafile")
-  abort_on_mandatory_argument(millesime, "millesime")
-  abort_on_mandatory_argument(file_name, "file_name")
+  check_mandatory_arguments("datafile", "millesime", "file_name")
 
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 

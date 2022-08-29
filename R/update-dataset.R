@@ -24,7 +24,7 @@
 #'
 #' update_dataset(dataset)
 update_dataset <- function(dataset) {
-  abort_on_mandatory_argument(dataset, "dataset")
+  check_mandatory_arguments("dataset")
 
   if (!is.dido_dataset(dataset)) abort_not_dataset()
 
