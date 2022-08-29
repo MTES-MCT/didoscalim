@@ -13,8 +13,9 @@
 #' @importFrom dplyr bind_rows select slice filter mutate across arrange
 #' @importFrom stringr str_replace str_detect fixed str_replace_all str_extract
 #' @importFrom magrittr %>%
-#' @importFrom rlang .data abort warn inform %||% format_error_bullets
+#' @import rlang
 #' @importFrom glue glue
+#' @importFrom purrr pmap
 #' @importFrom utils str
 #' @importFrom stats runif
 #' @importFrom lubridate format_ISO8601 ymd_hms now

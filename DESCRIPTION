@@ -17,11 +17,13 @@ Imports:
     lubridate,
     magrittr,
     progress,
+    purrr,
     readr,
     rlang,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    withr
 Suggests: 
     covr,
     knitr,
@@ -29,9 +31,7 @@ Suggests:
     mockery,
     rmarkdown,
     styler,
-    testthat (>= 3.0.0),
-    withr,
-    purrr
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
