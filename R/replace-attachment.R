@@ -29,10 +29,10 @@ replace_attachment <- function(attachment,
 
   if (is.null(get_attachment_rid(attachment))) abort_not_attachment()
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{file_name}`"))
+  didoscalim_info(glue::glue("    intégration du fichier annexe `{file_name}`"))
 
   file_id <- dido_upload_file(file_name)
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
+  didoscalim_info(glue::glue("\t* fichier versé"))
 
   payload <- list(
     "tokenFile" = file_id
@@ -47,7 +47,7 @@ replace_attachment <- function(attachment,
     path = url,
     body = jsonlite::toJSON(payload, pretty = TRUE, auto_unbox = TRUE, na = "null")
   )
-  if (!is_quiet(quiet)) rlang::inform(glue::glue("\t* fichier annexe remplacé (rid: {result$rid})"))
+  didoscalim_info(glue::glue("\t* fichier annexe remplacé (rid: {result$rid})"))
   attr(result, "id") <- id
 
   invisible(dido_attachment(result))

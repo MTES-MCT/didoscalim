@@ -43,7 +43,7 @@ check_csv <- function(token_file) {
     rlang::abort("invalid_file", message = message)
   } else if (result$result == "warning") {
     message <- format_check_csv_errors(result$message, result$errors)
-    rlang::warn(message = message)
+    didoscalim_info(message)
   }
 
   invisible(TRUE)

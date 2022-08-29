@@ -44,10 +44,10 @@ add_attachment <- function(dataset,
 
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier annexe `{basename(file_name)}`"))
+  didoscalim_info(glue::glue("    intégration du fichier annexe `{basename(file_name)}`"))
 
   file_id <- dido_upload_file(file_name)
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
+  didoscalim_info(glue::glue("\t* fichier versé"))
 
   payload <- list(
     title = title,
@@ -64,7 +64,7 @@ add_attachment <- function(dataset,
     path = url,
     body = jsonlite::toJSON(payload, pretty = TRUE, auto_unbox = TRUE, na = "null")
   )
-  if (!is_quiet(quiet)) rlang::inform(glue::glue("\t* fichier annexe intégré (rid: {result$rid})"))
+  didoscalim_info(glue::glue("\t* fichier annexe intégré (rid: {result$rid})"))
   attr(result, "id") <- id
 
   invisible(dido_attachment(result))

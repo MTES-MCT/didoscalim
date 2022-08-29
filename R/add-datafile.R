@@ -87,11 +87,11 @@ add_datafile <- function(dataset,
 
   abort_on_mandatory_argument(file_name, "file_name")
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier `{file_name}`"))
+  didoscalim_info(glue::glue("    intégration du fichier `{file_name}`"))
   datafile$tokenFile <- dido_upload_file(file_name)
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
+  didoscalim_info(glue::glue("\t* fichier versé"))
   check_csv(datafile$tokenFile)
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier validé"))
+  didoscalim_info(glue::glue("\t* fichier validé"))
 
   df <- clean_metadata(datafile)
 
@@ -103,13 +103,11 @@ add_datafile <- function(dataset,
   job <- dido_job(dido_api(method = "POST", path = url, body = body))
   job_result <- dido_job(wait_for_job(job))
 
-  if (!is_quiet(quiet)) {
-    rlang::inform(glue::glue(
+  didoscalim_info(glue::glue(
       "\t* fichier intégré",
       "\t    rid: {get_datafile_rid(job_result)}",
       "\t    millesime: {job_result$result$millesime}",
       "\t    lignes: {job_result$result$rows}",
-    ))
-  }
+  ))
   invisible(job_result)
 }

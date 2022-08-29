@@ -36,9 +36,11 @@ test_that("check_csv fails on errors", {
 test_that("check_csv works on warnings", {
   skip_unless_dev_env()
 
+  withr::local_options(list(didoscalim_verbosity = "info"))
+
   id <- dido_upload_file(paste0(test_path(), "/dido-csv-with-warning.csv"))
 
-  expect_warning(check_csv(id), "Le fichier est valide mais il y a des alertes")
+  expect_message(check_csv(id), "Le fichier est valide mais il y a des alertes")
 })
 
 test_that("dido_upload_file fails on missing param", {

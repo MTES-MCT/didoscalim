@@ -131,24 +131,6 @@ find_by_column <- function(data, string, col, return = c("id")) {
   return(founded[return])
 }
 
-#' Retourne la "quietness"
-#'
-#' retourne dans l'ordre le premier non NULL de la liste suivante :
-#' 1. le paramètre quiet
-#' 2. l'option dido_quiet
-#' 3. FALSE
-#'
-#' @param quiet TRUE/FALSE, NULL par défaut
-#'
-#' @return TRUE/FALSE
-#'
-#' @examples
-#' is_quiet(FALSE)
-#' @noRd
-is_quiet <- function(quiet = NULL) {
-  quiet %||% getOption("dido_quiet") %||% FALSE
-}
-
 #' return TRUE if str match mongo oid regexp
 #' @noRd
 is_mongo_oid <- function(str) {

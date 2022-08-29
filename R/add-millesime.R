@@ -37,11 +37,11 @@ add_millesime <- function(datafile,
 
   if (is.null(get_datafile_rid(datafile))) abort_not_datafile()
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("    intégration du fichier `{file_name}`"))
+  didoscalim_info(glue::glue("    intégration du fichier `{file_name}`"))
   token_file <- dido_upload_file(file_name)
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier versé"))
+  didoscalim_info(glue::glue("\t* fichier versé"))
   check_csv(token_file)
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("\t* fichier validé"))
+  didoscalim_info(glue::glue("\t* fichier validé"))
 
   payload <- list(
     "tokenFile" = token_file,
@@ -58,14 +58,12 @@ add_millesime <- function(datafile,
   job <- dido_api(method = "POST", path = url, body = body)
   job_result <- dido_job(wait_for_job(job$id))
 
-  if (!is_quiet(quiet)) {
-    rlang::inform(glue::glue(
-      "\t* fichier intégré",
-      "\t    rid: {get_datafile_rid(job_result)}",
-      "\t    millesime: {job_result$result$millesime}",
-      "\t    lignes: {job_result$result$rows}",
-    ))
-  }
+  didoscalim_info(glue::glue(
+    "\t* fichier intégré",
+    "\t    rid: {get_datafile_rid(job_result)}",
+    "\t    millesime: {job_result$result$millesime}",
+    "\t    lignes: {job_result$result$rows}",
+  ))
 
   invisible(job_result)
 }

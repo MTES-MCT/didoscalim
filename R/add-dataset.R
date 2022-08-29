@@ -102,7 +102,7 @@ add_dataset <- function(title,
   body <- jsonlite::toJSON(dataset, pretty = TRUE, auto_unbox = TRUE, na = "null")
   ds <- dido_api(method = "POST", path = "/datasets", body = body)
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("dataset `{title}` créé"))
+  didoscalim_info(glue::glue("dataset `{title}` créé"))
 
   new_dido_dataset(ds)
 }

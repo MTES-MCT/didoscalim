@@ -20,7 +20,7 @@ delete_millesime <- function(datafile,
   rid <- get_datafile_rid(datafile)
   id <- get_dataset_id(datafile)
 
-  if (!is_quiet(quiet)) rlang::inform(message = glue::glue("suppression du millesime `{id}` `{rid}` `{millesime}`"))
+  didoscalim_info(glue::glue("suppression du millesime `{id}` `{rid}` `{millesime}`"))
 
   url <- glue::glue("/datasets/{id}/datafiles/{rid}/millesimes/{millesime}")
 

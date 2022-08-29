@@ -37,6 +37,8 @@ dido_api <- function(method, path, body, query_params = list(), headers = c(), a
   headers["x-api-key"] <- api_key()
   if (!"content-type" %in% headers) headers["content-type"] <- "application/json"
 
+  didoscalim_debug(glue::glue("Request: { method } { url }"))
+
   if (method == "GET") {
     response <- httr::RETRY("GET", url, httr::add_headers(headers), ua, terminate_on = c(400:499))
   } else if (method == "POST") {
@@ -46,7 +48,7 @@ dido_api <- function(method, path, body, query_params = list(), headers = c(), a
   } else if (method == "DELETE") {
     response <- httr::RETRY("DELETE", url, query = query_params, httr::add_headers(headers), ua, terminate_on = c(400:499))
   } else {
-    rlang::abort(glue::glue("unknown method: {method}"))
+    rlang::abort(glue::glue("unknown method: {method} for url: {url}"))
   }
 
   if (httr::status_code(response) >= 400) {

@@ -84,8 +84,21 @@ list_env_names <- function() {
 #' set_work_env("PROD")
 #'
 #' set_work_env()
-set_work_env <- function(env_name = NULL, quiet = NULL) {
+set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame()) {
   environments <- get("environments", envir = .didoscalim_env)
+
+  if (exists("quiet", .envir) && !is.null(.envir$quiet)) {
+    print(.envir$quiet)
+    with_didoscalim_verbosity(
+      "debug",
+      didoscalim_debug(c(
+        "!" = "Argument {.val quiet} is deprecated in favor of \\
+                   {.val gargle_verbosity}",
+        "i" = "Instead of: {.code function(..., quiet = TRUE)}",
+        " " = 'Now do: {.code options(didoscalim_verbosity = "debug")}'))
+    )
+  }
+
 
   if (length(environments) == 0) {
     rlang::abort("env_error", message = "Aucun environnement n'est configuré dans votre Renviron")
@@ -113,7 +126,7 @@ set_work_env <- function(env_name = NULL, quiet = NULL) {
     rlang::abort("env_error", message = glue::glue("L'environnement {env_name} n'existe pas."))
   }
 
-  if (!is_quiet(quiet)) rlang::inform(message = c(x = glue::glue("Environnement DiDo actif : {env_name}")))
+  didoscalim_info(c(x = glue::glue("Environnement DiDo actif : {env_name}")))
   assign("work_env", env_name, envir = .didoscalim_env)
 }
 
@@ -131,7 +144,7 @@ set_work_env <- function(env_name = NULL, quiet = NULL) {
 #' @examples
 #' get_work_env()
 get_work_env <- function(quiet = NULL) {
-  if (!exists("work_env", envir = .didoscalim_env)) set_work_env(quiet = quiet)
+  if (!exists("work_env", envir = .didoscalim_env)) set_work_env()
   get("work_env", envir = .didoscalim_env)
 }
 
@@ -166,10 +179,10 @@ find_lowest_env <- function() {
 #' @examples
 #' check_envs()
 check_envs <- function() {
-  old_env <- get_work_env(quiet = TRUE)
+  old_env <- get_work_env()
   message <- c("Test de connexion:")
   for (e in list_env_names()) {
-    set_work_env(e, quiet = TRUE)
+    set_work_env(e)
     tryCatch(
       {
         me()
@@ -180,6 +193,7 @@ check_envs <- function() {
       }
     )
   }
-  cat(format_error_bullets(message))
+  #cat(format_error_bullets(message))
+  didoscalim_info(format_error_bullets(message))
   set_work_env(old_env)
 }
