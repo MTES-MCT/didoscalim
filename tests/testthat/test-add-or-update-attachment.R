@@ -33,7 +33,7 @@ test_that("check add_or_update_attachment works", {
     file_name = dido_example("augmente.csv"),
     published = "2018-01-01"
   )
-  print(result)
+
   expect_s3_class(result, 'dido_attachment')
   expect_equal(length(get_dataset(dataset)$attachments), 1)
 

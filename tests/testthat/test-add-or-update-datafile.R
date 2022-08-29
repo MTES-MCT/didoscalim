@@ -1,3 +1,10 @@
+dataset_title <- "didoscalim ds check add_or_update_datafile works"
+datafile_title <- "didoscalim df check add_or_update_datafile works"
+
+list_datasets() %>%
+  filter(title == dataset_title) %>%
+  purrr::pmap(~delete_dataset(.))
+
 test_that("find_millesimes_to_delete works", {
   millesimes <- tibble(millesime = c("2020-01", "2020-02"))
   result <- find_millesimes_to_delete(millesimes, keep_last_n = 0)
@@ -24,15 +31,6 @@ test_that("find_millesimes_to_delete works", {
 
 test_that("check add_or_update_datafile works", {
   skip_unless_dev_env()
-
-  dataset_title <- "didoscalim ds check add_or_update_datafile works"
-  datafile_title <- "didoscalim df check add_or_update_datafile works"
-
-  datasets <- list_datasets()
-  if (nrow(datasets) > 0) {
-    ds <- datasets %>% filter(title == dataset_title)
-    for (i in ds$id) delete_dataset(i)
-  }
 
   dataset <- add_or_update_dataset(
     title = dataset_title,

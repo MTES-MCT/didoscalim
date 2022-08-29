@@ -26,9 +26,11 @@ list_datafiles <- function(dataset = NULL) {
   }
   ds <- list_datasets()
   if (nrow(ds) == 0) {
-    return(tibble())
+    return(tibble() %>% add_columns_if_empty(c("id", "rid", "title", "description")))
   }
   if (!is.null(dataset)) ds <- filter(ds, .data$id == get_dataset_id(dataset))
+
   df <- dplyr::select(ds, .data$id, .data$datafiles)
-  as_tibble(tidyr::unnest(df, .data$datafiles))
+  as_tibble(tidyr::unnest(df, .data$datafiles)) %>%
+    add_columns_if_empty(c("id", "rid", "title", "description"))
 }

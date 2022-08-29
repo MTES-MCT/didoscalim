@@ -48,13 +48,14 @@ add_or_update_dataset <- function(title,
                                   temporal_coverage_end = NULL,
                                   caution = NULL,
                                   quiet = NULL) {
-  datasets <- list_datasets()
+  datasets <- list_datasets() %>%
+    filter(.data$title == .env$title)
 
-  if (nrow(datasets) > 0) {
-    ds <- datasets %>% filter(.data$title == .env$title)
+  if (nrow(datasets) > 1) {
+    abort_not_one_ligne(datasets)
   }
 
-  if (nrow(datasets) == 0 || nrow(ds) == 0) {
+  if (nrow(datasets) == 0) {
     result <- add_dataset(
       title = title,
       description = description,
@@ -73,12 +74,10 @@ add_or_update_dataset <- function(title,
     return(new_dido_dataset(result))
   }
 
-  if (nrow(ds) > 1) {
-    abort_not_one_ligne(ds)
-  }
+  if (nrow(datasets) == 1) {
+    dataset = get_dataset(datasets[1,])
 
-  if (nrow(ds) == 1) {
-    dataset = get_dataset(ds)
+    origin <- rlang::duplicate(dataset)
 
     if (!missing(description)) dataset$description = description
     if (!missing(topic)) dataset$topic = topic
@@ -91,7 +90,11 @@ add_or_update_dataset <- function(title,
     if (!missing(temporal_coverage_start)) dataset$temporal_coverage$start = temporal_coverage_start
     if (!missing(temporal_coverage_end)) dataset$temporal_coverage$end = temporal_coverage_end
 
-    result <- update_dataset(dataset)
+    if (!identical(origin, dataset)) dataset <- update_dataset(dataset)
+
+    # FIXME : https://gitlab-forge.din.developpement-durable.gouv.fr/cgdd/sdsed-bun/dido/api/-/issues/75
+    dataset = get_dataset(dataset)
+
+    new_dido_dataset(dataset)
   }
-  new_dido_dataset(result)
 }

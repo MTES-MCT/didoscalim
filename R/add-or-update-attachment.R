@@ -31,12 +31,15 @@ add_or_update_attachment <- function(dataset,
                                      file_name,
                                      published = format(Sys.time(), "%Y-%m-%d"),
                                      quiet = NULL) {
-  attachments <- dataset %>% list_attachments()
+  attachments <- dataset %>%
+    list_attachments() %>%
+    filter(.data[["title"]] == .env[["title"]])
 
-  if (nrow(attachments) > 0) {
-    att <- attachments %>% filter(.data[["title"]] == .env[["title"]])
+  if (nrow(attachments) > 1) {
+    abort_not_one_ligne(attachments)
   }
-  if (nrow(attachments) == 0 || nrow(att) == 0) {
+
+  if (nrow(attachments) == 0) {
     dido_att <- add_attachment(
       dataset = dataset,
       title = title,
@@ -45,19 +48,15 @@ add_or_update_attachment <- function(dataset,
       published = published,
       quiet = quiet
     )
-  return(invisible(dido_att))
+    return(invisible(dido_att))
   }
 
-  if (nrow(att) > 1) {
-    abort_not_one_ligne(att)
-  }
-
-  if (nrow(att) == 1) {
-    dido_att <- replace_attachment(att, file_name)
-    attachment = get_attachment(att)
+  if (nrow(attachments) == 1) {
+    dido_att <- replace_attachment(attachments[1,], file_name)
+    attachment = get_attachment(attachments[1,])
     if (!missing(description)) attachment$description = description
     if (!missing(published)) attachment$published = published
-    update_attachment(attachment)
+    attachment <- update_attachment(attachment)
 
     return(invisible(attachment))
   }

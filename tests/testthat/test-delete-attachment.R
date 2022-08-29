@@ -2,7 +2,7 @@ test_that("delete attachment works", {
   skip_unless_dev_env()
 
   dataset <- add_or_update_dataset(
-    title = "didoscalim ds delete millesime works",
+    title = "didoscalim ds delete attachment works",
     description = "test",
     topic = "Transports",
     frequency = "unknown"
@@ -10,7 +10,7 @@ test_that("delete attachment works", {
 
   attachment <- add_or_update_attachment(
     dataset = dataset,
-    title = "didoscalim df delete millesime works",
+    title = "didoscalim df delete attachment works",
     description = "description",
     file_name = "dido-csv-simple.csv"
   )

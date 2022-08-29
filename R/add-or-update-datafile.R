@@ -51,13 +51,15 @@ add_or_update_datafile <- function(dataset,
                                    keep_old_millesimes = Inf,
                                    quiet = NULL) {
 
-  datafiles <- dataset %>% list_datafiles()
+  datafiles <- dataset %>%
+    list_datafiles() %>%
+    filter(.data$title == .env$title)
 
-  if (nrow(datafiles) > 0) {
-    df <- datafiles %>% filter(.data$title == .env$title)
+  if (nrow(datafiles) > 1) {
+    abort_not_one_ligne(df)
   }
 
-  if (nrow(datafiles) == 0 || nrow(df) == 0) {
+  if (nrow(datafiles) == 0) {
     job_result <- add_datafile(
       dataset = dataset,
       title = title,
@@ -73,12 +75,8 @@ add_or_update_datafile <- function(dataset,
     return(invisible(job_result))
   }
 
-  if (nrow(df) > 1) {
-    abort_not_one_ligne(df)
-  }
-
-  if (nrow(df) == 1) {
-    datafile = get_datafile(df)
+  if (nrow(datafiles) == 1) {
+    datafile = get_datafile(datafiles[1,])
 
     millesimes <- datafile %>% list_millesimes()
 

@@ -35,3 +35,17 @@ test_that("find_by_columns return requested columns", {
 
   expect_equal(find_by_column(data, "a", "col1", return = c("col1", "col2")), result)
 })
+
+test_that("add_columns_if_empty", {
+  result <- add_columns_if_empty(
+    tibble(a = character()),
+    c("id", "title")
+  )
+  expect_equal(names(result), c("a", "id", "title"))
+
+  result <- add_columns_if_empty(
+    tibble(),
+    c("col1", "col2")
+  )
+  expect_equal(names(result), c("col1", "col2"))
+})

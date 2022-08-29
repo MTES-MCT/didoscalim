@@ -160,3 +160,10 @@ is_mongo_oid <- function(str) {
 is_uuid <- function(str) {
   stringr::str_detect(str, "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 }
+
+#' return an rowless tibble with columns if data is 0x0
+#' @noRd
+add_columns_if_empty <- function(data, columns = c()) {
+  for (col in setdiff(columns, names(data))) data <- mutate(data, {{ col }} := character())
+  data
+}
