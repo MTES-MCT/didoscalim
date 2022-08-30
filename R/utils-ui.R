@@ -81,6 +81,33 @@ cli_this = function(..., .envir = parent.frame()) {
 #' @noRd
 NULL
 
+abort_if_not_one_line <- function(name,
+                                message = NULL,
+                                .envir = parent.frame(),
+                                call = caller_env()) {
+  data = rlang::env_get(.envir, name)
+
+  if (nrow(data) == 1) return(invisible(TRUE))
+
+  if (missing(message) || is.null(message)) {
+  message <- c(
+    x = glue::glue("L'argument `{name}` doit contenir une ligne."),
+    i = glue::glue("`{name}` contient {nrow(data)} ligne(s)."),
+    i = glue::glue(
+      "Avez-vous oublié de filtrer (avec dplyr::filter ",
+      "par exemple`) le dataframe avant de le passer en", "
+                 argument ?"
+    )
+  )
+  }
+  rlang::abort(message = message)
+  didoscalim_abort(message,
+                   class = "not_one_row",
+                   .envir = .envir,
+                   call = call)
+}
+
+
 didoscalim_abort <- function(message, ...,
                          class = NULL,
                          .envir = parent.frame(),

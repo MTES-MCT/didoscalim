@@ -55,10 +55,6 @@ add_or_update_datafile <- function(dataset,
     list_datafiles() %>%
     filter(.data$title == .env$title)
 
-  if (nrow(datafiles) > 1) {
-    abort_not_one_ligne(df)
-  }
-
   if (nrow(datafiles) == 0) {
     job_result <- add_datafile(
       dataset = dataset,
@@ -74,6 +70,8 @@ add_or_update_datafile <- function(dataset,
     )
     return(invisible(job_result))
   }
+
+  abort_if_not_one_line("datafiles", message = c(x = glue::glue("Il y a plusieurs datafiles avec le titre `{title}`.")))
 
   if (nrow(datafiles) == 1) {
     datafile = get_datafile(datafiles[1,])

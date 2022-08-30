@@ -51,10 +51,6 @@ add_or_update_dataset <- function(title,
   datasets <- list_datasets() %>%
     filter(.data$title == .env$title)
 
-  if (nrow(datasets) > 1) {
-    abort_not_one_ligne(datasets)
-  }
-
   if (nrow(datasets) == 0) {
     result <- add_dataset(
       title = title,
@@ -73,6 +69,8 @@ add_or_update_dataset <- function(title,
     )
     return(new_dido_dataset(result))
   }
+
+  abort_if_not_one_line("datasets", message = c(x = glue::glue("Il y a plusieurs datasets avec le titre `{title}`.")))
 
   if (nrow(datasets) == 1) {
     dataset = get_dataset(datasets[1,])

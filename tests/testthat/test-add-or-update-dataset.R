@@ -82,6 +82,6 @@ test_that("check add_or_update_dataset fails when two many datasets", {
     description = "test",
     topic = "Transports",
     frequency = "unknown",
-  ), "doit contenir une ligne.")
+  ), "plusieurs datasets avec le titre")
 
 })

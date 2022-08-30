@@ -35,10 +35,6 @@ add_or_update_attachment <- function(dataset,
     list_attachments() %>%
     filter(.data[["title"]] == .env[["title"]])
 
-  if (nrow(attachments) > 1) {
-    abort_not_one_ligne(attachments)
-  }
-
   if (nrow(attachments) == 0) {
     dido_att <- add_attachment(
       dataset = dataset,
@@ -50,6 +46,8 @@ add_or_update_attachment <- function(dataset,
     )
     return(invisible(dido_att))
   }
+
+  abort_if_not_one_line("attachments", message = c(x = glue::glue("Il y a plusieurs attachements avec le titre `{title}`.")))
 
   if (nrow(attachments) == 1) {
     dido_att <- replace_attachment(attachments[1,], file_name)
