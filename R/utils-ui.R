@@ -14,8 +14,7 @@ is_string <- function(input) {
 #' the logging levels of log4j:
 #' * "debug": Fine-grained information helpful when debugging, e.g. figuring out
 #'   how `token_fetch()` is working through the registry of credential
-#'   functions. Previously, this was activated by setting an option named
-#'   "didoscalim_quiet" to `FALSE`.
+#'   functions.
 #' * "info" (default): High-level information that a typical user needs to see.
 #'   Since typical gargle usage is always indirect, i.e. gargle is called by
 #'   another package, gargle itself is very quiet. There are very few messages

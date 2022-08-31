@@ -71,7 +71,7 @@ list_env_names <- function() {
 #'
 #' @param env_name le nom de l'environnement à utiliser parmi PROD, ECOLE,
 #'   PREPROD, DEV et suivant ce que vous avez configuré. Si env_name n'est pas
-#'   passé, `set_work_env()` choisira le premier environnement configuré parmi
+#'   passé, `set_didoscalim_work_env()` choisira le premier environnement configuré parmi
 #'   DEV, PREPROD et ECOLE mais **jamais** PROD.
 #' @param quiet quand TRUE ou que l'option dido_quiet est à TRUE supprime les
 #'   messages d'information, `FALSE` par défaut
@@ -86,6 +86,7 @@ list_env_names <- function() {
 #' set_work_env()
 set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame()) {
   environments <- get("environments", envir = .didoscalim_env)
+  old_env <- get_work_env()
 
   if (exists("quiet", .envir) && !is.null(.envir$quiet)) {
     print(.envir$quiet)
@@ -127,7 +128,8 @@ set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame())
   }
 
   didoscalim_info(c(x = glue::glue("Environnement DiDo actif : {env_name}")))
-  assign("work_env", env_name, envir = .didoscalim_env)
+  options(list(didoscalim_work_env = env_name))
+  return(invisible(old_env))
 }
 
 #' Récupère l'environnement utilisé
@@ -144,8 +146,7 @@ set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame())
 #' @examples
 #' get_work_env()
 get_work_env <- function(quiet = NULL) {
-  if (!exists("work_env", envir = .didoscalim_env)) set_work_env()
-  get("work_env", envir = .didoscalim_env)
+  getOption("didoscalim_work_env", find_lowest_env())
 }
 
 #' @noRd

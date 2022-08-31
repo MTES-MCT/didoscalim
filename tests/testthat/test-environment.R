@@ -80,10 +80,10 @@ test_that("load_envs works", {
   )
   load_envs()
 
-  expect_equal(set_work_env("ECOLE"), "ECOLE")
+  expect_equal(set_work_env("ECOLE"), "DEV")
   expect_equal(get_work_env(), "ECOLE")
 
-  expect_equal(set_work_env("WITH_UNDERSCORE"), "WITH_UNDERSCORE")
+  expect_equal(set_work_env("WITH_UNDERSCORE"), "ECOLE")
   expect_equal(get_work_env(), "WITH_UNDERSCORE")
 
 })
