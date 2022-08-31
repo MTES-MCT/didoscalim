@@ -28,9 +28,11 @@ reference:
 
 - title: "Les fonctions utilitaires"
   contents:
+  - check_import_file
   - clean_metadata
   - my_organization
   - list_alerts
+  - didoscalim_verbosity
 
 - title: "Gérer votre environnement"
   contents:
@@ -43,5 +45,6 @@ reference:
 - title: "Les fonctions de bas niveau et/ou internes"
   contents:
   - dido_example
+  - didoscalim_options
 
 
