@@ -73,8 +73,6 @@ list_env_names <- function() {
 #'   PREPROD, DEV et suivant ce que vous avez configuré. Si env_name n'est pas
 #'   passé, `set_didoscalim_work_env()` choisira le premier environnement configuré parmi
 #'   DEV, PREPROD et ECOLE mais **jamais** PROD.
-#' @param quiet quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-#'   messages d'information, `FALSE` par défaut
 #'
 #' @export
 #'
@@ -94,7 +92,7 @@ set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame())
       "debug",
       didoscalim_debug(c(
         "!" = "Argument {.val quiet} is deprecated in favor of \\
-                   {.val gargle_verbosity}",
+                   {.val didoscalim_verbosity}",
         "i" = "Instead of: {.code function(..., quiet = TRUE)}",
         " " = 'Now do: {.code options(didoscalim_verbosity = "debug")}'))
     )

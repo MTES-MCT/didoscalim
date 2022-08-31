@@ -24,8 +24,6 @@
 #'   Si non précisée prend la date/heure courante (heure locale), les données
 #'   sont donc immédiatement accessibles.
 #' @param file_name le nom du fichier à charger
-#' @param quiet quand `TRUE` ou que l'option dido_quiet est à `TRUE` supprime
-#'   les messages d'information, `NULL` par défaut
 #'
 #' @return un objet `dido_job()`
 #'

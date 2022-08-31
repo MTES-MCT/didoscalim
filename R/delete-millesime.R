@@ -1,8 +1,6 @@
 #' Supprimer un millésime
 #'
 #' @inheritParams add_millesime
-#' @param quiet quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-#'   messages d'information, `NULL` par défaut
 #'
 #' @return TRUE
 #' @export

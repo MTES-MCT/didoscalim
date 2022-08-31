@@ -34,8 +34,6 @@
 #' @param caution Les précautions à prendre avec ce jeu de données. Par exemple
 #'   : "certaines données peuvent être secrétisées"
 #' @param license la licence des données. "fr-lo" par défaut
-#' @param quiet quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-#'   messages d'information, `NULL` par défaut
 #'
 #' @return un objet [dido_dataset()]. Ce dernier sert pour créer par la suite
 #'   les datafiles et les millésimes.

@@ -7,8 +7,6 @@
 #' @param file_name le nom du fichier à verser
 #' @param published la date de publication, si non précisée, prendra la date du
 #'   jour
-#' @param quiet quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-#'   messages d'information, `NULL` par défaut
 #'
 #' @return un objet `dido_attachment()`
 #' @export
