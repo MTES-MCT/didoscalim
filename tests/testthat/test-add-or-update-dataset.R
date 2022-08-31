@@ -1,14 +1,14 @@
-dataset_title <- "didoscalim ds check add_or_update_dataset works"
+dataset_title <- "didoscalim ds check add_or_update_dataset"
 
 list_datasets() %>%
-  filter(title == dataset_title) %>%
+  filter(grepl(dataset_title, title)) %>%
   purrr::pmap(~ delete_dataset(.))
 
 test_that("check add_or_update_dataset works for creation", {
   skip_unless_dev_env()
 
   dataset <- add_or_update_dataset(
-    title = dataset_title,
+    title = glue::glue("{ dataset_title } works for creation"),
     description = "test",
     topic = "Transports",
     frequency = "unknown",
@@ -25,7 +25,7 @@ test_that("check add_or_update_dataset works for update", {
   skip_unless_dev_env()
 
   dataset <- add_or_update_dataset(
-    title = dataset_title,
+    title = glue::glue("{ dataset_title } works for update"),
     description = "test",
     topic = "Transports",
     frequency = "unknown",
@@ -41,23 +41,21 @@ test_that("check add_or_update_dataset works for update", {
 test_that("check add_or_update_dataset does nothing if no change", {
   skip_unless_dev_env()
 
-  dataset <- add_or_update_dataset(
-    title = "un dataset",
+  origin <- add_or_update_dataset(
+    title = glue::glue("{dataset_title} with no change"),
     description = "test",
     topic = "Transports",
     frequency = "unknown"
   )
 
-  origin <- rlang::duplicate(dataset)
-
   dataset <- add_or_update_dataset(
-    title = "un dataset",
+    title = glue::glue("{dataset_title} with no change"),
     description = "test",
     topic = "Transports",
     frequency = "unknown"
   )
 
-  expect_equal(dataset, origin)
+  expect_equal(origin, dataset)
 })
 
 test_that("check add_or_update_dataset fails when two many datasets", {

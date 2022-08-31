@@ -38,4 +38,3 @@ test_that("check add_or_update_attachment works", {
   expect_equal(length(get_dataset(dataset)$attachments), 1)
 
 })
-
