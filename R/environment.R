@@ -182,8 +182,7 @@ check_envs <- function() {
   message <- c("Test de connexion:")
   for (e in list_env_names()) {
     set_work_env(e)
-    tryCatch(
-      {
+    tryCatch({
         me()
         message <- c(message, i = glue::glue("{e}: OK"))
       },

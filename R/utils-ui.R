@@ -68,7 +68,7 @@ abort_if_not_one_line <- function(name,
                                 message = NULL,
                                 .envir = parent.frame(),
                                 call = caller_env()) {
-  data = rlang::env_get(.envir, name)
+  data <- rlang::env_get(.envir, name)
 
   if (nrow(data) == 1) return(invisible(TRUE))
 
