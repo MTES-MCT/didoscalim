@@ -73,25 +73,22 @@ add_or_update_dataset <- function(title,
   abort_if_not_one_line("datasets", message = c(x = glue::glue("Il y a plusieurs datasets avec le titre `{title}`.")))
 
   if (nrow(datasets) == 1) {
-    dataset = get_dataset(datasets[1,])
+    dataset <- get_dataset(datasets[1,])
 
     origin <- rlang::duplicate(dataset)
 
-    if (!missing(description)) dataset$description = description
-    if (!missing(topic)) dataset$topic = topic
-    if (!missing(tags)) dataset$tags = tags
-    if (!missing(frequency)) dataset$frequency = frequency
-    if (!missing(frequency_date)) dataset$frequency_date = frequency_date
-    if (!missing(granularity)) dataset$granularity = granularity
-    if (!missing(license)) dataset$license = license
-    if (!missing(caution)) dataset$caution = caution
-    if (!missing(temporal_coverage_start)) dataset$temporal_coverage$start = temporal_coverage_start
-    if (!missing(temporal_coverage_end)) dataset$temporal_coverage$end = temporal_coverage_end
+    if (!missing(description)) dataset$description <- description
+    if (!missing(topic)) dataset$topic <- topic
+    if (!missing(tags)) dataset$tags <- tags
+    if (!missing(frequency)) dataset$frequency <- frequency
+    if (!missing(frequency_date)) dataset$frequency_date <- frequency_date
+    if (!missing(granularity)) dataset$granularity <- granularity
+    if (!missing(license)) dataset$license <- license
+    if (!missing(caution)) dataset$caution <- caution
+    if (!missing(temporal_coverage_start)) dataset$temporal_coverage$start <- temporal_coverage_start
+    if (!missing(temporal_coverage_end)) dataset$temporal_coverage$end <- temporal_coverage_end
 
     if (!identical(origin, dataset)) dataset <- update_dataset(dataset)
-
-    # FIXME : https://gitlab-forge.din.developpement-durable.gouv.fr/cgdd/sdsed-bun/dido/api/-/issues/75
-    dataset = get_dataset(dataset)
 
     new_dido_dataset(dataset)
   }

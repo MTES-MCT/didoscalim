@@ -51,9 +51,9 @@ add_or_update_attachment <- function(dataset,
 
   if (nrow(attachments) == 1) {
     dido_att <- replace_attachment(attachments[1,], file_name)
-    attachment = get_attachment(attachments[1,])
-    if (!missing(description)) attachment$description = description
-    if (!missing(published)) attachment$published = published
+    attachment <- get_attachment(attachments[1,])
+    if (!missing(description)) attachment$description <- description
+    if (!missing(published)) attachment$published <- published
     attachment <- update_attachment(attachment)
 
     return(invisible(attachment))

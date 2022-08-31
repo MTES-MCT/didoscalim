@@ -74,7 +74,7 @@ add_or_update_datafile <- function(dataset,
   abort_if_not_one_line("datafiles", message = c(x = glue::glue("Il y a plusieurs datafiles avec le titre `{title}`.")))
 
   if (nrow(datafiles) == 1) {
-    datafile = get_datafile(datafiles[1,])
+    datafile <- get_datafile(datafiles[1, ])
 
     millesimes <- datafile %>% list_millesimes()
 
@@ -86,12 +86,12 @@ add_or_update_datafile <- function(dataset,
        date_diffusion = date_diffusion
     )
     # update the datafile
-    if (!missing(description)) datafile$description = description
-    if (!missing(published)) datafile$published = published
-    if (!missing(legal_notice)) datafile$legal_notice = legal_notice
-    if (!missing(date_diffusion)) datafile$date_diffusion = date_diffusion
-    if (!missing(temporal_coverage_start)) datafile$temporal_coverage$start = temporal_coverage_start
-    if (!missing(temporal_coverage_end)) datafile$temporal_coverage$end = temporal_coverage_end
+    if (!missing(description)) datafile$description <- description
+    if (!missing(published)) datafile$published <- published
+    if (!missing(legal_notice)) datafile$legal_notice <- legal_notice
+    if (!missing(date_diffusion)) datafile$date_diffusion <- date_diffusion
+    if (!missing(temporal_coverage_start)) datafile$temporal_coverage$start <- temporal_coverage_start
+    if (!missing(temporal_coverage_end)) datafile$temporal_coverage$end <- temporal_coverage_end
     update_datafile(datafile)
 
     # removed unwanted millesime
