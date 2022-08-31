@@ -101,6 +101,5 @@ add_dataset <- function(title,
   ds <- dido_api(method = "POST", path = "/datasets", body = body)
 
   didoscalim_info(glue::glue("dataset `{title}` créé"))
-
-  new_dido_dataset(ds)
+  get_dataset(ds$id)
 }
