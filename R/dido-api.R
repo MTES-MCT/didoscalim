@@ -52,7 +52,13 @@ dido_api <- function(method, path, body, query_params = list(), headers = c(), a
   }
 
   if (httr::status_code(response) >= 400) {
-    rlang::abort("api_error", message = extract_error(response))
+    didoscalim_abort(
+      extract_error(response),
+      class = c(
+        "api_error",
+        glue::glue("http_error_{httr::status_code(response)}")
+      )
+    )
   }
   content <- httr::content(response, as = "text", encoding = "UTF-8")
 
