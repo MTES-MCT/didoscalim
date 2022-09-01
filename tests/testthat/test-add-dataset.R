@@ -55,16 +55,15 @@ test_that("add_dataset complete works", {
 test_that("add_dataset fails correctly", {
   skip_unless_dev_env()
 
-  err <- rlang::catch_cnd(
+  err <- expect_error(
     add_dataset(
       title = "didoscalim ds add_dataset fails correctly",
       description = "test",
       topic = "Transports",
       frequency = "annual"
-    )
+    ),
+    class = "api_error"
   )
-
-  expect_s3_class(err, "api_error")
   expect_match(err$message, "Erreur de validation")
 })
 
