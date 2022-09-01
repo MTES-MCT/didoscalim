@@ -1,6 +1,5 @@
 test_that("check list_datasets errors on missing param", {
-  err <- rlang::catch_cnd(get_dataset())
-  expect_s3_class(err, "error_bad_argument")
+  expect_error(get_dataset(), class = "error_bad_argument")
 })
 
 test_that("check list_datasets works", {
@@ -13,8 +12,6 @@ test_that("check list_datasets works", {
     frequency = "unknown",
   )
 
-  ds <- list_datasets()
-  expect_s3_class(ds, "tbl")
-
+  ds <- expect_s3_class(list_datasets(), "tbl")
   expect_true('id' %in% names(ds))
 })
