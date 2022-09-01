@@ -54,8 +54,18 @@ add_millesime <- function(datafile,
   url <- glue::glue("/datasets/{id}/datafiles/{rid}")
   body <- jsonlite::toJSON(payload, pretty = TRUE, auto_unbox = TRUE, na = "null")
 
-  job <- dido_api(method = "POST", path = url, body = body)
-  job_result <- dido_job(wait_for_job(job$id))
+  tryCatch({
+    job <- dido_api(method = "POST", path = url, body = body)
+    job_result <- dido_job(wait_for_job(job$id))
+  },
+  error = function(cnd) {
+    if (grepl("millésime.*existe déjà", cnd$message)) {
+      class <- c("millesime_exists", class(cnd))
+      abort(cnd$message, class = class, call = caller_env())
+    } else {
+      didoscalim_abort(parent = cnd)
+    }
+  })
 
   didoscalim_info(glue::glue(
     "\t* fichier intégré",

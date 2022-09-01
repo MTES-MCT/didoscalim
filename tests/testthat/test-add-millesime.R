@@ -36,6 +36,47 @@ test_that("add millesime works", {
   expect_equal(df$millesimes, 2)
 })
 
+test_that("add_millesime with errors", {
+  skip_unless_dev_env()
+
+  millesime <- "2000-01"
+
+  list_datasets() %>%
+    filter(grepl("didoscalim ds add millesime works", title)) %>%
+    purrr::pwalk(~ delete_dataset(.))
+
+  dataset <- add_dataset(
+    title = "didoscalim ds add millesime exists",
+    description = "test",
+    topic = "Transports",
+    frequency = "unknown"
+  )
+
+  datafile <- add_datafile(
+    dataset = dataset,
+    title = "didoscalim df add millesime exists",
+    description = "description",
+    file_name = "dido-csv-simple.csv",
+    millesime = millesime,
+  )
+
+  expect_error(
+    add_millesime(
+      datafile = datafile,
+      millesime = millesime,
+      file_name = "dido-csv-simple.csv"
+    ),
+    class = "millesime_exists"
+  )
+
+  expect_error(
+    add_millesime(
+      datafile = datafile,
+    ),
+    class = "error_bad_argument"
+  )
+})
+
 test_that("add_millesime errors on missing params", {
   expect_error(add_millesime(datafile = new_dido_datafile(list())), "obligatoire")
   expect_error(add_millesime(file_name = "dido-csv-simple.csv"), "obligatoire")
