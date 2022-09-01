@@ -1,9 +1,13 @@
 #' Ajoute ou modifie un datafile
 #'
+#' @description
 #' met à jour le datafile avec le même titre s'il existe sinon ajoute un datafile
 #'
 #' @inheritParams add_datafile
 #' @param keep_old_millesimes nombre d'ancien millésimes à conserver, les autres sont supprimés.
+#' @param on_existing_millesime skip/fail : action à faire quand le millésime existe déjà. Peut-être :
+#'   * "skip" : retourne immédiatement après avoir affiché un message
+#'   * "fail" : lève une exception de class `existing_millesime`
 #'
 #' @return un objet `dido_job()`
 #'
@@ -49,8 +53,8 @@ add_or_update_datafile <- function(dataset,
                                    legal_notice = "SDES",
                                    date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                    keep_old_millesimes = Inf,
+                                   on_existing_millesime = "skip",
                                    quiet = NULL) {
-
   datafiles <- dataset %>%
     list_datafiles() %>%
     filter(.data$title == .env$title)
@@ -78,13 +82,38 @@ add_or_update_datafile <- function(dataset,
 
     millesimes <- datafile %>% list_millesimes()
 
-    # add the millesime
-    job_result <- add_millesime(
-       datafile = datafile,
-       file_name = dido_example("augmente.csv"),
-       millesime = millesime,
-       date_diffusion = date_diffusion
+    job_result <- NULL
+    try_fetch(
+      {
+        # add the millesime
+        job_result <- add_millesime(
+          datafile = datafile,
+          file_name = dido_example("augmente.csv"),
+          millesime = millesime,
+          date_diffusion = date_diffusion
+        )
+      },
+      millesime_exists = function(cnd) {
+        msg <- (c("Le millesime existe déjà :",
+          i = glue::glue("dataset: {dataset$title}"),
+          i = glue::glue("datafile: {datafile$title}"),
+          i = glue::glue("millesime: {millesime}")
+        ))
+
+        if (on_existing_millesime == "skip") {
+          with_didoscalim_verbosity("info", {
+            didoscalim_info(msg)
+          })
+          return(NULL)
+        } else if (on_existing_millesime == "fail") {
+          didoscalim_abort(cnd$message, class = class(cnd), call = caller_env())
+        }
+      }
     )
+    if (is.null(job_result)) {
+      return(NULL)
+    }
+
     # update the datafile
     if (!missing(description)) datafile$description <- description
     if (!missing(published)) datafile$published <- published
@@ -104,5 +133,7 @@ add_or_update_datafile <- function(dataset,
 
 
 find_millesimes_to_delete <- function(millesimes, keep_last_n) {
-  millesimes %>% dplyr::arrange(millesime) %>% utils::head(nrow(millesimes)-keep_last_n)
+  millesimes %>%
+    dplyr::arrange(millesime) %>%
+    utils::head(nrow(millesimes) - keep_last_n)
 }

@@ -1,9 +1,5 @@
-dataset_title <- "didoscalim ds check add_or_update_datafile works"
-datafile_title <- "didoscalim df check add_or_update_datafile works"
-
-list_datasets() %>%
-  filter(title == dataset_title) %>%
-  purrr::pmap(~delete_dataset(.))
+dataset_title <- "didoscalim ds check add_or_update_datafile"
+datafile_title <- "didoscalim df check add_or_update_datafile"
 
 test_that("find_millesimes_to_delete works", {
   millesimes <- tibble(millesime = c("2020-01", "2020-02"))
@@ -31,6 +27,10 @@ test_that("find_millesimes_to_delete works", {
 
 test_that("check add_or_update_datafile works", {
   skip_unless_dev_env()
+
+  list_datasets() %>%
+    filter(title == dataset_title) %>%
+    purrr::pwalk(~delete_dataset(.))
 
   dataset <- add_or_update_dataset(
     title = dataset_title,
@@ -76,5 +76,52 @@ test_that("check add_or_update_datafile works", {
   expect_equal(datafile$legal_notice, "something")
   expect_equal(datafile$temporal_coverage$start, "2000-01-01")
   expect_equal(datafile$temporal_coverage$end, "2002-12-31")
+})
+
+test_that("check add_or_update_datafile when millesime exists", {
+  skip_unless_dev_env()
+
+  list_datasets() %>%
+    filter(title == dataset_title) %>%
+    purrr::pwalk(~delete_dataset(.))
+
+  dataset <- add_or_update_dataset(
+    title = dataset_title,
+    description = "Description des données statistiques",
+    topic = "Transports",
+    frequency = "unknown"
+  )
+
+  add_or_update_datafile(
+    dataset,
+    title = datafile_title,
+    description = "Un fichier de données de test",
+    file_name = dido_example("augmente.csv"),
+    millesime = "2001-01",
+  )
+
+  expect_error(
+    add_or_update_datafile(
+      dataset,
+      title = datafile_title,
+      description = "Un fichier de données de test",
+      file_name = dido_example("augmente.csv"),
+      millesime = "2001-01",
+      on_existing_millesime = "fail"
+    ),
+    class = "millesime_exists"
+  )
+
+  add_or_update_datafile(
+    dataset,
+    title = datafile_title,
+    description = "Un fichier de données de test",
+    file_name = dido_example("augmente.csv"),
+    millesime = "2001-01",
+    on_existing_millesime = "skip"
+  ) %>%
+    expect_equal(NULL, info = "should return NULL") %>%
+    expect_message("existe")
+
 })
 
