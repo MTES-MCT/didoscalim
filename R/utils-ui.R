@@ -91,13 +91,13 @@ abort_if_not_one_line <- function(name,
 }
 
 
-didoscalim_abort <- function(message, ...,
-                         class = NULL,
-                         .envir = parent.frame(),
-                         call = caller_env()) {
-  cli::cli_abort(
-    message,
-    class = c(class, "didoscalim_error"),
+didoscalim_abort <- function(message = NULL, ...,
+                             class = NULL,
+                             .envir = parent.frame(),
+                             call = caller_env()) {
+  abort(
+    message = message,
+    class =  unique(c(class, "didoscalim_error")),
     .envir = .envir,
     call = call,
     ...
