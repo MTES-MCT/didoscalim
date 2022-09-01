@@ -11,8 +11,7 @@ test_that("check_csv return error on txt", {
 
   id <- dido_upload_file(paste0(test_path(), "/file-upload.txt"))
 
-  err <- rlang::catch_cnd(check_csv(id))
-  expect_s3_class(err, "invalid_file")
+  expect_error(check_csv(id), class = "invalid_file")
 })
 
 test_that("check_csv works with valid file", {
@@ -20,8 +19,7 @@ test_that("check_csv works with valid file", {
 
   id <- dido_upload_file(paste0(test_path(), "/dido-csv-valid.csv"))
 
-  result <- check_csv(id)
-  expect_true(result)
+  expect_true(check_csv(id))
 })
 
 test_that("check_csv fails on errors", {
@@ -29,13 +27,11 @@ test_that("check_csv fails on errors", {
 
   id <- dido_upload_file(paste0(test_path(), "/dido-csv-with-error.csv"))
 
-  err <- rlang::catch_cnd(check_csv(id))
-  expect_s3_class(err, "invalid_file")
+  expect_error(check_csv(id), class = "invalid_file")
 })
 
 test_that("check_csv works on warnings", {
   skip_unless_dev_env()
-
   withr::local_options(list(didoscalim_verbosity = "info"))
 
   id <- dido_upload_file(paste0(test_path(), "/dido-csv-with-warning.csv"))
@@ -44,13 +40,10 @@ test_that("check_csv works on warnings", {
 })
 
 test_that("dido_upload_file fails on missing param", {
-  err <- rlang::catch_cnd(dido_upload_file())
-
-  expect_s3_class(err, "error_bad_argument")
+  err <- expect_error(dido_upload_file(), class = "error_bad_argument")
   expect_match(err$message, "`file_name` est obligatoire et ne peut être null")
 })
 
 test_that("dido_upload_file fails on missing file", {
-  err <- rlang::catch_cnd(dido_upload_file(paste0(test_path(), "/no_such_file.csv")))
-  expect_s3_class(err, "no_such_file")
+  expect_error(dido_upload_file(paste0(test_path(), "/no_such_file.csv")), class = "no_such_file")
 })
