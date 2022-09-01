@@ -1,0 +1,60 @@
+---
+title: "Valider un fichier de données à importer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Valider un fichier de données à importer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(didoscalim)
+library(magrittr)
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+```
+
+```{r, echo=FALSE, results = FALSE, message = FALSE}
+# bugfix pour check()
+library(stringr)
+library(purrr, warn.conflicts = FALSE)
+list_datasets() %>% 
+  filter(str_detect(title, "Un jeu.*validation")) %>% 
+  pmap(~ delete_dataset(.))
+```
+
+Ce document a pour objectif de vous aider à valider un fichier de données.
+
+Votre fichier peut contenir des centaines de milliers de lignes et des dizaines
+de colonnes dont de type `COG`. Avant tout chargement e
+
+
+## Créer un dataset
+
+Créer un dataset avec les caractéristiques suivantes :
+
+```{r}
+dataset <- add_dataset(
+  title = "Un jeu de données de validation",
+  description = "test",
+  topic = "Transports",
+  frequency = "unknown"
+)
+```
+
+### créer un datafile dans ce dataset
+
+```{r}
+add_datafile(
+  dataset = dataset,
+  file_name = "augmente.csv",
+  title = "Données de consommation fictive – chaleur et froid – année 2020",
+  description = "Consommations annuelles et nombre de points de livraison"
+)
+```
