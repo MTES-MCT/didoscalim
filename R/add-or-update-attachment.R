@@ -31,6 +31,8 @@ add_or_update_attachment <- function(dataset,
                                      file_name,
                                      published = format(Sys.time(), "%Y-%m-%d"),
                                      quiet = NULL) {
+  check_mandatory_arguments("dataset", "title", "description", "file_name")
+
   attachments <- dataset %>%
     list_attachments() %>%
     filter(.data[["title"]] == .env[["title"]])

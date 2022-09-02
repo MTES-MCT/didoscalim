@@ -68,8 +68,8 @@ test_that("add_dataset fails correctly", {
 })
 
 test_that("add_dataset errors on missing param", {
-  expect_error(add_dataset(description = "test", topic = "Transports", frequency = "unknown"), "is missing")
-  expect_error(add_dataset(title = "test", topic = "Transports", frequency = "unknown"), "is missing")
-  expect_error(add_dataset(title = "test", description = "test", frequency = "unknown"), "is missing")
-  expect_error(add_dataset(title = "test", description = "test", topic = "Transports"), "is missing")
+  expect_error(add_dataset(description = "test", topic = "Transports", frequency = "unknown"), class = "error_bad_argument")
+  expect_error(add_dataset(title = "test", topic = "Transports", frequency = "unknown"), class = "error_bad_argument")
+  expect_error(add_dataset(title = "test", description = "test", frequency = "unknown"), class = "error_bad_argument")
+  expect_error(add_dataset(title = "test", description = "test", topic = "Transports"), class = "error_bad_argument")
 })

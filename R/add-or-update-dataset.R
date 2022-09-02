@@ -48,6 +48,7 @@ add_or_update_dataset <- function(title,
                                   temporal_coverage_end = NULL,
                                   caution = NULL,
                                   quiet = NULL) {
+  check_mandatory_arguments("title", "description", "topic", "frequency")
   datasets <- list_datasets() %>%
     filter(.data$title == .env$title)
 

@@ -53,8 +53,11 @@ add_or_update_datafile <- function(dataset,
                                    legal_notice = "SDES",
                                    date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                    keep_old_millesimes = Inf,
-                                   on_existing_millesime = "skip",
+                                   on_existing_millesime = "fail",
                                    quiet = NULL) {
+  check_mandatory_arguments("dataset", "title", "description")
+  rlang::arg_match0(on_existing_millesime, c("skip", "fail"))
+
   datafiles <- dataset %>%
     list_datafiles() %>%
     filter(.data$title == .env$title)

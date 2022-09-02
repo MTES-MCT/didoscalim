@@ -58,7 +58,10 @@ dido_dataset <- function(title,
                          license = "fr-lo",
                          temporal_coverage_start = NULL,
                          temporal_coverage_end = NULL,
-                         caution = NULL) {
+                         caution = NULL,
+                         call = caller_env()) {
+  check_mandatory_arguments("title", "description", "topic", "frequency", call = call)
+
   payload <- list(
     "title" = title,
     "description" = description,

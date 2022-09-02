@@ -52,7 +52,10 @@ dido_datafile <- function(dataset,
                           temporal_coverage_start = NULL,
                           temporal_coverage_end = NULL,
                           legal_notice = "SDES",
-                          date_diffusion = format(Sys.time(), "%Y-%m-%dT00:00:00.000")) {
+                          date_diffusion = format(Sys.time(), "%Y-%m-%dT00:00:00.000"),
+                          call = caller_env()) {
+  check_mandatory_arguments("dataset", "title", "description")
+
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
   payload <- list(
     title = title,

@@ -69,9 +69,9 @@ test_that("create datafiles warns when missing param", {
     frequency = "unknown"
   )
 
-  expect_error(add_datafile(title = "test", description = "test", file_name = "test.csv"), "is missing")
-  expect_error(add_datafile(dataset = "61f8033c404a870027fb3af4", description = "test", file_name = "test.csv"), "is missing")
-  expect_error(add_datafile(dataset = dataset, description = "test", file_name = "test.csv"), "is missing")
-  expect_error(add_datafile(dataset = dataset, title = "test", file_name = "test.csv"), "is missing")
-  expect_error(add_datafile(dataset = dataset, title = "test", description = "test"), "est obligatoire")
+  expect_error(add_datafile(title = "test", description = "test", file_name = "test.csv"), class = "error_bad_argument")
+  expect_error(add_datafile(dataset = "61f8033c404a870027fb3af4", description = "test", file_name = "test.csv"), class = "error_bad_argument")
+  expect_error(add_datafile(dataset = dataset, description = "test", file_name = "test.csv"), class = "error_bad_argument")
+  expect_error(add_datafile(dataset = dataset, title = "test", file_name = "test.csv"), class = "error_bad_argument")
+  expect_error(add_datafile(dataset = dataset, title = "test", description = "test"), class = "error_bad_argument")
 })

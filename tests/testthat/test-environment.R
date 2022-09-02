@@ -119,8 +119,8 @@ test_that("load_envs errors when environment doesn't exist", {
         ),
         code = {
           load_envs()
-          err <- rlang::catch_cnd(set_work_env("PROD"))
-          expect_s3_class(err, "env_error") # L'environnement PROD n'existe pas.")
+          # L'environnement PROD n'existe pas."
+          expect_error(set_work_env("PROD"), class = "env_error")
         }
       )
     }
