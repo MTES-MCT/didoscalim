@@ -2,7 +2,7 @@ dataset_title <- "didoscalim ds check add_or_update_dataset"
 
 list_datasets() %>%
   filter(grepl(dataset_title, title)) %>%
-  purrr::pmap(~ delete_dataset(.))
+  purrr::pwalk(~ delete_dataset(.))
 
 test_that("check add_or_update_dataset works for creation", {
   skip_unless_dev_env()

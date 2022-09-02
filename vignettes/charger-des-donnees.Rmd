@@ -26,7 +26,7 @@ library(stringr)
 library(purrr, warn.conflicts = FALSE)
 list_datasets() %>% 
   filter(str_detect(title, "Données.*fictive")) %>% 
-  pmap(~ delete_dataset(.))
+  pwalk(~ delete_dataset(.))
 ```
 
 

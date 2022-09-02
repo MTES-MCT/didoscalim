@@ -26,7 +26,7 @@ library(stringr)
 library(purrr, warn.conflicts = FALSE)
 list_datasets() %>% 
   filter(str_detect(title, "Un jeu.*validation")) %>% 
-  pmap(~ delete_dataset(.))
+  pwalk(~ delete_dataset(.))
 ```
 
 Ce document a pour objectif de vous aider à valider un fichier de données.
