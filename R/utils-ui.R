@@ -42,7 +42,7 @@ didoscalim_verbosity <- function() {
 #'
 #' Des méthodes liées à la gestion de la verbosité et à la journalisation
 #'
-#' @name verbosity
+#' @name didoscalim_log
 #'
 #' @export
 #' @section `local_didoscalim_verbosity`:
@@ -51,7 +51,7 @@ local_didoscalim_verbosity <- function(level, env = parent.frame()) {
   withr::local_options(list(didoscalim_verbosity = level), .local_envir = env)
 }
 
-#' @rdname verbosity
+#' @rdname didoscalim_log
 #'
 #' @export
 #' @section `with_didoscalim_verbosity`:
@@ -60,7 +60,7 @@ with_didoscalim_verbosity <- function(level, code) {
   withr::with_options(list(didoscalim_verbosity = level), code = code)
 }
 
-#' @rdname verbosity
+#' @rdname didoscalim_log
 #'
 #' @export
 #' @section `didoscalim_debug()`:
@@ -71,7 +71,7 @@ didoscalim_debug <- function(text, .envir = parent.frame()) {
   }
 }
 
-#' @rdname verbosity
+#' @rdname didoscalim_log
 #'
 #' @export
 #' @section `didoscalim_info()`:
@@ -82,7 +82,7 @@ didoscalim_info <- function(text, .envir = parent.frame()) {
   }
 }
 
-#' @rdname verbosity
+#' @rdname didoscalim_log
 #'
 #' @export
 #' @section `didoscalim_abort`:

@@ -10,6 +10,7 @@ License: CeCILL (>= 2.1)
 URL: https://mtes-mct.github.io/didoscalim/, https://github.com/MTES-MCT/didoscalim
 BugReports: https://github.com/MTES-MCT/didoscalim/issues
 Imports: 
+    cli,
     dplyr,
     glue,
     httr,
