@@ -31,8 +31,8 @@ library(didoscalim)
 
 ## Exemple
 
-Générer un fichier CSV augmenté à partir d’un fichier [CSV
-normal](articles/exemple.csv) et le charger dans un dataset.
+Générer un fichier CSV augmenté à partir d’un fichier CSV normal et le
+charger dans un dataset.
 
 ``` r
 library(didoscalim)
@@ -54,7 +54,7 @@ dido_read_delim(dido_example("exemple.csv")) %>%
 L’intégrer dans DiDo :
 
 ``` r
-dataset <- add_dataset(
+dataset <- add_or_update_dataset(
   title = "Un jeu de données fictif",
   description = "Un jeu de données énergie fictif",
   topic = "Transports",
@@ -64,7 +64,7 @@ dataset <- add_dataset(
   frequency_date = "2021-10-10"
 )
 
-add_datafile(
+add_or_update_datafile(
   dataset = dataset,
   file_name = temp_file,
   title = "Données de consommation fictive – gaz – année 2020",
@@ -78,7 +78,7 @@ add_datafile(
 ## Configuration
 
 La configuration de didoscalim se fait dans votre .Renviron. Vous
-trouverez la documentation nécessaire dansla vignette [utiliser les
+trouverez la documentation nécessaire dans la vignette [utiliser les
 environnements](articles/les-environnements.html)
 
 ## Documentation
@@ -87,27 +87,33 @@ Vous pouvez trouver l’ensemble de la documentation sur [la page du
 projet](https://mtes-mct.github.io/didoscalim/) et en particuler :
 
 -   [comment générer un fichier augmenté](articles/csv-augmente.html)
--   [comment charger des données dans
-    DiDo](articles/charger-des-donnees.html)
+-   [comment charger et/ou mettre à jour des données dans
+    DiDo](articles/charger-et-mettre-a-jour-des-donnees.html)
 -   [utiliser les environnements](articles/les-environnements.html)
 
 ## Pour les développeurs
 
 Aant de publier une version assurez-vous que `check()` fonctionne
 
-    check()
+``` r
+check()
+```
 
 Pour gagner du temps vous pouvez lancer séparément les tests unitaires
 et de couverture :
 
-    library(devtools)
-    test()
-    library(covr)
-    report()
+``` r
+library(devtools)
+test()
+library(covr)
+report()
+```
 
 Ainsi que les exemples :
 
-    run_examples()
+``` r
+run_examples()
+```
 
 ### Les tests
 
@@ -130,7 +136,7 @@ devtools::build_vignettes()
 devtools::build_site()
 ```
 
-Évidemment lancer un \`R CMD check()
+Évidemment lancer un `R CMD check()`
 
 Et quand vous êtes satisfait, videz la base de test, chargez les données
 de base en lançant `populate.R` puis la commande qui publiera le site

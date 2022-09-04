@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 resource_files:
-  - ../inst/extdata/exemple.csv
+  - exemple.csv
   - resultat.csv
 ---
 
@@ -38,11 +38,11 @@ DiDo utilise un csv augmenté avec 4 lignes d'entêtes :
 ```
 
 Le [site de documentation de
-l'API](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/)
+l'API](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dido/api/)
 propose une documentation plus complète sur [le csv
-augmenté](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/)
+augmenté](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dido/api/040-csvfile/)
 ainsi que sur [la liste des
-types](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/).
+types](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dido/api/210-headers/).
 
 ## Générer un CSV augmenté.
 
@@ -63,7 +63,7 @@ exemple utilisé](exemple.csv).
 En premier lieu, charger le fichier dans un dataframe avec la commande `dido_read_delim()`.
 
 ```{r}
-data <- dido_read_delim(dido_example("exemple.csv"))
+data <- dido_read_delim("exemple.csv")
 knitr::kable(head(data, n = 5))
 ```
 

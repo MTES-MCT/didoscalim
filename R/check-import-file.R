@@ -7,6 +7,7 @@
 #' 1. créé un jeu de données avec un nom aléatoire
 #' 2. ajoute le fichier de données
 #' 3. supprime le jeu de données
+#' 4. affiche les erreurs rencontrées s'il y en a
 #'
 #' **L'import de test ne se fera jamais sur l'environnement de production** mais
 #' sur un des environnments DEV, PREPROD ou ECOLE. Si aucun de ces
@@ -36,6 +37,10 @@ check_import_file <- function(file_name) {
                    title = "titre 2",
                    description = "description 2",
                    file_name = file_name)
+    local_didoscalim_verbosity("info")
+    didoscalim_info(c(
+        "!" = glue::glue("Pas d'erreur dans le fichier `{file_name}`")
+      ))
       return(TRUE)
     },
     error = function(error) {

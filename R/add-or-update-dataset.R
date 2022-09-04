@@ -6,7 +6,7 @@
 #' @inheritParams add_dataset
 #'
 #' @return un objet [dido_dataset()]. Ce dernier sert pour créer par la suite
-#'   les datafiles et les millésimes.
+#'   les datafiles, les millésimes et les attachments
 #'
 #' @family dataset
 #'

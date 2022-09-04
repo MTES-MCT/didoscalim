@@ -2,7 +2,7 @@
 title: "Charger et mettre à jour des données"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Charger et mettre à  jour des données}
+  %\VignetteIndexEntry{Charger et mettre à jour des données}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -29,9 +29,10 @@ list_datasets() %>%
   pwalk(~ delete_dataset(.))
 ```
 
-Ce tutorial explique comment utiliser les fonctions `add_or_update_*` qui
-permettent, comme leur nom l'indique, de mettre à jour un objet existant et s'il
-n'existe pas de le créer.
+Ce tutorial explique comment utiliser les fonctions `add_or_update_dataset()`,
+`add_or_update_datafile()` et `add_or_update_attachment()` qui permettent, comme
+leur nom l'indique, de mettre à jour un objet existant et s'il n'existe pas de
+le créer.
 
 Un objet est identifié par son titre (et son parent pour les fichiers de données
 et les fichiers joints), cela a plusieurs conséquences :
@@ -40,7 +41,7 @@ et les fichiers joints), cela a plusieurs conséquences :
 fichiers de données/fichiers annexes avec le même nom **dans un même jeu de
 données**.
 2. il n'est pas possible de modifier le titre d'un objet (pour cela vous pouvez
-utiliser `update_datafile()`).
+utiliser `update_dataset()`, `update_datafile()`, `update_attachment()`).
 
 Toutes ces fonctions vont chercher un objet **du même type** avec **le même
 titre** puis :
@@ -131,6 +132,10 @@ Le paramètre `keep_old_millesimes` permet d'indiquer que le méthode doit
 conserver 0 anciens millésimes, par conséquent elle va supprimer tous les
 anciens millésimes.
 
+Vous pouvez également passer l'argument `check_file_date` à `TRUE`, la méthode
+vérifiera si le fichier est plus récent que la dernière modification du datafile
+et si ça n'est pas le cas retournera sans réaliser la mise à jour.
+
 ### Réaliser les mises à jour
 
 La procédure est la suivante :
@@ -173,7 +178,7 @@ add_or_update_datafile(
   temporal_coverage_start = temporal_coverage_start,
   temporal_coverage_end = temporal_coverage_end,
   millesime = millesime,
-  keep_old_millesimes = 0
+  keep_old_millesimes = 1
 )
 
 add_or_update_datafile(
@@ -203,11 +208,12 @@ précisée.
 Cela donne le code final suivant que vous pouvez lancer tous les mois :
 
 ```{r}
-library(lubridate)
+library(lubridate, warn.conflicts = FALSE)
 
 # prend la date du dernier jour du mois précédent
 temporal_coverage_end <- ceiling_date(Sys.Date() %m-% months(1), 'month') %m-% days(1)
 # prend la date du 9eme jour après le 1er du mois en cours
+# cette implémentation est naïve, attention aux jours non travaillés...
 frequency_date <- ceiling_date(Sys.Date(), 'month') + days(9)
 # cette variable n'est pas indispensable
 millesime = format(Sys.time(), "%Y-%m")
@@ -232,8 +238,8 @@ add_or_update_datafile(
   file_name = "augmente.csv",
   temporal_coverage_start = temporal_coverage_start,
   temporal_coverage_end = temporal_coverage_end,
-  millesime = millesime,  
-  keep_old_millesimes = 0
+  millesime = millesime,
+  keep_old_millesimes = 1
 )
 
 add_or_update_datafile(
@@ -244,7 +250,7 @@ add_or_update_datafile(
   temporal_coverage_start = temporal_coverage_start,
   temporal_coverage_end = temporal_coverage_end,
   millesime = millesime,
-  keep_old_millesimes = 0
+  keep_old_millesimes = 1
 )
 ```
 ### quelques conseils
