@@ -91,7 +91,7 @@ add_or_update_datafile <- function(dataset,
         # add the millesime
         job_result <- add_millesime(
           datafile = datafile,
-          file_name = dido_example("augmente.csv"),
+          file_name = file_name,
           millesime = millesime,
           date_diffusion = date_diffusion
         )

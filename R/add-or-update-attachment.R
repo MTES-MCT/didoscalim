@@ -42,7 +42,7 @@ add_or_update_attachment <- function(dataset,
       dataset = dataset,
       title = title,
       description = description,
-      file_name = dido_example("attachment.txt"),
+      file_name = file_name,
       published = published,
       quiet = quiet
     )
