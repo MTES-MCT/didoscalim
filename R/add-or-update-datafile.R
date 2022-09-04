@@ -8,8 +8,11 @@
 #' @param on_existing_millesime skip/fail : action à faire quand le millésime existe déjà. Peut-être :
 #'   * "skip" : retourne immédiatement après avoir affiché un message
 #'   * "fail" : lève une exception de class `existing_millesime`
+#' @param check_file_date TRUE/FALSE, Si TRUE met à jour le datafile uniquement
+#'   si le fichier est plus récent que le last_modified du datafile
 #'
-#' @return un objet `dido_job()`
+#' @return un objet `dido_job()` ou `NULL` si aucune création/mise à jour
+#'   n'a eu lieu
 #'
 #' @family datafile
 #'
@@ -54,6 +57,7 @@ add_or_update_datafile <- function(dataset,
                                    date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                    keep_old_millesimes = Inf,
                                    on_existing_millesime = "fail",
+                                   check_file_date = FALSE,
                                    quiet = NULL) {
   check_mandatory_arguments("dataset", "title", "description")
   rlang::arg_match0(on_existing_millesime, c("skip", "fail"))
@@ -82,6 +86,12 @@ add_or_update_datafile <- function(dataset,
 
   if (nrow(datafiles) == 1) {
     datafile <- get_datafile(datafiles[1, ])
+
+    if (check_file_date) {
+      datafile_last_modified <- lubridate::as_datetime(datafile$last_modified)
+      file_mtime <- lubridate::as_datetime(file.info(file_name)$mtime)
+      if (file_mtime < datafile_last_modified) return(NULL)
+    }
 
     millesimes <- datafile %>% list_millesimes()
 
