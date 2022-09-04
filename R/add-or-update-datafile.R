@@ -143,6 +143,6 @@ add_or_update_datafile <- function(dataset,
 
 find_millesimes_to_delete <- function(millesimes, keep_last_n) {
   millesimes %>%
-    dplyr::arrange(millesime) %>%
+    dplyr::arrange(.data$millesime) %>%
     utils::head(nrow(millesimes) - keep_last_n)
 }
