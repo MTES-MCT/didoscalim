@@ -44,7 +44,8 @@ reference:
 
 - title: "Les fonctions de bas niveau et/ou internes"
   contents:
+  - didoscalim_log
   - dido_example
-  - didoscalim_options
+
 
 
