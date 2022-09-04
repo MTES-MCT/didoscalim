@@ -12,7 +12,7 @@
 #' sur un des environnments DEV, PREPROD ou ECOLE. Si aucun de ces
 #' environnements n'est configuré, la fonction remonte une erreur
 #'
-#' @param file_name
+#' @param file_name le fichier a valider
 #'
 #' @return TRUE si l'import s'est bien passé, FALSE sinon
 #' @export
