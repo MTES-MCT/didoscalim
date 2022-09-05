@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -42,8 +42,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -72,7 +74,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Charger des données</h1>
             
       
@@ -84,12 +86,19 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>Cette documentation est obsolète, référez-vous à la vignette <a href="charger-et-mettre-a-jour-des-donnees.html">charger et mettre à
+jour des données</a>.</p>
 <div class="section level2">
 <h2 id="comment-utiliser-didoscalim">Comment utiliser didoscalim<a class="anchor" aria-label="anchor" href="#comment-utiliser-didoscalim"></a>
 </h2>
-<p>Afin d’éviter les erreurs de manipulation, il est conseillé de préparer ses scripts de chargement sur l’environnement <code>ECOLE</code> et de les passer après sur <code>PROD</code>. Vous trouverez plus d’info dans <a href="les-environnements.html">la vignette sur les environnements</a>.</p>
+<p>Afin d’éviter les erreurs de manipulation, il est conseillé de
+préparer ses scripts de chargement sur l’environnement
+<code>ECOLE</code> et de les passer après sur <code>PROD</code>. Vous
+trouverez plus d’info dans <a href="les-environnements.html">la vignette
+sur les environnements</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="créer-un-dataset">Créer un dataset<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-un-dataset"></a>
@@ -122,7 +131,7 @@
 <span class="co">#&gt;     intégration du fichier `augmente.csv`</span>
 <span class="co">#&gt;  * fichier versé</span>
 <span class="co">#&gt;  * fichier validé</span>
-<span class="co">#&gt;  * fichier intégré       rid: d58646d5-a134-43e4-b6c9-be06c97df089       millesime: 2021-10      lignes: 20</span></code></pre></div>
+<span class="co">#&gt;  * fichier intégré       rid: af2f8b7a-b48b-4384-85c7-78cdc172a9f5       millesime: 2021-10      lignes: 20</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="ajouter-un-fichier-annexe">ajouter un fichier annexe<a class="anchor" aria-label="anchor" href="#ajouter-un-fichier-annexe"></a>
@@ -136,192 +145,7 @@
 <span class="op">)</span>
 <span class="co">#&gt;     intégration du fichier annexe `annexe.txt`</span>
 <span class="co">#&gt;  * fichier versé</span>
-<span class="co">#&gt;  * fichier annexe intégré (rid: 6c51f07b-76bf-440c-929a-3657b3f1d18d)</span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="ajouter-un-millésime-à-un-datafile-existant">ajouter un millésime à un datafile existant<a class="anchor" aria-label="anchor" href="#ajouter-un-mill%C3%A9sime-%C3%A0-un-datafile-existant"></a>
-</h2>
-<p>La procédure est simple :</p>
-<ol style="list-style-type: decimal">
-<li>chercher le datafile à modifier</li>
-<li>ajouter le millésime</li>
-<li>si nécessaire, changer les couvertures temporelles du datafile et du dataset</li>
-</ol>
-<div class="section level3">
-<h3 id="chercher-le-datafile-à-modifier">chercher le datafile à modifier<a class="anchor" aria-label="anchor" href="#chercher-le-datafile-%C3%A0-modifier"></a>
-</h3>
-<p>Pour ajouter un millésime vous devez d’abord récupérer le fichier de données. Vous pouvez le chercher par son titre avec la fonction <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>. Cette fonction retourne beaucoup d’information non pertinentes dans le cadre d’une mise à jour, vous pouvez utiliser <code><a href="../reference/clean_metadata.html">clean_metadata()</a></code> :</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_datafiles.html">list_datafiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span> <span class="op">==</span> <span class="st">"Données de consommation fictive – chaleur et froid – année 2020"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/get_datafile.html">get_datafile</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/clean_metadata.html">clean_metadata</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">datafile</span>
-<span class="co">#&gt; List of 10</span>
-<span class="co">#&gt;  $ rid              : chr "d58646d5-a134-43e4-b6c9-be06c97df089"</span>
-<span class="co">#&gt;  $ title            : chr "Données de consommation fictive – chaleur et froid – année 2020"</span>
-<span class="co">#&gt;  $ description      : chr "Consommations annuelles et nombre de points de livraison"</span>
-<span class="co">#&gt;  $ millesimes       : int 1</span>
-<span class="co">#&gt;  $ created_at       : chr "2022-02-02T18:11:53.421000"</span>
-<span class="co">#&gt;  $ last_modified    : chr "2022-02-02T18:11:53.515000"</span>
-<span class="co">#&gt;  $ published        : chr "2022-02-02T00:00:00"</span>
-<span class="co">#&gt;  $ url              : chr "http://catalogue.diffusion.dido.fr/dataset/61fac95a2483a37f86dd84d1/datafile/d58646d5-a134-43e4-b6c9-be06c97df089"</span>
-<span class="co">#&gt;  $ temporal_coverage:List of 2</span>
-<span class="co">#&gt;   ..$ start: chr "2020-01-01T00:00:00.000Z"</span>
-<span class="co">#&gt;   ..$ end  : chr "2020-12-31T00:00:00.000Z"</span>
-<span class="co">#&gt;  $ legal_notice     : chr "SDES"</span>
-<span class="co">#&gt;  - attr(*, "id")= chr "61fac95a2483a37f86dd84d1"</span>
-<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "dido_datafile" "list"</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="ajouter-le-millésime-à-ce-datafile">ajouter le millésime à ce datafile<a class="anchor" aria-label="anchor" href="#ajouter-le-mill%C3%A9sime-%C3%A0-ce-datafile"></a>
-</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">millesime</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_millesime.html">add_millesime</a></span><span class="op">(</span>
-  datafile <span class="op">=</span> <span class="va">datafile</span>,
-  file_name <span class="op">=</span> <span class="st">"augmente.csv"</span>,
-  millesime <span class="op">=</span> <span class="st">"2022-10"</span>
-<span class="op">)</span>
-<span class="co">#&gt;     intégration du fichier `augmente.csv`</span>
-<span class="co">#&gt;  * fichier versé</span>
-<span class="co">#&gt;  * fichier validé</span>
-<span class="co">#&gt;  * fichier intégré       rid: d58646d5-a134-43e4-b6c9-be06c97df089       millesime: 2022-10      lignes: 20</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="mettre-à-jour-les-métadonnées-du-dataset-et-du-datafile">Mettre à jour les métadonnées du dataset et du datafile<a class="anchor" aria-label="anchor" href="#mettre-%C3%A0-jour-les-m%C3%A9tadonn%C3%A9es-du-dataset-et-du-datafile"></a>
-</h3>
-<p>Trois métadonnées peuvent devoir être mises à jour :</p>
-<ul>
-<li>la couverture temporelle du datafile</li>
-<li>la couverture temporelle du dataset</li>
-<li>la date de prochaine mise à jour du dataset</li>
-</ul>
-<div class="section level4">
-<h4 id="mettre-à-jour-les-métadonnées-du-datafile">mettre à jour les métadonnées du datafile<a class="anchor" aria-label="anchor" href="#mettre-%C3%A0-jour-les-m%C3%A9tadonn%C3%A9es-du-datafile"></a>
-</h4>
-<p>Tout d’abord récupérer les métadonnées :</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_datafile.html">get_datafile</a></span><span class="op">(</span><span class="va">millesime</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/clean_metadata.html">clean_metadata</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">datafile</span>
-<span class="co">#&gt; List of 10</span>
-<span class="co">#&gt;  $ rid              : chr "d58646d5-a134-43e4-b6c9-be06c97df089"</span>
-<span class="co">#&gt;  $ title            : chr "Données de consommation fictive – chaleur et froid – année 2020"</span>
-<span class="co">#&gt;  $ description      : chr "Consommations annuelles et nombre de points de livraison"</span>
-<span class="co">#&gt;  $ millesimes       : int 2</span>
-<span class="co">#&gt;  $ created_at       : chr "2022-02-02T18:11:53.421000"</span>
-<span class="co">#&gt;  $ last_modified    : chr "2022-02-02T18:12:20.517000"</span>
-<span class="co">#&gt;  $ published        : chr "2022-02-02T00:00:00"</span>
-<span class="co">#&gt;  $ url              : chr "http://catalogue.diffusion.dido.fr/dataset/61fac95a2483a37f86dd84d1/datafile/d58646d5-a134-43e4-b6c9-be06c97df089"</span>
-<span class="co">#&gt;  $ temporal_coverage:List of 2</span>
-<span class="co">#&gt;   ..$ start: chr "2020-01-01T00:00:00.000Z"</span>
-<span class="co">#&gt;   ..$ end  : chr "2020-12-31T00:00:00.000Z"</span>
-<span class="co">#&gt;  $ legal_notice     : chr "SDES"</span>
-<span class="co">#&gt;  - attr(*, "id")= chr "61fac95a2483a37f86dd84d1"</span>
-<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "dido_datafile" "list"</span></code></pre></div>
-<p>Modifier la ou les métadonnées concernées et faire la mise à jour :</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">datafile</span><span class="op">$</span><span class="va">temporal_coverage</span><span class="op">$</span><span class="va">end</span> <span class="op">&lt;-</span> <span class="st">"2021-12-31"</span>
-<span class="fu"><a href="../reference/update_datafile.html">update_datafile</a></span><span class="op">(</span><span class="va">datafile</span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="mettre-à-jour-les-métadonnées-du-dataset">mettre à jour les métadonnées du dataset<a class="anchor" aria-label="anchor" href="#mettre-%C3%A0-jour-les-m%C3%A9tadonn%C3%A9es-du-dataset"></a>
-</h4>
-<p>Encore une fois, commencer par récupérer les métadonnées du dataset :</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_dataset.html">get_dataset</a></span><span class="op">(</span><span class="va">datafile</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/clean_metadata.html">clean_metadata</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">dataset</span>
-<span class="co">#&gt; List of 14</span>
-<span class="co">#&gt;  $ id               : chr "61fac95a2483a37f86dd84d1"</span>
-<span class="co">#&gt;  $ title            : chr "Données de consommation fictive"</span>
-<span class="co">#&gt;  $ description      : chr "test"</span>
-<span class="co">#&gt;  $ organization     :List of 2</span>
-<span class="co">#&gt;   ..$ id   : chr "61dc9e68ceaec2e8bef3f0a1"</span>
-<span class="co">#&gt;   ..$ title: chr "BSI"</span>
-<span class="co">#&gt;  $ topic            : chr "Transports"</span>
-<span class="co">#&gt;  $ license          : chr "fr-lo"</span>
-<span class="co">#&gt;  $ frequency        : chr "annual"</span>
-<span class="co">#&gt;  $ created_at       : chr "2022-02-02T18:11:37.981000"</span>
-<span class="co">#&gt;  $ last_modified    : chr "2022-02-02T18:12:32.840000"</span>
-<span class="co">#&gt;  $ last_update      : chr "2022-02-02T00:00:00"</span>
-<span class="co">#&gt;  $ frequency_date   : chr "2021-10-10T00:00:00"</span>
-<span class="co">#&gt;  $ tags             : list()</span>
-<span class="co">#&gt;  $ spatial          :List of 2</span>
-<span class="co">#&gt;   ..$ granularity: chr "other"</span>
-<span class="co">#&gt;   ..$ zones      : list()</span>
-<span class="co">#&gt;  $ temporal_coverage:List of 2</span>
-<span class="co">#&gt;   ..$ end  : chr "2020-12-31"</span>
-<span class="co">#&gt;   ..$ start: chr "2020-01-01"</span>
-<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "dido_dataset" "list"</span></code></pre></div>
-<p>Puis modifier les métadonnées concernées et faire la mise à jour. Dans ce cas là on met à jour la date de fin de couverture temporelle et la date de prochaine mise à jour :</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dataset</span><span class="op">$</span><span class="va">temporal_coverage</span><span class="op">$</span><span class="va">end</span> <span class="op">&lt;-</span> <span class="st">"2021-12-31"</span>
-<span class="va">dataset</span><span class="op">$</span><span class="va">frequency_date</span> <span class="op">&lt;-</span> <span class="st">"2022-10-10T00:00:00"</span>
-<span class="fu"><a href="../reference/update_dataset.html">update_dataset</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></code></pre></div>
-<p>L’ajout du millésime est terminé.</p>
-</div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="remplacer-un-millésime-dun-datafile-existant">remplacer un millésime d’un datafile existant<a class="anchor" aria-label="anchor" href="#remplacer-un-mill%C3%A9sime-dun-datafile-existant"></a>
-</h2>
-<p>Parfois vous voulez remplacer un millésime existant.</p>
-<ol style="list-style-type: decimal">
-<li>trouver le datafile</li>
-<li>récupérer le millésime à mettre à jour</li>
-<li>mettre à jour le millésime</li>
-</ol>
-<p>Pour mettre à jour le dernier millésime d’un fichier de données, la procédure est :</p>
-<div class="section level3">
-<h3 id="trouver-le-datafile">trouver le datafile<a class="anchor" aria-label="anchor" href="#trouver-le-datafile"></a>
-</h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_datafiles.html">list_datafiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span> <span class="op">==</span> <span class="st">"Données de consommation fictive – chaleur et froid – année 2020"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/get_datafile.html">get_datafile</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/clean_metadata.html">clean_metadata</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">datafile</span>
-<span class="co">#&gt; List of 10</span>
-<span class="co">#&gt;  $ rid              : chr "d58646d5-a134-43e4-b6c9-be06c97df089"</span>
-<span class="co">#&gt;  $ title            : chr "Données de consommation fictive – chaleur et froid – année 2020"</span>
-<span class="co">#&gt;  $ description      : chr "Consommations annuelles et nombre de points de livraison"</span>
-<span class="co">#&gt;  $ millesimes       : int 2</span>
-<span class="co">#&gt;  $ created_at       : chr "2022-02-02T18:11:53.421000"</span>
-<span class="co">#&gt;  $ last_modified    : chr "2022-02-02T18:12:32.840000"</span>
-<span class="co">#&gt;  $ published        : chr "2022-02-02T00:00:00"</span>
-<span class="co">#&gt;  $ url              : chr "http://catalogue.diffusion.dido.fr/dataset/61fac95a2483a37f86dd84d1/datafile/d58646d5-a134-43e4-b6c9-be06c97df089"</span>
-<span class="co">#&gt;  $ temporal_coverage:List of 2</span>
-<span class="co">#&gt;   ..$ start: chr "2020-01-01T00:00:00.000Z"</span>
-<span class="co">#&gt;   ..$ end  : chr "2021-12-31T00:00:00.000Z"</span>
-<span class="co">#&gt;  $ legal_notice     : chr "SDES"</span>
-<span class="co">#&gt;  - attr(*, "id")= chr "61fac95a2483a37f86dd84d1"</span>
-<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "dido_datafile" "list"</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="récupérer-le-millésime-à-modifier">récupérer le millésime à modifier<a class="anchor" aria-label="anchor" href="#r%C3%A9cup%C3%A9rer-le-mill%C3%A9sime-%C3%A0-modifier"></a>
-</h3>
-<p>On récupére le dernier millesime du datafile :</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">millesime_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_millesimes.html">list_millesimes</a></span><span class="op">(</span><span class="va">datafile</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">millesime</span><span class="op">)</span>
-<span class="va">millesime</span> <span class="op">&lt;-</span> <span class="va">millesime_row</span><span class="op">[[</span><span class="st">'millesime'</span><span class="op">]</span><span class="op">]</span>
-<span class="va">millesime</span>
-<span class="co">#&gt; [1] "2022-10"</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="remplacer-lancien-millésime-par-le-nouveau-fichier">remplacer l’ancien millésime par le nouveau fichier<a class="anchor" aria-label="anchor" href="#remplacer-lancien-mill%C3%A9sime-par-le-nouveau-fichier"></a>
-</h3>
-<p>Et on le remplace :</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">millesime</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/replace_millesime.html">replace_millesime</a></span><span class="op">(</span>
-  datafile <span class="op">=</span> <span class="va">datafile</span>,
-  file_name <span class="op">=</span> <span class="st">"augmente.csv"</span>,
-  millesime <span class="op">=</span> <span class="va">millesime</span>
-<span class="op">)</span>
-<span class="co">#&gt;     intégration du fichier `augmente.csv`</span>
-<span class="co">#&gt;  * fichier versé</span>
-<span class="co">#&gt;  * fichier validé</span>
-<span class="co">#&gt; * fichier intégré</span>
-<span class="co">#&gt; (rid: d58646d5-a134-43e4-b6c9-be06c97df089, millesime: 2022-10, lignes: 20</span></code></pre></div>
+<span class="co">#&gt;  * fichier annexe intégré (rid: 6f0da8fb-04d5-41ca-b1d1-6a3684685d5c)</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>Sur cette page</h2>
@@ -337,7 +161,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

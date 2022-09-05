@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -25,8 +25,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -58,27 +60,35 @@
     </div>
 
     <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <h2 id="ref-usage">Utilisation<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_datasets</span><span class="op">(</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="valeur-de-retour">Valeur de retour<a class="anchor" aria-label="anchor" href="#valeur-de-retour"></a></h2>
-    <p>un tibble des datasets de l'utilisateur</p>
+    
+
+<p>un tibble des datasets de l'utilisateur</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Exemples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">list_datasets</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 20</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id          title description topic license frequency created_at last_modified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 61fac82121… Un j… Un jeu de … Tran… fr-lo   unknown   2022-02-0… 2022-02-02T1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 61fac8a77e… Donn… Données pa… Tran… ODbL-1… annual    2022-02-0… 2022-02-02T1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 61fac8a724… Donn… Données lo… Tran… fr-lo   unknown   2022-02-0… 2022-02-02T1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 61fac84021… Donn… Données de… Tran… fr-lo   unknown   2022-02-0… 2022-02-02T1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 12 more variables: last_update &lt;chr&gt;, tags &lt;list&gt;, attachments &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   datafiles &lt;list&gt;, frequency_date &lt;chr&gt;, caution &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 21</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id         title description topic license frequency created_at last_modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 6315a1f6f… Un d… Descriptio… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 6315a2071… Un d… Descriptio… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 6315a1dc1… Des … Descriptio… Tran… fr-lo   annual    2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 6315a1f81… Un d… Descriptio… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 6315a1dec… Un d… Descriptio… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6315a1e9f… Donn… Données pa… Tran… ODbL-1… annual    2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 6315a1e9f… Donn… Données lo… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 6315a1d31… Donn… Données de… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 6315a1d3f… Un d… Un dataset… Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 6315a1ccf… Un j… Un jeu de … Tran… fr-lo   unknown   2022-09-0… 2022-09-05T0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 13 more variables: last_update &lt;chr&gt;, url &lt;chr&gt;, tags &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   attachments &lt;list&gt;, datafiles &lt;list&gt;, frequency_date &lt;chr&gt;, caution &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   organization.id &lt;chr&gt;, organization.title &lt;chr&gt;, spatial.granularity &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spatial.zones &lt;list&gt;, temporal_coverage.end &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   temporal_coverage.start &lt;chr&gt;</span></span>
@@ -93,7 +103,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

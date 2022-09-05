@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -25,8 +25,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -95,6 +97,16 @@
         <dd>Ajoute un dataset</dd>
       </dl><dl><dt>
           
+          <code><a href="add_or_update_dataset.html">add_or_update_dataset()</a></code> 
+        </dt>
+        <dd>Ajoute ou met à jour un dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="delete_dataset.html">delete_dataset()</a></code> 
+        </dt>
+        <dd>Supprime un dataset</dd>
+      </dl><dl><dt>
+          
           <code><a href="dido_dataset.html">dido_dataset</a></code> 
         </dt>
         <dd>L'objet dido_dataset</dd>
@@ -129,6 +141,16 @@
           <code><a href="add_datafile.html">add_datafile()</a></code> 
         </dt>
         <dd>Ajoute un datafile à un dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_or_update_datafile.html">add_or_update_datafile()</a></code> 
+        </dt>
+        <dd>Ajoute ou modifie un datafile</dd>
+      </dl><dl><dt>
+          
+          <code><a href="delete_datafile.html">delete_datafile()</a></code> 
+        </dt>
+        <dd>Supprime un datafile.</dd>
       </dl><dl><dt>
           
           <code><a href="dido_datafile.html">dido_datafile</a></code> 
@@ -167,6 +189,11 @@
         <dd>Ajoute un millésime à un datafile</dd>
       </dl><dl><dt>
           
+          <code><a href="delete_millesime.html">delete_millesime()</a></code> 
+        </dt>
+        <dd>Supprimer un millésime</dd>
+      </dl><dl><dt>
+          
           <code><a href="list_millesimes.html">list_millesimes()</a></code> 
         </dt>
         <dd>Liste les millesimes</dd>
@@ -191,6 +218,16 @@
           <code><a href="add_attachment.html">add_attachment()</a></code> 
         </dt>
         <dd>Ajoute un fichier annexe à un dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_or_update_attachment.html">add_or_update_attachment()</a></code> 
+        </dt>
+        <dd>Ajoute ou modifie un fichier annexe dans un dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="delete_attachment.html">delete_attachment()</a></code> 
+        </dt>
+        <dd>Supprime un attachment</dd>
       </dl><dl><dt>
           
           <code><a href="dido_attachment.html">dido_attachment</a></code> 
@@ -229,6 +266,11 @@
 
       <dl><dt>
           
+          <code><a href="check_import_file.html">check_import_file()</a></code> 
+        </dt>
+        <dd>Vérifie un fichier CSV</dd>
+      </dl><dl><dt>
+          
           <code><a href="clean_metadata.html">clean_metadata()</a></code> 
         </dt>
         <dd>Prépare un objet pour l'envoyer à DiDo</dd>
@@ -242,6 +284,11 @@
           <code><a href="list_alerts.html">list_alerts()</a></code> 
         </dt>
         <dd>Récupère les datasets devant être mis à jour</dd>
+      </dl><dl><dt>
+          
+          <code><a href="didoscalim_verbosity.html">didoscalim_verbosity()</a></code> 
+        </dt>
+        <dd>Voir et modifier le niveau de message de didoscalim</dd>
       </dl></div><div class="section level2">
       <h2 id="g-rer-votre-environnement">Gérer votre environnement<a class="anchor" aria-label="anchor" href="#g-rer-votre-environnement"></a></h2>
       
@@ -317,6 +364,11 @@
 
       <dl><dt>
           
+          <code><a href="didoscalim_log.html">local_didoscalim_verbosity()</a></code> <code><a href="didoscalim_log.html">with_didoscalim_verbosity()</a></code> <code><a href="didoscalim_log.html">didoscalim_debug()</a></code> <code><a href="didoscalim_log.html">didoscalim_info()</a></code> <code><a href="didoscalim_log.html">didoscalim_abort()</a></code> 
+        </dt>
+        <dd>Journalisation et niveau de verbosité</dd>
+      </dl><dl><dt>
+          
           <code><a href="dido_example.html">dido_example()</a></code> 
         </dt>
         <dd>Retourne le chemin du fichier exemple données ou le chemin des fichiers
@@ -331,7 +383,7 @@ exemple</dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

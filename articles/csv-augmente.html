@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -42,8 +42,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -72,7 +74,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Générer un fichier csv augmenté</h1>
             
       
@@ -83,7 +85,8 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span></code></pre></div>
 <div class="section level2">
 <h2 id="le-csv-augmenté">Le CSV augmenté<a class="anchor" aria-label="anchor" href="#le-csv-augment%C3%A9"></a>
 </h2>
@@ -98,7 +101,11 @@
 <span class="st">"cog_commune_2020"</span>;<span class="st">"entier"</span>
 <span class="st">"n/a"</span>;<span class="st">"s/u"</span>
 <span class="st">"COMMUNE"</span>;<span class="st">"LOGEMENTS_NEUFS"</span></code></pre>
-<p>Le <a href="https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/" class="external-link">site de documentation de l’API</a> propose une documentation plus complète sur <a href="https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/" class="external-link">le csv augmenté</a> ainsi que sur <a href="https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/" class="external-link">la liste des types</a>.</p>
+<p>Le <a href="https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dido/api/" class="external-link">site
+de documentation de l’API</a> propose une documentation plus complète
+sur <a href="https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dido/api/040-csvfile/" class="external-link">le
+csv augmenté</a> ainsi que sur <a href="https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/dido/api/210-headers/" class="external-link">la
+liste des types</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="générer-un-csv-augmenté-">Générer un CSV augmenté.<a class="anchor" aria-label="anchor" href="#g%C3%A9n%C3%A9rer-un-csv-augment%C3%A9-"></a>
@@ -106,21 +113,27 @@
 <p><code>didoscalim</code> propose une fonction pour vous aider.</p>
 <p>La génération se passe en trois étapes :</p>
 <ol style="list-style-type: decimal">
-<li>le chargement du fichier d’origine : <code><a href="../reference/dido_read_delim.html">dido_read_delim()</a></code>
+<li>le chargement du fichier d’origine :
+<code><a href="../reference/dido_read_delim.html">dido_read_delim()</a></code>
 </li>
-<li>l’ajout des lignes d’entêtes spécifiques : <code><a href="../reference/dido_csv.html">dido_csv()</a></code>
+<li>l’ajout des lignes d’entêtes spécifiques :
+<code><a href="../reference/dido_csv.html">dido_csv()</a></code>
 </li>
-<li>l’écriture du fichier au bon format : <code><a href="../reference/dido_write_csv.html">dido_write_csv()</a></code>
+<li>l’écriture du fichier au bon format :
+<code><a href="../reference/dido_write_csv.html">dido_write_csv()</a></code>
 </li>
 </ol>
 </div>
 <div class="section level2">
 <h2 id="le-chargement-du-fichier-dorigine">le chargement du fichier d’origine<a class="anchor" aria-label="anchor" href="#le-chargement-du-fichier-dorigine"></a>
 </h2>
-<p>Le fichier d’origine doit être au format CSV classique, ie, la première ligne du fichier contient le nom des variables. Vous pouvez télécharger le <a href="exemple.csv">fichier exemple utilisé</a>.</p>
-<p>En premier lieu, charger le fichier dans un dataframe avec la commande <code><a href="../reference/dido_read_delim.html">dido_read_delim()</a></code>.</p>
+<p>Le fichier d’origine doit être au format CSV classique, ie, la
+première ligne du fichier contient le nom des variables. Vous pouvez
+télécharger le <a href="exemple.csv">fichier exemple utilisé</a>.</p>
+<p>En premier lieu, charger le fichier dans un dataframe avec la
+commande <code><a href="../reference/dido_read_delim.html">dido_read_delim()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dido_read_delim.html">dido_read_delim</a></span><span class="op">(</span><span class="fu"><a href="../reference/dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"exemple.csv"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dido_read_delim.html">dido_read_delim</a></span><span class="op">(</span><span class="st">"exemple.csv"</span><span class="op">)</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -186,7 +199,9 @@
 </tr>
 </tbody>
 </table>
-<p>Si votre fichier est dans un format autre que <code>UTF-8</code> ou que le séparateur de champ est la virgule (<code>,</code>à vous devez préciser <code>delim</code> et/ou <code>locale</code> :</p>
+<p>Si votre fichier est dans un format autre que <code>UTF-8</code> ou
+que le séparateur de champ est la virgule (<code>,</code>) à vous devez
+préciser <code>delim</code> et/ou <code>locale</code> :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/dido_read_delim.html">dido_read_delim</a></span><span class="op">(</span><span class="fu"><a href="../reference/dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"csv-win-char.csv"</span><span class="op">)</span>,
                 delim <span class="op">=</span> <span class="st">","</span>,
@@ -204,11 +219,22 @@
 <div class="section level2">
 <h2 id="lajout-des-lignes-dentêtes-spécifiques">L’ajout des lignes d’entêtes spécifiques<a class="anchor" aria-label="anchor" href="#lajout-des-lignes-dent%C3%AAtes-sp%C3%A9cifiques"></a>
 </h2>
-<p>didoscalim peut analyser le fichier et proposer un premier niveau de description.</p>
+<p>didoscalim peut analyser le fichier et proposer un premier niveau de
+description.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dido_csv.html">dido_csv</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="7%">
+<col width="28%">
+<col width="10%">
+<col width="19%">
+<col width="7%">
+<col width="9%">
+<col width="7%">
+<col width="9%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">OPE</th>
 <th align="left">ANNEE</th>
@@ -272,18 +298,28 @@
 </tr>
 </tbody>
 </table>
-<p><code>didoscalim</code> reconnait les champs <code>EPCI</code> et <code>ANNEE</code> et propose des descriptions/types/unités raisonnables. Il est recommandé de les garder. Le millésime des champs <code>cog_*</code> comme celui du champ <code>EPCI</code> est par défaut l’année en cours, vous pouvez préciser le millésime à utiliser avec le paramètre <code>cog_year</code> (cf exemple complet ci-dessous).</p>
-<p>Si le fichier source utilise la virgule (<code>,</code>) comme séparateur décimal, vous devez préciser l’argument <code>locale</code> :</p>
+<p><code>didoscalim</code> reconnait les champs <code>EPCI</code> et
+<code>ANNEE</code> et propose des descriptions/types/unités
+raisonnables. Il est recommandé de les garder. Le millésime des champs
+<code>cog_*</code> comme celui du champ <code>EPCI</code> est par défaut
+l’année en cours, vous pouvez préciser le millésime à utiliser avec le
+paramètre <code>cog_year</code> (cf exemple complet ci-dessous).</p>
+<p>Si le fichier source utilise la virgule (<code>,</code>) comme
+séparateur décimal, vous devez préciser l’argument <code>locale</code>
+:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dido_csv.html">dido_csv</a></span><span class="op">(</span>
   <span class="va">data</span>,
   locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html" class="external-link">locale</a></span><span class="op">(</span>decimal_mark <span class="op">=</span> <span class="st">','</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p>Pour aller plus loin, vous pouvez soit écrire le fichier tel quel avec <code><a href="../reference/dido_write_csv.html">dido_write_csv()</a></code> et l’éditer à la main. Soit utiliser le paramètre <code>params</code> de la commande <code><a href="../reference/dido_csv.html">dido_csv()</a></code>.</p>
+<p>Pour aller plus loin, vous pouvez soit écrire le fichier tel quel
+avec <code><a href="../reference/dido_write_csv.html">dido_write_csv()</a></code> et l’éditer à la main. Soit utiliser
+le paramètre <code>params</code> de la commande
+<code><a href="../reference/dido_csv.html">dido_csv()</a></code>.</p>
 <p>Voici un exemple complet pour le fichier exemple :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  OPE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>description <span class="op">=</span> <span class="st">"Nom de l'opérateur"</span><span class="op">)</span>,
+  OPE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"OPERATEUR"</span>, description <span class="op">=</span> <span class="st">"Nom de l'opérateur"</span><span class="op">)</span>,
   FILIERE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>description <span class="op">=</span> <span class="st">"Filière"</span><span class="op">)</span>,
   CAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>description <span class="op">=</span> <span class="st">"Catégorie de la consommation"</span><span class="op">)</span>,
   NAF2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>description <span class="op">=</span> <span class="st">"Code NAF à 2 positions du secteur (NAF rev2 2008)"</span>, type <span class="op">=</span> <span class="st">"naf_division"</span><span class="op">)</span>,
@@ -344,7 +380,7 @@
 <td align="left">MWh</td>
 </tr>
 <tr class="even">
-<td align="left">OPE</td>
+<td align="left">OPERATEUR</td>
 <td align="left">ANNEE</td>
 <td align="left">FILIERE</td>
 <td align="left">EPCI</td>
@@ -371,12 +407,14 @@
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/dido_write_csv.html">dido_write_csv</a></span><span class="op">(</span><span class="va">result</span>, <span class="st">"resultat.csv"</span><span class="op">)</span></code></pre></div>
-<p>Vous pouvez télécharger <a href="resultat.csv">le fichier généré</a></p>
+<p>Vous pouvez télécharger <a href="resultat.csv">le fichier
+généré</a></p>
 </div>
 <div class="section level2">
 <h2 id="résumé-">résumé.<a class="anchor" aria-label="anchor" href="#r%C3%A9sum%C3%A9-"></a>
 </h2>
-<p>Une fois que la configuration de <code>params</code> est correcte, vous pouvez chainer avec l’opérateur <code>magrittr::%&gt;%</code> :</p>
+<p>Une fois que la configuration de <code>params</code> est correcte,
+vous pouvez chainer avec l’opérateur <code>magrittr::%&gt;%</code> :</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
 <span class="co">#&gt; Le chargement a nécessité le package : magrittr</span>
@@ -397,7 +435,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

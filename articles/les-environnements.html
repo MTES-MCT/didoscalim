@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -42,8 +42,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -72,7 +74,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Configurer et utiliser les environnements</h1>
             
       
@@ -83,12 +85,17 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span></code></pre></div>
 <div class="section level2">
 <h2 id="les-environnements-dido">Les environnements DiDo<a class="anchor" aria-label="anchor" href="#les-environnements-dido"></a>
 </h2>
-<p>Les données publiées sur l’environnement de production de DiDo (<code>PROD</code>) sont immédiatement mis en ligne et disponibles sur internet.</p>
-<p>Pour tester vos jeux de données, il est recommander d’utiliser un environnement <code>ECOLE</code> en amont de la publication officielle. Cet environnement permet de valider :</p>
+<p>Les données publiées sur l’environnement de production de DiDo
+(<code>PROD</code>) sont immédiatement mis en ligne et disponibles sur
+internet.</p>
+<p>Pour tester vos jeux de données, il est recommander d’utiliser un
+environnement <code>ECOLE</code> en amont de la publication officielle.
+Cet environnement permet de valider :</p>
 <ul>
 <li>le chargement proprement dit</li>
 <li>les métadonnées associées</li>
@@ -98,18 +105,25 @@
 <div class="section level2">
 <h2 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
 </h2>
-<p>Les environnements se configurent dans le fichier <code>.Renviron</code>.</p>
-<p>Chaque environnement est configuré par deux lignes comme celles-ci :</p>
+<p>Les environnements se configurent dans le fichier
+<code>.Renviron</code>.</p>
+<p>Chaque environnement est configuré par deux lignes comme celles-ci
+:</p>
 <pre><code>DIDOSCALIM_BASE_PATH_&lt;NOM_ENVIRONNEMENT&gt;=http://api.alimentation.ecole.fr/v1
 DIDOSCALIM_API_KEY_&lt;NOM_ENVIRONNEMENT&gt;=&lt;CLEF_API&gt;</code></pre>
 <ul>
 <li>
-<code>&lt;NOM_ENVIRONNEMENT&gt;</code> peut prendre les valeurs <code>DEV</code>, <code>PREPROD</code>, <code>ECOLE</code> et <code>PROD</code>
+<code>&lt;NOM_ENVIRONNEMENT&gt;</code> peut prendre les valeurs
+<code>DEV</code>, <code>PREPROD</code>, <code>ECOLE</code> et
+<code>PROD</code>
 </li>
 <li>
-<code>&lt;CLEF_API&gt;</code> est disponible dans l’interface d’alimentation DiDo dans la rubrique « Mon compte ».</li>
+<code>&lt;CLEF_API&gt;</code> est disponible dans l’interface
+d’alimentation DiDo dans la rubrique « Mon compte ».</li>
 </ul>
-<p>Si vous êtes un producteur et que vous avez accès aux environnements <code>ECOLE</code> et <code>PROD</code>, votre fichier <code>.Renviron</code> ressemblera à :</p>
+<p>Si vous êtes un producteur et que vous avez accès aux environnements
+<code>ECOLE</code> et <code>PROD</code>, votre fichier
+<code>.Renviron</code> ressemblera à :</p>
 <pre><code>DIDOSCALIM_BASE_PATH_ECOLE=http://api.alimentation.ecole.fr/v1
 DIDOSCALIM_API_KEY_ECOLE=ma_clef_api_ecole
 
@@ -127,8 +141,12 @@ DIDOSCALIM_API_KEY_PROD=ma_clef_api_prod</code></pre>
 <div class="section level2">
 <h2 id="choisir-un-environnement">Choisir un environnement<a class="anchor" aria-label="anchor" href="#choisir-un-environnement"></a>
 </h2>
-<p>Si vous ne sélectionnez pas d’environnement, DiDo prendra automatiquement par défaut le premier configuré dans l’ordre : <code>DEV</code>, <code>PREPROD</code>, <code>ECOLE</code>. Il ne choisira <strong>jamais</strong> <code>PROD</code> implicitement.</p>
-<p>Pour sélectionner un environnement, utilisez la commande <code><a href="../reference/set_work_env.html">set_work_env()</a></code> :</p>
+<p>Si vous ne sélectionnez pas d’environnement, DiDo prendra
+automatiquement par défaut le premier configuré dans l’ordre :
+<code>DEV</code>, <code>PREPROD</code>, <code>ECOLE</code>. Il ne
+choisira <strong>jamais</strong> <code>PROD</code> implicitement.</p>
+<p>Pour sélectionner un environnement, utilisez la commande
+<code><a href="../reference/set_work_env.html">set_work_env()</a></code> :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/set_work_env.html">set_work_env</a></span><span class="op">(</span><span class="st">"PROD"</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : PROD</span></code></pre></div>
@@ -136,17 +154,23 @@ DIDOSCALIM_API_KEY_PROD=ma_clef_api_prod</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/set_work_env.html">set_work_env</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span></code></pre></div>
-<p>Vous pouvez à tout moment voir dans quel environnement vous êtes avec la commande <code><a href="../reference/get_work_env.html">get_work_env()</a></code>.</p>
-<p>Vous pouvez lister les environnements configués avec la commande <code><a href="../reference/list_envs.html">list_envs()</a></code> :</p>
+<p>Vous pouvez à tout moment voir dans quel environnement vous êtes avec
+la commande <code><a href="../reference/get_work_env.html">get_work_env()</a></code>.</p>
+<p>Vous pouvez lister les environnements configués avec la commande
+<code><a href="../reference/list_envs.html">list_envs()</a></code> :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/list_envs.html">list_envs</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Vous avez 3 environnement(s) configuré(s) : </span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DEV : http://api.alimentation.dido.fr/v1</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD : http://api.alimentation.dido.fr/</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD : http://api.alimentation.dido.fr/v1</span></code></pre></div>
-<p>et vérifier qu’ils fonctionnent avec la commande <code><a href="../reference/check_envs.html">check_envs()</a></code> :</p>
+<p>et vérifier qu’ils fonctionnent avec la commande
+<code><a href="../reference/check_envs.html">check_envs()</a></code> :</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/check_envs.html">check_envs</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span>
+<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : PREPROD</span>
+<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : PROD</span>
 <span class="co">#&gt; Test de connexion:</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DEV: OK</span>
 <span class="co">#&gt; <span style="color: #BB0000;">x</span> PREPROD: KO: <span style="color: #BB0000;">x</span> Client error : 404 <span style="color: #0000BB;">ℹ</span> url: http://api.alimentation.dido.fr//users/me</span>
@@ -156,7 +180,9 @@ DIDOSCALIM_API_KEY_PROD=ma_clef_api_prod</code></pre>
 <div class="section level2">
 <h2 id="méthode-dalimentation">Méthode d’alimentation<a class="anchor" aria-label="anchor" href="#m%C3%A9thode-dalimentation"></a>
 </h2>
-<p>Écrivez et testez vos scripts dans l’environnement <code>ECOLE</code> par défaut. Quand vous êtes satisfait du résultat, basculer sur l’environnement de <code>PROD</code> et relancez les scripts.</p>
+<p>Écrivez et testez vos scripts dans l’environnement <code>ECOLE</code>
+par défaut. Quand vous êtes satisfait du résultat, basculer sur
+l’environnement de <code>PROD</code> et relancez les scripts.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>Sur cette page</h2>
     </nav></aside>
@@ -171,7 +197,7 @@ DIDOSCALIM_API_KEY_PROD=ma_clef_api_prod</code></pre>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

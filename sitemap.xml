@@ -10,6 +10,9 @@
     <loc>https://mtes-mct.github.io/didoscalim/articles/charger-des-donnees.html</loc>
   </url>
   <url>
+    <loc>https://mtes-mct.github.io/didoscalim/articles/charger-et-mettre-a-jour-des-donnees.html</loc>
+  </url>
+  <url>
     <loc>https://mtes-mct.github.io/didoscalim/articles/csv-augmente.html</loc>
   </url>
   <url>
@@ -17,6 +20,9 @@
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/articles/les-environnements.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/articles/valider-un-fichier.html</loc>
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/authors.html</loc>
@@ -40,7 +46,19 @@
     <loc>https://mtes-mct.github.io/didoscalim/reference/add_millesime.html</loc>
   </url>
   <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/add_or_update_attachment.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/add_or_update_datafile.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/add_or_update_dataset.html</loc>
+  </url>
+  <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/check_envs.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/check_import_file.html</loc>
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/clean_metadata.html</loc>
@@ -49,7 +67,16 @@
     <loc>https://mtes-mct.github.io/didoscalim/reference/date_heure_iso8601.html</loc>
   </url>
   <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/delete_attachment.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/delete_datafile.html</loc>
+  </url>
+  <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/delete_dataset.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/delete_millesime.html</loc>
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/dido_api.html</loc>
@@ -86,6 +113,12 @@
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/didoscalim-package.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/didoscalim_log.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/didoscalim_verbosity.html</loc>
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/find_by_column.html</loc>

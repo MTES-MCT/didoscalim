@@ -12,7 +12,7 @@ par exemple, la date de fin de couverture temporelle."><!-- mathjax --><script s
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -27,8 +27,10 @@ par exemple, la date de fin de couverture temporelle."><!-- mathjax --><script s
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -61,7 +63,7 @@ par exemple, la date de fin de couverture temporelle.</p>
     </div>
 
     <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <h2 id="ref-usage">Utilisation<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">update_dataset</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></code></pre></div>
     </div>
 
@@ -69,15 +71,21 @@ par exemple, la date de fin de couverture temporelle.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>dataset</dt>
 <dd><p>un objet dido_dataset modifié</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="valeur-de-retour">Valeur de retour<a class="anchor" aria-label="anchor" href="#valeur-de-retour"></a></h2>
-    <p>un objet <code><a href="dido_dataset.html">dido_dataset()</a></code></p>
+    
+
+<p>un objet <code><a href="dido_dataset.html">dido_dataset()</a></code></p>
+
+
     </div>
     <div class="section level2">
     <h2 id="voir-galement">Voir également<a class="anchor" aria-label="anchor" href="#voir-galement"></a></h2>
     <div class="dont-index"><p>Other dataset: 
 <code><a href="add_dataset.html">add_dataset</a>()</code>,
+<code><a href="add_or_update_dataset.html">add_or_update_dataset</a>()</code>,
 <code><a href="dido_dataset.html">dido_dataset</a>()</code>,
 <code><a href="get_dataset.html">get_dataset</a>()</code></p></div>
     </div>
@@ -94,8 +102,398 @@ par exemple, la date de fin de couverture temporelle.</p>
 <span class="r-in"><span class="va">dataset</span><span class="op">$</span><span class="va">temporal_coverage</span><span class="op">$</span><span class="va">start</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01"</span></span>
 <span class="r-in"><span class="va">dataset</span><span class="op">$</span><span class="va">temporal_coverage</span><span class="op">$</span><span class="va">end</span> <span class="op">&lt;-</span> <span class="st">"2020-12-31"</span></span>
 <span class="r-in"><span class="fu">update_dataset</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id               : chr "6315a1ccf8cf1e6c248ff7bc"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ title            : chr "Un jeu de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ description      : chr "Un jeu de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ organization     :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ id   : chr "62b6f96494dd389f74bedbaf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ title: chr "BSI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ topic            : chr "Transports"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ license          : chr "fr-lo"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ frequency        : chr "unknown"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_at       : chr "2022-09-05T07:14:20.303000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_modified    : chr "2022-09-05T07:15:46.765000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_update      : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ url              : chr "http://catalogue.diffusion.dido.fr/catalog.html?page=dataset&amp;datasetId=6315a1ccf8cf1e6c248ff7bc"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ tags             : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ spatial          :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ granularity: chr "other"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zones      : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal_coverage:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end  : chr "2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start: chr "2020-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ attachments      :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ rid          : chr "ac15ee65-c343-4ed0-968d-2b6cd04cf613"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title        : chr "un nouveau titre"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description  : chr "Un fichier annexe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ created_at   : chr "2022-09-05T07:14:26.741000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_modified: chr "2022-09-05T07:15:45.401000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published    : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ url          : chr "http://api.diffusion.dido.fr/files/ac15ee65-c343-4ed0-968d-2b6cd04cf613"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ rid          : chr "0dcfa2d0-5f6c-4b3d-aa6e-69d277cb4030"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title        : chr "Un fichier annexe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description  : chr "Un fichier annexe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ created_at   : chr "2022-09-05T07:14:26.252000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_modified: chr "2022-09-05T07:14:26.351000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published    : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ url          : chr "http://api.diffusion.dido.fr/files/0dcfa2d0-5f6c-4b3d-aa6e-69d277cb4030"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datafiles        :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ rid              : chr "b50acfed-0b2b-48ba-9509-cc7ade30e977"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title            : chr "Un fichier de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description      : chr "Un fichier de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ millesimes       : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ created_at       : chr "2022-09-05T07:14:23.069000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_modified    : chr "2022-09-05T07:15:45.963000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published        : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ url              : chr "http://catalogue.diffusion.dido.fr/catalog.html?page=datafile&amp;datafileRid=b50acfed-0b2b-48ba-9509-cc7ade30e977"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ millesimes_info  :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. ..$ :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ millesime      : chr "2021-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ rows           : int 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ date_diffusion : chr "2022-09-05T09:00:00.000Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ headers        :List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "OPE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Nom de l'opérateur"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "ANNEE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Millésime des données"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "annee"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "FILIERE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Filière"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "EPCI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code de l'EPCI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "cog_epci_2020"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CAT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Catégorie de la consommation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "NAF2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code NAF à 2 positions du secteur (NAF rev2 2008)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "naf_division"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CONSO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Consommation (en MWh)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "entier"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "MWh"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ availableValues:List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "OPE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "Aé"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ESL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "RGDS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "SîCÂE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ÇÀ"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "ANNEE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "2019"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "FILIERE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "G"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "EPCI_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200034023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200034270"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200034635"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200036465"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200037059"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "EPCI_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC Tarn-Agout"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC de Thann-Cernay"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC de la Haute-Somme"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC du Kochersberg"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC du Pays de Barr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "CAT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ENT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ENT_PRO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "RES"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "NAF2_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr ""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "NAF2_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr ""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "Industries alimentaires"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "I"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "R"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "CONSO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 1039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 288821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 454</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 75914</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ columns        :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "OPE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Nom de l'opérateur"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "ANNEE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Millésime des données"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "FILIERE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Filière"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "EPCI_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code de l'EPCI - Code de la zone"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ ref        : chr "referentiels/cog (LEVEL=epci, MILLESIME=2020)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "EPCI_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code de l'EPCI - Libellé de la zone"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CAT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Catégorie de la consommation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "NAF2_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code NAF à 2 positions du secteur (NAF rev2 2008) - Code NAF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ ref        : chr "referentiels/naf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "NAF2_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code NAF à 2 positions du secteur (NAF rev2 2008) - Libellé NAF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CONSO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Consommation (en MWh)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ swaggerType: chr "integer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ temporal_coverage:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. ..$ start: chr "2022-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. ..$ end  : chr "2023-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ legal_notice     : chr "SDES"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr [1:2] "dido_dataset" "list"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">update_dataset</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id               : chr "6315a1ccf8cf1e6c248ff7bc"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ title            : chr "Un jeu de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ description      : chr "Un jeu de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ organization     :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ id   : chr "62b6f96494dd389f74bedbaf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ title: chr "BSI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ topic            : chr "Transports"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ license          : chr "fr-lo"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ frequency        : chr "unknown"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_at       : chr "2022-09-05T07:14:20.303000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_modified    : chr "2022-09-05T07:15:47.176000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_update      : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ url              : chr "http://catalogue.diffusion.dido.fr/catalog.html?page=dataset&amp;datasetId=6315a1ccf8cf1e6c248ff7bc"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ tags             : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ spatial          :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ granularity: chr "other"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zones      : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal_coverage:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end  : chr "2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start: chr "2020-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ attachments      :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ rid          : chr "ac15ee65-c343-4ed0-968d-2b6cd04cf613"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title        : chr "un nouveau titre"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description  : chr "Un fichier annexe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ created_at   : chr "2022-09-05T07:14:26.741000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_modified: chr "2022-09-05T07:15:45.401000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published    : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ url          : chr "http://api.diffusion.dido.fr/files/ac15ee65-c343-4ed0-968d-2b6cd04cf613"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ rid          : chr "0dcfa2d0-5f6c-4b3d-aa6e-69d277cb4030"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title        : chr "Un fichier annexe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description  : chr "Un fichier annexe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ created_at   : chr "2022-09-05T07:14:26.252000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_modified: chr "2022-09-05T07:14:26.351000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published    : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ url          : chr "http://api.diffusion.dido.fr/files/0dcfa2d0-5f6c-4b3d-aa6e-69d277cb4030"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datafiles        :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ rid              : chr "b50acfed-0b2b-48ba-9509-cc7ade30e977"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title            : chr "Un fichier de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description      : chr "Un fichier de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ millesimes       : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ created_at       : chr "2022-09-05T07:14:23.069000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_modified    : chr "2022-09-05T07:15:45.963000+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published        : chr "2022-09-05T00:00:00+00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ url              : chr "http://catalogue.diffusion.dido.fr/catalog.html?page=datafile&amp;datafileRid=b50acfed-0b2b-48ba-9509-cc7ade30e977"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ millesimes_info  :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. ..$ :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ millesime      : chr "2021-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ rows           : int 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ date_diffusion : chr "2022-09-05T09:00:00.000Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ headers        :List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "OPE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Nom de l'opérateur"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "ANNEE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Millésime des données"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "annee"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "FILIERE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Filière"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "EPCI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code de l'EPCI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "cog_epci_2020"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CAT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Catégorie de la consommation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "NAF2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code NAF à 2 positions du secteur (NAF rev2 2008)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "naf_division"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "texte"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "n/a"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CONSO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Consommation (en MWh)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ type       : chr "entier"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ unit       : chr "MWh"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ availableValues:List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "OPE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "Aé"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ESL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "RGDS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "SîCÂE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ÇÀ"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "ANNEE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "2019"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "FILIERE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "G"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "EPCI_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200034023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200034270"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200034635"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200036465"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "200037059"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "EPCI_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC Tarn-Agout"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC de Thann-Cernay"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC de la Haute-Somme"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC du Kochersberg"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "CC du Pays de Barr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "CAT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ENT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "ENT_PRO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "RES"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "NAF2_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr ""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "NAF2_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr ""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "Industries alimentaires"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "I"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : chr "R"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ column: chr "CONSO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ values:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 1039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 288821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 454</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. .. ..$ : int 75914</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. ..$ columns        :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "OPE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Nom de l'opérateur"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "ANNEE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Millésime des données"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "FILIERE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Filière"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "EPCI_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code de l'EPCI - Code de la zone"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ ref        : chr "referentiels/cog (LEVEL=epci, MILLESIME=2020)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "EPCI_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code de l'EPCI - Libellé de la zone"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CAT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Catégorie de la consommation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "NAF2_CODE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code NAF à 2 positions du secteur (NAF rev2 2008) - Code NAF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ ref        : chr "referentiels/naf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "NAF2_LIBELLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Code NAF à 2 positions du secteur (NAF rev2 2008) - Libellé NAF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "GS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. ..$ :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ name       : chr "CONSO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ description: chr "Consommation (en MWh)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. .. .. .. ..$ swaggerType: chr "integer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ temporal_coverage:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. ..$ start: chr "2022-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. .. ..$ end  : chr "2023-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ legal_notice     : chr "SDES"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr [1:2] "dido_dataset" "list"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>Sur cette page</h2>
@@ -107,7 +505,7 @@ par exemple, la date de fin de couverture temporelle.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

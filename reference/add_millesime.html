@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -25,8 +25,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
+    <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
+    <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
   </div>
 </li>
 <li class="nav-item">
@@ -58,7 +60,7 @@
     </div>
 
     <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <h2 id="ref-usage">Utilisation<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">add_millesime</span><span class="op">(</span>
   <span class="va">datafile</span>,
   <span class="va">file_name</span>,
@@ -72,8 +74,12 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>datafile</dt>
 <dd><p>un objet dido_datafile obtenu par <code><a href="get_datafile.html">get_datafile()</a></code></p></dd>
+
+
 <dt>file_name</dt>
 <dd><p>le nom du fichier à charger</p></dd>
+
+
 <dt>date_diffusion</dt>
 <dd><p>(optionnel) la date/heure à laquelle le fichier
 devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
@@ -83,20 +89,25 @@ accessibles, si elle est dans le futur, les données ne seront accessibles
 qu'à cette date/heure.</p>
 <p>Si non précisée prend la date/heure courante (heure locale), les données
 sont donc immédiatement accessibles.</p></dd>
+
+
 <dt>millesime</dt>
 <dd><p>le millesime (AAAA-MM). Par défaut AAAA-MM avec l'année
 courante et le mois courant</p></dd>
-<dt>quiet</dt>
-<dd><p>quand <code>TRUE</code> ou que l'option dido_quiet est à <code>TRUE</code> supprime
-les messages d'information, <code>NULL</code> par défaut</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="valeur-de-retour">Valeur de retour<a class="anchor" aria-label="anchor" href="#valeur-de-retour"></a></h2>
-    <p>un objet <code><a href="dido_job.html">dido_job()</a></code></p>
+    
+
+<p>un objet <code><a href="dido_job.html">dido_job()</a></code></p>
+
+
     </div>
     <div class="section level2">
     <h2 id="voir-galement">Voir également<a class="anchor" aria-label="anchor" href="#voir-galement"></a></h2>
     <div class="dont-index"><p>Other millesime: 
+<code><a href="delete_millesime.html">delete_millesime</a>()</code>,
 <code><a href="list_millesimes.html">list_millesimes</a>()</code>,
 <code><a href="replace_millesime.html">replace_millesime</a>()</code></p></div>
     </div>
@@ -106,18 +117,14 @@ les messages d'information, <code>NULL</code> par défaut</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">datafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_datafiles.html">list_datafiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span> <span class="op">==</span> <span class="st">"Un fichier de données de test"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu"><a href="get_datafile.html">get_datafile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">millesime</span> <span class="op">&lt;-</span> <span class="fu">add_millesime</span><span class="op">(</span></span>
 <span class="r-in">  datafile <span class="op">=</span> <span class="va">datafile</span>,</span>
 <span class="r-in">  file_name <span class="op">=</span> <span class="fu"><a href="dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"augmente.csv"</span><span class="op">)</span>,</span>
 <span class="r-in">  millesime <span class="op">=</span> <span class="st">"2011-10"</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier `/home/nc/travail/R/didoscalim/inst/extdata/augmente.csv`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier validé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré	    rid: 1958b63c-0d16-46f5-9c98-476308136cfc	    millesime: 2011-10	    lignes: 5</span>
-<span class="r-in"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># publier un millésime avec embargo</span></span>
 <span class="r-in"><span class="va">millesime</span> <span class="op">&lt;-</span> <span class="fu">add_millesime</span><span class="op">(</span></span>
@@ -126,10 +133,6 @@ les messages d'information, <code>NULL</code> par défaut</p></dd>
 <span class="r-in">  millesime <span class="op">=</span> <span class="st">"2012-10"</span>,</span>
 <span class="r-in">  date_diffusion <span class="op">=</span> <span class="st">"2011-10-10 08:00:00"</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier `/home/nc/travail/R/didoscalim/inst/extdata/augmente.csv`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier validé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré	    rid: 1958b63c-0d16-46f5-9c98-476308136cfc	    millesime: 2012-10	    lignes: 5</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>Sur cette page</h2>
@@ -141,7 +144,7 @@ les messages d'information, <code>NULL</code> par défaut</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

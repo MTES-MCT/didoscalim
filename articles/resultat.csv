@@ -1,7 +1,7 @@
 "Nom de l'opérateur";"Millésime des données";"Filière";"Code de l'EPCI";"Catégorie de la consommation";"Code NAF à 2 positions du secteur (NAF rev2 2008)";"GS";"Consommation (en MWh)"
 "texte";"annee";"texte";"cog_epci_2020";"texte";"naf_division";"texte";"entier"
 "n/a";"n/a";"n/a";"n/a";"n/a";"n/a";"n/a";"MWh"
-"OPE";"ANNEE";"FILIERE";"EPCI";"CAT";"NAF2";"GS";"CONSO"
+"OPERATEUR";"ANNEE";"FILIERE";"EPCI";"CAT";"NAF2";"GS";"CONSO"
 "Aé";"2019";"G";"200036465";"RES";;"R";"1039"
 "ESL";"2019";"G";"200034023";"ENT_PRO";;"I";"552"
 "ÇÀ";"2019";"G";"200034270";"RES";;"R";"75914"
