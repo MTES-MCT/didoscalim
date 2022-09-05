@@ -68,7 +68,7 @@ knitr::kable(head(data, n = 5))
 ```
 
 Si votre fichier est dans un format autre que `UTF-8` ou que le séparateur
-de champ est la virgule (`,`à vous devez préciser `delim` et/ou `locale` :
+de champ est la virgule (`,`) à vous devez préciser `delim` et/ou `locale` :
 
 ```{r}
 dido_read_delim(dido_example("csv-win-char.csv"),
