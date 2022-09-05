@@ -68,7 +68,7 @@ add_or_update_dataset <- function(title,
       temporal_coverage_end = temporal_coverage_end,
       caution = caution
     )
-    return(new_dido_dataset(result))
+    return(invisible(new_dido_dataset(result)))
   }
 
   abort_if_not_one_line("datasets", message = c(x = glue::glue("Il y a plusieurs datasets avec le titre `{title}`.")))
@@ -91,6 +91,6 @@ add_or_update_dataset <- function(title,
 
     if (!identical(origin, dataset)) dataset <- update_dataset(dataset)
 
-    new_dido_dataset(dataset)
+    invisible(new_dido_dataset(dataset))
   }
 }
