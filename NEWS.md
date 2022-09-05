@@ -2,11 +2,11 @@
 
 Cette nouvelle version ajoute les méthodes de haut niveau :
 
-* `add_or_update_dataset`, `add_or_update_datafile` et
-`add_or_update_attachment` qui permettent de mettre à jour respectivement un
+* `add_or_update_dataset()`, `add_or_update_datafile()` et
+`add_or_update_attachment()` qui permettent de mettre à jour respectivement un
 dataset, datafile ou un attachment, s'il existe et de l'ajouter s'il n'existe
 pas.
-* `check_import_file` qui permet de tester rapidement si un fichier de données
+* `check_import_file()` qui permet de tester rapidement si un fichier de données
 est valide au sens de DiDo.
 
 évolutions :
