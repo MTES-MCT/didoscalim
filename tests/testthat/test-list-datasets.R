@@ -13,5 +13,5 @@ test_that("check list_datasets works", {
   )
 
   ds <- expect_s3_class(list_datasets(), "tbl")
-  expect_true('id' %in% names(ds))
+  expect_true("id" %in% names(ds))
 })

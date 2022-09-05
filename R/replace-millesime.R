@@ -36,8 +36,8 @@ replace_millesime <- function(datafile,
   didoscalim_info(glue::glue("\t* fichier validé"))
 
   payload <- list(
-      "tokenFile" = token_file,
-      date_diffusion = date_heure_iso8601(date_diffusion)
+    "tokenFile" = token_file,
+    date_diffusion = date_heure_iso8601(date_diffusion)
   )
 
   rid <- get_datafile_rid(datafile)
@@ -50,10 +50,10 @@ replace_millesime <- function(datafile,
   job_result <- dido_job(wait_for_job(job$id))
 
   didoscalim_info(glue::glue(
-      "        * fichier intégré\n",
-      "(rid: {job_result$result$rid}, ",
-      "millesime: {job_result$result$millesime}, ",
-      "lignes: {job_result$result$rows}"
+    "        * fichier intégré\n",
+    "(rid: {job_result$result$rid}, ",
+    "millesime: {job_result$result$millesime}, ",
+    "lignes: {job_result$result$rows}"
   ))
 
   job_result

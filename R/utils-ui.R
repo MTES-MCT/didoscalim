@@ -107,7 +107,9 @@ abort_if_not_one_line <- function(name,
                                   call = caller_env()) {
   data <- rlang::env_get(.envir, name)
 
-  if (nrow(data) == 1) return(invisible(TRUE))
+  if (nrow(data) == 1) {
+    return(invisible(TRUE))
+  }
 
   if (missing(message) || is.null(message)) {
     message <- c(
@@ -122,7 +124,8 @@ abort_if_not_one_line <- function(name,
   }
   rlang::abort(message = message)
   didoscalim_abort(message,
-                   class = "not_one_row",
-                   .envir = .envir,
-                   call = call)
+    class = "not_one_row",
+    .envir = .envir,
+    call = call
+  )
 }

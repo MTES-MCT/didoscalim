@@ -30,7 +30,7 @@ test_that("check add_or_update_datafile works", {
 
   list_datasets() %>%
     filter(title == dataset_title) %>%
-    purrr::pwalk(~delete_dataset(.))
+    purrr::pwalk(~ delete_dataset(.))
 
   dataset <- add_or_update_dataset(
     title = dataset_title,
@@ -83,7 +83,7 @@ test_that("check add_or_update_datafile when millesime exists", {
 
   list_datasets() %>%
     filter(title == dataset_title) %>%
-    purrr::pwalk(~delete_dataset(.))
+    purrr::pwalk(~ delete_dataset(.))
 
   dataset <- add_or_update_dataset(
     title = dataset_title,
@@ -122,6 +122,4 @@ test_that("check add_or_update_datafile when millesime exists", {
   ) %>%
     expect_equal(NULL, info = "should return NULL") %>%
     expect_message("existe")
-
 })
-

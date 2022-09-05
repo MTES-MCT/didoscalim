@@ -22,7 +22,7 @@ test_that("get_dataset_id fails on frame without id col", {
 })
 
 test_that("get_dataset_id fails if frame has 2 col", {
-  dataset_with_two_lines <- tibble(id = c("truc",  "bidule"))
+  dataset_with_two_lines <- tibble(id = c("truc", "bidule"))
   expect_error(get_dataset_id(dataset_with_two_lines), "contient 2 ligne")
 })
 
@@ -55,7 +55,7 @@ test_that("get_datafile_rid fails on frame without id col", {
 })
 
 test_that("get_datafile_rid fails if frame has 2 col", {
-  dataset_with_two_lines <- tibble(rid = c("truc",  "bidule"))
+  dataset_with_two_lines <- tibble(rid = c("truc", "bidule"))
   expect_error(get_datafile_rid(dataset_with_two_lines), "contient 2 ligne")
 })
 
@@ -86,7 +86,7 @@ test_that("get_attachment_rid fails on frame without id col", {
 })
 
 test_that("get_attachment_rid fails if frame has 2 col", {
-  dataset_with_two_lines <- tibble(rid = c("truc",  "bidule"))
+  dataset_with_two_lines <- tibble(rid = c("truc", "bidule"))
   expect_error(get_attachment_rid(dataset_with_two_lines), "contient 2 ligne")
 })
 

@@ -12,4 +12,3 @@ test_that("dido_write_csv fails on missing params", {
   expect_error(dido_write_csv(), "obligatoire")
   expect_error(dido_write_csv(tibble()), "obligatoire")
 })
-

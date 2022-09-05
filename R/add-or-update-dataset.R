@@ -74,7 +74,7 @@ add_or_update_dataset <- function(title,
   abort_if_not_one_line("datasets", message = c(x = glue::glue("Il y a plusieurs datasets avec le titre `{title}`.")))
 
   if (nrow(datasets) == 1) {
-    dataset <- get_dataset(datasets[1,])
+    dataset <- get_dataset(datasets[1, ])
 
     origin <- rlang::duplicate(dataset)
 

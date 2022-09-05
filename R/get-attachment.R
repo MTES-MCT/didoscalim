@@ -29,7 +29,8 @@
 #'   file_name = dido_example("attachment.txt")
 #' )
 #'
-#' dataset %>% list_attachments() %>%
+#' dataset %>%
+#'   list_attachments() %>%
 #'   slice(1) %>%
 #'   get_attachment()
 get_attachment <- function(data = NULL, dataset = NULL) {

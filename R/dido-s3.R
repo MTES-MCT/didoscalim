@@ -49,7 +49,9 @@ get_dataset_id.character <- function(data) {
 get_dataset_id.data.frame <- function(data) {
   if (!"id" %in% names(data)) abort_not_dataset()
   abort_if_not_one_line("data")
-  if (is_mongo_oid(data[["id"]])) return(data[["id"]])
+  if (is_mongo_oid(data[["id"]])) {
+    return(data[["id"]])
+  }
   NULL
 }
 
@@ -81,7 +83,9 @@ get_datafile_rid.character <- function(data) {
 get_datafile_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_datafile()
   abort_if_not_one_line("data")
-  if (is_uuid(data[["rid"]])) return(data[["rid"]])
+  if (is_uuid(data[["rid"]])) {
+    return(data[["rid"]])
+  }
   NULL
 }
 
@@ -113,7 +117,9 @@ get_attachment_rid.character <- function(data) {
 get_attachment_rid.data.frame <- function(data) {
   if (!"rid" %in% names(data)) abort_not_attachment()
   abort_if_not_one_line("data")
-  if (is_uuid(data[["rid"]])) return(data[["rid"]])
+  if (is_uuid(data[["rid"]])) {
+    return(data[["rid"]])
+  }
   NULL
 }
 

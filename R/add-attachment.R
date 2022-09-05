@@ -28,7 +28,6 @@
 #'   description = "description",
 #'   file_name = dido_example("attachment.txt")
 #' )
-#'
 add_attachment <- function(dataset,
                            title,
                            description,

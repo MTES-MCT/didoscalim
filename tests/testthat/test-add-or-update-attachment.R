@@ -23,7 +23,7 @@ test_that("check add_or_update_attachment works", {
     description = "Un fichier de données de test",
     file_name = dido_example("augmente.csv")
   )
-  expect_s3_class(result, 'dido_attachment')
+  expect_s3_class(result, "dido_attachment")
   expect_equal(length(get_dataset(dataset)$attachments), 1)
 
   result <- add_or_update_attachment(
@@ -34,7 +34,6 @@ test_that("check add_or_update_attachment works", {
     published = "2018-01-01"
   )
 
-  expect_s3_class(result, 'dido_attachment')
+  expect_s3_class(result, "dido_attachment")
   expect_equal(length(get_dataset(dataset)$attachments), 1)
-
 })

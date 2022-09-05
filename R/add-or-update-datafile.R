@@ -90,7 +90,9 @@ add_or_update_datafile <- function(dataset,
     if (check_file_date) {
       datafile_last_modified <- lubridate::as_datetime(datafile$last_modified)
       file_mtime <- lubridate::as_datetime(file.info(file_name)$mtime)
-      if (file_mtime < datafile_last_modified) return(NULL)
+      if (file_mtime < datafile_last_modified) {
+        return(NULL)
+      }
     }
 
     millesimes <- datafile %>% list_millesimes()
@@ -128,7 +130,7 @@ add_or_update_datafile <- function(dataset,
     }
 
     datafile <- get_datafile(datafiles[1, ])
-    origin = duplicate(datafile)
+    origin <- duplicate(datafile)
 
     # update the datafile
     if (!missing(description)) datafile$description <- description

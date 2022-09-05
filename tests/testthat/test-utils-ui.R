@@ -14,4 +14,3 @@ test_that("with_didoscalim_verbosity works", {
   local_didoscalim_verbosity("debug")
   expect_equal(didoscalim_verbosity(), "debug", info = "we should be in debug")
 })
-

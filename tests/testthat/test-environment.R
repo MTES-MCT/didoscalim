@@ -75,7 +75,6 @@ test_that("load_envs works", {
       DIDOSCALIM_API_KEY_ECOLE = "ecole2",
       DIDOSCALIM_BASE_PATH_WITH_UNDERSCORE = "other2",
       DIDOSCALIM_API_KEY_WITH_UNDERSCORE = "other2"
-
     )
   )
   load_envs()
@@ -85,7 +84,6 @@ test_that("load_envs works", {
 
   expect_equal(set_work_env("WITH_UNDERSCORE"), "ECOLE")
   expect_equal(get_work_env(), "WITH_UNDERSCORE")
-
 })
 
 test_that("load_envs fails on incomplete configuration", {

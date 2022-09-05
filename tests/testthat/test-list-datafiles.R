@@ -3,7 +3,7 @@ datafile_title <- "didoscalim df check list_datafiles works"
 
 list_datasets() %>%
   filter(title == dataset_title) %>%
-  purrr::pwalk(~delete_dataset(.))
+  purrr::pwalk(~ delete_dataset(.))
 
 test_that("list_datafiles works when no datasets", {
   skip_unless_dev_env()

@@ -32,13 +32,15 @@ check_import_file <- function(file_name) {
     frequency = "unknown",
   )
 
-  tryCatch({
+  tryCatch(
+    {
       add_datafile(dataset,
-                   title = "titre 2",
-                   description = "description 2",
-                   file_name = file_name)
-    local_didoscalim_verbosity("info")
-    didoscalim_info(c(
+        title = "titre 2",
+        description = "description 2",
+        file_name = file_name
+      )
+      local_didoscalim_verbosity("info")
+      didoscalim_info(c(
         "!" = glue::glue("Pas d'erreur dans le fichier `{file_name}`")
       ))
       return(TRUE)
@@ -47,10 +49,10 @@ check_import_file <- function(file_name) {
       local_didoscalim_verbosity("info")
       didoscalim_info(c(
         "x" = glue::glue("Problème sur le fichier `{file_name}`"),
-        error$message))
+        error$message
+      ))
       return(FALSE)
     },
     finally = delete_dataset(dataset)
   )
-
 }

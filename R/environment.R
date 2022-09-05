@@ -94,7 +94,8 @@ set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame())
         "!" = "Argument {.val quiet} is deprecated in favor of \\
                    {.val didoscalim_verbosity}",
         "i" = "Instead of: {.code function(..., quiet = TRUE)}",
-        " " = 'Now do: {.code options(didoscalim_verbosity = "debug")}'))
+        " " = 'Now do: {.code options(didoscalim_verbosity = "debug")}'
+      ))
     )
   }
 
@@ -182,7 +183,8 @@ check_envs <- function() {
   message <- c("Test de connexion:")
   for (e in list_env_names()) {
     set_work_env(e)
-    tryCatch({
+    tryCatch(
+      {
         me()
         message <- c(message, i = glue::glue("{e}: OK"))
       },
@@ -191,7 +193,7 @@ check_envs <- function() {
       }
     )
   }
-  #cat(format_error_bullets(message))
+  # cat(format_error_bullets(message))
   didoscalim_info(format_error_bullets(message))
   set_work_env(old_env)
 }

@@ -57,15 +57,17 @@ add_or_update_attachment <- function(dataset,
   abort_if_not_one_line("attachments", message = c(x = glue::glue("Il y a plusieurs attachements avec le titre `{title}`.")))
 
   if (nrow(attachments) == 1) {
-    attachment <- get_attachment(attachments[1,])
+    attachment <- get_attachment(attachments[1, ])
 
     if (check_file_date) {
       datafile_last_modified <- lubridate::as_datetime(attachment$last_modified)
       file_mtime <- lubridate::as_datetime(file.info(file_name)$mtime)
-      if (file_mtime < datafile_last_modified) return(NULL)
+      if (file_mtime < datafile_last_modified) {
+        return(NULL)
+      }
     }
 
-    dido_att <- replace_attachment(attachments[1,], file_name)
+    dido_att <- replace_attachment(attachments[1, ], file_name)
 
     if (!missing(description)) attachment$description <- description
     if (!missing(published)) attachment$published <- published
@@ -73,5 +75,4 @@ add_or_update_attachment <- function(dataset,
 
     return(invisible(attachment))
   }
-
 }
