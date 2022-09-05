@@ -22,6 +22,7 @@ dido_csv(
 
 Les caractéristiques disponibles sont :
 \itemize{
+\item \code{name}: le nom de la colonne
 \item \code{description}: la description de la colonne
 \item \code{type}: nombre, entier, texte, ...
 \item \code{unit}: l'unité de la colonne
@@ -99,7 +100,7 @@ data <- data.frame(
 )
 params <- list(
   OPERATEUR = list(description = "L'opérateur"),
-  CONSO = list(description = "La consommation", unit = "Mwh")
+  CONSO = list(name = "CONSOMMATION", description = "La consommation", unit = "Mwh")
 )
 dido_csv(data, params = params)
 

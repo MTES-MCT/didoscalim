@@ -35,6 +35,7 @@ les deux derniers champs sont supprimés par \code{clean_metadata()}
 
 Other dataset: 
 \code{\link{add_dataset}()},
+\code{\link{add_or_update_dataset}()},
 \code{\link{get_dataset}()},
 \code{\link{update_dataset}()}
 }

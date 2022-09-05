@@ -22,8 +22,6 @@ library(dplyr, warn.conflicts = FALSE)
 list_datafiles()
 
 # les datafiles d'un jeu en particulier
-library(dplyr, warn.conflicts = FALSE)
-
 list_datasets() \%>\%
   filter(title == "Un jeu de données de test") \%>\%
   list_datafiles()
@@ -31,6 +29,8 @@ list_datasets() \%>\%
 \seealso{
 Other datafile: 
 \code{\link{add_datafile}()},
+\code{\link{add_or_update_datafile}()},
+\code{\link{delete_datafile}()},
 \code{\link{dido_datafile}()},
 \code{\link{get_datafile}()},
 \code{\link{update_datafile}()}

@@ -27,12 +27,13 @@ dataset.
 library(dplyr, warn.conflicts = FALSE)
 
 ds <- list_datasets() \%>\%
-  filter(title == "Données de consommation fictive") \%>\%
+  slice(1) \%>\%
   get_dataset()
 }
 \seealso{
 Other dataset: 
 \code{\link{add_dataset}()},
+\code{\link{add_or_update_dataset}()},
 \code{\link{dido_dataset}()},
 \code{\link{update_dataset}()}
 }

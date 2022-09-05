@@ -4,16 +4,13 @@
 \alias{set_work_env}
 \title{Fixe l'environnement DiDo à utiliser}
 \usage{
-set_work_env(env_name = NULL, quiet = NULL)
+set_work_env(env_name = NULL, quiet = NULL, .envir = parent.frame())
 }
 \arguments{
 \item{env_name}{le nom de l'environnement à utiliser parmi PROD, ECOLE,
 PREPROD, DEV et suivant ce que vous avez configuré. Si env_name n'est pas
-passé, \code{set_work_env()} choisira le premier environnement configuré parmi
+passé, \code{set_didoscalim_work_env()} choisira le premier environnement configuré parmi
 DEV, PREPROD et ECOLE mais \strong{jamais} PROD.}
-
-\item{quiet}{quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-messages d'information, \code{FALSE} par défaut}
 }
 \description{
 Fixe l'environnement DiDo à utiliser

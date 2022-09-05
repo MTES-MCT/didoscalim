@@ -33,6 +33,7 @@ update_dataset(dataset)
 \seealso{
 Other dataset: 
 \code{\link{add_dataset}()},
+\code{\link{add_or_update_dataset}()},
 \code{\link{dido_dataset}()},
 \code{\link{get_dataset}()}
 }

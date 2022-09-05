@@ -31,6 +31,8 @@ appartient
 \seealso{
 Other datafile: 
 \code{\link{add_datafile}()},
+\code{\link{add_or_update_datafile}()},
+\code{\link{delete_datafile}()},
 \code{\link{get_datafile}()},
 \code{\link{list_datafiles}()},
 \code{\link{update_datafile}()}

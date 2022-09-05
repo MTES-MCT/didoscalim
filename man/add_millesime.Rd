@@ -30,9 +30,6 @@ sont donc immédiatement accessibles.}
 
 \item{millesime}{le millesime (AAAA-MM). Par défaut AAAA-MM avec l'année
 courante et le mois courant}
-
-\item{quiet}{quand \code{TRUE} ou que l'option dido_quiet est à \code{TRUE} supprime
-les messages d'information, \code{NULL} par défaut}
 }
 \value{
 un objet \code{dido_job()}
@@ -44,14 +41,14 @@ Ajoute un millésime à un datafile
 library(dplyr, warn.conflicts = FALSE)
 
 datafile <- list_datafiles() \%>\%
-  filter(title == "Un fichier de données de test")
+  slice(1) \%>\%
+  get_datafile()
 
 millesime <- add_millesime(
   datafile = datafile,
   file_name = dido_example("augmente.csv"),
   millesime = "2011-10"
 )
-
 
 # publier un millésime avec embargo
 millesime <- add_millesime(
@@ -63,6 +60,7 @@ millesime <- add_millesime(
 }
 \seealso{
 Other millesime: 
+\code{\link{delete_millesime}()},
 \code{\link{list_millesimes}()},
 \code{\link{replace_millesime}()}
 }

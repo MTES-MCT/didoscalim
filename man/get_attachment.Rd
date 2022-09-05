@@ -21,13 +21,30 @@ Permet de récupérer les données d'un attachment
 \examples{
 library(dplyr, warn.conflicts = FALSE)
 
-attachment <- list_attachments() \%>\%
-  filter(title == "Un fichier annexe") \%>\%
+dataset <- add_or_update_dataset(
+  title = "Un dataset pour les attachement",
+  description = "Description des données statistiques",
+  topic = "Transports",
+  frequency = "unknown",
+)
+
+add_or_update_attachment(
+  dataset = dataset,
+  title = "title",
+  description = "description",
+  file_name = dido_example("attachment.txt")
+)
+
+dataset \%>\%
+  list_attachments() \%>\%
+  slice(1) \%>\%
   get_attachment()
 }
 \seealso{
 Other attachment: 
 \code{\link{add_attachment}()},
+\code{\link{add_or_update_attachment}()},
+\code{\link{delete_attachment}()},
 \code{\link{dido_attachment}()},
 \code{\link{list_attachments}()},
 \code{\link{replace_attachment}()},

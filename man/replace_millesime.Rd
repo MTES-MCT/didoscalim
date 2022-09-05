@@ -8,7 +8,7 @@ replace_millesime(
   datafile,
   file_name,
   millesime,
-  date_diffusion = NULL,
+  date_diffusion = format(Sys.time(), "\%Y-\%m-\%dT\%H:00:00.000Z"),
   quiet = NULL
 )
 }
@@ -30,15 +30,12 @@ qu'à cette date/heure.
 
 Si non précisée prend la date/heure courante (heure locale), les données
 sont donc immédiatement accessibles.}
-
-\item{quiet}{quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-messages d'information, \code{NULL} par défaut}
 }
 \value{
 un objet \code{dido_job()}
 }
 \description{
-Remplacer les données d'un millésime
+Cette méthode remplace les données d'un millésime en conservant son identifiant.
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)
@@ -55,6 +52,7 @@ millesime <- replace_millesime(
 \seealso{
 Other millesime: 
 \code{\link{add_millesime}()},
+\code{\link{delete_millesime}()},
 \code{\link{list_millesimes}()}
 }
 \concept{millesime}

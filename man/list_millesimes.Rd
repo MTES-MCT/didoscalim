@@ -27,6 +27,7 @@ list_millesimes(datafile)
 \seealso{
 Other millesime: 
 \code{\link{add_millesime}()},
+\code{\link{delete_millesime}()},
 \code{\link{replace_millesime}()}
 }
 \concept{millesime}

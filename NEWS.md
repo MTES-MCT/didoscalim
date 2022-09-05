@@ -1,4 +1,4 @@
-# developpement
+# didoscalim 0.1.0.9000
 
 Cette nouvelle version ajoute les méthodes de haut niveau :
 
@@ -12,8 +12,8 @@ est valide au sens de DiDo.
 évolutions :
 
 * ajout des méthodes add_or_update_*
-* ajout d'une méthode `check_import_file`
-* dido_csv permet de changer le nom de la variable
+* ajout d'une méthode `check_import_file` pour valider un fichier
+* `dido_csv()` permet de changer le nom de la variable
 * ajout des méthodes delete-*
 
 bugfixes :

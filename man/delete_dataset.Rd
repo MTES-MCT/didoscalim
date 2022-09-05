@@ -15,12 +15,3 @@ TRUE
 \description{
 Supprime un dataset
 }
-\examples{
-library(dplyr, warn.conflicts = FALSE)
-
-dataset <- list_datasets() \%>\%
-  filter(title == "Un dataset à supprimer")
-
-delete_dataset(dataset)
-}
-\keyword{internal}

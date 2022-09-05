@@ -4,18 +4,12 @@
 \alias{replace_attachment}
 \title{Remplace un fichier annexe}
 \usage{
-replace_attachment(attachment, file_name, published = NULL, quiet = NULL)
+replace_attachment(attachment, file_name, quiet = NULL)
 }
 \arguments{
 \item{attachment}{un objet \code{dido_attachment()} ou un rid}
 
 \item{file_name}{le nom du fichier à verser}
-
-\item{published}{la date de publication, si non précisée, prendra la date du
-jour}
-
-\item{quiet}{quand TRUE ou que l'option dido_quiet est à TRUE supprime les
-messages d'information, \code{NULL} par défaut}
 }
 \value{
 un objet \code{dido_attachment()}
@@ -40,6 +34,8 @@ replace_attachment(
 \seealso{
 Other attachment: 
 \code{\link{add_attachment}()},
+\code{\link{add_or_update_attachment}()},
+\code{\link{delete_attachment}()},
 \code{\link{dido_attachment}()},
 \code{\link{get_attachment}()},
 \code{\link{list_attachments}()},

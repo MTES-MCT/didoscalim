@@ -27,12 +27,14 @@ dataset.
 library(dplyr, warn.conflicts = FALSE)
 
 datafile <- list_datafiles() \%>\%
-  filter(title == "Un fichier de données de test") \%>\%
+  slice(1) \%>\%
   get_datafile(datafile)
 }
 \seealso{
 Other datafile: 
 \code{\link{add_datafile}()},
+\code{\link{add_or_update_datafile}()},
+\code{\link{delete_datafile}()},
 \code{\link{dido_datafile}()},
 \code{\link{list_datafiles}()},
 \code{\link{update_datafile}()}

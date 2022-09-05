@@ -30,6 +30,8 @@ list_datasets() \%>\%
 \seealso{
 Other attachment: 
 \code{\link{add_attachment}()},
+\code{\link{add_or_update_attachment}()},
+\code{\link{delete_attachment}()},
 \code{\link{dido_attachment}()},
 \code{\link{get_attachment}()},
 \code{\link{replace_attachment}()},
