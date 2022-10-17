@@ -75,7 +75,6 @@ add_or_update_dataset <- function(title,
 
   if (nrow(datasets) == 1) {
     dataset <- get_dataset(datasets[1, ])
-
     origin <- rlang::duplicate(dataset)
 
     if (!missing(description)) dataset$description <- description
@@ -83,7 +82,8 @@ add_or_update_dataset <- function(title,
     if (!missing(tags)) dataset$tags <- tags
     if (!missing(frequency)) dataset$frequency <- frequency
     if (!missing(frequency_date)) dataset$frequency_date <- frequency_date
-    if (!missing(granularity)) dataset$granularity <- granularity
+    if (!missing(granularity)) dataset$spatial$granularity <- granularity
+    if (!missing(zones)) dataset$spatial$zones <- if (class(zones)[[1]] == "list") zones else list(zones)
     if (!missing(license)) dataset$license <- license
     if (!missing(caution)) dataset$caution <- caution
     if (!missing(temporal_coverage_start)) dataset$temporal_coverage$start <- temporal_coverage_start

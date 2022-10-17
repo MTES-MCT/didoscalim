@@ -23,9 +23,9 @@
 #'   jeux de données au format AAAA-MM-JJ
 #' @param temporal_coverage_end  optionnel, la date de fin de couverture du jeux
 #'   de données au format AAAA-MM-JJ
-#' @param zones la zone couverte par le jeu de données. country:fr pour France
-#'   entière, country-subset:fr:metro pour la métropole et
-#'   country-subset:fr:drom pour les DROM
+#' @param zones la zone couverte par le jeu de données. `country:fr` pour France
+#'   entière, `country-subset:fr:metro` pour la métropole et
+#'   `country-subset:fr:drom`` pour les DROM
 #' @param granularity la granularité du jeu de données. Les plus utilisés sont
 #'   "fr:region", "fr:departement", "fr:epci", "fr:commune", "fr:iris" et pour
 #'   les données à l'adresse "poi". [La liste complète des

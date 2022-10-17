@@ -1,3 +1,9 @@
+# didoscalim 0.1.1.9000
+
+bugfixes :
+
+* correction d'un bug sur les mises à jour de zones et de granularité.
+
 # didoscalim 0.1.0.9000
 
 Cette nouvelle version ajoute les méthodes de haut niveau :
