@@ -8,8 +8,8 @@
 <meta name="description" content="didoscalim">
 <title>Configurer et utiliser les environnements • didoscalim</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Configurer et utiliser les environnements">
 <meta property="og:description" content="didoscalim">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -74,7 +74,7 @@
 
 
 <div class="row">
-  <main id="main" class="col-md-9"><div class="page-header">
+  <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Configurer et utiliser les environnements</h1>
             
       
@@ -86,7 +86,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mtes-mct.github.io/didoscalim/">didoscalim</a></span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : DEV</span></code></pre></div>
 <div class="section level2">
 <h2 id="les-environnements-dido">Les environnements DiDo<a class="anchor" aria-label="anchor" href="#les-environnements-dido"></a>
 </h2>
@@ -149,33 +149,57 @@ choisira <strong>jamais</strong> <code>PROD</code> implicitement.</p>
 <code><a href="../reference/set_work_env.html">set_work_env()</a></code> :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/set_work_env.html">set_work_env</a></span><span class="op">(</span><span class="st">"PROD"</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : PROD</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : PROD</span></code></pre></div>
 <p>Pour revenir à l’environnement par défaut :</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/set_work_env.html">set_work_env</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : DEV</span></code></pre></div>
 <p>Vous pouvez à tout moment voir dans quel environnement vous êtes avec
 la commande <code><a href="../reference/get_work_env.html">get_work_env()</a></code>.</p>
 <p>Vous pouvez lister les environnements configués avec la commande
 <code><a href="../reference/list_envs.html">list_envs()</a></code> :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/list_envs.html">list_envs</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Vous avez 3 environnement(s) configuré(s) : </span>
+<span class="co">#&gt; Vous avez 5 environnement(s) configuré(s) : </span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DEV : http://api.alimentation.dido.fr/v1</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD : http://api.alimentation.dido.fr/</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD : http://api.alimentation.dido.fr/v1</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> ECO4_PREPROD : https://www.dido-preproduction.eco4.cloud.e2.rie.gouv.fr/api/v1</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> ECOLE : https://www.dido-ecole.cgdd.e2.rie.gouv.fr/api/v1</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD : https://www.datalake-preproduction.oshimae.rie.gouv.fr/api/v1</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD : https://www.dido.cgdd.e2.rie.gouv.fr/api/v1</span></code></pre></div>
 <p>et vérifier qu’ils fonctionnent avec la commande
 <code><a href="../reference/check_envs.html">check_envs()</a></code> :</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/check_envs.html">check_envs</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : PREPROD</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : PROD</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : DEV</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : ECO4_PREPROD</span>
+<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; Request failed [ERROR]. Retrying in 1 seconds...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; Request failed [ERROR]. Retrying in 2 seconds...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : ECOLE</span>
+<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; Request failed [ERROR]. Retrying in 1 seconds...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; Request failed [ERROR]. Retrying in 3.4 seconds...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : PREPROD</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : PROD</span>
+<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; Request failed [ERROR]. Retrying in 1 seconds...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; Request failed [ERROR]. Retrying in 3.3 seconds...</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; Test de connexion:</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DEV: OK</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> PREPROD: KO: <span style="color: #BB0000;">x</span> Client error : 404 <span style="color: #0000BB;">ℹ</span> url: http://api.alimentation.dido.fr//users/me</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD: OK</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> Environnement DiDo actif : DEV</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> ECO4_PREPROD: KO: Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> ECOLE: KO: Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD: OK</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> PROD: KO: Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : DEV</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="méthode-dalimentation">Méthode d’alimentation<a class="anchor" aria-label="anchor" href="#m%C3%A9thode-dalimentation"></a>
@@ -197,7 +221,8 @@ l’environnement de <code>PROD</code> et relancez les scripts.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
     </footer>
