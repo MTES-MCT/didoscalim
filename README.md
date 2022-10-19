@@ -84,7 +84,7 @@ environnements](articles/les-environnements.html)
 ## Documentation
 
 Vous pouvez trouver l’ensemble de la documentation sur [la page du
-projet](https://mtes-mct.github.io/didoscalim/) et en particuler :
+projet](https://mtes-mct.github.io/didoscalim/) et en particulier :
 
 -   [comment générer un fichier augmenté](articles/csv-augmente.html)
 -   [comment charger et/ou mettre à jour des données dans
@@ -93,7 +93,7 @@ projet](https://mtes-mct.github.io/didoscalim/) et en particuler :
 
 ## Pour les développeurs
 
-Aant de publier une version assurez-vous que `check()` fonctionne
+Avant de publier une version assurez-vous que `check()` fonctionne
 
 ``` r
 check()

@@ -42,9 +42,9 @@ la \code{frequency} est \code{unknown}.}
 "fr:region", "fr:departement", "fr:epci", "fr:commune", "fr:iris" et pour
 les données à l'adresse "poi". \href{https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1/metadata/granularities}{La liste complète des granularités}}
 
-\item{zones}{la zone couverte par le jeu de données. country:fr pour France
-entière, country-subset:fr:metro pour la métropole et
-country-subset:fr:drom pour les DROM}
+\item{zones}{la zone couverte par le jeu de données. \code{country:fr} pour France
+entière, \code{country-subset:fr:metro} pour la métropole et
+`country-subset:fr:drom`` pour les DROM}
 
 \item{organization}{l'id de l'organisation sous laquelle vous souhaitez
 publier le dataset, si vous n'appartenez qu'à une seule organisation, vous
