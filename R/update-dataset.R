@@ -35,5 +35,5 @@ update_dataset <- function(dataset) {
 
   body <- jsonlite::toJSON(metadata, pretty = TRUE, auto_unbox = TRUE, na = "null")
   response <- dido_api(method = "PUT", path = url, body = body)
-  get_dataset(response$id)
+  invisible(get_dataset(response$id))
 }
