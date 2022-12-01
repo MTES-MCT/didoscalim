@@ -18,7 +18,7 @@
 #' @importFrom purrr pwalk
 #' @importFrom utils str
 #' @importFrom stats runif
-#' @importFrom lubridate format_ISO8601 ymd_hms now
+#' @importFrom lubridate format_ISO8601 ymd_hms now time_length
 #' @importFrom utils head
 ## usethis namespace: end
 NULL

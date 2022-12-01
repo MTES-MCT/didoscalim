@@ -42,7 +42,7 @@ test_that("add_dataset complete works", {
   expect_equal(dataset$topic, "Transports")
   expect_equal(dataset$tags, list("agenda-21", "agriculture"))
   expect_equal(dataset$frequency, "annual")
-  expect_equal(dataset$frequency_date, "2022-12-31T00:00:00+00:00")
+  expect_equal(dataset$frequency_date, "2022-12-31")
   expect_equal(dataset$temporal_coverage$start, "2021-01-01")
   expect_equal(dataset$temporal_coverage$end, "2021-12-31")
   expect_equal(dataset$spatial$granularity, "fr:region")

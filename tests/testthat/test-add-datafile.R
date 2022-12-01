@@ -8,7 +8,7 @@ dataset <- add_or_update_dataset(
 test_that("create datafiles works", {
   skip_unless_dev_env()
 
-  date_published <- format(Sys.time(), "%Y-%m-%dT00:00:00+00:00")
+  now <- format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
 
   created_df <- add_datafile(
     dataset = dataset,
@@ -21,14 +21,12 @@ test_that("create datafiles works", {
 
   expect_equal(datafile$title, "didoscalim df create datafiles work")
   expect_equal(datafile$description, "description")
-  expect_equal(datafile$published, date_published)
+  expect_datetime(datafile$published, now, delta = 20)
 
   millesime <- datafile$millesimes_info[[1]]
   expect_equal(millesime$millesime, format(Sys.time(), "%Y-%m"))
   # publication date/time is correct
-  expect_true((ymd_hms(list_millesimes(datafile)[["date_diffusion"]]) - lubridate::now()) < 10)
-
-
+  expect_datetime(list_millesimes(datafile)[["date_diffusion"]], now, delta = 20)
 
   date_diffusion <- "2020-01-01 00:00:00"
   created_df2 <- add_datafile(
@@ -47,7 +45,7 @@ test_that("create datafiles works", {
 
   expect_equal(datafile$title, "didoscalim df create datafiles work")
   expect_equal(datafile$description, "description")
-  expect_equal(datafile$published, date_published)
+  expect_datetime(datafile$published, now, delta = 20)
   expect_equal(datafile$legal_notice, "something")
   expect_equal(datafile$temporal_coverage$start, "2021-01-01")
   expect_equal(datafile$temporal_coverage$end, "2021-12-31")
@@ -56,7 +54,7 @@ test_that("create datafiles works", {
   expect_equal(millesime$millesime, "2020-10")
 
   # publication date/time is correct
-  expect_true((ymd_hms(list_millesimes(datafile)[["date_diffusion"]]) - ymd_hms(date_diffusion, tz = Sys.timezone())) < 10)
+  expect_datetime(list_millesimes(datafile)[["date_diffusion"]], date_diffusion)
 })
 
 test_that("create datafiles warns when missing param", {

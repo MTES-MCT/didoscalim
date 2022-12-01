@@ -28,7 +28,7 @@ test_that("add millesime works", {
 
   # date diffusion
   date_diffusion_millesime <- (list_millesimes(job_millesime) %>% filter(millesime == "2012-10"))[["date_diffusion"]]
-  expect_true((ymd_hms(date_diffusion_millesime) - ymd_hms(date_diffusion, tz = Sys.timezone())) < 10)
+  expect_datetime(date_diffusion_millesime, date_diffusion, delta = 20)
 
   list_millesimes(job_millesime)
 
