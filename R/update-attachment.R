@@ -24,7 +24,7 @@ update_attachment <- function(attachment) {
   id <- get_dataset_id(attachment)
 
   metadata <- internal_clean_metadata(attachment)
-  if (is.null(metadata$published)) metadata$published <- format(Sys.time(), "%Y-%m-%d")
+  if (is.null(metadata$published)) metadata$published <- format(Sys.time(), "%Y-%m-%dT:%H:%M:%S")
 
   url <- glue::glue("/datasets/{id}/attachments/{rid}/metadata")
 

@@ -5,8 +5,12 @@
 #' @param title le titre du fichier annexe
 #' @param description la description du fichier annexe
 #' @param file_name le nom du fichier à verser
-#' @param published la date de publication, si non précisée, prendra la date du
-#'   jour
+#' @param published la date/heure de publication du fichier, si non précisée, prend la
+#'   date/heure du moment.
+#'
+#'   Ce paramètre est au format "AAAA-MM-JJ HH:MM:SS" (ou ISO8601 si vous
+#'   préférez). Si la timezone n'est pas précisée, la timezone de l'ordinateur
+#'   local est utilisée.
 #'
 #' @return un objet `dido_attachment()`
 #' @export
@@ -32,7 +36,7 @@ add_attachment <- function(dataset,
                            title,
                            description,
                            file_name,
-                           published = format(Sys.time(), "%Y-%m-%d"),
+                           published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                            quiet = NULL) {
   check_mandatory_arguments("dataset", "title", "description", "file_name")
 

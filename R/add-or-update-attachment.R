@@ -33,7 +33,7 @@ add_or_update_attachment <- function(dataset,
                                      title,
                                      description,
                                      file_name,
-                                     published = format(Sys.time(), "%Y-%m-%d"),
+                                     published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                      check_file_date = FALSE,
                                      quiet = NULL) {
   check_mandatory_arguments("dataset", "title", "description", "file_name")

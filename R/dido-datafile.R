@@ -41,18 +41,18 @@ NULL
 #'   dataset = "1",
 #'   title = "titre",
 #'   description = "description",
-#'   date_diffusion = "2022-01-01T08:00:00Z"
+#'   date_diffusion = "2022-01-01T08:00:00"
 #' )
 #' @noRd
 dido_datafile <- function(dataset,
                           title,
                           description,
                           millesime = format(Sys.time(), "%Y-%m"),
-                          published = format(Sys.time(), "%Y-%m-%d"),
+                          published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                           temporal_coverage_start = NULL,
                           temporal_coverage_end = NULL,
                           legal_notice = "SDES",
-                          date_diffusion = format(Sys.time(), "%Y-%m-%dT00:00:00.000"),
+                          date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                           call = caller_env()) {
   check_mandatory_arguments("dataset", "title", "description")
 

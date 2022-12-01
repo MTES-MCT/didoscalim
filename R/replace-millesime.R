@@ -23,7 +23,7 @@
 replace_millesime <- function(datafile,
                               file_name,
                               millesime,
-                              date_diffusion = format(Sys.time(), "%Y-%m-%dT%H:00:00.000Z"),
+                              date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                               quiet = NULL) {
   check_mandatory_arguments("datafile", "millesime", "file_name")
 

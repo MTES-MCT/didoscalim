@@ -30,7 +30,7 @@ update_datafile <- function(datafile) {
   id <- get_dataset_id(datafile)
 
   metadata <- internal_clean_metadata(datafile)
-  if (is.null(metadata$published)) metadata$published <- format(Sys.time(), "%Y-%m-%d")
+  if (is.null(metadata$published)) metadata$published <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
   url <- glue::glue("/datasets/{id}/datafiles/{rid}/metadata")
   body <- jsonlite::toJSON(metadata, pretty = TRUE, auto_unbox = TRUE, na = "null")
