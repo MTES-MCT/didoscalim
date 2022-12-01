@@ -1,3 +1,9 @@
+# didoscalim 0.1.2.9000
+
+bugfix :
+
+* correction d'un bug qui empèche l'installation quand l'environnement n'est pas configuré
+
 # didoscalim 0.1.1.9000
 
 bugfixes :
