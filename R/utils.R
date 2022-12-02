@@ -10,7 +10,7 @@
 #' date_heure_iso8601("2022-02-02 07:00:02")
 #' @keywords internal
 date_heure_iso8601 <- function(date_heure) {
-  lubridate::format_ISO8601(lubridate::ymd_hms(date_heure, tz = Sys.timezone()), usetz = "TRUE")
+  lubridate::format_ISO8601(lubridate::ymd_hms(date_heure, tz = Sys.timezone()), usetz = "TRUE", quiet = TRUE)
 }
 
 #' @noRd
