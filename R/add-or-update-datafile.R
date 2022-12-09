@@ -4,10 +4,11 @@
 #' met à jour le datafile avec le même titre s'il existe sinon ajoute un datafile
 #'
 #' @inheritParams add_datafile
-#' @param keep_old_millesimes nombre d'ancien millésimes à conserver, les autres sont supprimés.
-#' @param on_existing_millesime skip/fail : action à faire quand le millésime existe déjà. Peut-être :
+#' @param on_existing_millesime skip/fail/replace : action à faire quand le millésime existe déjà. Peut-être :
 #'   * "skip" : retourne immédiatement après avoir affiché un message
 #'   * "fail" : lève une exception de class `existing_millesime`
+#'   * "replace" : remplace le millésime du même identifiant
+#' @param keep_old_millesimes nombre d'ancien millésimes à conserver, les autres sont supprimés.
 #' @param check_file_date TRUE/FALSE, Si TRUE met à jour le datafile uniquement
 #'   si le fichier est plus récent que le last_modified du datafile
 #'
@@ -60,7 +61,7 @@ add_or_update_datafile <- function(dataset,
                                    check_file_date = FALSE,
                                    quiet = NULL) {
   check_mandatory_arguments("dataset", "title", "description")
-  rlang::arg_match0(on_existing_millesime, c("skip", "fail"))
+  rlang::arg_match0(on_existing_millesime, c("skip", "fail", "replace"))
 
   datafiles <- dataset %>%
     list_datafiles() %>%
@@ -95,7 +96,9 @@ add_or_update_datafile <- function(dataset,
       }
     }
 
-    millesimes <- datafile %>% list_millesimes()
+    existing_millesimes <- datafile %>%
+      list_millesimes() %>%
+      filter(.data$millesime != .env$millesime)
 
     job_result <- NULL
     try_fetch(
@@ -120,6 +123,13 @@ add_or_update_datafile <- function(dataset,
             didoscalim_info(msg)
           })
           return(NULL)
+        } else if (on_existing_millesime == "replace") {
+            job_result <<- replace_millesime(
+              datafile = datafile,
+              file_name = file_name,
+              millesime = millesime,
+              date_diffusion = date_diffusion
+            )
         } else if (on_existing_millesime == "fail") {
           didoscalim_abort(cnd$message, class = class(cnd), call = caller_env())
         }
@@ -145,16 +155,17 @@ add_or_update_datafile <- function(dataset,
     }
 
     # removed unwanted millesime
-    millesimes_to_delete <- find_millesimes_to_delete(millesimes, keep_old_millesimes)
-    for (m in millesimes_to_delete$millesime) delete_millesime(datafile, m)
-
+    if (!millesime %in% c("skip", "replace")) {
+      millesimes_to_delete <- find_millesimes_to_delete(existing_millesimes, keep_old_millesimes)
+      for (m in millesimes_to_delete$millesime) delete_millesime(datafile, m)
+    }
     return(invisible(job_result))
   }
 }
 
 
-find_millesimes_to_delete <- function(millesimes, keep_last_n) {
-  millesimes %>%
+find_millesimes_to_delete <- function(existing_millesimes, keep_last_n) {
+  existing_millesimes %>%
     dplyr::arrange(.data$millesime) %>%
-    utils::head(nrow(millesimes) - keep_last_n)
+    utils::head(nrow(existing_millesimes) - keep_last_n)
 }

@@ -122,4 +122,15 @@ test_that("check add_or_update_datafile when millesime exists", {
   ) %>%
     expect_equal(NULL, info = "should return NULL") %>%
     expect_message("existe")
+
+  add_or_update_datafile(
+    dataset,
+    title = datafile_title,
+    description = "Un fichier de données de test",
+    file_name = dido_example("augmente.csv"),
+    millesime = "2001-01",
+    on_existing_millesime = "replace"
+  ) %>%
+    expect_s3_class("dido_job")
+
 })
