@@ -71,10 +71,10 @@ add_millesime <- function(datafile,
   )
 
   didoscalim_info(glue::glue(
-    "\t* fichier intégré",
-    "\t    rid: {get_datafile_rid(job_result)}",
-    "\t    millesime: {job_result$result$millesime}",
-    "\t    lignes: {job_result$result$rows}",
+    "\t* fichier intégré: ",
+    "\t rid: {get_datafile_rid(job_result)}",
+    "\t millesime: {job_result$result$millesime}",
+    "\t lignes: {job_result$result$rows}",
   ))
 
   invisible(job_result)

@@ -110,10 +110,10 @@ add_datafile <- function(dataset,
   job_result <- dido_job(wait_for_job(job))
 
   didoscalim_info(glue::glue(
-    "\t* fichier intégré",
-    "\t    rid: {get_datafile_rid(job_result)}",
-    "\t    millesime: {job_result$result$millesime}",
-    "\t    lignes: {job_result$result$rows}",
+    "\t* fichier intégré: ",
+    "\t rid: {get_datafile_rid(job_result)}",
+    "\t millesime: {job_result$result$millesime}",
+    "\t lignes: {job_result$result$rows}",
   ))
   invisible(job_result)
 }

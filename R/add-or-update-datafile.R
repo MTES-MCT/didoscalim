@@ -113,9 +113,9 @@ add_or_update_datafile <- function(dataset,
       },
       millesime_exists = function(cnd) {
         msg <- (c("Le millesime existe déjà :",
-          i = glue::glue("dataset: {dataset$title}"),
-          i = glue::glue("datafile: {datafile$title}"),
-          i = glue::glue("millesime: {millesime}")
+          i = glue::glue('dataset: "{dataset$title}"'),
+          i = glue::glue('datafile: "{datafile$title}"'),
+          i = glue::glue('millesime: "{millesime}"')
         ))
 
         if (on_existing_millesime == "skip") {
@@ -130,6 +130,7 @@ add_or_update_datafile <- function(dataset,
               millesime = millesime,
               date_diffusion = date_diffusion
             )
+            didoscalim_info(glue::glue('datafile "{datafile$title}": remplacement du millesime {millesime}'))
         } else if (on_existing_millesime == "fail") {
           didoscalim_abort(cnd$message, class = class(cnd), call = caller_env())
         }

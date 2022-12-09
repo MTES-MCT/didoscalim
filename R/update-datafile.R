@@ -37,5 +37,8 @@ update_datafile <- function(datafile) {
 
   result <- dido_api(method = "PUT", path = url, body = body)
   attr(result, "id") <- id
+
+  didoscalim_info(glue::glue('datafile "{datafile$title}" modifié'))
+
   invisible(new_dido_datafile(result))
 }

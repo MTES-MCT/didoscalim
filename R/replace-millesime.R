@@ -50,10 +50,10 @@ replace_millesime <- function(datafile,
   job_result <- dido_job(wait_for_job(job$id))
 
   didoscalim_info(glue::glue(
-    "        * fichier intégré\n",
-    "(rid: {job_result$result$rid}, ",
-    "millesime: {job_result$result$millesime}, ",
-    "lignes: {job_result$result$rows}"
+    "\t* fichier intégré: ",
+    "\t rid: {job_result$result$rid}",
+    "\t millesime: {job_result$result$millesime}",
+    "\t lignes: {job_result$result$rows}"
   ))
 
   job_result

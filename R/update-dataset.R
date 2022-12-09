@@ -35,5 +35,8 @@ update_dataset <- function(dataset) {
 
   body <- jsonlite::toJSON(metadata, pretty = TRUE, auto_unbox = TRUE, na = "null")
   response <- dido_api(method = "PUT", path = url, body = body)
+
+  didoscalim_info(glue::glue('dataset "{dataset$title}" modifié'))
+
   invisible(get_dataset(response$id))
 }

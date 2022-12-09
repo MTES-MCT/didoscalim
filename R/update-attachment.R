@@ -32,5 +32,8 @@ update_attachment <- function(attachment) {
 
   result <- dido_api(method = "PUT", path = url, body = body)
   attr(result, "id") <- id
+
+  didoscalim_info(glue::glue('attachment "{attachment$title}" modifié'))
+
   invisible(dido_attachment(result))
 }
