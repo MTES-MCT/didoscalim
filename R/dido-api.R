@@ -31,25 +31,23 @@ default_ua <- function() {
 #' alerts <- dido_api(method = "GET", path = "/datasets/alerts", as_tibble = TRUE)
 #' @keywords internal
 dido_api <- function(method, path, body, query_params = list(), headers = c(), as_tibble = FALSE) {
+  if (!method %in% c("GET", "PUT", "POST", "DELETE")) {
+    rlang::abort(glue::glue("unknown method: {method} for url: {url}"))
+  }
+
   url <- paste0(base_path(), path)
   ua <- httr::user_agent(default_ua())
 
   headers["x-api-key"] <- api_key()
   if (!"content-type" %in% headers) headers["content-type"] <- "application/json"
 
-  didoscalim_debug(glue::glue("Request: { method } { url }"))
+  params <- list(verb = method, url = url, c(httr::add_headers(headers), ua), terminate_on = c(400:499))
+  if (!missing(query_params)) params <- c(params, query = query_params)
+  if (!missing(body)) params <- c(params, list(body = body))
 
-  if (method == "GET") {
-    response <- httr::RETRY("GET", url, httr::add_headers(headers), ua, terminate_on = c(400:499))
-  } else if (method == "POST") {
-    response <- httr::RETRY("POST", url, query = query_params, body = body, httr::add_headers(headers), ua, terminate_on = c(400:499))
-  } else if (method == "PUT") {
-    response <- httr::RETRY("PUT", url, query = query_params, body = body, httr::add_headers(headers), ua, terminate_on = c(400:499))
-  } else if (method == "DELETE") {
-    response <- httr::RETRY("DELETE", url, query = query_params, httr::add_headers(headers), ua, terminate_on = c(400:499))
-  } else {
-    rlang::abort(glue::glue("unknown method: {method} for url: {url}"))
-  }
+  didoscalim_debug(glue::glue("{ str(params) }"))
+
+  response <- do.call(httr::RETRY, params)
 
   if (httr::status_code(response) >= 400) {
     didoscalim_abort(
