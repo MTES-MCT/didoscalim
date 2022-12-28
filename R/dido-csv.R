@@ -5,7 +5,9 @@ default_columns <- list(
   EPCI = list(type = "cog_epci_{COG_YEAR}", description = "Code de l'EPCI"),
   IRIS = list(type = "cog_iris_{COG_YEAR}", description = "Code de l'iris"),
   ANNEE = list(type = "annee", description = "Millésime des données"),
-  MOIS = list(type = "mois", description = "Mois des données")
+  TRIMESTRE = list(type = "trimestre", description = "Trimestre des données"),
+  MOIS = list(type = "mois", description = "Mois des données"),
+  JOUR = list(type = "jour", description = "Jour des données")
 )
 
 #' Génère les lignes d'entête du CSV augmenté
