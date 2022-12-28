@@ -1,3 +1,5 @@
+MIN_SIZE_FOR_PROGRESS_BAR <- 10 * 1024 * 1024
+
 #' Verse un fichier de données à intégrer
 #'
 #' @param file_name le nom du fichier
@@ -24,12 +26,16 @@ dido_upload_file <- function(file_name) {
     file_name,
     type = "application/octet-stream"
   )
-  result <- dido_api(
+
+  params <- list(
     method = "POST",
     path = url,
     body = ("file" <- file),
     headers = headers
   )
+  if (file.info(file_name)$size > MIN_SIZE_FOR_PROGRESS_BAR) params <- c(params, list(progress = TRUE))
+
+  result <- do.call(dido_api, params)
   return(result$tokenFile)
 }
 

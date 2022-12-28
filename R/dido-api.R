@@ -30,7 +30,7 @@ default_ua <- function() {
 #' @examples
 #' alerts <- dido_api(method = "GET", path = "/datasets/alerts", as_tibble = TRUE)
 #' @keywords internal
-dido_api <- function(method, path, body, query_params = list(), headers = c(), as_tibble = FALSE) {
+dido_api <- function(method, path, body = NULL, query_params = list(), headers = c(), as_tibble = FALSE, progress = FALSE) {
   if (!method %in% c("GET", "PUT", "POST", "DELETE")) {
     rlang::abort(glue::glue("unknown method: {method} for url: {url}"))
   }
@@ -41,9 +41,20 @@ dido_api <- function(method, path, body, query_params = list(), headers = c(), a
   headers["x-api-key"] <- api_key()
   if (!"content-type" %in% headers) headers["content-type"] <- "application/json"
 
-  params <- list(verb = method, url = url, c(httr::add_headers(headers), ua), terminate_on = c(400:499))
-  if (!missing(query_params)) params <- c(params, query = query_params)
+  params <- list(method, url, c(httr::add_headers(headers), ua), terminate_on = c(400:499))
+  #if (!missing(query_params)) params <- c(params, query = query_params)
   if (!missing(body)) params <- c(params, list(body = body))
+  if (progress) params <- append(params, httr::progress(type = c("up"), con = stdout()))
+
+  params <- list(
+    method, url,
+    c(httr::add_headers(headers), ua),
+    terminate_on = c(400:499),
+    body = body,
+    if (progress && interactive()) httr::progress(type = c("up"), con = stdout())
+  )
+
+  #str(params)
 
   didoscalim_debug(glue::glue("{ str(params) }"))
 
