@@ -101,41 +101,39 @@ add_or_update_datafile <- function(dataset,
       filter(.data$millesime != .env$millesime)
 
     job_result <- NULL
-    try_fetch(
-      {
-        # add the millesime
-        job_result <- add_millesime(
+
+    millesime_already_exists <- millesime %in% list_millesimes(datafile)$millesime
+    if (!millesime_already_exists) {
+      # add the millesime
+      job_result <- add_millesime(
+        datafile = datafile,
+        file_name = file_name,
+        millesime = millesime,
+        date_diffusion = date_diffusion
+      )
+    } else {
+      msg <- (c("Le millesime existe déjà :",
+                i = glue::glue('dataset: "{dataset$title}"'),
+                i = glue::glue('datafile: "{datafile$title}"'),
+                i = glue::glue('millesime: "{millesime}"')
+      ))
+      if (on_existing_millesime == "skip") {
+        with_didoscalim_verbosity("info", {
+          didoscalim_info(msg)
+        })
+        return(NULL)
+      } else if (on_existing_millesime == "replace") {
+        job_result <- replace_millesime(
           datafile = datafile,
           file_name = file_name,
           millesime = millesime,
           date_diffusion = date_diffusion
         )
-      },
-      millesime_exists = function(cnd) {
-        msg <- (c("Le millesime existe déjà :",
-          i = glue::glue('dataset: "{dataset$title}"'),
-          i = glue::glue('datafile: "{datafile$title}"'),
-          i = glue::glue('millesime: "{millesime}"')
-        ))
-
-        if (on_existing_millesime == "skip") {
-          with_didoscalim_verbosity("info", {
-            didoscalim_info(msg)
-          })
-          return(NULL)
-        } else if (on_existing_millesime == "replace") {
-            job_result <<- replace_millesime(
-              datafile = datafile,
-              file_name = file_name,
-              millesime = millesime,
-              date_diffusion = date_diffusion
-            )
-            didoscalim_info(glue::glue('datafile "{datafile$title}": remplacement du millesime {millesime}'))
-        } else if (on_existing_millesime == "fail") {
-          didoscalim_abort(cnd$message, class = class(cnd), call = caller_env())
-        }
+        didoscalim_info(glue::glue('datafile "{datafile$title}": remplacement du millesime {millesime}'))
+      } else if (on_existing_millesime == "fail") {
+        didoscalim_abort(msg, class = "millesime_exists", call = caller_env())
       }
-    )
+    }
     if (is.null(job_result)) {
       return(NULL)
     }
@@ -155,8 +153,8 @@ add_or_update_datafile <- function(dataset,
       update_datafile(datafile)
     }
 
-    # removed unwanted millesime
-    if (!millesime %in% c("skip", "replace")) {
+    # removed unwanted millesime FIXME
+    if (!on_existing_millesime %in% c("skip", "replace")) {
       millesimes_to_delete <- find_millesimes_to_delete(existing_millesimes, keep_old_millesimes)
       for (m in millesimes_to_delete$millesime) delete_millesime(datafile, m)
     }

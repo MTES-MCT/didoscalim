@@ -56,6 +56,7 @@ test_that("check add_or_update_datafile works", {
     temporal_coverage_end = "2001-12-31",
     millesime = "2002-01"
   )
+
   datafile <- get_datafile(result)
   expect_equal(datafile$millesimes, 2, info = "datafile should have 2 millesimes")
   expect_equal(datafile$temporal_coverage$start, "2000-01-01")
