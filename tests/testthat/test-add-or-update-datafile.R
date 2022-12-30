@@ -2,27 +2,18 @@ dataset_title <- "didoscalim ds check add_or_update_datafile"
 datafile_title <- "didoscalim df check add_or_update_datafile"
 
 test_that("find_millesimes_to_delete works", {
-  millesimes <- tibble(millesime = c("2020-01", "2020-02"))
-  result <- find_millesimes_to_delete(millesimes, keep_last_n = 0)
-  expect_equal(nrow(result), 2, info = "return the two lines")
+  millesimes <- tibble(millesime = c("2020-01", "2020-02", "2020-03"))
+  result <- find_millesimes_to_delete(millesimes, keep_old_millesimes = Inf, "2020-03")
+  expect_equal(nrow(result), 0, info = "we want to keep all millesimes : should return an empty tibble")
 
-  millesimes <- tibble(millesime = c("2020-01", "2020-02"))
-  result <- find_millesimes_to_delete(millesimes, keep_last_n = 1)
-  expect_equal(nrow(result), 1, info = "return one line")
+  millesimes <- tibble(millesime = c("2020-01", "2020-02", "2020-03"))
+  result <- find_millesimes_to_delete(millesimes, keep_old_millesimes = 1, "2020-02")
+  expect_equal(nrow(result), 0, info = "we update the middle millesime and keep 1 : should return an empty tibble")
+
+  millesimes <- tibble(millesime = c("2020-03", "2020-02", "2020-01"))
+  result <- find_millesimes_to_delete(millesimes, keep_old_millesimes = 0, "2020-02")
+  expect_equal(nrow(result), 1, info = "we update the intermediate millesime and keep 0 old : should return a tibble with the older millesime")
   expect_equal(result$millesime, "2020-01", info = "return the older millesime")
-
-  millesimes <- tibble(millesime = c("2020-01", "2020-01"))
-  result <- find_millesimes_to_delete(millesimes, keep_last_n = 1)
-  expect_equal(nrow(result), 1, info = "return one line")
-  expect_equal(result$millesime, "2020-01", info = "return the older millesime")
-
-  millesimes <- tibble(millesime = c("2020-01", "2020-02"))
-  result <- find_millesimes_to_delete(millesimes, keep_last_n = 2)
-  expect_equal(nrow(result), 0, info = "return an empty tibble")
-
-  millesimes <- tibble(millesime = c("2020-01", "2020-02"))
-  result <- find_millesimes_to_delete(millesimes, keep_last_n = Inf)
-  expect_equal(nrow(result), 0, info = "return an empty tibble")
 })
 
 test_that("check add_or_update_datafile works", {
@@ -135,3 +126,4 @@ test_that("check add_or_update_datafile when millesime exists", {
     expect_s3_class("dido_job")
 
 })
+

@@ -1,14 +1,19 @@
 #' Ajoute ou modifie un datafile
 #'
 #' @description
-#' met à jour le datafile avec le même titre s'il existe sinon ajoute un datafile
+#' met à jour le datafile avec le même titre s'il existe sinon ajoute un
+#' datafile, un millésime ou remplace un millésime s'il existe déjà
 #'
 #' @inheritParams add_datafile
-#' @param on_existing_millesime skip/fail/replace : action à faire quand le millésime existe déjà. Peut-être :
-#'   * "skip" : retourne immédiatement après avoir affiché un message
-#'   * "fail" : lève une exception de class `existing_millesime`
-#'   * "replace" : remplace le millésime du même identifiant
-#' @param keep_old_millesimes nombre d'ancien millésimes à conserver, les autres sont supprimés.
+#' @param on_existing_millesime skip/fail/replace : action à faire quand le
+#'   millésime existe déjà. Peut-être :
+#'   * "skip" : retourne immédiatement après avoir affiché un message. Les métadonnées du millésime ne sont pas mises à jour et les anciens millésimes ne sont jamais effacés.
+#'   * "fail" : lève une exception de class `existing_millesime`. Les métadonnées du millésime ne sont pas mises à jour et les anciens millésimes ne sont jamais effacés.
+#'   * "replace" : remplace le millésime ayant le même identifiant
+#' @param keep_old_millesimes nombre d'ancien millésimes à conserver. Ce
+#'   paramètre permet de supprimer les anciens millésimes. Pour des raisons de
+#'   sécurité, cette option n'effacera jamais des millésimes plus récent que le
+#'   millésime passé en paramètre.
 #' @param check_file_date TRUE/FALSE, Si TRUE met à jour le datafile uniquement
 #'   si le fichier est plus récent que le last_modified du datafile
 #'
@@ -96,10 +101,6 @@ add_or_update_datafile <- function(dataset,
       }
     }
 
-    existing_millesimes <- datafile %>%
-      list_millesimes() %>%
-      filter(.data$millesime != .env$millesime)
-
     job_result <- NULL
 
     millesime_already_exists <- millesime %in% list_millesimes(datafile)$millesime
@@ -154,17 +155,22 @@ add_or_update_datafile <- function(dataset,
     }
 
     # removed unwanted millesime FIXME
-    if (!on_existing_millesime %in% c("skip", "replace")) {
-      millesimes_to_delete <- find_millesimes_to_delete(existing_millesimes, keep_old_millesimes)
+    if (!on_existing_millesime %in% c("skip")) {
+      millesimes_to_delete <- find_millesimes_to_delete(list_millesimes(datafile),
+                                                        keep_old_millesimes,
+                                                        millesime)
       for (m in millesimes_to_delete$millesime) delete_millesime(datafile, m)
     }
     return(invisible(job_result))
   }
 }
 
+# take a tibble of datafile millesimes and return the (nb of millesimes - keep_old_millesimes) older than millesime.
+find_millesimes_to_delete <- function(existing_millesimes, keep_old_millesimes, millesime) {
+  older_millesimes <- existing_millesimes %>%
+    dplyr::filter(.data$millesime < .env$millesime)
 
-find_millesimes_to_delete <- function(existing_millesimes, keep_last_n) {
-  existing_millesimes %>%
+  older_millesimes %>%
     dplyr::arrange(.data$millesime) %>%
-    utils::head(nrow(existing_millesimes) - keep_last_n)
+    utils::head(nrow(older_millesimes) - keep_old_millesimes)
 }
