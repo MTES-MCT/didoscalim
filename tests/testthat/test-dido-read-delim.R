@@ -13,7 +13,8 @@ test_that("dido_read_delim functions work with comma", {
   result <- dido_csv(
     tbl,
     params = params,
-    locale = locale
+    locale = locale,
+    cog_year = "2022"
   )
 
   expected <- read_delim(
@@ -43,7 +44,8 @@ test_that("dido_read_delim functions work with ISO-8859-15 and comma", {
   result <- dido_csv(
     tbl,
     params = params,
-    locale = locale
+    locale = locale,
+    cog_year = "2022"
   )
 
   expected <- read_delim(
