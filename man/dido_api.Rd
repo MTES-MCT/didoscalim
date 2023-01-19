@@ -7,10 +7,11 @@
 dido_api(
   method,
   path,
-  body,
+  body = NULL,
   query_params = list(),
   headers = c(),
-  as_tibble = FALSE
+  as_tibble = FALSE,
+  progress = FALSE
 )
 }
 \arguments{

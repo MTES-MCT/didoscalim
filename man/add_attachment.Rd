@@ -9,7 +9,7 @@ add_attachment(
   title,
   description,
   file_name,
-  published = format(Sys.time(), "\%Y-\%m-\%d"),
+  published = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
   quiet = NULL
 )
 }
@@ -23,8 +23,12 @@ add_attachment(
 
 \item{file_name}{le nom du fichier à verser}
 
-\item{published}{la date de publication, si non précisée, prendra la date du
-jour}
+\item{published}{la date/heure de publication du fichier, si non précisée, prend la
+date/heure du moment.
+
+Ce paramètre est au format "AAAA-MM-JJ HH:MM:SS" (ou ISO8601 si vous
+préférez). Si la timezone n'est pas précisée, la timezone de l'ordinateur
+local est utilisée.}
 }
 \value{
 un objet \code{dido_attachment()}

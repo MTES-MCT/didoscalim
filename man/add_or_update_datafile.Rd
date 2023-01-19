@@ -10,7 +10,7 @@ add_or_update_datafile(
   description,
   file_name,
   millesime = format(Sys.time(), "\%Y-\%m"),
-  published = format(Sys.time(), "\%Y-\%m-\%d"),
+  published = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
   temporal_coverage_start = NULL,
   temporal_coverage_end = NULL,
   legal_notice = "SDES",
@@ -34,8 +34,12 @@ add_or_update_datafile(
 \item{millesime}{le millesime (AAAA-MM). Par défaut AAAA-MM avec l'année
 courante et le mois courant}
 
-\item{published}{la date de publication du fichier, si non précisée, prend la
-date du jour.}
+\item{published}{la date/heure de publication du fichier, si non précisée, prend la
+date/heure du moment.
+
+Ce paramètre est au format "AAAA-MM-JJ HH:MM:SS" (ou ISO8601 si vous
+préférez). Si la timezone n'est pas précisée, la timezone de l'ordinateur
+local est utilisée.}
 
 \item{temporal_coverage_start}{optionnel, la date de début de couverture du
 fichier de données au format AAAA-MM-JJ}
@@ -45,23 +49,31 @@ fichier de données au format AAAA-MM-JJ}
 
 \item{legal_notice}{les mentions légales, par défaut "SDES"}
 
-\item{date_diffusion}{(optionnel) la date/heure à laquelle le fichier
-devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
-Si la time zone n'est pas précisée, l'heure locale est utilisée.
+\item{date_diffusion}{(optionnel) les date et heure auxquelles le fichier
+devra être rendu accessible à la diffusion.
 
-Si cette date est dans le passé, les données sont immédiatement
+Ce paramètre est au format "AAAA-MM-JJ HH:MM:SS" (ou ISO8601 si vous
+préférez). Si la timezone n'est pas précisée, la timezone de l'ordinateur
+local est utilisée.
+
+Si cette date/heure est dans le passé, les données sont immédiatement
 accessibles, si elle est dans le futur, les données ne seront accessibles
 qu'à cette date/heure.
 
-Si non précisée prend la date/heure courante (heure locale), les données
+Si ce paramètre est non précisé prend la date/heure courante, les données
 sont donc immédiatement accessibles.}
 
-\item{keep_old_millesimes}{nombre d'ancien millésimes à conserver, les autres sont supprimés.}
+\item{keep_old_millesimes}{nombre d'ancien millésimes à conserver. Ce
+paramètre permet de supprimer les anciens millésimes. Pour des raisons de
+sécurité, cette option n'effacera jamais des millésimes plus récent que le
+millésime passé en paramètre.}
 
-\item{on_existing_millesime}{skip/fail : action à faire quand le millésime existe déjà. Peut-être :
+\item{on_existing_millesime}{skip/fail/replace : action à faire quand le
+millésime existe déjà. Peut-être :
 \itemize{
-\item "skip" : retourne immédiatement après avoir affiché un message
-\item "fail" : lève une exception de class \code{existing_millesime}
+\item "skip" : retourne immédiatement après avoir affiché un message. Les métadonnées du millésime ne sont pas mises à jour et les anciens millésimes ne sont jamais effacés.
+\item "fail" : lève une exception de class \code{existing_millesime}. Les métadonnées du millésime ne sont pas mises à jour et les anciens millésimes ne sont jamais effacés.
+\item "replace" : remplace le millésime ayant le même identifiant
 }}
 
 \item{check_file_date}{TRUE/FALSE, Si TRUE met à jour le datafile uniquement
@@ -72,7 +84,14 @@ un objet \code{dido_job()} ou \code{NULL} si aucune création/mise à jour
 n'a eu lieu
 }
 \description{
-met à jour le datafile avec le même titre s'il existe sinon ajoute un datafile
+met à jour le datafile (métadonnées et données) avec le même titre s'il
+existe sinon ajoute un datafile, un millésime ou remplace un millésime s'il
+existe déjà.
+
+Le paramètre \code{on_existing_millesime} permet de préciser le comportement à
+adopter si le millésime existe déjà.
+
+Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)

@@ -17,15 +17,18 @@ add_millesime(
 
 \item{file_name}{le nom du fichier à charger}
 
-\item{date_diffusion}{(optionnel) la date/heure à laquelle le fichier
-devra être rendu accessible à la diffusion au format "AAAA-MM-JJ HH:MM:SS".
-Si la time zone n'est pas précisée, l'heure locale est utilisée.
+\item{date_diffusion}{(optionnel) les date et heure auxquelles le fichier
+devra être rendu accessible à la diffusion.
 
-Si cette date est dans le passé, les données sont immédiatement
+Ce paramètre est au format "AAAA-MM-JJ HH:MM:SS" (ou ISO8601 si vous
+préférez). Si la timezone n'est pas précisée, la timezone de l'ordinateur
+local est utilisée.
+
+Si cette date/heure est dans le passé, les données sont immédiatement
 accessibles, si elle est dans le futur, les données ne seront accessibles
 qu'à cette date/heure.
 
-Si non précisée prend la date/heure courante (heure locale), les données
+Si ce paramètre est non précisé prend la date/heure courante, les données
 sont donc immédiatement accessibles.}
 
 \item{millesime}{le millesime (AAAA-MM). Par défaut AAAA-MM avec l'année

@@ -1,8 +1,14 @@
 #' Ajoute ou modifie un datafile
 #'
 #' @description
-#' met à jour le datafile avec le même titre s'il existe sinon ajoute un
-#' datafile, un millésime ou remplace un millésime s'il existe déjà
+#' met à jour le datafile (métadonnées et données) avec le même titre s'il
+#' existe sinon ajoute un datafile, un millésime ou remplace un millésime s'il
+#' existe déjà.
+#'
+#' Le paramètre `on_existing_millesime` permet de préciser le comportement à
+#' adopter si le millésime existe déjà.
+#'
+#' Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.
 #'
 #' @inheritParams add_datafile
 #' @param on_existing_millesime skip/fail/replace : action à faire quand le

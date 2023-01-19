@@ -1,6 +1,6 @@
 #' Ajoute ou modifie un fichier annexe dans un dataset
 #'
-#' met à jour l'attachement avec le même titre s'il existe sinon ajoute un attachement
+#' met à jour l'attachement avec le même titre s'il existe sinon ajoute un attachement.
 #'
 #' @inheritParams add_attachment
 #' @param check_file_date TRUE/FALSE, Si TRUE met à jour l'attachment uniquement

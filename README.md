@@ -11,9 +11,9 @@ alt="Project Status: WIP – Initial development is in progress, but there has n
 
 Un package R pour :
 
--   générer des fichiers CSV au format DiDo (CSV augmenté)
--   automatiser l’alimentation l’outil de diffusion de données DiDo du
-    [CGDD/SDES](https://www.statistiques.developpement-durable.gouv.fr/).
+- générer des fichiers CSV au format DiDo (CSV augmenté)
+- automatiser l’alimentation l’outil de diffusion de données DiDo du
+  [CGDD/SDES](https://www.statistiques.developpement-durable.gouv.fr/).
 
 Ce package est en cours de développement.
 
@@ -86,16 +86,19 @@ environnements](articles/les-environnements.html)
 Vous pouvez trouver l’ensemble de la documentation sur [la page du
 projet](https://mtes-mct.github.io/didoscalim/) et en particulier :
 
--   [comment générer un fichier augmenté](articles/csv-augmente.html)
--   [comment charger et/ou mettre à jour des données dans
-    DiDo](articles/charger-et-mettre-a-jour-des-donnees.html)
--   [utiliser les environnements](articles/les-environnements.html)
+- [comment générer un fichier
+  augmenté](https://mtes-mct.github.io/didoscalim/articles/csv-augmente.html)
+- [comment charger et/ou mettre à jour des données dans
+  DiDo](https://mtes-mct.github.io/didoscalim/articles/charger-et-mettre-a-jour-des-donnees.html)
+- [utiliser les
+  environnements](https://mtes-mct.github.io/didoscalim/articles/les-environnements.html)
 
 ## Pour les développeurs
 
 Avant de publier une version assurez-vous que `check()` fonctionne
 
 ``` r
+source("populate.R")
 check()
 ```
 

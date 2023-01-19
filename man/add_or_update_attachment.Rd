@@ -9,7 +9,7 @@ add_or_update_attachment(
   title,
   description,
   file_name,
-  published = format(Sys.time(), "\%Y-\%m-\%d"),
+  published = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
   check_file_date = FALSE,
   quiet = NULL
 )
@@ -24,8 +24,12 @@ add_or_update_attachment(
 
 \item{file_name}{le nom du fichier à verser}
 
-\item{published}{la date de publication, si non précisée, prendra la date du
-jour}
+\item{published}{la date/heure de publication du fichier, si non précisée, prend la
+date/heure du moment.
+
+Ce paramètre est au format "AAAA-MM-JJ HH:MM:SS" (ou ISO8601 si vous
+préférez). Si la timezone n'est pas précisée, la timezone de l'ordinateur
+local est utilisée.}
 
 \item{check_file_date}{TRUE/FALSE, Si TRUE met à jour l'attachment uniquement
 si le fichier est plus récent que le last_modified de l'attachment}
@@ -35,7 +39,7 @@ un objet \code{dido_attachment()} ou \code{NULL} si aucune création/mise à jou
 n'a eu lieu
 }
 \description{
-met à jour l'attachement avec le même titre s'il existe sinon ajoute un attachement
+met à jour l'attachement avec le même titre s'il existe sinon ajoute un attachement.
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)
