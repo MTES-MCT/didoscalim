@@ -1,3 +1,30 @@
+# didoscalim 0.1.3.9000
+
+Cette version ajoute une option `replace` au paramètre `on_existing_millesime`
+de la méthode `add_or_update_datafile` qui permet de remplacer le millésime en
+conservant le même identifiant de millésime.
+
+évolutions :
+
+* ajout d'une option
+
+bugfixes :
+
+* corrige des incohérences sur les paramètres de type date/times (`published` et `date_diffusion`).
+
+  Ces dates times sont maintenant supportés en "AAAA-MM-JJ HH:MM:SS" par défaut
+  même si tous les formats ISO8601 sont supportés.
+* supprime les messages d'avertissement de conversion de time zone
+
+documentation :
+
+* supprime une vignette obsolète.
+
+divers :
+
+* utilise une expectation expect_datetime pour vérifier les datetimes
+* ajoute une barre de progression pour l'upload d'un fichier
+
 # didoscalim 0.1.2.9000
 
 bugfix :
