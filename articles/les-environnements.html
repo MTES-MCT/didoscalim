@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -41,7 +41,6 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
     <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
@@ -74,7 +73,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Configurer et utiliser les environnements</h1>
             
       
@@ -160,45 +159,21 @@ la commande <code><a href="../reference/get_work_env.html">get_work_env()</a></c
 <code><a href="../reference/list_envs.html">list_envs()</a></code> :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/list_envs.html">list_envs</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Vous avez 5 environnement(s) configuré(s) : </span>
+<span class="co">#&gt; Vous avez 3 environnement(s) configuré(s) : </span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DEV : http://api.alimentation.dido.fr/v1</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> ECO4_PREPROD : https://www.dido-preproduction.eco4.cloud.e2.rie.gouv.fr/api/v1</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> ECOLE : https://www.dido-ecole.cgdd.e2.rie.gouv.fr/api/v1</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD : https://www.datalake-preproduction.oshimae.rie.gouv.fr/api/v1</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD : https://www.dido.cgdd.e2.rie.gouv.fr/api/v1</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD : http://api.alimentation.dido.fr/</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD : http://api.alimentation.dido.fr/v1</span></code></pre></div>
 <p>et vérifier qu’ils fonctionnent avec la commande
 <code><a href="../reference/check_envs.html">check_envs()</a></code> :</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/check_envs.html">check_envs</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : DEV</span>
-<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : ECO4_PREPROD</span>
-<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; Request failed [ERROR]. Retrying in 1 seconds...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; Request failed [ERROR]. Retrying in 2 seconds...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : ECOLE</span>
-<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; Request failed [ERROR]. Retrying in 1 seconds...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; Request failed [ERROR]. Retrying in 3.4 seconds...</span>
-<span class="co">#&gt; </span>
 <span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : PREPROD</span>
 <span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : PROD</span>
-<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; Request failed [ERROR]. Retrying in 1 seconds...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Error in curl::curl_fetch_memory(url, handle = handle): Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; Request failed [ERROR]. Retrying in 3.3 seconds...</span>
-<span class="co">#&gt; </span>
 <span class="co">#&gt; Test de connexion:</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> DEV: OK</span>
-<span class="co">#&gt; <span style="color: #BB0000;">✖</span> ECO4_PREPROD: KO: Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; <span style="color: #BB0000;">✖</span> ECOLE: KO: Received HTTP code 403 from proxy after CONNECT</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PREPROD: OK</span>
-<span class="co">#&gt; <span style="color: #BB0000;">✖</span> PROD: KO: Received HTTP code 403 from proxy after CONNECT</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> PREPROD: KO: <span style="color: #BB0000;">✖</span> Client error : 404 <span style="color: #0000BB;">ℹ</span> url: http://api.alimentation.dido.fr//users/me</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> PROD: OK</span>
 <span class="co">#&gt; <span style="color: #BB0000;">✖</span> Environnement DiDo actif : DEV</span></code></pre></div>
 </div>
 <div class="section level2">
@@ -221,8 +196,7 @@ l’environnement de <code>PROD</code> et relancez les scripts.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -24,7 +24,6 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
     <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
@@ -60,7 +59,7 @@
     </div>
 
     <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <h2 id="ref-usage">Utilisation<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_job</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
     </div>
 
@@ -68,10 +67,15 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>l'id du job</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="valeur-de-retour">Valeur de retour<a class="anchor" aria-label="anchor" href="#valeur-de-retour"></a></h2>
-    <p>un objet <code><a href="dido_job.html">dido_job()</a></code></p>
+    
+
+<p>un objet <code><a href="dido_job.html">dido_job()</a></code></p>
+
+
     </div>
 
     <div class="section level2">
@@ -79,30 +83,31 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">job</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_jobs.html">list_jobs</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
 <span class="r-in"><span class="fu">get_job</span><span class="op">(</span><span class="va">job</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ owner : chr "61dfdc924cf320002748f73b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id    : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ owner : chr "62b6f95e4398edda8a4b913d"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ state :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ status      : chr "complete"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ created_at  : chr "2022-10-19T16:29:59.986Z"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ started_at  : chr "2022-10-19T16:30:03.072Z"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ completed_at: chr "2022-10-19T16:30:22.600Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ created_at  : chr "2023-01-19T14:50:32.788Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ started_at  : chr "2023-01-19T14:50:32.789Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ completed_at: chr "2023-01-19T14:50:35.096Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ data  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ task                             : chr "createDatafile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ file_name                        : chr "augmente.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ dataset_id                       : chr "63c958b831d6b0f6faa71d04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ datafile_millesime               : chr "2021-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ datafile_metadata                :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title       : chr "Un fichier de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description : chr "Un fichier de données de test"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published   : chr "2023-01-19T14:50:32.000Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ legal_notice: chr "SDES"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ datafile_millesime_date_diffusion: chr "2023-01-19T14:50:32.000Z"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ result:List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ rid        : chr "61509a3a-96fc-4584-b8d2-041dfa7bc0c9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ rid        : chr "f09a0268-7db2-40b1-bbb2-8784a542a77c"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ millesime  : chr "2021-12"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ duration   : int 19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ duration   : int 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ rows       : int 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ csv_headers: int 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ columns    : int 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ data  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ task              : chr "createDatafile"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ dataset_id        : chr "63502607b237711bee074fb1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ datafile_millesime: chr "2021-12"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ datafile_metadata :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ title       : chr "Un fichier de données de test"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ description : chr "Un fichier de données de test"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ published   : chr "2022-10-19T00:00:00.000Z"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ legal_notice: chr "SDES"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ file_name         : chr "augmente.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id    : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr [1:2] "dido_job" "list"</span>
 </code></pre></div>
     </div>
@@ -115,8 +120,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

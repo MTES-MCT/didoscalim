@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -24,7 +24,6 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/charger-des-donnees.html">Charger des données</a>
     <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
@@ -55,43 +54,55 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.3.9000" id="didoscalim-0139000">didoscalim 0.1.3.9000<a class="anchor" aria-label="anchor" href="#didoscalim-0139000"></a></h2>
+<p>Cette version ajoute une option <code>replace</code> au paramètre <code>on_existing_millesime</code> de la méthode <code>add_or_update_datafile</code> qui permet de remplacer le millésime en conservant le même identifiant de millésime.</p>
+<p>évolutions :</p>
+<ul><li>ajout d’une option</li>
+</ul><p>bugfixes :</p>
+<ul><li>
+<p>corrige des incohérences sur les paramètres de type date/times (<code>published</code> et <code>date_diffusion</code>).</p>
+<p>Ces dates times sont maintenant supportés en “AAAA-MM-JJ HH:MM:SS” par défaut même si tous les formats ISO8601 sont supportés.</p>
+</li>
+<li><p>supprime les messages d’avertissement de conversion de time zone</p></li>
+</ul><p>documentation :</p>
+<ul><li>supprime une vignette obsolète.</li>
+</ul><p>divers :</p>
+<ul><li>utilise une expectation expect_datetime pour vérifier les datetimes</li>
+<li>ajoute une barre de progression pour l’upload d’un fichier</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.2.9000" id="didoscalim-0129000">didoscalim 0.1.2.9000<a class="anchor" aria-label="anchor" href="#didoscalim-0129000"></a></h2>
+<p>bugfix :</p>
+<ul><li>correction d’un bug qui empèche l’installation quand l’environnement n’est pas configuré</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1.9000" id="didoscalim-0119000">didoscalim 0.1.1.9000<a class="anchor" aria-label="anchor" href="#didoscalim-0119000"></a></h2>
 <p>bugfixes :</p>
-<ul><li>correction d’un bug sur les mises à jour de zones et de
-granularité.</li>
+<ul><li>correction d’un bug sur les mises à jour de zones et de granularité.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0.9000" id="didoscalim-0109000">didoscalim 0.1.0.9000<a class="anchor" aria-label="anchor" href="#didoscalim-0109000"></a></h2>
 <p>Cette nouvelle version ajoute les méthodes de haut niveau :</p>
 <ul><li>
-<code><a href="../reference/add_or_update_dataset.html">add_or_update_dataset()</a></code>,
-<code><a href="../reference/add_or_update_datafile.html">add_or_update_datafile()</a></code> et
-<code><a href="../reference/add_or_update_attachment.html">add_or_update_attachment()</a></code> qui permettent de mettre à jour
-respectivement un dataset, datafile ou un attachment, s’il existe et de
-l’ajouter s’il n’existe pas.</li>
+<code><a href="../reference/add_or_update_dataset.html">add_or_update_dataset()</a></code>, <code><a href="../reference/add_or_update_datafile.html">add_or_update_datafile()</a></code> et <code><a href="../reference/add_or_update_attachment.html">add_or_update_attachment()</a></code> qui permettent de mettre à jour respectivement un dataset, datafile ou un attachment, s’il existe et de l’ajouter s’il n’existe pas.</li>
 <li>
-<code><a href="../reference/check_import_file.html">check_import_file()</a></code> qui permet de tester rapidement si
-un fichier de données est valide au sens de DiDo.</li>
+<code><a href="../reference/check_import_file.html">check_import_file()</a></code> qui permet de tester rapidement si un fichier de données est valide au sens de DiDo.</li>
 </ul><p>évolutions :</p>
 <ul><li>ajout des méthodes add_or_update_*</li>
-<li>ajout d’une méthode <code>check_import_file</code> pour valider un
-fichier</li>
+<li>ajout d’une méthode <code>check_import_file</code> pour valider un fichier</li>
 <li>
 <code><a href="../reference/dido_csv.html">dido_csv()</a></code> permet de changer le nom de la variable</li>
 <li>ajout des méthodes delete-*</li>
 </ul><p>bugfixes :</p>
 <ul><li>correction d’un bug sur les noms de variables avec une espace</li>
-<li>correction d’un bug dans les tests des temporal_coverage retournés
-par l’API</li>
+<li>correction d’un bug dans les tests des temporal_coverage retournés par l’API</li>
 <li>ajout de retry des requêtes en cas d’erreur 500</li>
 <li>erreur d’argument dans replace_attachment</li>
-<li>bug sur des champs supplémentaires dans la route update de
-l’API</li>
+<li>bug sur des champs supplémentaires dans la route update de l’API</li>
 </ul><p>divers :</p>
 <ul><li>ajout de la version de didoscalim dans le user agent</li>
 <li>refactor: utilise les options pour l’environnement utilisé</li>
-<li>refactor: ajout de helpers : abort_if_not_one_line,
-check_mandatory_arguments</li>
+<li>refactor: ajout de helpers : abort_if_not_one_line, check_mandatory_arguments</li>
 <li>ajout de tests</li>
 </ul></div>
     <div class="section level2">
@@ -102,16 +113,13 @@ check_mandatory_arguments</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.2.9000" id="didoscalim-0029000">didoscalim 0.0.2.9000<a class="anchor" aria-label="anchor" href="#didoscalim-0029000"></a></h2>
-<ul><li>ajout des paramètres expressions rationnelles dans
-<code><a href="../reference/dido_csv.html">dido_csv()</a></code>
+<ul><li>ajout des paramètres expressions rationnelles dans <code><a href="../reference/dido_csv.html">dido_csv()</a></code>
 </li>
-<li>ajout de l’évaluation <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code> dans le champ
-<code>description</code>
+<li>ajout de l’évaluation <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code> dans le champ <code>description</code>
 </li>
 <li>documentation de toutes les fonctions</li>
 <li>tous les exemples sont testés</li>
-<li>bugfix: erreur quand le dataframe passée à dido_csv contient des
-colonnes autre que chr</li>
+<li>bugfix: erreur quand le dataframe passée à dido_csv contient des colonnes autre que chr</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1.9000" id="didoscalim-0019000">didoscalim 0.0.1.9000<a class="anchor" aria-label="anchor" href="#didoscalim-0019000"></a></h2>
@@ -126,8 +134,7 @@ colonnes autre que chr</li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>
