@@ -36,4 +36,35 @@ test_that("check add_or_update_attachment works", {
 
   expect_s3_class(result, "dido_attachment")
   expect_equal(length(get_dataset(dataset)$attachments), 1)
+
+  # check we can change title
+  new_attachment_title <- paste0(attachment_title, ".")
+  result <- add_or_update_attachment(
+    dataset,
+    title = new_attachment_title,
+    description = "UN fichier de données de test.",
+    file_name = dido_example("augmente.csv"),
+    published = "2018-01-01"
+  )
+
+  expect_s3_class(result, "dido_attachment")
+  expect_equal(length(get_dataset(dataset)$attachments), 1)
+  expect_equal(result$title, new_attachment_title)
+
+  # check we fail for new attachment when option didoscalim_update_only is TRUE
+  with_options(
+    didoscalim_update_only = TRUE,
+    {
+      expect_error(
+        add_or_update_attachment(
+          dataset,
+          title = "another title",
+          description = "UN fichier de données de test.",
+          file_name = dido_example("augmente.csv"),
+          published = "2018-01-01"
+        ),
+        class = "error_update_only"
+      )
+    })
+
 })

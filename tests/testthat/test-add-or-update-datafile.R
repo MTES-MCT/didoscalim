@@ -84,14 +84,17 @@ test_that("check add_or_update_datafile when millesime exists", {
     frequency = "unknown"
   )
 
+  # check creation works
   add_or_update_datafile(
     dataset,
     title = datafile_title,
     description = "Un fichier de données de test",
     file_name = dido_example("augmente.csv"),
     millesime = "2001-01",
-  )
+  ) %>%
+    expect_s3_class("dido_job")
 
+  # check error if millesime exists
   expect_error(
     add_or_update_datafile(
       dataset,
@@ -104,6 +107,7 @@ test_that("check add_or_update_datafile when millesime exists", {
     class = "millesime_exists"
   )
 
+  # check skip option works
   add_or_update_datafile(
     dataset,
     title = datafile_title,
@@ -115,6 +119,7 @@ test_that("check add_or_update_datafile when millesime exists", {
     expect_equal(NULL, info = "should return NULL") %>%
     expect_message("existe")
 
+  # check replace option works
   add_or_update_datafile(
     dataset,
     title = datafile_title,
@@ -125,5 +130,34 @@ test_that("check add_or_update_datafile when millesime exists", {
   ) %>%
     expect_s3_class("dido_job")
 
+  # check replace option works and we can change title
+  new_datafile_title <- paste0(datafile_title, " .")
+  result <- add_or_update_datafile(
+    dataset,
+    title = new_datafile_title,
+    description = "Un fichier de données de test",
+    file_name = dido_example("augmente.csv"),
+    millesime = "2001-01",
+    on_existing_millesime = "replace"
+  )
+  expect_s3_class(result, "dido_job")
+  datafile <- get_datafile(result)
+  expect_equal(datafile$title, new_datafile_title)
+
+
+  # check we fail for new datafile when option didoscalim_update_only is TRUE
+  with_options(
+    didoscalim_update_only = TRUE,
+    {
+      expect_error(
+        add_or_update_datafile(
+          dataset,
+          title = "another title",
+          description = "Un fichier de données de test",
+          file_name = dido_example("augmente.csv"),
+        ),
+        class = "error_update_only"
+      )
+    })
 })
 

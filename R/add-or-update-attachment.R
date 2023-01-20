@@ -40,9 +40,14 @@ add_or_update_attachment <- function(dataset,
 
   attachments <- dataset %>%
     list_attachments() %>%
-    filter(.data[["title"]] == .env[["title"]])
+    filter(compare_title(.data$title, .env$title))
 
   if (nrow(attachments) == 0) {
+
+    if (update_only()) {
+      abort_update_only(title, "attachment")
+    }
+
     dido_att <- add_attachment(
       dataset = dataset,
       title = title,
@@ -58,6 +63,7 @@ add_or_update_attachment <- function(dataset,
 
   if (nrow(attachments) == 1) {
     attachment <- get_attachment(attachments[1, ])
+    origin <- rlang::duplicate(dataset)
 
     if (check_file_date) {
       datafile_last_modified <- lubridate::as_datetime(attachment$last_modified)
@@ -69,9 +75,11 @@ add_or_update_attachment <- function(dataset,
 
     dido_att <- replace_attachment(attachments[1, ], file_name)
 
-    if (!missing(description)) attachment$description <- description
+    attachment$title <- toString(title)
+    if (!missing(description)) attachment$description <- toString(description)
     if (!missing(published)) attachment$published <- published
-    attachment <- update_attachment(attachment)
+
+    if (!identical(origin, attachment)) attachment <- update_attachment(attachment)
 
     return(invisible(attachment))
   }

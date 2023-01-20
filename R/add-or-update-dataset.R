@@ -50,9 +50,14 @@ add_or_update_dataset <- function(title,
                                   quiet = NULL) {
   check_mandatory_arguments("title", "description", "topic", "frequency")
   datasets <- list_datasets() %>%
-    filter(.data$title == .env$title)
+    filter(compare_title(.data$title, .env$title))
 
   if (nrow(datasets) == 0) {
+
+    if (update_only()) {
+      abort_update_only(title, "dataset")
+    }
+
     result <- add_dataset(
       title = title,
       description = description,
@@ -77,19 +82,22 @@ add_or_update_dataset <- function(title,
     dataset <- get_dataset(datasets[1, ])
     origin <- rlang::duplicate(dataset)
 
-    if (!missing(description)) dataset$description <- description
-    if (!missing(topic)) dataset$topic <- topic
+    dataset$title <- toString(title)
+    if (!missing(description)) dataset$description <- toString(description)
+    if (!missing(topic)) dataset$topic <- toString(topic)
     if (!missing(tags)) dataset$tags <- tags
     if (!missing(frequency)) dataset$frequency <- frequency
     if (!missing(frequency_date)) dataset$frequency_date <- frequency_date
     if (!missing(granularity)) dataset$spatial$granularity <- granularity
     if (!missing(zones)) dataset$spatial$zones <- if (class(zones)[[1]] == "list") zones else list(zones)
     if (!missing(license)) dataset$license <- license
-    if (!missing(caution)) dataset$caution <- caution
+    if (!missing(caution)) dataset$caution <- toString(caution)
     if (!missing(temporal_coverage_start)) dataset$temporal_coverage$start <- temporal_coverage_start
     if (!missing(temporal_coverage_end)) dataset$temporal_coverage$end <- temporal_coverage_end
 
-    if (!identical(origin, dataset)) dataset <- update_dataset(dataset)
+    if (!identical(origin, dataset)) {
+      dataset <- update_dataset(dataset)
+    }
 
     invisible(new_dido_dataset(dataset))
   }

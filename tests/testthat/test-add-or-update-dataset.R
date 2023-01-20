@@ -36,6 +36,34 @@ test_that("check add_or_update_dataset works for update", {
   expect_s3_class(dataset, "dido_dataset")
   expect_equal(dataset$temporal_coverage$start, "2021-01-01")
   expect_equal(dataset$temporal_coverage$end, "2021-12-31")
+
+  dataset <- add_or_update_dataset(
+    title = glue::glue("{ dataset_title } works for update ."),
+    description = "test",
+    topic = "Transports",
+    frequency = "unknown",
+  )
+
+  expect_s3_class(dataset, "dido_dataset")
+  expect_equal(dataset$temporal_coverage$start, "2021-01-01")
+  expect_equal(dataset$temporal_coverage$end, "2021-12-31")
+  expect_equal(dataset$title, glue::glue("{ dataset_title } works for update ."))
+
+  with_options(
+    didoscalim_update_only = TRUE,
+    {
+      expect_error(
+        dataset <- add_or_update_dataset(
+          title = "just a bad title",
+          description = "test",
+          topic = "Transports",
+          frequency = "unknown",
+        ),
+        class = "error_update_only"
+      )
+    })
+
+
 })
 
 test_that("check add_or_update_dataset does nothing if no change", {

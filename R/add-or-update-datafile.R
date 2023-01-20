@@ -76,9 +76,14 @@ add_or_update_datafile <- function(dataset,
 
   datafiles <- dataset %>%
     list_datafiles() %>%
-    filter(.data$title == .env$title)
+    filter(compare_title(.data$title, .env$title))
 
   if (nrow(datafiles) == 0) {
+
+    if (update_only()) {
+      abort_update_only(title, "datafile")
+    }
+
     job_result <- add_datafile(
       dataset = dataset,
       title = title,
@@ -149,9 +154,10 @@ add_or_update_datafile <- function(dataset,
     origin <- duplicate(datafile)
 
     # update the datafile
-    if (!missing(description)) datafile$description <- description
+    datafile$title <- toString(title)
+    if (!missing(description)) datafile$description <- toString(description)
     if (!missing(published)) datafile$published <- published
-    if (!missing(legal_notice)) datafile$legal_notice <- legal_notice
+    if (!missing(legal_notice)) datafile$legal_notice <- toString(legal_notice)
     if (!missing(date_diffusion)) datafile$date_diffusion <- date_diffusion
     if (!missing(temporal_coverage_start)) datafile$temporal_coverage$start <- temporal_coverage_start
     if (!missing(temporal_coverage_end)) datafile$temporal_coverage$end <- temporal_coverage_end
