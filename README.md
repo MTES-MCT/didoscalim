@@ -133,6 +133,7 @@ Si vous avez modifié la documentation, avant de pousser une nouvelle
 vous devez la valider en local :
 
 ``` r
+source('populate.R')
 devtools::build_readme()
 devtools::document()
 devtools::build_vignettes()
@@ -146,6 +147,7 @@ de base en lançant `populate.R` puis la commande qui publiera le site
 sur les github pages :
 
 ``` r
+source('populate.R')
 library(pkgdown)
 deploy_to_branch()
 ```
