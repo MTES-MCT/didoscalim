@@ -1,0 +1,124 @@
+---
+title: "Compléments sur les mises à jour"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compléments sur les mises à jour}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(didoscalim)
+```
+
+```{r, include = FALSE}
+library(purrr)
+list_datasets() %>%
+  dplyr::filter(grepl('évolution', .data$title)) %>%
+  purrr::pwalk(~ delete_dataset(.))
+```
+
+## Comment fonctionne les fonctions `add_or_update_*`
+
+Les fonctions `add_or_update_*` recherche l'objet en comparant le paramètre
+`title` que vous passez avec les titres des objets.
+
+Avant comparaison, le paramètre `title` et les titres sont passés en minuscule
+en conservant uniquement les caractères alphanumériques (y compris accentués).
+La chaine "UN É & UN À." deviendra donc "unéunà".
+
+```{r}
+dataset1 <- add_or_update_dataset(
+  title = "données sur l'évolution des eaux de surface",
+  description = "Un jeu de données de test",
+  frequency = "unknown",
+  topic = "Transports"
+)
+
+dataset2 <- add_or_update_dataset(
+  title = "Données sur l'évolution des eaux de surface.",
+  description = "Un jeu de données de test",
+  frequency = "unknown",
+  topic = "Logement"
+)
+dataset1$id == dataset2$id
+
+dataset1$title
+dataset1$topic
+
+dataset2$title
+dataset2$topic
+
+```
+
+## Méthodes avancées
+
+La fonction de comparaison de base ne permet de modifier le titre d'un objet
+qu'à la marge (transformer une minuscule en majuscule, ajouter ou supprimer une
+ponctuation...).
+
+Si, pour une raison quelconque, vous avez besoin de modifier ce titre de façon
+plus importante (par exemple pour corriger un titre), vous pouvez remplacer
+temporairement la méthode de base par votre propre méthode de comparaison en
+fixant l'option `didoscalim_title_comparison`.
+
+La méthode s'applique sur la chaine "nettoyée" (passage en minuscule et
+conservation des caractères alphanumériques).
+
+En exemple, la fonction suivante, qui s'appuie sur la librairie
+{stringdist}, permet de rechercher les titres qui ont une différence de
+3 caractères maximum :
+
+```{r}
+library(withr)
+library(stringdist)
+
+withr::local_options(list(didoscalim_title_comparison = function(column, string) {
+  stringdist(column, string) <= 3
+}))
+
+dataset1 <- add_or_update_dataset(
+  title = "données sur l'évolution des espèce",
+  description = "Un jeu de données de test",
+  frequency = "unknown",
+  topic = "Transports"
+)
+
+dataset2 <- add_or_update_dataset(
+  title = "Données sur l'évolution des espèces.",
+  description = "Un jeu de données de test",
+  frequency = "unknown",
+  topic = "Transports"
+)
+
+dataset1$id == dataset2$id
+dataset1$title
+dataset2$title
+
+```
+
+Dans ce cas, il est **fortement** conseillé d'utiliser l'option
+`didoscalim_update_only` afin d'éviter de créer des objets par erreur.
+
+```{r, error=TRUE}
+
+withr::local_options(list(didoscalim_update_only = TRUE))
+                    
+dataset <- add_or_update_dataset(
+  title = "Données sur l'évolution des écosystèmes.",
+  description = "Un jeu de données de test",
+  frequency = "unknown",
+  topic = "Transports"  
+)
+
+```

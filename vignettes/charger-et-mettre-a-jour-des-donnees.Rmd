@@ -35,16 +35,19 @@ leur nom l'indique, de mettre à jour un objet existant et s'il n'existe pas de
 le créer.
 
 Un objet est identifié par son titre (et son parent pour les fichiers de données
-et les fichiers joints), cela a plusieurs conséquences :
+et les fichiers joints). La recherche par le titre se base sur uniquement sur
+les caractères alphanumériques en minuscule.
+
+Cela a plusieurs conséquences :
 
 1. vous ne devez pas avoir deux jeux de données avec le même nom, ou deux
 fichiers de données/fichiers annexes avec le même nom **dans un même jeu de
 données**.
-2. il n'est pas possible de modifier le titre d'un objet (pour cela vous pouvez
-utiliser `update_dataset()`, `update_datafile()`, `update_attachment()`).
+2. il est possible de modifier le titre d'un objet uniquement à la marge (ajout
+d'une majuscule, suppression d'un espace...)
 
-Toutes ces fonctions vont chercher un objet **du même type** avec **le même
-titre** puis :
+Toutes ces fonctions vont chercher un objet **du même type** avec **un titre
+équivalent (cf ci-dessus)** et le cas échéant ayant le même parent puis :
 
   * si elles le trouvent, mettent à jour les données et métadonnées
   * sinon elles créent l'objet.
@@ -253,8 +256,41 @@ add_or_update_datafile(
   keep_old_millesimes = 1
 )
 ```
+
+### éviter la création d'un objet quand vous voulez faire des mises à jour
+
+Si vos datasets/datafiles sont « stables » et qu'ils doivent juste être mis à
+jour, vous pouvez utiliser l'option `didoscalim_update_only`. Les fonctions
+`add_or_update_*` lèveront une exception si elles doivent créer un nouvel objet
+
+```{r, error = TRUE }
+withr::local_options(didoscalim_update_only = TRUE)
+
+dataset <- add_or_update_dataset(
+  title = "Données de consommation mensuelles fictive.",
+  description = "test",
+  topic = "Énergie",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+
+
+dataset <- add_or_update_dataset(
+  title = "Un dataset quelconque",
+  description = "test",
+  topic = "Énergie",
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+```
+
+
 ### quelques conseils
 
+* utilisez l'option `didoscalim_update_only` quand vous ne devez faire que des
+mises à jours.
 * Lancez **toujours** le programme sur l'environnement ECOLE pour vérifier que vos
 fichiers sont correctements formatés.
 * Si vous rencontrez un problème **sur l'environnement ecole**, vous pouvez
