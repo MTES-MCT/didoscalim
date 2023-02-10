@@ -26,6 +26,9 @@ default_columns <- list(
 #' | logical         | booleen        |
 #' | tous les autres | texte          |
 #'
+#' ** il est fortement déconseillé d'utiliser le type DiDo
+#' `nombre`. Utilisez plutôt un nombre avec précision comme par exemple
+#' `nombre(2)`**
 #'
 #' @param data le dataframe à augmenter
 #' @param params une liste nommée décrivant les caractéristiques des colonnes :
@@ -136,6 +139,14 @@ dido_csv <- function(data, params = list(),
   type <- type_row(data, params, locale, cog_year)
   unit <- unit_row(type, params)
   name <- name_row(data, params)
+
+  if ("nombre" %in% type) {
+    message <- c(
+      x = "Vous utilisez un type `nombre` dans vos entêtes.",
+      i = "Il est recommandé d'utiliser un type nombre avec précision : `nombre(2)`."
+    )
+    rlang::warn(message)
+  }
 
   dplyr::bind_rows(desc, type, unit, name, data)
 }

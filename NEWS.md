@@ -1,5 +1,9 @@
 # didoscalim devel
 
+évolutions :
+
+* ajout d'un warning quand l'utilisation d'un type `nombre` est détecté dans un fichier CSV augmenté.
+
 documentation :
 
 * ajout d'un passage sur comment limiter le temps de la méthode `dido_csv` quand

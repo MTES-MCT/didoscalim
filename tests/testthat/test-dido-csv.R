@@ -1,3 +1,5 @@
+withr::local_options(warn=-1)
+
 test_that("dido_csv works for default types", {
   data <- tibble::tibble(
     CHAR = c("a"),
@@ -145,4 +147,24 @@ test_that("dido_csv works with glue evaluation", {
   result <- dido_csv(data, params)
 
   expect_equal(result, expected)
+})
+
+test_that("dido_csv warns on type 'nombre'", {
+  data <- tibble::tibble(
+    CHAR = c("a"),
+    INTEGER = c(1),
+    NUMBER = c(1.2)
+  )
+  expected <- tibble::tibble(
+    CHAR = c("CHAR", "texte", "n/a", "CHAR", "a"),
+    INTEGER = c("INTEGER", "entier", "s/u", "INTEGER", "1"),
+    NUMBER = c("NUMBER", "nombre", "s/u", "NUMBER", "1.2"),
+  )
+
+  expect_warning(dido_csv(data), regexp = "Vous utilisez un type `nombre` dans vos entêtes")
+
+  params = list(
+    NUMBER = list(type = "nombre(1)")
+  )
+  expect_warning(dido_csv(data, params = params), regexp = NA)
 })
