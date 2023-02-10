@@ -1,3 +1,11 @@
+# didoscalim devel
+
+documentation :
+
+* ajout d'un passage sur comment limiter le temps de la méthode `dido_csv` quand
+  on utilise de fichier source volumineux dans la vignette 
+  `vignettes/csv-augmente.Rmd`
+
 # didoscalim 0.1.3.9000
 
 Cette version ajoute une option `replace` au paramètre `on_existing_millesime`
@@ -6,7 +14,7 @@ conservant le même identifiant de millésime.
 
 évolutions :
 
-* ajout d'une option
+* ajout d'une option `replace` au paramètre `on_existing_millesime`
 
 bugfixes :
 

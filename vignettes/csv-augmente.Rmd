@@ -120,6 +120,24 @@ result <- dido_csv(data, params = params, cog_year = 2020)
 knitr::kable(head(result, n = 5))
 ```
 
+## travailler avec un fichier source volumineux
+
+Si vous travaillez sur un fichier de données volumineux, la méthode `dido_csv`
+peut prendre un temps de traitement certain.
+
+Pour tester la génération des entêtes du CSV augmenté, vous pouvez travailler
+sur un sous-ensemble de votre dataframe :
+
+```{r}
+result <- data %>% head(10000) %>% dido_csv()
+```
+
+Attention, toutefois, si vous vous appuyez sur la détection automatique des
+colonnes, utilisez un nombre de lignes suffisamment grand : 10 000 voire 1 000
+lignes devrait suffire dans la majeure partie des cas pour réduire le temps de
+traitement largement en dessous de la seconde tout en permettant une bonne
+détection automatique.
+
 ## L'écriture du fichier au bon format.
 
 ```{r}

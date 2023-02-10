@@ -98,10 +98,12 @@ default_columns <- list(
 #' L'année `AAAA` est par défaut l'année courante, vous pouvez la modifier en
 #' passant le paramètre `cog_year`
 #'
-#' @seealso En complément, vous pouvez lire : [la description d'un fichier csv
-#'   augmenté](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/),
-#'    [la liste des entêtes
-#'   utilisables](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/)
+#' @seealso En complément, vous pouvez lire : [la vignette dédiée à la génération des fichiers augmentés](https://mtes-mct.github.io/didoscalim/articles/csv-augmente.html)
+#'
+#' Et la documentation de l'API :
+#'
+#'  * [la description d'un fichier csv augmenté](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/),
+#'  * [la liste des entêtes utilisables](https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/)
 #'
 #'
 #' @examples
