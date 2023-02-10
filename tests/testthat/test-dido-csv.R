@@ -155,16 +155,13 @@ test_that("dido_csv warns on type 'nombre'", {
     INTEGER = c(1),
     NUMBER = c(1.2)
   )
-  expected <- tibble::tibble(
-    CHAR = c("CHAR", "texte", "n/a", "CHAR", "a"),
-    INTEGER = c("INTEGER", "entier", "s/u", "INTEGER", "1"),
-    NUMBER = c("NUMBER", "nombre", "s/u", "NUMBER", "1.2"),
+  params = list(
+    NUMBER = list(type = "nombre")
   )
-
-  expect_warning(dido_csv(data), regexp = "Vous utilisez un type `nombre` dans vos entêtes")
+  expect_warning(dido_csv(data, params = params), regexp = "Vous utilisez un type `nombre` dans vos entêtes", info = "should warn")
 
   params = list(
     NUMBER = list(type = "nombre(1)")
   )
-  expect_warning(dido_csv(data, params = params), regexp = NA)
+  expect_warning(dido_csv(data, params = params), regexp = NA, info = "should not warn")
 })
