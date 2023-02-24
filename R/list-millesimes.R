@@ -23,6 +23,6 @@ list_millesimes <- function(data = NULL) {
 
   if (!is.null(data)) df <- filter(df, .data$rid == get_datafile_rid(data))
 
-  ml <- dplyr::select(df, .data$id, .data$rid, .data$millesimes_info)
-  as_tibble(tidyr::unnest(ml, .data$millesimes_info))
+  ml <- dplyr::select(df, "id", "rid", "millesimes_info")
+  as_tibble(tidyr::unnest(ml, "millesimes_info"))
 }

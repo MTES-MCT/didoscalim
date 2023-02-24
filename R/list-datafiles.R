@@ -30,7 +30,7 @@ list_datafiles <- function(dataset = NULL) {
   }
   if (!is.null(dataset)) ds <- filter(ds, .data$id == get_dataset_id(dataset))
 
-  df <- dplyr::select(ds, .data$id, .data$datafiles)
-  as_tibble(tidyr::unnest(df, .data$datafiles)) %>%
+  df <- dplyr::select(ds, "id", "datafiles")
+  as_tibble(tidyr::unnest(df, "datafiles")) %>%
     add_columns_if_empty(c("id", "rid", "title", "description"))
 }
