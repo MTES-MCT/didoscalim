@@ -8,3 +8,4 @@
 ^docs$
 ^pkgdown$
 ^populate.R$
+^rocker_test.R$
