@@ -19,6 +19,10 @@ test_that("update_attachment works", {
   att$description <- "une autre description"
   att <- update_attachment(att)
   expect_equal(att$description, "une autre description")
+
+  att$type <- "historical_data"
+  att <- update_attachment(att)
+  expect_equal(att$type, "historical_data")
 })
 
 test_that("update_attachment errors on missing params", {

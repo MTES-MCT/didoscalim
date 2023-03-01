@@ -35,6 +35,7 @@ add_or_update_attachment <- function(dataset,
                                      file_name,
                                      published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                      check_file_date = FALSE,
+                                     type = "documentation",
                                      quiet = NULL) {
   check_mandatory_arguments("dataset", "title", "description", "file_name")
 
@@ -54,6 +55,7 @@ add_or_update_attachment <- function(dataset,
       description = description,
       file_name = file_name,
       published = published,
+      type = type,
       quiet = quiet
     )
     return(invisible(dido_att))
@@ -78,7 +80,7 @@ add_or_update_attachment <- function(dataset,
     attachment$title <- toString(title)
     if (!missing(description)) attachment$description <- toString(description)
     if (!missing(published)) attachment$published <- published
-
+    if (!missing(type)) attachment$type <- type
     if (!identical(origin, attachment)) attachment <- update_attachment(attachment)
 
     return(invisible(attachment))

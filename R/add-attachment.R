@@ -5,6 +5,8 @@
 #' @param title le titre du fichier annexe
 #' @param description la description du fichier annexe
 #' @param file_name le nom du fichier à verser
+#' @param type le type de fichier versé. Peut-être `documentation` ou
+#'   `historical_data`. Par défaut `publication`
 #' @param published la date/heure de publication du fichier, si non précisée, prend la
 #'   date/heure du moment.
 #'
@@ -36,6 +38,7 @@ add_attachment <- function(dataset,
                            title,
                            description,
                            file_name,
+                           type = "documentation",
                            published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                            quiet = NULL) {
   check_mandatory_arguments("dataset", "title", "description", "file_name")
@@ -51,7 +54,8 @@ add_attachment <- function(dataset,
     title = title,
     description = description,
     tokenFile = file_id,
-    published = published
+    published = published,
+    type = type
   )
 
   id <- get_dataset_id(dataset)

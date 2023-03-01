@@ -17,6 +17,7 @@ test_that("add_attachment works", {
 
   expect_equal(att$title, "didoscalim df add_attachment works")
   expect_equal(att$description, "test")
+  expect_equal(att$type, "documentation")
 })
 
 test_that("add_attachments errors on missing param", {

@@ -4,6 +4,7 @@
 #' L'objet dido_attachment inclus les champs :
 #' * `rid` l'identifiant du jeu de données parent
 #' * `title`
+#' * `type`
 #' * `description`
 #' * `created_at`
 #' * `last_modified`
@@ -49,7 +50,7 @@ clean_metadata.dido_attachment <- function(data) {
 #' @noRd
 #' @export
 internal_clean_metadata.dido_attachment <- function(data) {
-  allowed_keys <- c("title", "description", "published")
+  allowed_keys <- c("title", "description", "published", "type")
 
   for (key in names(data)) {
     if (!key %in% allowed_keys) data[key] <- NULL
