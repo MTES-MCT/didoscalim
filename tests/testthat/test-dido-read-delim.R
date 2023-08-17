@@ -10,6 +10,7 @@ test_that("dido_read_delim functions work with comma", {
     UNIT_MWH = list(unit = "MWh"),
     TYPE_NAF = list(type = "naf_division")
   )
+
   result <- suppressWarnings(dido_csv(
     tbl,
     params = params,
@@ -33,6 +34,7 @@ test_that("dido_read_delim functions work with ISO-8859-15 and comma", {
 
   tbl <- dido_read_delim(
     paste0(test_path(), "/example-iso-8859-15-comma.csv"),
+    delim = ",",
     locale = locale
   )
 
@@ -50,6 +52,7 @@ test_that("dido_read_delim functions work with ISO-8859-15 and comma", {
 
   expected <- read_delim(
     paste0(test_path(), "/example-comma-result.csv"),
+    delim = ";",
     col_types = readr::cols(.default = "c")
   )
 
