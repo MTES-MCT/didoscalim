@@ -2,6 +2,7 @@
 
 évolutions :
 
+* ajout de la gestion des types d'attachements (par défaut "documentation").
 * ajout d'un warning quand l'utilisation d'un type `nombre` est détecté dans un fichier CSV augmenté.
 
 documentation :
@@ -9,6 +10,10 @@ documentation :
 * ajout d'un passage sur comment limiter le temps de la méthode `dido_csv` quand
   on utilise de fichier source volumineux dans la vignette 
   `vignettes/csv-augmente.Rmd`
+
+bugfixes :
+
+* corrige un bug avec read_delim et R 4.3.1
 
 # didoscalim 0.1.3.9000
 
