@@ -1,7 +1,7 @@
 test_that("dido_read_delim functions work with comma", {
   locale <- readr::locale(decimal_mark = ",")
   tbl <- dido_read_delim(
-    paste0(test_path(), "/example-comma.csv"),
+    test_path("example-comma.csv"),
     locale = locale
   )
 
@@ -19,7 +19,7 @@ test_that("dido_read_delim functions work with comma", {
   ))
 
   expected <- read_delim(
-    paste0(test_path(), "/example-comma-result.csv"),
+    test_path("example-comma-result.csv"),
     col_types = readr::cols(.default = "c")
   )
 
@@ -33,7 +33,7 @@ test_that("dido_read_delim functions work with ISO-8859-15 and comma", {
   )
 
   tbl <- dido_read_delim(
-    paste0(test_path(), "/example-iso-8859-15-comma.csv"),
+    test_path("example-iso-8859-15-comma.csv"),
     delim = ",",
     locale = locale
   )
@@ -51,7 +51,7 @@ test_that("dido_read_delim functions work with ISO-8859-15 and comma", {
   ))
 
   expected <- read_delim(
-    paste0(test_path(), "/example-comma-result.csv"),
+    test_path("example-comma-result.csv"),
     delim = ";",
     col_types = readr::cols(.default = "c")
   )
