@@ -79,8 +79,7 @@ add_dataset <- function(title,
                         license = "fr-lo",
                         temporal_coverage_start = NULL,
                         temporal_coverage_end = NULL,
-                        caution = NULL,
-                        quiet = NULL) {
+                        caution = NULL) {
   dataset <- dido_dataset(
     title = title,
     description = description,

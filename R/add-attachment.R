@@ -4,7 +4,7 @@
 #'   `dido_datafile()` ou `dido_job()`
 #' @param title le titre du fichier annexe
 #' @param description la description du fichier annexe
-#' @param file_name, remote_url le nom du fichier à verser ou l'url de l'attachement.
+#' @param file_name,remote_url le nom du fichier à verser ou l'url de l'attachement.
 #' @param type le type de fichier versé. Peut-être `documentation` ou
 #'   `historical_data`. Par défaut `documentation`
 #' @param published la date/heure de publication du fichier, si non précisée, prend la
@@ -39,7 +39,7 @@
 #' dataset %>% add_attachment(
 #'   title = "title",
 #'   description = "Un attachment sous forme de lien externe",
-#'   remote_url = "https://www.lemonde.fr/")
+#'   remote_url = "https://www.lemonde.fr/"
 #' )
 add_attachment <- function(dataset,
                            title,
@@ -47,8 +47,7 @@ add_attachment <- function(dataset,
                            file_name = NULL,
                            remote_url = NULL,
                            type = "documentation",
-                           published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
-                           quiet = NULL) {
+                           published = format(Sys.time(), "%Y-%m-%d %H:%M:%S")) {
   check_mandatory_arguments("dataset", "title", "description")
 
   if (is.null(remote_url) & is.null(file_name)) {

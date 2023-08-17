@@ -82,7 +82,7 @@ list_env_names <- function() {
 #' set_work_env("PROD")
 #'
 #' set_work_env()
-set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame()) {
+set_work_env <- function(env_name = NULL, .envir = parent.frame()) {
   environments <- get("environments", envir = .didoscalim_env)
   old_env <- get_work_env()
 
@@ -144,7 +144,7 @@ set_work_env <- function(env_name = NULL, quiet = NULL, .envir = parent.frame())
 #'
 #' @examples
 #' get_work_env()
-get_work_env <- function(quiet = NULL) {
+get_work_env <- function() {
   getOption("didoscalim_work_env", find_lowest_env())
 }
 

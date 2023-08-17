@@ -1,14 +1,22 @@
-# didoscalim devel
+# didoscalim 0.1.4.9000
 
 évolutions :
 
 * ajout d'un warning quand l'utilisation d'un type `nombre` est détecté dans un fichier CSV augmenté.
+* remplace la comparaison des titres dans `add_or_update_*` par une comparaison sur une chaine nettoyée et possibilité d'utiliser sa propre fonction de comparaison (voir vignettes "Compléments sur les mises à jour")
+* ajout d'une option ` didoscalim_update_only` qui bloque la création dans les fonctions `add_or_update_*`
+* ajout de la gestion des types d'attachements (par défaut "documentation").
 
 documentation :
 
 * ajout d'un passage sur comment limiter le temps de la méthode `dido_csv` quand
   on utilise de fichier source volumineux dans la vignette 
   `vignettes/csv-augmente.Rmd`
+
+bugfixes :
+
+* corrige un bug avec read_delim et R 4.3.1
+* corrige un bug dans l'affichage de la barre de progression
 
 # didoscalim 0.1.3.9000
 

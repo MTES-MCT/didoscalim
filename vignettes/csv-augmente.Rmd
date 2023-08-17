@@ -129,7 +129,7 @@ Pour tester la génération des entêtes du CSV augmenté, vous pouvez travaille
 sur un sous-ensemble de votre dataframe :
 
 ```{r}
-result <- data %>% head(10000) %>% dido_csv()
+result <- data %>% head(10000) %>% dido_csv(params = params, cog_year = 2020)
 ```
 
 Attention, toutefois, si vous vous appuyez sur la détection automatique des

@@ -23,8 +23,7 @@
 #' )
 replace_attachment <- function(attachment,
                                file_name = NULL,
-                               remote_url = NULL,
-                               quiet = NULL) {
+                               remote_url = NULL) {
   check_mandatory_arguments("attachment")
 
   if (is.null(remote_url) & is.null(file_name)) {

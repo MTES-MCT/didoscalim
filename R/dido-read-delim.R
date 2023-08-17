@@ -9,6 +9,8 @@
 #'   paramètre le plus important est l'encodage du fichier. Le défaut est
 #'   "UTF-8". Les autres encodages fréquemment rencontrés sont "WINDOWS-1252" et
 #'   "ISO-8859-15"
+#' @param ... ces arguments seront passés directement à la fonction
+#'   `readr::read_delim()`
 #' @inheritParams readr::read_delim
 #'
 #' @return un tibble dont toutes les colonnes sont de type `chr`
