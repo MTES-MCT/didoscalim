@@ -70,7 +70,7 @@ test_that("check add_or_update_attachment works", {
     dataset,
     title = new_attachment_title,
     description = "UN fichier de données de test.",
-    remote_url = "http://un.serveur/",
+    remote_url = "http://un.serveur.fr",
   )
 
   expect_s3_class(result, "dido_attachment")

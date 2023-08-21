@@ -81,7 +81,11 @@ add_or_update_attachment <- function(dataset,
       }
     }
 
-    dido_att <- replace_attachment(attachments[1, ], file_name)
+    dido_att <- replace_attachment(
+      attachments[1, ],
+      file_name = file_name,
+      remote_url = remote_url
+    )
 
     attachment$title <- toString(title)
     if (!missing(description)) attachment$description <- toString(description)
