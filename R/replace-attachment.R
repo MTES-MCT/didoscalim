@@ -22,20 +22,29 @@
 #'   file_name = dido_example("attachment.txt")
 #' )
 replace_attachment <- function(attachment,
-                               file_name,
+                               file_name = NULL,
+                               remote_url = NULL,
                                quiet = NULL) {
-  check_mandatory_arguments("attachment", "file_name")
+  check_mandatory_arguments("attachment")
+
+  if (is.null(remote_url) & is.null(file_name)) {
+    rlang::abort("error_bad_argument", message = "un des arguments remote_url ou file_name est obligatoire")
+  }
 
   if (is.null(get_attachment_rid(attachment))) abort_not_attachment()
 
-  didoscalim_info(glue::glue("    intégration du fichier annexe `{file_name}`"))
+  payload <- list()
 
-  file_id <- dido_upload_file(file_name)
-  didoscalim_info(glue::glue("\t* fichier versé"))
+  if (!is.null(file_name)) {
+    didoscalim_info(glue::glue("    intégration du fichier annexe `{file_name}`"))
 
-  payload <- list(
-    "tokenFile" = file_id
-  )
+    file_id <- dido_upload_file(file_name)
+    didoscalim_info(glue::glue("\t* fichier versé"))
+
+    payload$tokenFile = file_id
+  } else {
+    payload$remoteUrl = remote_url
+  }
 
   rid <- get_attachment_rid(attachment)
   id <- get_dataset_id(attachment)
@@ -46,7 +55,10 @@ replace_attachment <- function(attachment,
     path = url,
     body = jsonlite::toJSON(payload, pretty = TRUE, auto_unbox = TRUE, na = "null")
   )
-  didoscalim_info(glue::glue("\t* fichier annexe remplacé (rid: {result$rid})"))
+
+  if (!is.null(remote_url)) {
+    didoscalim_info(glue::glue("\t* fichier annexe remplacé (rid: {result$rid})"))
+  }
   attr(result, "id") <- id
 
   invisible(dido_attachment(result))

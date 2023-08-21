@@ -20,4 +20,12 @@ test_that("add_attachment works", {
     file_name = "file-upload.txt"
   ) %>%
     expect_s3_class("dido_attachment")
+
+  replace_attachment(
+    attachment = att,
+    remote_url = "http://www.test.fr/file-upload.txt"
+  ) %>%
+    expect_s3_class("dido_attachment")
+
+
 })

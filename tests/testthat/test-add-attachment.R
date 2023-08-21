@@ -12,7 +12,7 @@ test_that("add_attachment works", {
     dataset = dataset,
     title = "didoscalim df add_attachment works",
     description = "test",
-    file_name = "dido-csv-simple.csv"
+    remote_url = "https://lemonde.fr/dido-csv-simple.csv"
   )
 
   expect_equal(att$title, "didoscalim df add_attachment works")
