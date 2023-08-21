@@ -32,12 +32,17 @@
 add_or_update_attachment <- function(dataset,
                                      title,
                                      description,
-                                     file_name,
+                                     file_name = NULL,
+                                     remote_url = NULL,
                                      published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                      check_file_date = FALSE,
                                      type = "documentation",
                                      quiet = NULL) {
-  check_mandatory_arguments("dataset", "title", "description", "file_name")
+  check_mandatory_arguments("dataset", "title", "description")
+
+  if (is.null(remote_url) & is.null(file_name)) {
+    rlang::abort("error_bad_argument", message = "un des arguments remote_url ou file_name est obligatoire")
+  }
 
   attachments <- dataset %>%
     list_attachments() %>%
@@ -54,6 +59,7 @@ add_or_update_attachment <- function(dataset,
       title = title,
       description = description,
       file_name = file_name,
+      remote_url = remote_url,
       published = published,
       type = type,
       quiet = quiet
@@ -75,7 +81,11 @@ add_or_update_attachment <- function(dataset,
       }
     }
 
-    dido_att <- replace_attachment(attachments[1, ], file_name)
+    dido_att <- replace_attachment(
+      attachments[1, ],
+      file_name = file_name,
+      remote_url = remote_url
+    )
 
     attachment$title <- toString(title)
     if (!missing(description)) attachment$description <- toString(description)

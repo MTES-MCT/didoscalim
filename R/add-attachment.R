@@ -4,7 +4,7 @@
 #'   `dido_datafile()` ou `dido_job()`
 #' @param title le titre du fichier annexe
 #' @param description la description du fichier annexe
-#' @param file_name le nom du fichier à verser
+#' @param file_name remote_url le nom du fichier à verser ou l'url de l'attachement.
 #' @param type le type de fichier versé. Peut-être `documentation` ou
 #'   `historical_data`. Par défaut `publication`
 #' @param published la date/heure de publication du fichier, si non précisée, prend la
@@ -37,26 +37,36 @@
 add_attachment <- function(dataset,
                            title,
                            description,
-                           file_name,
+                           file_name = NULL,
+                           remote_url = NULL,
                            type = "documentation",
                            published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                            quiet = NULL) {
-  check_mandatory_arguments("dataset", "title", "description", "file_name")
+  check_mandatory_arguments("dataset", "title", "description")
+
+  if (is.null(remote_url) & is.null(file_name)) {
+    rlang::abort("error_bad_argument", message = "un des arguments remote_url ou file_name est obligatoire")
+  }
 
   if (is.null(get_dataset_id(dataset))) abort_not_dataset()
-
-  didoscalim_info(glue::glue("    intégration du fichier annexe `{basename(file_name)}`"))
-
-  file_id <- dido_upload_file(file_name)
-  didoscalim_info(glue::glue("\t* fichier versé"))
 
   payload <- list(
     title = title,
     description = description,
-    tokenFile = file_id,
     published = published,
     type = type
   )
+
+  if (!is.null(file_name)) {
+    didoscalim_info(glue::glue("    intégration du fichier annexe `{basename(file_name)}`"))
+
+    file_id <- dido_upload_file(file_name)
+    didoscalim_info(glue::glue("\t* fichier versé"))
+
+    payload$tokenFile = file_id
+  } else {
+    payload$remoteUrl = remote_url
+  }
 
   id <- get_dataset_id(dataset)
 
@@ -66,7 +76,11 @@ add_attachment <- function(dataset,
     path = url,
     body = jsonlite::toJSON(payload, pretty = TRUE, auto_unbox = TRUE, na = "null")
   )
-  didoscalim_info(glue::glue("\t* fichier annexe intégré (rid: {result$rid})"))
+
+  if (!is.null(file_name)) {
+    didoscalim_info(glue::glue("\t* fichier annexe intégré (rid: {result$rid})"))
+  }
+
   attr(result, "id") <- id
 
   invisible(dido_attachment(result))
