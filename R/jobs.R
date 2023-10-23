@@ -64,7 +64,7 @@ wait_for_job <- function(data, quiet = NULL) {
     }
 
     if (job$state$status != "failed" && !is.null(job$state$progress$percentage)) {
-      ratio <- strtoi(job$state$progress$percentage) / 100
+      ratio <- as.integer(as.double(job$state$progress$percentage)) / 100
       if (!pb$finished) pb$update(ratio)
     }
     Sys.sleep(5)
