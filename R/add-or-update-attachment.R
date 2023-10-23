@@ -29,6 +29,13 @@
 #'   description = "description",
 #'   file_name = dido_example("attachment.txt")
 #' )
+#'
+#' add_or_update_attachment(
+#'   dataset = dataset,
+#'   title = "title",
+#'   description = "description",
+#'   remote_url = "https://www.lemonde.fr")
+#' )
 add_or_update_attachment <- function(dataset,
                                      title,
                                      description,
