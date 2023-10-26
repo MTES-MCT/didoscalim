@@ -34,7 +34,7 @@
 #'   dataset = dataset,
 #'   title = "title",
 #'   description = "description",
-#'   remote_url = "https://www.lemonde.fr")
+#'   remote_url = "https://www.lemonde.fr"
 #' )
 add_or_update_attachment <- function(dataset,
                                      title,
