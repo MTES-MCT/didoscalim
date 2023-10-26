@@ -69,8 +69,7 @@ add_or_update_datafile <- function(dataset,
                                    date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                    keep_old_millesimes = Inf,
                                    on_existing_millesime = "fail",
-                                   check_file_date = FALSE,
-                                   quiet = NULL) {
+                                   check_file_date = FALSE) {
   check_mandatory_arguments("dataset", "title", "description")
   rlang::arg_match0(on_existing_millesime, c("skip", "fail", "replace"))
 

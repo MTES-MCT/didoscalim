@@ -47,8 +47,7 @@ add_attachment <- function(dataset,
                            file_name = NULL,
                            remote_url = NULL,
                            type = "documentation",
-                           published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
-                           quiet = NULL) {
+                           published = format(Sys.time(), "%Y-%m-%d %H:%M:%S")) {
   check_mandatory_arguments("dataset", "title", "description")
 
   if (is.null(remote_url) & is.null(file_name)) {

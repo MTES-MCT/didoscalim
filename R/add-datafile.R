@@ -76,8 +76,7 @@ add_datafile <- function(dataset,
                          temporal_coverage_start = NULL,
                          temporal_coverage_end = NULL,
                          legal_notice = "SDES",
-                         date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
-                         quiet = NULL) {
+                         date_diffusion = format(Sys.time(), "%Y-%m-%d %H:%M:%S")) {
   check_mandatory_arguments("dataset", "title", "description")
   datafile <- dido_datafile(
     dataset = dataset,

@@ -46,8 +46,7 @@ add_or_update_dataset <- function(title,
                                   license = "fr-lo",
                                   temporal_coverage_start = NULL,
                                   temporal_coverage_end = NULL,
-                                  caution = NULL,
-                                  quiet = NULL) {
+                                  caution = NULL) {
   check_mandatory_arguments("title", "description", "topic", "frequency")
   datasets <- list_datasets() %>%
     filter(compare_title(.data$title, .env$title))

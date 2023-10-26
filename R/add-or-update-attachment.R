@@ -43,8 +43,7 @@ add_or_update_attachment <- function(dataset,
                                      remote_url = NULL,
                                      published = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                                      check_file_date = FALSE,
-                                     type = "documentation",
-                                     quiet = NULL) {
+                                     type = "documentation") {
   check_mandatory_arguments("dataset", "title", "description")
 
   if (is.null(remote_url) & is.null(file_name)) {
@@ -68,8 +67,7 @@ add_or_update_attachment <- function(dataset,
       file_name = file_name,
       remote_url = remote_url,
       published = published,
-      type = type,
-      quiet = quiet
+      type = type
     )
     return(invisible(dido_att))
   }
