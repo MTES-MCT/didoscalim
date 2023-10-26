@@ -4,7 +4,7 @@
 #'   `dido_datafile()` ou `dido_job()`
 #' @param title le titre du fichier annexe
 #' @param description la description du fichier annexe
-#' @param file_name, remote_url le nom du fichier à verser ou l'url de l'attachement.
+#' @param file_name,remote_url le nom du fichier à verser ou l'url de l'attachement.
 #' @param type le type de fichier versé. Peut-être `documentation` ou
 #'   `historical_data`. Par défaut `documentation`
 #' @param published la date/heure de publication du fichier, si non précisée, prend la
