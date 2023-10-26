@@ -39,7 +39,7 @@
 #' dataset %>% add_attachment(
 #'   title = "title",
 #'   description = "Un attachment sous forme de lien externe",
-#'   remote_url = "https://www.lemonde.fr/")
+#'   remote_url = "https://www.lemonde.fr/"
 #' )
 add_attachment <- function(dataset,
                            title,
