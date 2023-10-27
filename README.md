@@ -118,6 +118,12 @@ Ainsi que les exemples :
 run_examples()
 ```
 
+Tester sous d’anciennes versions :
+
+``` bash
+docker run -it -e TZ=Europe/Paris -v $HOME/.Renviron:/root/.Renviron -v /etc/hosts:/etc/hosts -v $(pwd):/root/didoscalim rocker/tidyverse:4.1 Rscript /root/didoscalim/rocker_test.R
+```
+
 ### Les tests
 
 Les tests de ce package nécessitent pour le moment un environnement de
