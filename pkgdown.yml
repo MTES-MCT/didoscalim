@@ -1,12 +1,13 @@
-pandoc: 2.19.2
-pkgdown: 2.0.6
+pandoc: 3.1.1
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   charger-et-mettre-a-jour-des-donnees: charger-et-mettre-a-jour-des-donnees.html
+  complements-sur-les-mises-a-jour: complements-sur-les-mises-a-jour.html
   csv-augmente: csv-augmente.html
   les-environnements: les-environnements.html
   valider-un-fichier: valider-un-fichier.html
-last_built: 2023-01-19T14:50Z
+last_built: 2023-10-27T10:02Z
 urls:
   reference: https://mtes-mct.github.io/didoscalim/reference
   article: https://mtes-mct.github.io/didoscalim/articles

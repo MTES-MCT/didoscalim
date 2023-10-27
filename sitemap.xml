@@ -10,6 +10,9 @@
     <loc>https://mtes-mct.github.io/didoscalim/articles/charger-et-mettre-a-jour-des-donnees.html</loc>
   </url>
   <url>
+    <loc>https://mtes-mct.github.io/didoscalim/articles/complements-sur-les-mises-a-jour.html</loc>
+  </url>
+  <url>
     <loc>https://mtes-mct.github.io/didoscalim/articles/csv-augmente.html</loc>
   </url>
   <url>
@@ -113,6 +116,9 @@
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/didoscalim_log.html</loc>
+  </url>
+  <url>
+    <loc>https://mtes-mct.github.io/didoscalim/reference/didoscalim_update_only.html</loc>
   </url>
   <url>
     <loc>https://mtes-mct.github.io/didoscalim/reference/didoscalim_verbosity.html</loc>

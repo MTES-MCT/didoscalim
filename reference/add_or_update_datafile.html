@@ -4,12 +4,18 @@ existe sinon ajoute un datafile, un millésime ou remplace un millésime s'il
 existe déjà.
 Le paramètre on_existing_millesime permet de préciser le comportement à
 adopter si le millésime existe déjà.
-Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur."><title>Ajoute ou modifie un datafile — add_or_update_datafile • didoscalim</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Ajoute ou modifie un datafile — add_or_update_datafile"><meta property="og:description" content="met à jour le datafile (métadonnées et données) avec le même titre s'il
+Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.
+Si vous devez mettre à jour des datafiles, il est conseillé d'utiliser la
+fonction didoscalim_update_only(), cf
+vignette(&quot;complements-sur-les-mises-a-jour&quot;)"><title>Ajoute ou modifie un datafile — add_or_update_datafile • didoscalim</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Ajoute ou modifie un datafile — add_or_update_datafile"><meta property="og:description" content="met à jour le datafile (métadonnées et données) avec le même titre s'il
 existe sinon ajoute un datafile, un millésime ou remplace un millésime s'il
 existe déjà.
 Le paramètre on_existing_millesime permet de préciser le comportement à
 adopter si le millésime existe déjà.
-Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
+Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.
+Si vous devez mettre à jour des datafiles, il est conseillé d'utiliser la
+fonction didoscalim_update_only(), cf
+vignette(&quot;complements-sur-les-mises-a-jour&quot;)"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body>
@@ -20,7 +26,7 @@ Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.">
     
     <a class="navbar-brand me-2" href="../index.html">didoscalim</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Activer la navigation">
@@ -35,6 +41,7 @@ Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/charger-et-mettre-a-jour-des-donnees.html">Charger et mettre à jour des données</a>
+    <a class="dropdown-item" href="../articles/complements-sur-les-mises-a-jour.html">Compléments sur les mises à jour</a>
     <a class="dropdown-item" href="../articles/csv-augmente.html">Générer un fichier csv augmenté</a>
     <a class="dropdown-item" href="../articles/les-environnements.html">Configurer et utiliser les environnements</a>
     <a class="dropdown-item" href="../articles/valider-un-fichier.html">Valider un fichier de données à importer</a>
@@ -71,26 +78,28 @@ existe déjà.</p>
 <p>Le paramètre <code>on_existing_millesime</code> permet de préciser le comportement à
 adopter si le millésime existe déjà.</p>
 <p>Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.</p>
+<p>Si vous devez mettre à jour des datafiles, il est conseillé d'utiliser la
+fonction <code><a href="didoscalim_update_only.html">didoscalim_update_only()</a></code>, cf
+<code><a href="../articles/complements-sur-les-mises-a-jour.html">vignette("complements-sur-les-mises-a-jour")</a></code></p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Utilisation<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">add_or_update_datafile</span><span class="op">(</span>
-  <span class="va">dataset</span>,
-  <span class="va">title</span>,
-  <span class="va">description</span>,
-  <span class="va">file_name</span>,
-  millesime <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m"</span><span class="op">)</span>,
-  published <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d %H:%M:%S"</span><span class="op">)</span>,
-  temporal_coverage_start <span class="op">=</span> <span class="cn">NULL</span>,
-  temporal_coverage_end <span class="op">=</span> <span class="cn">NULL</span>,
-  legal_notice <span class="op">=</span> <span class="st">"SDES"</span>,
-  date_diffusion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d %H:%M:%S"</span><span class="op">)</span>,
-  keep_old_millesimes <span class="op">=</span> <span class="cn">Inf</span>,
-  on_existing_millesime <span class="op">=</span> <span class="st">"fail"</span>,
-  check_file_date <span class="op">=</span> <span class="cn">FALSE</span>,
-  quiet <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_or_update_datafile</span><span class="op">(</span></span>
+<span>  <span class="va">dataset</span>,</span>
+<span>  <span class="va">title</span>,</span>
+<span>  <span class="va">description</span>,</span>
+<span>  <span class="va">file_name</span>,</span>
+<span>  millesime <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m"</span><span class="op">)</span>,</span>
+<span>  published <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d %H:%M:%S"</span><span class="op">)</span>,</span>
+<span>  temporal_coverage_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  temporal_coverage_end <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legal_notice <span class="op">=</span> <span class="st">"SDES"</span>,</span>
+<span>  date_diffusion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d %H:%M:%S"</span><span class="op">)</span>,</span>
+<span>  keep_old_millesimes <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  on_existing_millesime <span class="op">=</span> <span class="st">"fail"</span>,</span>
+<span>  check_file_date <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -192,41 +201,41 @@ n'a eu lieu</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Exemples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="add_or_update_dataset.html">add_or_update_dataset</a></span><span class="op">(</span></span>
-<span class="r-in">  title <span class="op">=</span> <span class="st">"Un dataset pour les add_or_update_datafiles"</span>,</span>
-<span class="r-in">  description <span class="op">=</span> <span class="st">"Description des données statistiques"</span>,</span>
-<span class="r-in">  topic <span class="op">=</span> <span class="st">"Transports"</span>,</span>
-<span class="r-in">  frequency <span class="op">=</span> <span class="st">"unknown"</span>,</span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="add_or_update_dataset.html">add_or_update_dataset</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Un dataset pour les add_or_update_datafiles"</span>,</span></span>
+<span class="r-in"><span>  description <span class="op">=</span> <span class="st">"Description des données statistiques"</span>,</span></span>
+<span class="r-in"><span>  topic <span class="op">=</span> <span class="st">"Transports"</span>,</span></span>
+<span class="r-in"><span>  frequency <span class="op">=</span> <span class="st">"unknown"</span>,</span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> dataset `Un dataset pour les add_or_update_datafiles` créé</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">add_or_update_datafile</span><span class="op">(</span></span>
-<span class="r-in">  dataset <span class="op">=</span> <span class="va">dataset</span>,</span>
-<span class="r-in">  title <span class="op">=</span> <span class="st">"titre"</span>,</span>
-<span class="r-in">  description <span class="op">=</span> <span class="st">"description"</span>,</span>
-<span class="r-in">  file_name <span class="op">=</span> <span class="fu"><a href="dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"augmente.csv"</span><span class="op">)</span>,</span>
-<span class="r-in">  millesime <span class="op">=</span> <span class="st">"2021-10"</span>,</span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">add_or_update_datafile</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  dataset <span class="op">=</span> <span class="va">dataset</span>,</span></span>
+<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"titre"</span>,</span></span>
+<span class="r-in"><span>  description <span class="op">=</span> <span class="st">"description"</span>,</span></span>
+<span class="r-in"><span>  file_name <span class="op">=</span> <span class="fu"><a href="dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"augmente.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  millesime <span class="op">=</span> <span class="st">"2021-10"</span>,</span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier `/home/nc/travail/R/didoscalim/inst/extdata/augmente.csv`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier validé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré: 	 rid: 4c9aea0f-80cf-44da-b9f1-234a39faf442	 millesime: 2021-10	 lignes: 5</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">add_or_update_datafile</span><span class="op">(</span></span>
-<span class="r-in">  dataset <span class="op">=</span> <span class="va">dataset</span>,</span>
-<span class="r-in">  title <span class="op">=</span> <span class="st">"titre"</span>,</span>
-<span class="r-in">  description <span class="op">=</span> <span class="st">"description"</span>,</span>
-<span class="r-in">  file_name <span class="op">=</span> <span class="fu"><a href="dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"augmente.csv"</span><span class="op">)</span>,</span>
-<span class="r-in">  temporal_coverage_start <span class="op">=</span> <span class="st">"2021-01-01"</span>,</span>
-<span class="r-in">  temporal_coverage_end <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span>
-<span class="r-in">  millesime <span class="op">=</span> <span class="st">"2022-10"</span>,</span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré: 	 rid: 5a642e97-edd5-41ed-994c-ed3bd362c4a2	 millesime: 2021-10	 lignes: 5</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">add_or_update_datafile</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  dataset <span class="op">=</span> <span class="va">dataset</span>,</span></span>
+<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"titre"</span>,</span></span>
+<span class="r-in"><span>  description <span class="op">=</span> <span class="st">"description"</span>,</span></span>
+<span class="r-in"><span>  file_name <span class="op">=</span> <span class="fu"><a href="dido_example.html">dido_example</a></span><span class="op">(</span><span class="st">"augmente.csv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  temporal_coverage_start <span class="op">=</span> <span class="st">"2021-01-01"</span>,</span></span>
+<span class="r-in"><span>  temporal_coverage_end <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span></span>
+<span class="r-in"><span>  millesime <span class="op">=</span> <span class="st">"2022-10"</span>,</span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intégration du fichier `/home/nc/travail/R/didoscalim/inst/extdata/augmente.csv`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier versé</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier validé</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré: 	 rid: 4c9aea0f-80cf-44da-b9f1-234a39faf442	 millesime: 2022-10	 lignes: 5</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 	* fichier intégré: 	 rid: 5a642e97-edd5-41ed-994c-ed3bd362c4a2	 millesime: 2022-10	 lignes: 5</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> datafile "titre" modifié</span>
 </code></pre></div>
     </div>
@@ -239,7 +248,7 @@ n'a eu lieu</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site créé avec <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
