@@ -1,6 +1,12 @@
 #' Ajoute ou modifie un fichier annexe dans un dataset
 #'
+#' @description
+#'
 #' met à jour l'attachement avec le même titre s'il existe sinon ajoute un attachement.
+#'
+#' Si vous devez mettre à jour des attachments, il est conseillé d'utiliser la
+#' fonction `didoscalim_update_only()`, cf
+#' `vignette("complements-sur-les-mises-a-jour")`
 #'
 #' @inheritParams add_attachment
 #' @param check_file_date TRUE/FALSE, Si TRUE met à jour l'attachment uniquement
@@ -56,7 +62,7 @@ add_or_update_attachment <- function(dataset,
 
   if (nrow(attachments) == 0) {
 
-    if (update_only()) {
+    if (is_update_only()) {
       abort_update_only(title, "attachment")
     }
 

@@ -137,8 +137,6 @@ set_work_env <- function(env_name = NULL, .envir = parent.frame()) {
 #' retournera le premier environnement configuré en suivant l'ordre : DEV,
 #' PREPROD, ECOLE. Il ne fixera **jamais** PROD implicitement.
 #'
-#' @inheritParams set_work_env
-#'
 #' @return une chaine de caractère avec l'environnement utilisé. Exemple "ECOLE"
 #' @export
 #'

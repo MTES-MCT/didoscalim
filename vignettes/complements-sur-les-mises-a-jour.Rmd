@@ -112,7 +112,7 @@ Dans ce cas, il est **fortement** conseillé d'utiliser l'option
 
 ```{r, error=TRUE}
 
-withr::local_options(list(didoscalim_update_only = TRUE))
+didoscalim_update_only(TRUE)
                     
 dataset <- add_or_update_dataset(
   title = "Données sur l'évolution des écosystèmes.",

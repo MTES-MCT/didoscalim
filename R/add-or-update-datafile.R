@@ -10,6 +10,11 @@
 #'
 #' Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.
 #'
+#' Si vous devez mettre à jour des datafiles, il est conseillé d'utiliser la
+#' fonction `didoscalim_update_only()`, cf
+#' `vignette("complements-sur-les-mises-a-jour")`
+#'
+#'
 #' @inheritParams add_datafile
 #' @param on_existing_millesime skip/fail/replace : action à faire quand le
 #'   millésime existe déjà. Peut-être :
@@ -79,7 +84,7 @@ add_or_update_datafile <- function(dataset,
 
   if (nrow(datafiles) == 0) {
 
-    if (update_only()) {
+    if (is_update_only()) {
       abort_update_only(title, "datafile")
     }
 

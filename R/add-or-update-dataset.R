@@ -1,7 +1,15 @@
 #' Ajoute ou met à jour un dataset
 #'
+#' @description
 #' Cette fonction permet, par exemple, de modifier la période de couverture du
 #' dataset ainsi que la date de prochaine mise à jour.
+#'
+#' Si plusieurs datasets ont le même titre, cette méthode retourne une erreur.
+#'
+#' Si vous devez mettre à jour des datasets, il est conseillé d'utiliser la
+#' fonction `didoscalim_update_only()`, cf
+#' `vignette("complements-sur-les-mises-a-jour")`
+#'
 #'
 #' @inheritParams add_dataset
 #'
@@ -53,7 +61,7 @@ add_or_update_dataset <- function(title,
 
   if (nrow(datasets) == 0) {
 
-    if (update_only()) {
+    if (is_update_only()) {
       abort_update_only(title, "dataset")
     }
 
