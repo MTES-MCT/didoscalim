@@ -8,6 +8,7 @@ L'objet dido_attachment inclus les champs :
 \itemize{
 \item \code{rid} l'identifiant du jeu de données parent
 \item \code{title}
+\item \code{type}
 \item \code{description}
 \item \code{created_at}
 \item \code{last_modified}

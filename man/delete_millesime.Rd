@@ -4,7 +4,7 @@
 \alias{delete_millesime}
 \title{Supprimer un millésime}
 \usage{
-delete_millesime(datafile, millesime, quiet = NULL)
+delete_millesime(datafile, millesime)
 }
 \arguments{
 \item{datafile}{un objet dido_datafile obtenu par \code{get_datafile()}}

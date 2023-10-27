@@ -14,7 +14,9 @@ dido_csv(
 \arguments{
 \item{data}{le dataframe à augmenter}
 
-\item{params}{une liste nommée décrivant les caractéristiques des colonnes :\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
+\item{params}{une liste nommée décrivant les caractéristiques des colonnes :
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
   COL1 = list(description = "une description"),
   COL2 = list(unit = "MWh")
 )
@@ -28,7 +30,9 @@ Les caractéristiques disponibles sont :
 \item \code{unit}: l'unité de la colonne
 }
 
-Le nom de la colonne peut être une expression rationnelle :\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
+Le nom de la colonne peut être une expression rationnelle :
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
   COL     = list(description = "une description"),
   `COL.*` = list(unit = "MWh")
 )
@@ -39,7 +43,9 @@ expressions rationnelles à la fin}.
 
 La valeur du champ \code{description} est évaluée par glue::glue avec un
 paramètre \code{name} qui correspond au nom de la variable du dataframe
-d'origine.\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
+d'origine.
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
   COL     = list(description = "une description"),
   `COL.*` = list(
     unit = "MWh",
@@ -50,7 +56,9 @@ d'origine.\if{html}{\out{<div class="sourceCode r">}}\preformatted{list(
 
 \item{locale}{la locale à utiliser. Le seul élément à configurer à ce niveau
 est le séparateur décimal. Par défaut c'est le point (\code{.}). Pour
-sélectionner la virgule vous pouvez utiliser :\if{html}{\out{<div class="sourceCode r">}}\preformatted{locale = locale(decimal_mark = ",")
+sélectionner la virgule vous pouvez utiliser :
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{locale = locale(decimal_mark = ",")
 }\if{html}{\out{</div>}}}
 
 \item{cog_year}{le millésime du COG utilisé si besoin. Par défaut prend
@@ -74,6 +82,10 @@ type DiDo de base :\tabular{ll}{
    tous les autres \tab texte \cr
 }
 
+
+** il est fortement déconseillé d'utiliser le type DiDo
+\code{nombre}. Utilisez plutôt un nombre avec précision comme par exemple
+\code{nombre(2)}**
 
 Certains noms de variable sont connus par didoscalim qui génère
 automatiquement le type et la description. La liste complète de ces
@@ -116,8 +128,13 @@ params <- list(
 dido_csv(data, params = params, locale = locale(decimal_mark = ","))
 }
 \seealso{
-En complément, vous pouvez lire : \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/}{la description d'un fichier csv augmenté},
-\href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/}{la liste des entêtes utilisables}
+En complément, vous pouvez lire : \href{https://mtes-mct.github.io/didoscalim/articles/csv-augmente.html}{la vignette dédiée à la génération des fichiers augmentés}
+
+Et la documentation de l'API :
+\itemize{
+\item \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/040-csvfile/}{la description d'un fichier csv augmenté},
+\item \href{https://cgdd.gitlab-pages.din.developpement-durable.gouv.fr/sdsed-bun/datalake/api/210-headers/}{la liste des entêtes utilisables}
+}
 
 Other csv: 
 \code{\link{dido_read_delim}()},

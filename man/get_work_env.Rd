@@ -4,7 +4,7 @@
 \alias{get_work_env}
 \title{Récupère l'environnement utilisé}
 \usage{
-get_work_env(quiet = NULL)
+get_work_env()
 }
 \value{
 une chaine de caractère avec l'environnement utilisé. Exemple "ECOLE"

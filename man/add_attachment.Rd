@@ -8,9 +8,10 @@ add_attachment(
   dataset,
   title,
   description,
-  file_name,
-  published = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
-  quiet = NULL
+  file_name = NULL,
+  remote_url = NULL,
+  type = "documentation",
+  published = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S")
 )
 }
 \arguments{
@@ -21,7 +22,10 @@ add_attachment(
 
 \item{description}{la description du fichier annexe}
 
-\item{file_name}{le nom du fichier à verser}
+\item{file_name, remote_url}{le nom du fichier à verser ou l'url de l'attachement.}
+
+\item{type}{le type de fichier versé. Peut-être \code{documentation} ou
+\code{historical_data}. Par défaut \code{documentation}}
 
 \item{published}{la date/heure de publication du fichier, si non précisée, prend la
 date/heure du moment.
@@ -49,7 +53,14 @@ dataset <- add_or_update_dataset(
 dataset \%>\% add_attachment(
   title = "title",
   description = "description",
-  file_name = dido_example("attachment.txt")
+  file_name = dido_example("attachment.txt"),
+  type = 'historical_data'
+)
+
+dataset \%>\% add_attachment(
+  title = "title",
+  description = "Un attachment sous forme de lien externe",
+  remote_url = "https://www.lemonde.fr/"
 )
 }
 \seealso{

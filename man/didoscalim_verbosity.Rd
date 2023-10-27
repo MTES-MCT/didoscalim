@@ -17,10 +17,12 @@ détermine la verbosité générale de didoscalim. Il y a trois niveaux possible
 }
 
 Si vous souhaitez changer le niveau par défaut, il suffit d'utiliser \code{option}
-:\preformatted{options(
+:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{options(
   didoscalim_verbosity = "silent",
 )
-}
+}\if{html}{\out{</div>}}
 }
 \examples{
 didoscalim_verbosity()

@@ -8,8 +8,7 @@ add_millesime(
   datafile,
   file_name,
   date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
-  millesime = format(Sys.time(), "\%Y-\%m"),
-  quiet = NULL
+  millesime = format(Sys.time(), "\%Y-\%m")
 )
 }
 \arguments{

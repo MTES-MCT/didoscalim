@@ -8,8 +8,7 @@ replace_millesime(
   datafile,
   file_name,
   millesime,
-  date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
-  quiet = NULL
+  date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S")
 )
 }
 \arguments{

@@ -14,8 +14,7 @@ add_datafile(
   temporal_coverage_start = NULL,
   temporal_coverage_end = NULL,
   legal_notice = "SDES",
-  date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
-  quiet = NULL
+  date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S")
 )
 }
 \arguments{

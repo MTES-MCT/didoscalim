@@ -4,12 +4,12 @@
 \alias{replace_attachment}
 \title{Remplace un fichier annexe}
 \usage{
-replace_attachment(attachment, file_name, quiet = NULL)
+replace_attachment(attachment, file_name = NULL, remote_url = NULL)
 }
 \arguments{
 \item{attachment}{un objet \code{dido_attachment()} ou un rid}
 
-\item{file_name}{le nom du fichier à verser}
+\item{file_name, remote_url}{le nom du fichier à verser ou l'url de l'attachement.}
 }
 \value{
 un objet \code{dido_attachment()}

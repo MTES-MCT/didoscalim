@@ -4,7 +4,7 @@
 \alias{set_work_env}
 \title{Fixe l'environnement DiDo à utiliser}
 \usage{
-set_work_env(env_name = NULL, quiet = NULL, .envir = parent.frame())
+set_work_env(env_name = NULL, .envir = parent.frame())
 }
 \arguments{
 \item{env_name}{le nom de l'environnement à utiliser parmi PROD, ECOLE,

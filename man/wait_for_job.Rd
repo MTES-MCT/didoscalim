@@ -4,7 +4,7 @@
 \alias{wait_for_job}
 \title{Attend la fin d'un job d'intégration}
 \usage{
-wait_for_job(data, quiet = NULL)
+wait_for_job(data)
 }
 \arguments{
 \item{data}{l'id du job}

@@ -17,8 +17,7 @@ add_or_update_dataset(
   license = "fr-lo",
   temporal_coverage_start = NULL,
   temporal_coverage_end = NULL,
-  caution = NULL,
-  quiet = NULL
+  caution = NULL
 )
 }
 \arguments{
@@ -70,6 +69,12 @@ les datafiles, les millésimes et les attachments
 \description{
 Cette fonction permet, par exemple, de modifier la période de couverture du
 dataset ainsi que la date de prochaine mise à jour.
+
+Si plusieurs datasets ont le même titre, cette méthode retourne une erreur.
+
+Si vous devez mettre à jour des datasets, il est conseillé d'utiliser la
+fonction \code{didoscalim_update_only()}, cf
+\code{vignette("complements-sur-les-mises-a-jour")}
 }
 \examples{
 dataset <- add_or_update_dataset(

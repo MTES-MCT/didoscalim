@@ -17,8 +17,7 @@ add_dataset(
   license = "fr-lo",
   temporal_coverage_start = NULL,
   temporal_coverage_end = NULL,
-  caution = NULL,
-  quiet = NULL
+  caution = NULL
 )
 }
 \arguments{

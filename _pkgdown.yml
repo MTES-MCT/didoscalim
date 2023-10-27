@@ -33,6 +33,7 @@ reference:
   - my_organization
   - list_alerts
   - didoscalim_verbosity
+  - didoscalim_update_only
 
 - title: "Gérer votre environnement"
   contents:

@@ -4,19 +4,7 @@
 \alias{dido_read_delim}
 \title{Lit un fichier CSV}
 \usage{
-dido_read_delim(
-  file,
-  delim = NULL,
-  quote = "\\"",
-  escape_backslash = FALSE,
-  escape_double = TRUE,
-  locale = readr::default_locale(),
-  comment = "",
-  trim_ws = FALSE,
-  skip = 0,
-  n_max = Inf,
-  skip_empty_rows = TRUE
-)
+dido_read_delim(file, delim = ";", ...)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data
@@ -37,43 +25,20 @@ Using a value of \code{\link[readr:clipboard]{clipboard()}} will read from the s
 
 \item{delim}{le séparateur de champ. Par défaut ";".}
 
-\item{quote}{Single character used to quote strings.}
-
-\item{escape_backslash}{Does the file use backslashes to escape special
-characters? This is more general than \code{escape_double} as backslashes
-can be used to escape the delimiter character, the quote character, or
-to add special characters like \verb{\\\\n}.}
-
-\item{escape_double}{Does the file escape quotes by doubling them?
-i.e. If this option is \code{TRUE}, the value \verb{""""} represents
-a single quote, \verb{\\"}.}
+\item{...}{ces arguments seront passés directement à la fonction
+\code{readr::read_delim()}}
 
 \item{locale}{la locale à utiliser pour lire les fichiers. A ce niveau, le
 paramètre le plus important est l'encodage du fichier. Le défaut est
 "UTF-8". Les autres encodages fréquemment rencontrés sont "WINDOWS-1252" et
 "ISO-8859-15"}
-
-\item{comment}{A string used to identify comments. Any text after the
-comment characters will be silently ignored.}
-
-\item{trim_ws}{Should leading and trailing whitespace (ASCII spaces and tabs) be trimmed from
-each field before parsing it?}
-
-\item{skip}{Number of lines to skip before reading data. If \code{comment} is
-supplied any commented lines are ignored \emph{after} skipping.}
-
-\item{n_max}{Maximum number of lines to read.}
-
-\item{skip_empty_rows}{Should blank rows be ignored altogether? i.e. If this
-option is \code{TRUE} then blank rows will not be represented at all.  If it is
-\code{FALSE} then they will be represented by \code{NA} values in all the columns.}
 }
 \value{
 un tibble dont toutes les colonnes sont de type \code{chr}
 }
 \description{
 Cette fonction utilise directement \code{readr::read_delim} en enlevant la
-détection du type des colonnes.
+détection du type des colonnes et en fixant \code{delim} à ";" par défaut.
 }
 \details{
 Certaines variables peuvent avoir des valeurs secrétisées

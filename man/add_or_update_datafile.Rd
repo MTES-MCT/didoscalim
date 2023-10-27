@@ -17,8 +17,7 @@ add_or_update_datafile(
   date_diffusion = format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"),
   keep_old_millesimes = Inf,
   on_existing_millesime = "fail",
-  check_file_date = FALSE,
-  quiet = NULL
+  check_file_date = FALSE
 )
 }
 \arguments{
@@ -92,6 +91,10 @@ Le paramètre \code{on_existing_millesime} permet de préciser le comportement �
 adopter si le millésime existe déjà.
 
 Si plusieurs datafiles ont le même titre, cette méthode retourne une erreur.
+
+Si vous devez mettre à jour des datafiles, il est conseillé d'utiliser la
+fonction \code{didoscalim_update_only()}, cf
+\code{vignette("complements-sur-les-mises-a-jour")}
 }
 \examples{
 library(dplyr, warn.conflicts = FALSE)
