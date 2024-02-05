@@ -95,8 +95,6 @@ add_datafile <- function(dataset,
   didoscalim_info(glue::glue("    intégration du fichier `{file_name}`"))
   datafile$tokenFile <- dido_upload_file(file_name)
   didoscalim_info(glue::glue("\t* fichier versé"))
-  check_csv(datafile$tokenFile)
-  didoscalim_info(glue::glue("\t* fichier validé"))
 
   df <- clean_metadata(datafile)
 

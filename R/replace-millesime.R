@@ -31,8 +31,6 @@ replace_millesime <- function(datafile,
   didoscalim_info(glue::glue("    intégration du fichier `{file_name}`"))
   token_file <- dido_upload_file(file_name)
   didoscalim_info(glue::glue("\t* fichier versé"))
-  check_csv(token_file)
-  didoscalim_info(glue::glue("\t* fichier validé"))
 
   payload <- list(
     "tokenFile" = token_file,
