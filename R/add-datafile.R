@@ -110,7 +110,7 @@ add_datafile <- function(dataset,
     "\t* fichier intégré: ",
     "\t rid: {get_datafile_rid(job_result)}",
     "\t millesime: {job_result$result$millesime}",
-    "\t lignes: {job_result$result$rows}",
+    "\t lignes: {job_result$result$rows}"
   ))
   invisible(job_result)
 }
