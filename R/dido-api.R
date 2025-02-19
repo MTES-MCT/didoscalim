@@ -23,6 +23,7 @@ default_ua <- function() {
 #' @param headers les entêtes de la requête
 #' @param as_tibble TRUE/FALSE si TRUE retourne un tibble à la place d'un objet.
 #'   Défaut à FALSE
+#' @param timeout_seconds le timeout de la requête httr (10s)
 #'
 #' @return un objet json ou un dataframe
 #' @export
@@ -30,7 +31,7 @@ default_ua <- function() {
 #' @examples
 #' alerts <- dido_api(method = "GET", path = "/datasets/alerts", as_tibble = TRUE)
 #' @keywords internal
-dido_api <- function(method, path, body = NULL, query_params = list(), headers = c(), as_tibble = FALSE, progress = FALSE) {
+dido_api <- function(method, path, body = NULL, query_params = list(), headers = c(), as_tibble = FALSE, progress = FALSE, timeout_seconds = 10) {
   if (!method %in% c("GET", "PUT", "POST", "DELETE")) {
     rlang::abort(glue::glue("unknown method: {method} for url: {url}"))
   }
@@ -48,6 +49,7 @@ dido_api <- function(method, path, body = NULL, query_params = list(), headers =
 
   params <- list(
     method, url,
+    config = httr::timeout(timeout_seconds),
     c(httr::add_headers(headers), ua),
     terminate_on = c(400:499),
     body = body,
