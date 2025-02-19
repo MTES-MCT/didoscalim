@@ -2,8 +2,8 @@
 % Please edit documentation in R/didoscalim.R
 \docType{package}
 \name{didoscalim-package}
+\alias{didoscalim}
 \alias{didoscalim-package}
-\alias{_PACKAGE}
 \title{didoscalim: Charger des données dans DiDo}
 \description{
 Ce package permet de charger des données dans DiDo en passant par l'API d'alimentation.

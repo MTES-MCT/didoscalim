@@ -1,3 +1,10 @@
+# didoscalim 0.1.5.9000
+
+bugfixes :
+
+* corrige un warnin sur le versement des fichiers de données
+* corrige un bug de timeout sur certaines requêtes httr 
+
 # didoscalim 0.1.4.9000
 
 évolutions :
