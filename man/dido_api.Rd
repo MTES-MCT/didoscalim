@@ -12,7 +12,7 @@ dido_api(
   headers = c(),
   as_tibble = FALSE,
   progress = FALSE,
-  timeout_seconds = 10
+  timeout_seconds = 300
 )
 }
 \arguments{
@@ -29,7 +29,7 @@ dido_api(
 \item{as_tibble}{TRUE/FALSE si TRUE retourne un tibble à la place d'un objet.
 Défaut à FALSE}
 
-\item{timeout_seconds}{le timeout de la requête httr (10s)}
+\item{timeout_seconds}{le timeout de la requête httr}
 }
 \value{
 un objet json ou un dataframe
