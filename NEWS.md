@@ -1,3 +1,9 @@
+# didoscalim 0.1.7.9000
+
+bugfixes :
+
+* augmente le timeout des requêtes à 900 secondes
+
 # didoscalim 0.1.6.9000
 
 bugfixes :
