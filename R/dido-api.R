@@ -31,7 +31,7 @@ default_ua <- function() {
 #' @examples
 #' alerts <- dido_api(method = "GET", path = "/datasets/alerts", as_tibble = TRUE)
 #' @keywords internal
-dido_api <- function(method, path, body = NULL, query_params = list(), headers = c(), as_tibble = FALSE, progress = FALSE, timeout_seconds = 300) {
+dido_api <- function(method, path, body = NULL, query_params = list(), headers = c(), as_tibble = FALSE, progress = FALSE, timeout_seconds = 900) {
   if (!method %in% c("GET", "PUT", "POST", "DELETE")) {
     rlang::abort(glue::glue("unknown method: {method} for url: {url}"))
   }
