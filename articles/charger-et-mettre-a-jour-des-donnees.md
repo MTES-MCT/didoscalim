@@ -1,0 +1,326 @@
+# Charger et mettre à jour des données
+
+``` r
+library(didoscalim)
+library(magrittr)
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+```
+
+Ce tutorial explique comment utiliser les fonctions
+[`add_or_update_dataset()`](https://mtes-mct.github.io/didoscalim/reference/add_or_update_dataset.md),
+[`add_or_update_datafile()`](https://mtes-mct.github.io/didoscalim/reference/add_or_update_datafile.md)
+et
+[`add_or_update_attachment()`](https://mtes-mct.github.io/didoscalim/reference/add_or_update_attachment.md)
+qui permettent, comme leur nom l’indique, de mettre à jour un objet
+existant et s’il n’existe pas de le créer.
+
+Un objet est identifié par son titre (et son parent pour les fichiers de
+données et les fichiers joints). La recherche par le titre se base sur
+uniquement sur les caractères alphanumériques en minuscule.
+
+Cela a plusieurs conséquences :
+
+1.  vous ne devez pas avoir deux jeux de données avec le même nom, ou
+    deux fichiers de données/fichiers annexes avec le même nom **dans un
+    même jeu de données**.
+2.  il est possible de modifier le titre d’un objet uniquement à la
+    marge (ajout d’une majuscule, suppression d’un espace…)
+
+Toutes ces fonctions vont chercher un objet **du même type** avec **un
+titre équivalent (cf ci-dessus)** et le cas échéant ayant le même parent
+puis :
+
+- si elles le trouvent, mettent à jour les données et métadonnées
+- sinon elles créent l’objet.
+
+Rappel : Afin d’éviter les erreurs de manipulation, il est conseillé de
+préparer ses scripts de chargement sur l’environnement `ECOLE` et de les
+passer après sur `PROD`. Vous trouverez plus d’info dans [la vignette
+sur les
+environnements](https://mtes-mct.github.io/didoscalim/articles/les-environnements.md).
+
+## L’exemple
+
+Nous souhaitons créer un jeu de données contenant 2 fichiers de données.
+
+- les fichiers de données sont mis à jour tous les mois.
+- les mises à jour ont lieu le 10 de chaque mois.
+- les données sont cumulatives (donc la date de début de couverture
+  temporelle ne change pas).
+
+La procédure à suivre est la suivante :
+
+1.  créer ou modifier le jeu de données en modifiant la date de fin de
+    couverture temporelle et la date de prochaine mise à jour
+2.  créer les fichiers de données ou remplacer les millésimes en
+    modifiant la date de publication et la date de fin de couverture
+    temporelle
+
+Dans les éléments supplémentaires :
+
+- le millésime est le jours/mois de publication des données au format
+  `AAAA-MM`.
+- on ne souhaite pas conserver les anciens millésimes.
+
+### créer le jeu de données
+
+``` r
+# ces variables vont évoluer dans le temps
+temporal_coverage_end <- "2020-05-31"
+frequency_date <- "2020-06-10"
+millesime <- "2020-06"
+
+# cette variable ne change jamais
+temporal_coverage_start <- "2000-01-01"
+
+dataset <- add_or_update_dataset(
+  title = "Données de consommation mensuelles fictive",
+  description = "test",
+  topic = "Énergie",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+#> dataset `Données de consommation mensuelles fictive` créé
+```
+
+`frequency_date` représente la date de prochaine mise à jour, c’est une
+valeur fixée au niveau du jeu de données.
+
+`temporal_coverage_start` et `temporal_coverage_end` représente
+respectivement les dates de début et de fin de la couverture temporelle.
+Elles sont fixées au niveau du jeux de données et également au niveau
+des fichiers de données.
+
+### créer les fichiers de données
+
+``` r
+add_or_update_datafile(
+  dataset = dataset,
+  title = "Données de consommation fictive – chaleur et froid",
+  description = "Consommations annuelles et nombre de points de livraison",
+  file_name = "augmente.csv",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  millesime = millesime,
+  keep_old_millesimes = 0
+)
+#>     intégration du fichier `augmente.csv`
+#>  * fichier versé
+#>  * fichier validé
+#>  * fichier intégré:   rid: 33abded4-e53a-43c9-a7c6-8bfe7113e041   millesime: 2020-06  lignes: 20
+
+add_or_update_datafile(
+  dataset = dataset,
+  title = "Données de consommation fictive – gaz et électricité",
+  description = "Consommations annuelles et nombre de points de livraison",
+  file_name = "augmente.csv",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  millesime = millesime,
+  keep_old_millesimes = 0
+)
+#>     intégration du fichier `augmente.csv`
+#>  * fichier versé
+#>  * fichier validé
+#>  * fichier intégré:   rid: b70e4c88-2233-4eaf-ac60-22f0d6bbf1ea   millesime: 2020-06  lignes: 20
+```
+
+Le paramètre `keep_old_millesimes` permet d’indiquer que le méthode doit
+conserver 0 anciens millésimes, par conséquent elle va supprimer tous
+les anciens millésimes.
+
+Vous pouvez également passer l’argument `check_file_date` à `TRUE`, la
+méthode vérifiera si le fichier est plus récent que la dernière
+modification du datafile et si ça n’est pas le cas retournera sans
+réaliser la mise à jour.
+
+### Réaliser les mises à jour
+
+La procédure est la suivante :
+
+1.  modifier le jeu de données en modifiant la date de fin de couverture
+    temporelle et la date de prochaine mise à jour
+2.  ajouter des données aux fichiers de données ou remplacer les
+    millésimes et modifier la date de fin de couverture temporelle
+
+Pour ces mises à jour, il suffira de modifier la déclaration des
+variables d’entêtes et de reprendre le code précédent, les fonctions
+`add_or_update_*` s’occupent de tout le reste. Pour publier les données
+allant jusqu’au 30 juin le code est le suivant :
+
+``` r
+# nouvelle date de fin
+temporal_coverage_end <- "2020-06-30"
+# nouvelle date de mise à jour
+frequency_date <- "2020-07-10"
+# nouvel identifiant de millésime
+millesime <- "2020-07"
+
+# toute la suite est strictement identique au code ci-dessus.
+temporal_coverage_start <- "2000-01-01"
+
+dataset <- add_or_update_dataset(
+  title = "Données de consommation mensuelles fictive",
+  description = "test",
+  topic = "Énergie",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+#> dataset "Données de consommation mensuelles fictive" modifié
+
+add_or_update_datafile(
+  dataset = dataset,
+  title = "Données de consommation fictive – chaleur et froid",
+  description = "Consommations annuelles et nombre de points de livraison",
+  file_name = "augmente.csv",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  millesime = millesime,
+  keep_old_millesimes = 1
+)
+#>     intégration du fichier `augmente.csv`
+#>  * fichier versé
+#>  * fichier validé
+#>  * fichier intégré:   rid: 33abded4-e53a-43c9-a7c6-8bfe7113e041   millesime: 2020-07  lignes: 20
+#> datafile "Données de consommation fictive – chaleur et froid" modifié
+
+add_or_update_datafile(
+  dataset = dataset,
+  title = "Données de consommation fictive – gaz et électricité",
+  description = "Consommations annuelles et nombre de points de livraison",
+  file_name = "augmente.csv",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  millesime = millesime,
+  keep_old_millesimes = 1
+)
+#>     intégration du fichier `augmente.csv`
+#>  * fichier versé
+#>  * fichier validé
+#>  * fichier intégré:   rid: b70e4c88-2233-4eaf-ac60-22f0d6bbf1ea   millesime: 2020-07  lignes: 20
+#> datafile "Données de consommation fictive – gaz et électricité" modifié
+```
+
+### Le programme final
+
+Le code précédent est un exemple, il doit entre autre pouvoir vous
+montrer comment se passe une création et une mise à jour et pour cela,
+un millésime devant être unique, il doit modifier l’identifiant du
+millésime à chaque étape.
+
+Une fois que votre programme est prêt, vous pouvez automatiser la
+génération des variables `temporal_coverage_end` et `frequency_date` et
+supprimer la variable et les paramêtres `millesime`,
+[`add_or_update_datafile()`](https://mtes-mct.github.io/didoscalim/reference/add_or_update_datafile.md)
+le fixe automatiquemeent à `AAAA-MM` avec l’année et le mois en cours si
+elle n’est pas précisée.
+
+Cela donne le code final suivant que vous pouvez lancer tous les mois :
+
+``` r
+library(lubridate, warn.conflicts = FALSE)
+
+# prend la date du dernier jour du mois précédent
+temporal_coverage_end <- ceiling_date(Sys.Date() %m-% months(1), 'month') %m-% days(1)
+# prend la date du 9eme jour après le 1er du mois en cours
+# cette implémentation est naïve, attention aux jours non travaillés...
+frequency_date <- ceiling_date(Sys.Date(), 'month') + days(9)
+# cette variable n'est pas indispensable
+millesime = format(Sys.time(), "%Y-%m")
+
+# la suite est strictement identique au code précédent.
+temporal_coverage_start <- "2000-01-01"
+
+dataset <- add_or_update_dataset(
+  title = "Données de consommation mensuelles fictive",
+  description = "test",
+  topic = "Énergie",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+#> dataset "Données de consommation mensuelles fictive" modifié
+
+add_or_update_datafile(
+  dataset = dataset,
+  title = "Données de consommation fictive – chaleur et froid",
+  description = "Consommations annuelles et nombre de points de livraison",
+  file_name = "augmente.csv",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  millesime = millesime,
+  keep_old_millesimes = 1
+)
+#>     intégration du fichier `augmente.csv`
+#>  * fichier versé
+#>  * fichier validé
+#>  * fichier intégré:   rid: 33abded4-e53a-43c9-a7c6-8bfe7113e041   millesime: 2025-12  lignes: 20
+#> datafile "Données de consommation fictive – chaleur et froid" modifié
+#> suppression du millesime `693074e2cffe21e55a9ebb9b` `33abded4-e53a-43c9-a7c6-8bfe7113e041` `2020-06`
+
+add_or_update_datafile(
+  dataset = dataset,
+  title = "Données de consommation fictive – gaz et électricité",
+  description = "Consommations annuelles et nombre de points de livraison",
+  file_name = "augmente.csv",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  millesime = millesime,
+  keep_old_millesimes = 1
+)
+#>     intégration du fichier `augmente.csv`
+#>  * fichier versé
+#>  * fichier validé
+#>  * fichier intégré:   rid: b70e4c88-2233-4eaf-ac60-22f0d6bbf1ea   millesime: 2025-12  lignes: 20
+#> datafile "Données de consommation fictive – gaz et électricité" modifié
+#> suppression du millesime `693074e2cffe21e55a9ebb9b` `b70e4c88-2233-4eaf-ac60-22f0d6bbf1ea` `2020-06`
+```
+
+### éviter la création d’un objet quand vous voulez faire des mises à jour
+
+Si vos datasets/datafiles sont « stables » et qu’ils doivent juste être
+mis à jour, vous pouvez utiliser l’option `didoscalim_update_only`. Les
+fonctions `add_or_update_*` lèveront une exception si elles doivent
+créer un nouvel objet
+
+``` r
+withr::local_options(didoscalim_update_only = TRUE)
+
+dataset <- add_or_update_dataset(
+  title = "Données de consommation mensuelles fictive.",
+  description = "test",
+  topic = "Énergie",
+  temporal_coverage_start = temporal_coverage_start,
+  temporal_coverage_end = temporal_coverage_end,
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+#> dataset "Données de consommation mensuelles fictive." modifié
+
+
+dataset <- add_or_update_dataset(
+  title = "Un dataset quelconque",
+  description = "test",
+  topic = "Énergie",
+  frequency = "monthly",
+  frequency_date = frequency_date
+)
+#> Error in `abort_update_only()`:
+#> ! aucun dataset ne correspond au titre 'Un dataset quelconque'
+#> ℹ l'option `didoscalim_update_only` est positionnée à `TRUE`.
+```
+
+### quelques conseils
+
+- utilisez l’option `didoscalim_update_only` quand vous ne devez faire
+  que des mises à jours.
+- Lancez **toujours** le programme sur l’environnement ECOLE pour
+  vérifier que vos fichiers sont correctements formatés.
+- Si vous rencontrez un problème **sur l’environnement ecole**, vous
+  pouvez supprimer entièrement le dataset et relancer l’intégration
+  jusqu’à la correction de vos erreurs.
